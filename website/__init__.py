@@ -17,7 +17,7 @@ import stripe
 # Result: No SQL is needed to create, maintain, and query the db! ORM: Object Relational Mapping 
 # and you can connect it directly to Postgres
 db = SQLAlchemy()
-DB_NAME = os.environ.get('HR_DB_URI')
+DB_NAME = os.environ.get('CVHIRE_DB_URI')
 # ------------------------ define/initialize a new db sql_alchemy function end ------------------------
 
 secret_key_ref = os.urandom(64)
@@ -35,7 +35,7 @@ def create_app_function():
   app = Flask(__name__)
   # To use a session, there has to be a secret key. The string should be something difficult to guess
   app.secret_key = secret_key_ref
-  app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HR_DB_URI').replace("postgres://", "postgresql://", 1) # This .replace was added because of an issue when pushing to heroku. Link: https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy 
+  app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('CVHIRE_DB_URI').replace("postgres://", "postgresql://", 1) # This .replace was added because of an issue when pushing to heroku. Link: https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy 
   db.init_app(app)
   # ------------------------ create flask app end ------------------------
   # ------------------------ additional flask app configurations start ------------------------
@@ -60,14 +60,12 @@ def create_app_function():
   from .polling_views_admin import polling_views_admin
   from .polling_views_exterior import polling_views_exterior
   from .polling_views_interior import polling_views_interior
-  from .reviews_interior import reviews_interior
   # ------------------------ views/auths/routes imports end ------------------------
   # ------------------------ views/auths/routes register blueprints start ------------------------
   app.register_blueprint(polling_auth, url_prefix='/')
   app.register_blueprint(polling_views_admin, url_prefix='/')
   app.register_blueprint(polling_views_exterior, url_prefix='/')
   app.register_blueprint(polling_views_interior, url_prefix='/')
-  app.register_blueprint(reviews_interior, url_prefix='/')
   # ------------------------ views/auths/routes register blueprints end ------------------------
   # ------------------------ import models before creating db for first time start ------------------------
   from .models import UserObj

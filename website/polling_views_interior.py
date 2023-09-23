@@ -806,7 +806,7 @@ def polling_add_show_function(url_redirect_code=None, url_step_code='1', url_pla
           # ------------------------ email self start ------------------------
           if current_user.is_anonymous == True or current_user.email != os.environ.get('RUN_TEST_EMAIL'):
             try:
-              output_to_email = os.environ.get('HR_SUPPORT_EMAIL')
+              output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
               output_subject = f"New show added to queue: '{page_dict['spotify_pulled_arr_of_dict'][int(ui_show_selected_index_value)]['name']}'"
               output_body = f"<p>New show added to queue: '{page_dict['spotify_pulled_arr_of_dict'][int(ui_show_selected_index_value)]['name']}'</p>"
               send_email_template_function(output_to_email, output_subject, output_body)
@@ -1092,7 +1092,7 @@ def polling_show_function(url_redirect_code=None, url_show_id=None, url_poll_id=
       if current_user.email != os.environ.get('RUN_TEST_EMAIL'):
         # ------------------------ email self start ------------------------
         try:
-          output_to_email = os.environ.get('HR_SUPPORT_EMAIL')
+          output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
           output_subject = f"Poll answered for '{page_dict['db_show_dict']['name']}' by '{current_user.email}'"
           output_body = f"<p>{current_user.email} answered a poll for '{page_dict['db_show_dict']['name']}'</p>\
                           <p>Question: '{page_dict['poll_dict']['question']}'</p>\
