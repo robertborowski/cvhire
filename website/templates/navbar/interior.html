@@ -1,0 +1,17 @@
+{% extends "aaa_base/base.html" %}
+
+<!-- head tag block content -->
+{% block title %}
+  <title>base2_exterior.html</title>
+{% endblock %}
+
+{% block contentBody %}
+<body class="custom-google-font-1">
+  <!-- ------------------------------------- navbar start ------------------------------------- -->
+  <!-- ------------------------------------- navbar end ------------------------------------- -->
+  {% block contentBodyExceptNavbarAndFooter %}
+  {% endblock %}
+  <!-- ------------------------------------- footer start ------------------------------------- -->
+  <!-- ------------------------------------- footer end ------------------------------------- -->
+</body>
+{% endblock %}

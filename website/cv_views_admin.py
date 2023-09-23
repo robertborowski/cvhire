@@ -91,7 +91,7 @@ def admin_function(url_redirect_code=None):
     print(f"k: {k} | v: {v}")
     pass
   print(' ------------- 100-admin end ------------- ')
-  return render_template('polling/admin_templates/dashboard/index.html', page_dict_to_html=page_dict)
+  return render_template('polling/admin_templates/dashboard/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -215,5 +215,5 @@ def admin_hosts_function(url_redirect_code=None):
     print(f"k: {k} | v: {v}")
     pass
   print(' ------------- 100-admin end ------------- ')
-  return render_template('polling/admin_templates/hosts/index.html', page_dict_to_html=page_dict)
+  return render_template('polling/admin_templates/hosts/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

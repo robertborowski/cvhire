@@ -78,7 +78,7 @@ def cv_forgot_password_function(url_redirect_code=None):
     alert_message_dict = alert_message_default_function_v2('s13')
     page_dict['alert_message_dict'] = alert_message_dict
     # ------------------------ success code end ------------------------
-  return render_template('polling/exterior/forgot_password/index.html', page_dict_to_html=page_dict)
+  return render_template('polling/exterior/forgot_password/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -119,7 +119,7 @@ def cv_reset_forgot_password_function(token, url_redirect_code=None):
     db.session.commit()
     return redirect(url_for('cv_auth.cv_login_function', url_redirect_code='s6'))
     # ------------------------ update db end ------------------------
-  return render_template('polling/exterior/forgot_password/reset_forgot_password/index.html', page_dict_to_html=page_dict)
+  return render_template('polling/exterior/forgot_password/reset_forgot_password/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 """
@@ -141,7 +141,7 @@ def cv_all_blogs_function():
     master_arr_of_dicts.append(i_dict)
   page_dict['master_arr_of_dicts'] = master_arr_of_dicts
   # ------------------------ get all blogs end ------------------------
-  return render_template('polling/exterior/blog/index.html', page_dict_to_html=page_dict)
+  return render_template('polling/exterior/blog/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -166,7 +166,7 @@ def cv_i_blog_page_function(i_blog_post_title=None):
   except:
     return redirect(url_for('cv_views_exterior.cv_all_blogs_function'))
   current_blog_post_num_full_string = f'polling/exterior/blog/blogs_by_id/{blog_obj.id}.html'
-  return render_template(current_blog_post_num_full_string, page_dict_to_html=page_dict)
+  return render_template(current_blog_post_num_full_string, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 """
 

@@ -19,7 +19,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.sanitize import sanitize_email_function, sanitize_password_function
 from website.backend.sendgrid import send_email_template_function
-from website.backend.cookies import redis_check_if_cookie_exists_function
+from website.backend.cookies import redis_check_if_cookie_exists_function, redis_logout_all_other_signins_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -80,17 +80,18 @@ def cv_signup_function(url_redirect_code=None):
       login_user(new_row, remember=True)
       # ------------------------ keep user logged in end ------------------------
       # ------------------------ email self start ------------------------
-      try:
-        output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
-        output_subject = f'New signup: {ui_email}'
-        output_body = f'New signup: {ui_email}'
-        send_email_template_function(output_to_email, output_subject, output_body)
-      except:
-        pass
+      if ui_email != os.environ.get('RUN_TEST_EMAIL'):
+        try:
+          output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+          output_subject = f'New signup: {ui_email}'
+          output_body = f'New signup: {ui_email}'
+          send_email_template_function(output_to_email, output_subject, output_body)
+        except:
+          pass
       # ------------------------ email self end ------------------------
       return redirect(url_for('cv_views_interior.cv_dashboard_function'))
     # ------------------------ post method hit #2 - full sign up end ------------------------
-  return render_template('exterior/signup/index.html', page_dict_to_html=page_dict)
+  return render_template('exterior/signup/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -159,7 +160,7 @@ def cv_login_function(url_redirect_code=None):
     else:
       return redirect(url_for('cv_auth.cv_login_function', url_redirect_code='e4'))
     # ------------------------ post method hit #1 - regular login end ------------------------
-  return render_template('exterior/login/index.html', page_dict_to_html=page_dict)
+  return render_template('exterior/login/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -171,7 +172,6 @@ def cv_logout_function():
   try:
     redis_logout_all_other_signins_function(current_user.id)
   except Exception as e:
-    print(e)
     pass
   # ------------------------ loop through redis and logout all signed in cookies end ------------------------
   logout_user()
@@ -182,7 +182,6 @@ def cv_logout_function():
     try:
       redis_connection.delete(get_cookie_value_from_browser)
     except Exception as e:
-      print(e)
       pass
   # ------------------------ auto sign in with cookie end ------------------------
   return redirect(url_for('cv_auth.cv_login_function'))

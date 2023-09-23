@@ -46,6 +46,7 @@ def cv_dashboard_function(url_redirect_code=None):
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
+  """
   # ------------------------ onboarding checks start ------------------------
   onbaording_status = onboarding_checks_function(current_user)
   if onbaording_status == 'verify':
@@ -53,6 +54,7 @@ def cv_dashboard_function(url_redirect_code=None):
   if onbaording_status != None:
     return redirect(url_for('cv_views_interior.cv_feedback_function', url_feedback_code=onbaording_status))
   # ------------------------ onboarding checks end ------------------------
+  """
   # ------------------------ for setting cookie start ------------------------
   template_location_url = 'interior/dashboard/index.html'
   # ------------------------ for setting cookie end ------------------------
@@ -66,7 +68,7 @@ def cv_dashboard_function(url_redirect_code=None):
   get_cookie_value_from_browser = redis_check_if_cookie_exists_function()
   if get_cookie_value_from_browser != None:
     redis_connection.set(get_cookie_value_from_browser, current_user.id.encode('utf-8'))
-    return render_template(template_location_url, user=current_user, page_dict_to_html=page_dict)
+    return render_template(template_location_url, user=current_user, page_dict_html=page_dict)
   else:
     browser_response = browser_response_set_cookie_function(current_user, template_location_url, page_dict)
     return browser_response
