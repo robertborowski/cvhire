@@ -56,13 +56,13 @@ def create_app_function():
   # ------------------------ stripe api environment end ------------------------
   # ------------------------ views/auths/routes imports start ------------------------
   from .cv_auth import cv_auth
-  # from .cv_views_admin import cv_views_admin
+  from .cv_views_admin import cv_views_admin
   from .cv_views_exterior import cv_views_exterior
   from .cv_views_interior import cv_views_interior
   # ------------------------ views/auths/routes imports end ------------------------
   # ------------------------ views/auths/routes register blueprints start ------------------------
   app.register_blueprint(cv_auth, url_prefix='/')
-  # app.register_blueprint(cv_views_admin, url_prefix='/')
+  app.register_blueprint(cv_views_admin, url_prefix='/')
   app.register_blueprint(cv_views_exterior, url_prefix='/')
   app.register_blueprint(cv_views_interior, url_prefix='/')
   # ------------------------ views/auths/routes register blueprints end ------------------------
