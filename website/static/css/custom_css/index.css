@@ -222,18 +222,9 @@
   background-color: var(--custom-color-reddit-hover);
 }
 .custom-back-img-1 {
-  background-image: url(https://herdreviewspublicobjects.s3.us-east-2.amazonaws.com/custom_shape_1.png);
+  background-image: url(https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/custom_shape_1.png);
   background-repeat: no-repeat;
   height: 700px;
-}
-.custom-back-img-2 {
-  background-image: url(https://herdreviewspublicobjects.s3.us-east-2.amazonaws.com/pattern1.jpg);
-  height: 600px;
-}
-.custom-back-img-3 {
-  background-image: url(https://herdreviewspublicobjects.s3.us-east-2.amazonaws.com/custom_shape_1.png);
-  background-repeat: no-repeat;
-  height: 600px;
 }
 /* ------------------- background end ------------------- */
 /* ------------------- blur start ------------------- */
