@@ -15,6 +15,9 @@ from website.backend.connection import redis_connect_open_function
 from website.models import UserObj
 from website import db
 from werkzeug.security import generate_password_hash
+from website.backend.alerts import get_alert_message_function
+from website.backend.sanitize import sanitize_email_function, sanitize_password_function
+from website.backend.sendgrid import send_email_template_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -44,41 +47,43 @@ def cv_landing_details_function(url_reference_id=None):
 @cv_views_exterior.route('/reset/<url_redirect_code>', methods=['GET', 'POST'])
 def cv_forgot_password_function(url_redirect_code=None):
   # ------------------------ page dict start ------------------------
-  alert_message_dict = alert_message_default_function_v2(url_redirect_code)
+  if url_redirect_code == None:
+    try:
+      url_redirect_code = request.args.get('url_redirect_code')
+    except:
+      pass
+  alert_message_dict = get_alert_message_function(url_redirect_code)
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
-  forgot_password_error_statement = ''
   if request.method == 'POST':
     # ------------------------ post request sent start ------------------------
-    ui_email = request.form.get('forgot_password_page_ui_email')
+    ui_email = request.form.get('uiEmail')
     # ------------------------ post request sent end ------------------------
     # ------------------------ sanitize/check user input email start ------------------------
     ui_email_cleaned = sanitize_email_function(ui_email)
     if ui_email_cleaned == False:
-      forgot_password_error_statement = 'Please enter a valid work email.'
+      pass
     # ------------------------ sanitize/check user input email end ------------------------
     # ------------------------ check if user email exists in db start ------------------------
-    user_exists = UserObj.query.filter_by(email=ui_email,signup_product='polling').first()
+    user_exists = UserObj.query.filter_by(email=ui_email,locked=False).first()
     if user_exists:
-      forgot_password_error_statement = 'Password reset link sent to email.'
       # ------------------------ send email with token url start ------------------------
       serializer_token_obj = UserObj.get_reset_token_function(self=user_exists)
       output_email = ui_email
-      output_subject_line = 'Password Reset - HerdReviews'
-      output_message_content = f"To reset your password, visit the following link: https://herdreviews.com/reset/{serializer_token_obj}/ \
+      output_subject_line = 'Password Reset | CvHire'
+      output_message_content = f"To reset your password, visit the following link: http://127.0.0.1/reset/{serializer_token_obj}/ \
                                 This link will expire after 30 minutes.\nIf you did not make this request then simply ignore this email and no changes will be made."
       send_email_template_function(output_email, output_subject_line, output_message_content)
       # ------------------------ send email with token url end ------------------------
     else:
-      forgot_password_error_statement = 'Password reset link sent to email.'
       pass
     # ------------------------ check if user email exists in db end ------------------------
     # ------------------------ success code start ------------------------
-    alert_message_dict = alert_message_default_function_v2('s13')
+    alert_message_dict = get_alert_message_function('s13')
     page_dict['alert_message_dict'] = alert_message_dict
     # ------------------------ success code end ------------------------
-  return render_template('polling/exterior/forgot_password/index.html', page_dict_html=page_dict)
+  return render_template('exterior/reset/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -88,7 +93,12 @@ def cv_forgot_password_function(url_redirect_code=None):
 @cv_views_exterior.route('/reset/<token>/<url_redirect_code>/', methods=['GET', 'POST'])
 def cv_reset_forgot_password_function(token, url_redirect_code=None):
   # ------------------------ page dict start ------------------------
-  alert_message_dict = alert_message_default_function_v2(url_redirect_code)
+  if url_redirect_code == None:
+    try:
+      url_redirect_code = request.args.get('url_redirect_code')
+    except:
+      pass
+  alert_message_dict = get_alert_message_function(url_redirect_code)
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
@@ -97,8 +107,8 @@ def cv_reset_forgot_password_function(token, url_redirect_code=None):
     return redirect(url_for('cv_views_exterior.cv_reset_forgot_password_function', token=token, url_redirect_code='e28'))
   if request.method == 'POST':
     # ------------------------ get inputs from form start ------------------------
-    ui_password = request.form.get('reset_forgot_password_page_ui_password')
-    ui_password_confirmed = request.form.get('reset_forgot_password_page_ui_password_confirmed')
+    ui_password = request.form.get('uiPassword1')
+    ui_password_confirmed = request.form.get('uiPassword2')
     # ------------------------ get inputs from form end ------------------------
     # ------------------------ check match start ------------------------
     if ui_password != ui_password_confirmed:
@@ -119,7 +129,7 @@ def cv_reset_forgot_password_function(token, url_redirect_code=None):
     db.session.commit()
     return redirect(url_for('cv_auth.cv_login_function', url_redirect_code='s6'))
     # ------------------------ update db end ------------------------
-  return render_template('polling/exterior/forgot_password/reset_forgot_password/index.html', page_dict_html=page_dict)
+  return render_template('exterior/reset/reset_confirm/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 """
