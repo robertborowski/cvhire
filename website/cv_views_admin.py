@@ -12,10 +12,12 @@ from website.backend.uuid_timestamp import create_uuid_function, create_timestam
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
+from website.models import UserObj
 import os
 from datetime import datetime
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
+from website.backend.sanitize import sanitize_email_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -45,6 +47,30 @@ def admin_function(url_redirect_code=None):
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
+  if request.method == 'POST':
+    # ------------------------ post request sent start ------------------------
+    ui_email = request.form.get('uiEmail')
+    # ------------------------ post request sent end ------------------------
+    # ------------------------ sanitize/check user input email start ------------------------
+    ui_email_cleaned = sanitize_email_function(ui_email)
+    if ui_email_cleaned == False:
+      pass
+    # ------------------------ sanitize/check user input email end ------------------------
+    # ------------------------ check if user email exists in db start ------------------------
+    user_exists = UserObj.query.filter_by(email=ui_email,locked=False).first()
+    if user_exists and user_exists.email != os.environ.get('RUN_TEST_EMAIL'):
+      # ------------------------ lock user start ------------------------
+      user_exists.locked=True
+      db.session.commit()
+      return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s1'))
+      # ------------------------ lock user end ------------------------
+    else:
+      pass
+    # ------------------------ check if user email exists in db end ------------------------
+    # ------------------------ success code start ------------------------
+    alert_message_dict = get_alert_message_function('i1')
+    page_dict['alert_message_dict'] = alert_message_dict
+    # ------------------------ success code end ------------------------
   print(' ------------- 100-admin start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():

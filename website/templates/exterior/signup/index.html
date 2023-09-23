@@ -7,6 +7,13 @@
 {% endblock %}
 
 {% block contentBodyExceptNavbarAndFooter %}
+<!-- ----------------------------------- alert start ----------------------------------- -->
+{% if page_dict_html['alert_message_dict']['message'] != '' %}
+<div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">
+  {{ page_dict_html['alert_message_dict']['message'] }}
+</div>
+{% endif %}
+<!-- ----------------------------------- alert end ----------------------------------- -->
 Signup
 <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
   <div class="form-group">

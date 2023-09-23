@@ -7,6 +7,20 @@
 {% endblock %}
 
 {% block contentBodyExceptNavbarAndFooter %}
-Admin home
-<a href="/logout" class="btn btn-danger">Logout</a>
+<!-- ----------------------------------- alert start ----------------------------------- -->
+{% if page_dict_html['alert_message_dict']['message'] != '' %}
+<div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">
+  {{ page_dict_html['alert_message_dict']['message'] }}
+</div>
+{% endif %}
+<!-- ----------------------------------- alert end ----------------------------------- -->
+Admin
+Lock out account
+<form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+  <div class="form-group">
+    <label for="uiEmail">Email</label>
+    <input type="email" class="form-control" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" placeholder="Email *" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Lock</button>
+</form>
 {% endblock %}

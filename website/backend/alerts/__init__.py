@@ -34,19 +34,19 @@ def get_alert_message_function(redirect_var=None):
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
     alert_message_dict = {
-      'message':'Request sent.',
+      'message':'Account locked',
       'type':'success'
     }
   elif redirect_var == 's2':
     alert_message_dict = {
-      'message':'Schedule settings successfully updated. They will go into effect on your NEXT team quiz.',
+      'message':'a',
       'type':'success'
     }
   # ------------------------ success end ------------------------
   # ------------------------ info end ------------------------
   elif redirect_var == 'i1':
     alert_message_dict = {
-      'message':'Schedule settings unchanged.',
+      'message':'No change',
       'type':'info'
     }
   elif redirect_var == 'i2':
