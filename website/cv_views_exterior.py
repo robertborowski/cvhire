@@ -31,14 +31,23 @@ redis_connection = redis_connect_open_function()
 @cv_views_exterior.route('/', methods=['GET', 'POST'])
 @cv_views_exterior.route('/<url_reference_id>', methods=['GET', 'POST'])
 @cv_views_exterior.route('/<url_reference_id>/', methods=['GET', 'POST'])
-def cv_landing_details_function(url_reference_id=None):
+@cv_views_exterior.route('/<url_reference_id>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_exterior.route('/<url_reference_id>/<url_redirect_code>/', methods=['GET', 'POST'])
+def cv_landing_details_function(url_reference_id=None, url_redirect_code=None):
+  # ------------------------ page dict start ------------------------
+  if url_redirect_code == None:
+    try:
+      url_redirect_code = request.args.get('url_redirect_code')
+    except:
+      pass
+  alert_message_dict = get_alert_message_function(url_redirect_code)
+  page_dict = {}
+  page_dict['alert_message_dict'] = alert_message_dict
+  # ------------------------ page dict end ------------------------
   # ------------------------ ref id hit start ------------------------
   if url_reference_id != None:
     return redirect(url_for('cv_auth.cv_signup_function'))
   # ------------------------ ref id hit end ------------------------
-  # ------------------------ set variables start ------------------------
-  page_dict = {}
-  # ------------------------ set variables end ------------------------
   return render_template('exterior/landing/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 

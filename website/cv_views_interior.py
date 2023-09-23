@@ -36,10 +36,6 @@ redis_connection = redis_connect_open_function()
 @cv_views_interior.route('/dashboard/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
 def cv_dashboard_function(url_redirect_code=None):
-  # ------------------------ locked status start ------------------------
-  if current_user.locked == True:
-    return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ locked status end ------------------------
   # ------------------------ page dict start ------------------------
   if url_redirect_code == None:
     try:
@@ -50,6 +46,10 @@ def cv_dashboard_function(url_redirect_code=None):
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
+  # ------------------------ locked status start ------------------------
+  if current_user.locked == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ locked status end ------------------------
   """
   # ------------------------ onboarding checks start ------------------------
   onbaording_status = onboarding_checks_function(current_user)
@@ -81,11 +81,23 @@ def cv_dashboard_function(url_redirect_code=None):
 
 # ------------------------ individual route start ------------------------
 @cv_views_interior.route('/locked', methods=['GET', 'POST'])
+@cv_views_interior.route('/locked/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/locked/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
 def cv_locked_function(url_redirect_code=None):
   # ------------------------ locked status start ------------------------
   if current_user.locked != True:
     return redirect(url_for('cv_views_interior.cv_dashboard_function'))
   # ------------------------ locked status end ------------------------
-  return render_template('interior/locked/index.html')
+  # ------------------------ page dict start ------------------------
+  if url_redirect_code == None:
+    try:
+      url_redirect_code = request.args.get('url_redirect_code')
+    except:
+      pass
+  alert_message_dict = get_alert_message_function(url_redirect_code)
+  page_dict = {}
+  page_dict['alert_message_dict'] = alert_message_dict
+  # ------------------------ page dict end ------------------------
+  return render_template('interior/locked/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

@@ -30,6 +30,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Incorrect username/password.',
       'type':'danger'
     }
+  elif redirect_var == 'e5':
+    alert_message_dict = {
+      'message':'You are not an admin',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
