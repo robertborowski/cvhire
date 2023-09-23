@@ -8,7 +8,7 @@
 # ------------------------ info about this file end ------------------------
 
 # ------------------------ imports start ------------------------
-from website.backend.uuid import create_uuid_function, create_timestamp_function
+from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website.backend.candidates.redis import redis_check_if_cookie_exists_function, redis_connect_to_database_function

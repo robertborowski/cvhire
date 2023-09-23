@@ -12,10 +12,13 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from website import db
 from flask_login import login_user, login_required, logout_user, current_user
-from website.backend.uuid import create_uuid_function, create_timestamp_function
+from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 import os
 from .models import UserObj
 from website.backend.connection import redis_connect_open_function
+from website.backend.alerts import get_alert_message_function
+from website.backend.sanitize import sanitize_email_function, sanitize_password_function
+from website.backend.sendgrid import send_email_template_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -31,16 +34,10 @@ redis_connection = redis_connect_open_function()
 @cv_auth.route('/signup/<url_redirect_code>', methods=['GET', 'POST'])
 def cv_signup_function(url_redirect_code=None):
   # ------------------------ page dict start ------------------------
-  alert_message_dict = alert_message_default_function_v2(url_redirect_code)
+  alert_message_dict = get_alert_message_function(url_redirect_code)
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
-  # ------------------------ get all podcasts start ------------------------
-  page_dict['shows_arr_of_dicts'] = []
-  show_arr_of_dict = select_general_function('select_query_general_8')
-  for i in show_arr_of_dict:
-    page_dict['shows_arr_of_dicts'].append(i)
-  # ------------------------ get all podcasts end ------------------------
   if request.method == 'POST':
     # ------------------------ post method hit #2 - full sign up start ------------------------
     ui_email = request.form.get('uiEmail')
@@ -58,7 +55,7 @@ def cv_signup_function(url_redirect_code=None):
     # ------------------------ sanitize/check user input password end ------------------------
     # ------------------------ sanitize/check user inputs end ------------------------
     # ------------------------ check if user email already exists in db start ------------------------
-    user_exists = UserObj.query.filter_by(email=ui_email,signup_product='polling').first()
+    user_exists = UserObj.query.filter_by(email=ui_email).first()
     if user_exists != None and user_exists != []:
       return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code='e3'))
     # ------------------------ check if user email already exists in db start ------------------------
@@ -68,9 +65,7 @@ def cv_signup_function(url_redirect_code=None):
         id=create_uuid_function('user_'),
         created_timestamp=create_timestamp_function(),
         email=ui_email.lower(),
-        password=generate_password_hash(ui_password, method="sha256"),
-        verified_email = False,
-        signup_product = 'polling'
+        password=generate_password_hash(ui_password, method="sha256")
       )
       db.session.add(new_row)
       db.session.commit()
@@ -80,16 +75,16 @@ def cv_signup_function(url_redirect_code=None):
       # ------------------------ keep user logged in end ------------------------
       # ------------------------ email self start ------------------------
       try:
-        output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
-        output_subject = f'Polling - Signup - {ui_email}'
-        output_body = f"Hi there,\n\nNew user signed up: {ui_email} \n\nBest,\nHerdReviews"
+        output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+        output_subject = f'New signup: {ui_email}'
+        output_body = f'New signup: {ui_email}'
         send_email_template_function(output_to_email, output_subject, output_body)
       except:
         pass
       # ------------------------ email self end ------------------------
       return redirect(url_for('cv_views_interior.cv_dashboard_function'))
     # ------------------------ post method hit #2 - full sign up end ------------------------
-  return render_template('polling/exterior/signup/index.html', page_dict_to_html=page_dict)
+  return render_template('exterior/signup/index.html', page_dict_to_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------

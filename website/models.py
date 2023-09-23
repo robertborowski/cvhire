@@ -14,20 +14,6 @@ class UserObj(db.Model, UserMixin):   # Only the users object inherits UserMixin
   created_timestamp = db.Column(db.DateTime(timezone=True))
   email = db.Column(db.String(150))
   password = db.Column(db.String(150))
-  name = db.Column(db.String(150))
-  company_name = db.Column(db.String(150))
-  group_id = db.Column(db.String(150))
-  fk_stripe_customer_id = db.Column(db.String(150))
-  # ------------------------ general start ------------------------
-  # ------------------------ candidates start ------------------------
-  fk_stripe_subscription_id = db.Column(db.String(150))
-  # ------------------------ candidates end ------------------------
-  # ------------------------ employees start ------------------------
-  employees_fk_stripe_subscription_id = db.Column(db.String(150))
-  # ------------------------ employees end ------------------------
-  verified_email = db.Column(db.Boolean, default=False)
-  signup_product = db.Column(db.String(150))
-  last_name = db.Column(db.String(150))
 
   def get_reset_token_function(self, expires_sec=1800):
     serializer_token_obj = Serializer(secret_key_ref, expires_sec)
@@ -48,13 +34,8 @@ class UserAttributesObj(db.Model):
   id = db.Column(db.String(150), primary_key=True)
   created_timestamp = db.Column(db.DateTime(timezone=True))
   fk_user_id = db.Column(db.String(150))
-  product = db.Column(db.String(150))
-  anonymous_status = db.Column(db.Boolean, default=False)
-  attribute_code = db.Column(db.String(150))
-  attribute_response = db.Column(db.String(150))
-  attribute_year = db.Column(db.Integer)
-  attribute_month = db.Column(db.Integer)
-  attribute_day = db.Column(db.Integer)
+  attribute_key = db.Column(db.String(50))
+  attribute_value = db.Column(db.String(1000))
 # ------------------------ individual model end ------------------------
 
 # ------------------------ individual model start ------------------------
