@@ -19,6 +19,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.sanitize import sanitize_email_function, sanitize_password_function
 from website.backend.sendgrid import send_email_template_function
+from website.backend.cookies import redis_check_if_cookie_exists_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -34,6 +35,11 @@ redis_connection = redis_connect_open_function()
 @cv_auth.route('/signup/<url_redirect_code>', methods=['GET', 'POST'])
 def cv_signup_function(url_redirect_code=None):
   # ------------------------ page dict start ------------------------
+  if url_redirect_code == None:
+    try:
+      url_redirect_code = request.args.get('url_redirect_code')
+    except:
+      pass
   alert_message_dict = get_alert_message_function(url_redirect_code)
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
@@ -91,9 +97,15 @@ def cv_signup_function(url_redirect_code=None):
 @cv_auth.route('/login', methods=['GET', 'POST'])
 @cv_auth.route('/login/', methods=['GET', 'POST'])
 @cv_auth.route('/login/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_auth.route('/login/<url_redirect_code>/', methods=['GET', 'POST'])
 def cv_login_function(url_redirect_code=None):
   # ------------------------ page dict start ------------------------
-  alert_message_dict = alert_message_default_function_v2(url_redirect_code)
+  if url_redirect_code == None:
+    try:
+      url_redirect_code = request.args.get('url_redirect_code')
+    except:
+      pass
+  alert_message_dict = get_alert_message_function(url_redirect_code)
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
@@ -103,16 +115,7 @@ def cv_login_function(url_redirect_code=None):
     try:
       user_id_from_redis = redis_connection.get(get_cookie_value_from_browser).decode('utf-8')
       if user_id_from_redis != None:
-        user = UserObj.query.filter_by(id=user_id_from_redis,signup_product='polling').first()
-        # ------------------------ force logout same email logged into different product start ------------------------
-        if user == None:
-          try:
-            redis_connection.delete(get_cookie_value_from_browser)
-            logout_user()
-            return redirect(url_for('cv_auth.cv_login_function'))
-          except:
-            pass
-        # ------------------------ force logout same email logged into different product end ------------------------
+        user = UserObj.query.filter_by(id=user_id_from_redis).first()
         # ------------------------ keep user logged in start ------------------------
         if user != None:
           try:
@@ -124,12 +127,6 @@ def cv_login_function(url_redirect_code=None):
     except:
       pass
   # ------------------------ auto sign in with cookie end ------------------------
-  # ------------------------ get all podcasts start ------------------------
-  page_dict['shows_arr_of_dicts'] = []
-  show_arr_of_dict = select_general_function('select_query_general_8')
-  for i in show_arr_of_dict:
-    page_dict['shows_arr_of_dicts'].append(i)
-  # ------------------------ get all podcasts end ------------------------
   if request.method == 'POST':
     # ------------------------ post method hit #1 - regular login start ------------------------
     # ------------------------ post request sent start ------------------------
@@ -147,7 +144,7 @@ def cv_login_function(url_redirect_code=None):
       return redirect(url_for('cv_auth.cv_login_function', url_redirect_code='e2'))
     # ------------------------ sanitize/check user input password end ------------------------
     # ------------------------ see if user exists start ------------------------
-    user = UserObj.query.filter_by(email=ui_email,signup_product='polling').first()
+    user = UserObj.query.filter_by(email=ui_email).first()
     if user == None or user == []:
       return redirect(url_for('cv_auth.cv_signup_function'))
     # ------------------------ see if user exists end ------------------------
@@ -162,7 +159,7 @@ def cv_login_function(url_redirect_code=None):
     else:
       return redirect(url_for('cv_auth.cv_login_function', url_redirect_code='e4'))
     # ------------------------ post method hit #1 - regular login end ------------------------
-  return render_template('polling/exterior/login/index.html', page_dict_to_html=page_dict)
+  return render_template('exterior/login/index.html', page_dict_to_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------

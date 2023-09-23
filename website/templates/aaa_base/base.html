@@ -7,7 +7,7 @@
     {% endblock %}
     <!-- ------------------------------------- title end ------------------------------------- -->
     <!-- ------------------------------------- basic start ------------------------------------- -->
-    <meta name="Keywords" content="CVHire - base html" /> 
+    <meta name="Keywords" content="CvHire" /> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,6 +80,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
     <!-- jQuery CDN nessessary to use DataTables -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+    <!-- js click submit button only once navbar -->
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/submit_button_js/click_submit_button_once.js') }}" defer></script>
     <!-- ------------------------------------- javascript end ------------------------------------- -->
     {% block contentHead %}
     {% endblock %}

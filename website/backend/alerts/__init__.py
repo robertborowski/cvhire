@@ -25,6 +25,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Account already created for email',
       'type':'danger'
     }
+  elif redirect_var == 'e4':
+    alert_message_dict = {
+      'message':'Incorrect username/password.',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':

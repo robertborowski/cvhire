@@ -1,1 +1,12 @@
-landing
+{% extends "navbar/exterior.html" %}
+
+{% block title %}
+  <title>CvHire | Home</title>
+  <meta name="description" content="CvHire">
+  <meta name="og:description" content="CvHire">
+{% endblock %}
+
+{% block contentBodyExceptNavbarAndFooter %}
+<a href="/signup" class="btn btn-primary">Signup</a>
+<a href="/login" class="btn btn-primary">Login</a>
+{% endblock %}
