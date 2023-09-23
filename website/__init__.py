@@ -1,5 +1,4 @@
 # ------------------------ imports start ------------------------
-
 import os, time
 from os import path
 import datetime
@@ -49,23 +48,23 @@ def create_app_function():
   # ------------------------ Handleing Error Messages START ------------------------
   @app.errorhandler(404) # inbuilt function which takes error as parameter
   def not_found(e):
-    return render_template("polling/exterior/error_404/index.html")
+    return render_template("exterior/error_404/index.html")
   # ------------------------ Handleing Error Messages END ------------------------
   # ------------------------ stripe api environment start ------------------------
   stripe.api_key = os.environ.get('STRIPE_API_KEY')  # PRODUCTION
   # stripe.api_key = os.environ.get('STRIPE_TEST_API_KEY')  # TESTING
   # ------------------------ stripe api environment end ------------------------
   # ------------------------ views/auths/routes imports start ------------------------
-  from .polling_auth import polling_auth
-  from .polling_views_admin import polling_views_admin
-  from .polling_views_exterior import polling_views_exterior
-  from .polling_views_interior import polling_views_interior
+  from .cv_auth import cv_auth
+  # from .cv_views_admin import cv_views_admin
+  from .cv_views_exterior import cv_views_exterior
+  # from .cv_views_interior import cv_views_interior
   # ------------------------ views/auths/routes imports end ------------------------
   # ------------------------ views/auths/routes register blueprints start ------------------------
-  app.register_blueprint(polling_auth, url_prefix='/')
-  app.register_blueprint(polling_views_admin, url_prefix='/')
-  app.register_blueprint(polling_views_exterior, url_prefix='/')
-  app.register_blueprint(polling_views_interior, url_prefix='/')
+  app.register_blueprint(cv_auth, url_prefix='/')
+  # app.register_blueprint(cv_views_admin, url_prefix='/')
+  app.register_blueprint(cv_views_exterior, url_prefix='/')
+  # app.register_blueprint(cv_views_interior, url_prefix='/')
   # ------------------------ views/auths/routes register blueprints end ------------------------
   # ------------------------ import models before creating db for first time start ------------------------
   from .models import UserObj
@@ -73,7 +72,7 @@ def create_app_function():
   # ------------------------ import models before creating db for first time end ------------------------
   # ------------------------ login manager start ------------------------
   login_manager = LoginManager()
-  login_manager.login_view = 'polling_auth.polling_login_function'   # where does the person go if they are not logged in -> auth.login route
+  login_manager.login_view = 'cv_auth.cv_login_function'   # where does the person go if they are not logged in -> auth.login route
   login_manager.init_app(app)
   # ------------------------ function start ------------------------
   @login_manager.user_loader
