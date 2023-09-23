@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 from website.backend.candidates.string_manipulation import string_to_arr_function
 # ------------------------ imports end ------------------------
 

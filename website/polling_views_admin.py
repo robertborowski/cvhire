@@ -8,9 +8,7 @@
 # ------------------------ info about this file end ------------------------
 
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website.backend.candidates.redis import redis_check_if_cookie_exists_function, redis_connect_to_database_function
@@ -87,12 +85,12 @@ def admin_function(url_redirect_code=None):
       return redirect(url_for('polling_views_admin.admin_function', url_redirect_code='s21'))
     # ------------------------ reddit posts and comments end ------------------------
   # ------------------------ submission end ------------------------    
-  localhost_print_function(' ------------- 100-admin start ------------- ')
+  print(' ------------- 100-admin start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
-    localhost_print_function(f"k: {k} | v: {v}")
+    print(f"k: {k} | v: {v}")
     pass
-  localhost_print_function(' ------------- 100-admin end ------------- ')
+  print(' ------------- 100-admin end ------------- ')
   return render_template('polling/admin_templates/dashboard/index.html', page_dict_to_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -211,11 +209,11 @@ def admin_hosts_function(url_redirect_code=None):
     except:
       pass
     # ------------------------ send emails function end ------------------------
-  localhost_print_function(' ------------- 100-admin start ------------- ')
+  print(' ------------- 100-admin start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
-    localhost_print_function(f"k: {k} | v: {v}")
+    print(f"k: {k} | v: {v}")
     pass
-  localhost_print_function(' ------------- 100-admin end ------------- ')
+  print(' ------------- 100-admin end ------------- ')
   return render_template('polling/admin_templates/hosts/index.html', page_dict_to_html=page_dict)
 # ------------------------ individual route end ------------------------

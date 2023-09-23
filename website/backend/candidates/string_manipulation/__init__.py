@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 from random import randint
 # ------------------------ imports end ------------------------
 
@@ -54,13 +54,13 @@ def create_assessment_name_function(ui_desired_languages_checkboxes_str):
 
 # ------------------------ individual function start ------------------------
 def breakup_email_function(input_email):
-  # localhost_print_function(' ------------------------ breakup_email_function start ------------------------ ')
+  # print(' ------------------------ breakup_email_function start ------------------------ ')
   email_arr = input_email.split('@')
   try:
     email_arr = email_arr[0].split('.')
   except:
     pass
-  # localhost_print_function(' ------------------------ breakup_email_function end ------------------------ ')
+  # print(' ------------------------ breakup_email_function end ------------------------ ')
   return email_arr[0].lower().capitalize()
 # ------------------------ individual function end ------------------------
 

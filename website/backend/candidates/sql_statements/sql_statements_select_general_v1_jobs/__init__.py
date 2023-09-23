@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import psycopg2
 from psycopg2 import Error, extras
 # ------------------------ imports end ------------------------
@@ -24,7 +24,7 @@ def select_general_v1_jobs_function(postgres_connection, postgres_cursor, tag_qu
   # try:
   cursor.execute(select_queries_dict[tag_query_to_use]['raw_query'])
   # except:
-  #   localhost_print_function('except hit')
+  #   print('except hit')
   #   return False
   # ------------------------ execute sql end ------------------------
   # ------------------------ results start ------------------------

@@ -1,9 +1,7 @@
 # ------------------------ imports start ------------------------
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 import time
 from website.models import RedditPostsObj, RedditCommentsObj
 from website import db
@@ -187,7 +185,7 @@ def get_all_comments_from_post_function(data_captured_dict, element_all_posts_ar
       if comment_str not in data_captured_dict[element_all_posts_arr[i_post]]['reddit_post_comments'][author]:
         data_captured_dict[element_all_posts_arr[i_post]]['reddit_post_comments'][author][comment_str] = upvote_count
   except Exception as e:
-    localhost_print_function(f'e: {e}')
+    print(f'e: {e}')
     pass
   return data_captured_dict
 # ------------------------ individual function end ------------------------
@@ -283,10 +281,10 @@ def reddit_scrape_function():
   # ------------------------ webdriver close start ------------------------
   driver.close()
   # ------------------------ webdriver close end ------------------------
-  # localhost_print_function(' ------------- 100-data_captured_dict start ------------- ')
+  # print(' ------------- 100-data_captured_dict start ------------- ')
   # for k,v in data_captured_dict.items():
-  #   localhost_print_function(f"k: {k} | v: {v}")
+  #   print(f"k: {k} | v: {v}")
   #   pass
-  # localhost_print_function(' ------------- 100-data_captured_dict end ------------- ')
+  # print(' ------------- 100-data_captured_dict end ------------- ')
   return True
 # ------------------------ individual function end ------------------------

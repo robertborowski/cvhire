@@ -1,10 +1,9 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 from website.models import EmailSentObj
 from website.backend.candidates.string_manipulation import breakup_email_function
 from website.backend.candidates.send_emails import send_email_template_function
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 from website import db
 # ------------------------ imports end ------------------------
 

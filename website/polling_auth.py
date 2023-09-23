@@ -8,15 +8,14 @@
 # ------------------------ info about this file end ------------------------
 
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 from flask import Blueprint, render_template, request, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from website import db
 from flask_login import login_user, login_required, logout_user, current_user
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 from website.backend.candidates.user_inputs import sanitize_email_function, sanitize_password_function
 from website.backend.candidates.redis import redis_check_if_cookie_exists_function, redis_connect_to_database_function, redis_logout_all_other_signins_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
 from website.backend.candidates.send_emails import send_email_template_function
 import os
 from website.backend.candidates.user_inputs import alert_message_default_function_v2
@@ -119,9 +118,7 @@ def polling_login_function(url_redirect_code=None):
         if user == None:
           try:
             redis_connection.delete(get_cookie_value_from_browser)
-            localhost_print_function(f'delete redis key for user logged into different HerdReviews product. Deleted: {get_cookie_value_from_browser}')
             logout_user()
-            localhost_print_function('redirect to login page - polling')
             return redirect(url_for('polling_auth.polling_login_function'))
           except:
             pass
@@ -133,7 +130,6 @@ def polling_login_function(url_redirect_code=None):
           except:
             pass
         # ------------------------ keep user logged in end ------------------------
-        localhost_print_function('redirect to dashboard page - polling')
         return redirect(url_for('polling_views_interior.polling_dashboard_function'))
     except:
       pass
@@ -188,7 +184,7 @@ def polling_logout_function():
   try:
     redis_logout_all_other_signins_function(current_user.id)
   except Exception as e:
-    localhost_print_function(e)
+    print(e)
     pass
   # ------------------------ loop through redis and logout all signed in cookies end ------------------------
   logout_user()
@@ -199,7 +195,7 @@ def polling_logout_function():
     try:
       redis_connection.delete(get_cookie_value_from_browser)
     except Exception as e:
-      localhost_print_function(e)
+      print(e)
       pass
   # ------------------------ auto sign in with cookie end ------------------------
   return redirect(url_for('polling_auth.polling_login_function'))

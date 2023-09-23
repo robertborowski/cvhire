@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 from flask_login import login_required, current_user
 from website.backend.candidates.autogeneration import question_choices_function
 from website.backend.candidates.datetime_manipulation import days_times_timezone_arr_function

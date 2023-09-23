@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 from website.backend.candidates.pull_create_logic import pull_create_activity_settings_obj_function, pull_latest_activity_test_obj_function, pull_latest_activity_test_graded_obj_function, pull_create_celebration_test_id_obj_function
 from website.backend.candidates.test_backend import get_test_winner, close_historical_activity_tests_function, delete_historical_activity_tests_no_participation_function
 from website.backend.candidates.datetime_manipulation import convert_timestamp_to_month_day_string_function

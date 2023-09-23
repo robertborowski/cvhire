@@ -1,10 +1,10 @@
 
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import redis
 import os
 from flask import request
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -19,7 +19,7 @@ def redis_connect_to_database_function():
     #redis_connection = redis.Redis(connection_pool=pool)
     redis_connection = redis.StrictRedis(connection_pool=pool)
   except:
-    localhost_print_function('redis connection failed!')
+    print('redis connection failed!')
     return 'redis connection failed!'
   # Return the connection
   return redis_connection

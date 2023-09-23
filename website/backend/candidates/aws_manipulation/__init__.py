@@ -1,6 +1,6 @@
 
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import os
 import boto3
 from botocore.exceptions import NoCredentialsError
@@ -83,12 +83,12 @@ def candidates_user_upload_image_checks_aws_s3_function(image, file_size):
 
   # Ensuring the filesize is allowed
   if not candidates_allowed_image_filesize_function(file_size, max_image_filesize_value):
-    localhost_print_function('Filesize exceeded maximum limit (50 MB)')
+    print('Filesize exceeded maximum limit (50 MB)')
     return False
 
   # Ensuring the file has a name
   if image.filename == "":
-    localhost_print_function('No filename')
+    print('No filename')
     return False
 
   # Ensuring the file type is allowed
@@ -101,6 +101,6 @@ def candidates_user_upload_image_checks_aws_s3_function(image, file_size):
     return True
   
   else:
-    localhost_print_function('That file extension is not allowed')
+    print('That file extension is not allowed')
     return False
 # ------------------------ individual function end ------------------------

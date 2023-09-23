@@ -1,7 +1,7 @@
 # ------------------------ imports start ------------------------
 import requests
 import os
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------

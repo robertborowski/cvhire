@@ -1,9 +1,8 @@
 
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import os
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 import openai
 from website.models import UserCelebrateObj,ActivityACreatedQuestionsObj, UserObj
 from website.backend.candidates.dict_manipulation import arr_of_dict_all_columns_single_item_function

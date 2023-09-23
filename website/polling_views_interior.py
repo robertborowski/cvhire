@@ -8,9 +8,7 @@
 # ------------------------ info about this file end ------------------------
 
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website.backend.candidates.redis import redis_check_if_cookie_exists_function, redis_connect_to_database_function
@@ -57,7 +55,7 @@ def polling_dashboard_function(url_redirect_code=None, url_show_id=None):
   is_match = product_login_checks_function(current_user,'polling')
   if is_match == False:
     logout_user()
-    localhost_print_function('user logged out and redirecting to login product - polling')
+    print('user logged out and redirecting to login product - polling')
     return redirect(url_for('polling_auth.polling_login_function'))
   # ------------------------ product login check end ------------------------
   # ------------------------ page dict start ------------------------
@@ -141,12 +139,12 @@ def polling_dashboard_function(url_redirect_code=None, url_show_id=None):
   # ------------------------ for setting cookie start ------------------------
   template_location_url = 'polling/interior/dashboard/index.html'
   # ------------------------ for setting cookie end ------------------------
-  localhost_print_function(' ------------- 100-dashboard start ------------- ')
+  print(' ------------- 100-dashboard start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
-    localhost_print_function(f"k: {k} | v: {v}")
+    print(f"k: {k} | v: {v}")
     pass
-  localhost_print_function(' ------------- 100-dashboard end ------------- ')
+  print(' ------------- 100-dashboard end ------------- ')
   # ------------------------ auto set cookie start ------------------------
   get_cookie_value_from_browser = redis_check_if_cookie_exists_function()
   if get_cookie_value_from_browser != None:
@@ -814,12 +812,12 @@ def polling_add_show_function(url_redirect_code=None, url_step_code='1', url_pla
               pass
           # ------------------------ email self end ------------------------
         return redirect(url_for('polling_views_interior.polling_loading_function', url_platform_reference_id=page_dict['spotify_pulled_arr_of_dict'][int(ui_show_selected_index_value)]['id']))
-  localhost_print_function(' ------------- 100-show selection start ------------- ')
+  print(' ------------- 100-show selection start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
-    localhost_print_function(f"k: {k} | v: {v}")
+    print(f"k: {k} | v: {v}")
     pass
-  localhost_print_function(' ------------- 100-show selection end ------------- ')
+  print(' ------------- 100-show selection end ------------- ')
   return render_template('polling/interior/show_select/index.html', page_dict_to_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -1103,12 +1101,12 @@ def polling_show_function(url_redirect_code=None, url_show_id=None, url_poll_id=
           pass
         # ------------------------ email self end ------------------------
       return redirect(url_for('polling_views_interior.polling_show_function', url_show_id=url_show_id, url_poll_id=page_dict['poll_dict']['id']))
-  localhost_print_function(' ------------- 100-show poll start ------------- ')
+  print(' ------------- 100-show poll start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
-    localhost_print_function(f"k: {k} | v: {v}")
+    print(f"k: {k} | v: {v}")
     pass
-  localhost_print_function(' ------------- 100-show poll end ------------- ')
+  print(' ------------- 100-show poll end ------------- ')
   return render_template('polling/interior/poll/index.html', page_dict_to_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -1214,12 +1212,12 @@ def polling_create_poll_function(url_redirect_code=None, url_show_id=None):
     return redirect(url_for('polling_views_interior.polling_show_function', url_redirect_code='s19', url_show_id=url_show_id, url_poll_id=new_poll_id))
     # ------------------------ redirect to poll end ------------------------
   # ------------------------ submission end ------------------------
-  localhost_print_function(' ------------- 100-create poll start ------------- ')
+  print(' ------------- 100-create poll start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
-    localhost_print_function(f"k: {k} | v: {v}")
+    print(f"k: {k} | v: {v}")
     pass
-  localhost_print_function(' ------------- 100-create poll end ------------- ')
+  print(' ------------- 100-create poll end ------------- ')
   return render_template('polling/interior/poll/create/index.html', page_dict_to_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -1248,12 +1246,12 @@ def polling_view_all_created_polls_function(url_redirect_code=None):
   if page_dict['created_polls_arr_of_dict'] == None or page_dict['created_polls_arr_of_dict'] == []:
     return redirect(url_for('polling_views_interior.polling_dashboard_function', url_redirect_code='e43'))
   # ------------------------ pull all created polls end ------------------------
-  localhost_print_function(' ------------- 100-created polls start ------------- ')
+  print(' ------------- 100-created polls start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
-    localhost_print_function(f"k: {k} | v: {v}")
+    print(f"k: {k} | v: {v}")
     pass
-  localhost_print_function(' ------------- 100-created polls end ------------- ')
+  print(' ------------- 100-created polls end ------------- ')
   return render_template('polling/interior/poll/create/view_all_created/index.html', page_dict_to_html=page_dict)
 # ------------------------ individual route end ------------------------
 

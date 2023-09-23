@@ -1,7 +1,6 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 from website.models import GroupObj, UserObj, ActivityASettingsObj, ActivityATestObj, ActivityATestGradedObj, ActivityBSettingsObj, ActivityBTestObj, ActivityBTestGradedObj, UserCelebrateObj, ActivityAGroupQuestionsUsedObj
 from website.backend.candidates.autogeneration import generate_random_length_uuid_function
 from website import db

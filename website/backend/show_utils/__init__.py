@@ -2,8 +2,7 @@
 from website.backend.get_create_obj import get_show_based_on_id_function
 from website.backend.dict_manipulation import arr_of_dict_all_columns_single_item_function
 from website.models import ShowsFollowingObj
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 from website import db
 # ------------------------ imports end ------------------------
 

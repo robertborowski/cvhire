@@ -8,7 +8,7 @@
 # ------------------------ info about this file end ------------------------
 
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user
 from website.backend.candidates.redis import redis_connect_to_database_function
@@ -24,8 +24,7 @@ from website.backend.sql_statements.select import select_general_function
 from website.backend.user_inputs import sanitize_letters_numbers_spaces_specials_only_function
 from website.backend.spotify import spotify_search_show_function
 from website.backend.get_create_obj import get_show_based_on_name_function
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 import json
 from website.backend.dict_manipulation import arr_of_dict_all_columns_single_item_function, prep_poll_dict_function
 import os

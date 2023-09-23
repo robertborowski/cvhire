@@ -1,12 +1,11 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import praw
 import os
 import pprint
 from website.models import RedditPostsObj, RedditCommentsObj
 from website import db
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 import json
 from website.backend.dates import unix_timestamp_to_est_function
 # ------------------------ imports end ------------------------

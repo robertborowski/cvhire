@@ -1,8 +1,7 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import re
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 from website.backend.candidates.sql_statements.sql_statements_select import select_general_function
 from website.models import ActivityASettingsObj, ActivityATestObj, ActivityAGroupQuestionsUsedObj, ActivityATestGradedObj, UserObj, EmailSentObj, ActivityBTestObj, ActivityBGroupQuestionsUsedObj
 from website.backend.candidates.dict_manipulation import arr_of_dict_all_columns_single_item_function
@@ -628,7 +627,7 @@ def grade_quiz_function(ui_answer, url_test_id, total_questions, url_question_nu
           pass
         # ------------------------ insert email to db end ------------------------
       else:
-        localhost_print_function('email already sent')
+        print('email already sent')
         pass
     except:
       pass

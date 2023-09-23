@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import os
 import sendgrid
 from sendgrid import SendGridAPIClient
@@ -20,9 +20,9 @@ def send_email_template_function(output_email, output_subject_line, output_messa
   #response = sg.client.mail.send.post(request_body=mail_json)
   try:
     sg.client.mail.send.post(request_body=mail_json)
-    localhost_print_function('email sent successfully! ' + output_subject_line + " - To: " + output_email)
+    print('email sent successfully! ' + output_subject_line + " - To: " + output_email)
   except:
-    localhost_print_function('email did not send successfully...' + output_subject_line)
+    print('email did not send successfully...' + output_subject_line)
     return False
   return True
 # ------------------------ individual function end ------------------------

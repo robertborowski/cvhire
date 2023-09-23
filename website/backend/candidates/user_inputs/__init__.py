@@ -1,8 +1,8 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import re
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 from website.backend.candidates.sql_statements.sql_statements_select import select_general_function
 # ------------------------ imports end ------------------------
 
@@ -205,7 +205,7 @@ def sanitize_loop_check_if_exists_within_arr_function(user_input_arr, correct_ma
     return False
   for i_str in user_input_arr:
     if i_str not in correct_master_arr:
-      localhost_print_function('user input provided is not an option')
+      print('user input provided is not an option')
       return False
   return user_input_arr
 # ------------------------ individual function end ------------------------
@@ -217,7 +217,7 @@ def sanitize_check_if_str_exists_within_arr_function(user_input_str, correct_mas
   if len(user_input_str) == 0:
     return False
   if user_input_str not in correct_master_arr:
-    localhost_print_function('user input provided is not an option')
+    print('user input provided is not an option')
     return False
   return user_input_str
 # ------------------------ individual function end ------------------------
@@ -252,16 +252,16 @@ def get_special_characters_function():
 
 # ------------------------ individual function start ------------------------
 def alert_message_default_function():
-  # localhost_print_function('=========================================== alert_message_default_function START ===========================================')
+  # print('=========================================== alert_message_default_function START ===========================================')
   alert_message_page = ''
   alert_message_type = 'danger'
-  # localhost_print_function('=========================================== alert_message_default_function END ===========================================')
+  # print('=========================================== alert_message_default_function END ===========================================')
   return alert_message_page, alert_message_type
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
 def alert_message_default_function_v2(redirect_var=None):
-  # localhost_print_function('=========================================== alert_message_default_function_v2 START ===========================================')
+  # print('=========================================== alert_message_default_function_v2 START ===========================================')
   # ------------------------ errors start ------------------------
   alert_message_dict = {
       'message':'',
@@ -636,6 +636,6 @@ def alert_message_default_function_v2(redirect_var=None):
       'type':'warning'
     }
   # ------------------------ warning end ------------------------
-  # localhost_print_function('=========================================== alert_message_default_function_v2 END ===========================================')
+  # print('=========================================== alert_message_default_function_v2 END ===========================================')
   return alert_message_dict
 # ------------------------ individual function end ------------------------

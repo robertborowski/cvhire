@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import os, time
 from os import path
 import datetime
@@ -78,17 +78,10 @@ def create_app_function():
   # ------------------------ function start ------------------------
   @login_manager.user_loader
   def load_user(id):
-    # localhost_print_function('def load_user function hit')
-    # ------------------------ list user dict directly from postgres start ------------------------
-    # logged_in_user_dict = UserObj.query.get(id).__dict__
-    # print(logged_in_user_dict['first_name'])
-    # ------------------------ list user dict directly from postgres end ------------------------
-    # localhost_print_function('=========================================== create_app_function END ===========================================')
     return UserObj.query.get(id)  # when you write query.get -> .get: automatically knows it is looking through the primary key in sqlite
   # ------------------------ function end ------------------------
   # ------------------------ login manager end ------------------------
   # ------------------------ app setup end ------------------------
-  localhost_print_function('returning app')
   return app
 # ------------------------ __init__ function end ------------------------
 

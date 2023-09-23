@@ -1,6 +1,6 @@
 
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 from website.backend.candidates.redis import redis_check_if_cookie_exists_function, redis_set_browser_cookie_function, redis_set_employees_browser_cookie_function, redis_connect_to_database_function
 from flask import Blueprint, render_template, request, make_response
 import datetime

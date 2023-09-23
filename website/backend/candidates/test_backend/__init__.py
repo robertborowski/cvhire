@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import re
 from website.models import UserObj, ActivityATestGradedObj, ActivityATestObj, GroupObj, ActivityAGroupQuestionsUsedObj, ActivityBTestObj, ActivityBTestGradedObj
 from website.backend.candidates.dict_manipulation import arr_of_dict_all_columns_single_item_function

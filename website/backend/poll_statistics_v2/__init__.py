@@ -1,13 +1,12 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 from website.backend.sql_statements.select import select_general_function
 from website.backend.get_create_obj import get_starting_arr_function, get_alphabet_arr_function, default_chart_colors_function, get_percent_mins_dict_function, rgb_to_hex_function
 import pprint
 from website.models import PollsObj, PollsStandInObj, ShowsAttributesObj, PollsAnsweredObj
 from website import db
 import random
-from backend.utils.uuid_and_timestamp.create_uuid import create_uuid_function
-from backend.utils.uuid_and_timestamp.create_timestamp import create_timestamp_function
+from website.backend.uuid import create_uuid_function, create_timestamp_function
 import json
 from website.backend.dict_manipulation import get_answers_shortened_v2_function
 # ------------------------ imports end ------------------------
@@ -356,8 +355,8 @@ def get_poll_statistics_v2_function(page_dict, passed_current_user_obj):
     # ------------------------ chart information start ------------------------
     page_dict = get_chart_info_function(page_dict, k, passed_current_user_obj)
     # ------------------------ chart information end ------------------------
-  # localhost_print_function(' ------------- 50 ------------- ')
-  # localhost_print_function(pprint.pformat(page_dict, indent=2))
-  # localhost_print_function(' ------------- 50 ------------- ')
+  # print(' ------------- 50 ------------- ')
+  # print(pprint.pformat(page_dict, indent=2))
+  # print(' ------------- 50 ------------- ')
   return page_dict
 # ------------------------ individual function end ------------------------

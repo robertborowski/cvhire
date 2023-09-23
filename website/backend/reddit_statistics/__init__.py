@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from backend.utils.localhost_print_utils.localhost_print import localhost_print_function
+
 import pprint
 from website.models import RedditMappingObj, RedditPostsObj, RedditCommentsObj
 from website import db
@@ -49,8 +49,8 @@ def get_reddit_statistics_function(page_dict, passed_current_user_obj):
         page_dict['poll_reddit_dict'][i_map_obj.fk_reddit_post_id]['all_comments_dict'][i_comment_obj.id]['upvotes'] = i_comment_obj.upvotes
     # ------------------------ reddit post comments information end ------------------------
   # ------------------------ loop through posts end ------------------------
-  localhost_print_function(' ------------- 50 ------------- ')
-  localhost_print_function(pprint.pformat(page_dict, indent=2))
-  localhost_print_function(' ------------- 50 ------------- ')
+  print(' ------------- 50 ------------- ')
+  print(pprint.pformat(page_dict, indent=2))
+  print(' ------------- 50 ------------- ')
   return page_dict
 # ------------------------ individual function end ------------------------
