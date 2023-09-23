@@ -1,1 +1,12 @@
-error
+{% extends "navbar/exterior.html" %}
+
+{% block title %}
+  <title>CvHire | Home</title>
+  <meta name="description" content="CvHire">
+  <meta name="og:description" content="CvHire">
+{% endblock %}
+
+{% block contentBodyExceptNavbarAndFooter %}
+404 Error
+<a href="/" class="btn btn-primary">Home</a>
+{% endblock %}
