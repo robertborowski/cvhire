@@ -36,6 +36,10 @@ redis_connection = redis_connect_open_function()
 @cv_views_interior.route('/dashboard/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
 def cv_dashboard_function(url_redirect_code=None):
+  # ------------------------ locked status start ------------------------
+  if current_user.locked == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ locked status end ------------------------
   # ------------------------ page dict start ------------------------
   if url_redirect_code == None:
     try:
@@ -73,4 +77,15 @@ def cv_dashboard_function(url_redirect_code=None):
     browser_response = browser_response_set_cookie_function(current_user, template_location_url, page_dict)
     return browser_response
   # ------------------------ auto set cookie end ------------------------
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/locked', methods=['GET', 'POST'])
+@login_required
+def cv_locked_function(url_redirect_code=None):
+  # ------------------------ locked status start ------------------------
+  if current_user.locked != True:
+    return redirect(url_for('cv_views_interior.cv_dashboard_function'))
+  # ------------------------ locked status end ------------------------
+  return render_template('interior/locked/index.html')
 # ------------------------ individual route end ------------------------

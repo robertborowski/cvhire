@@ -14,6 +14,7 @@ class UserObj(db.Model, UserMixin):   # Only the users object inherits UserMixin
   created_timestamp = db.Column(db.DateTime(timezone=True))
   email = db.Column(db.String(150))
   password = db.Column(db.String(150))
+  locked = db.Column(db.Boolean, default=False)
 
   def get_reset_token_function(self, expires_sec=1800):
     serializer_token_obj = Serializer(secret_key_ref, expires_sec)
