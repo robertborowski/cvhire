@@ -11,6 +11,10 @@
     .custom-mobile-display-2 {
       display: block;
     }
+    .custom-display-flex-row-to-column-mobile {
+      display: flex;
+      flex-direction: column-reverse;
+    }
     /* ------------------- display end ------------------- */
     /* ------------------- filler start ------------------- */
     .custom-filler-1-mobile {

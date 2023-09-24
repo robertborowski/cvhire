@@ -473,6 +473,10 @@
 .custom-display-flex {
   display: flex;
 }
+.custom-display-flex-row-to-column-mobile {
+  display: flex;
+  flex-direction: row;
+}
 .custom-display-block {
   display: block;
 }
@@ -1986,9 +1990,6 @@
 .custom-width-21 {
   width: 300px;
   max-width: 90%;
-}
-.custom-width-50 {
-  width: 50%;
 }
 .custom-width-75 {
   width: 75%;
