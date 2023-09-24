@@ -1,9 +1,9 @@
 {% extends "navbar/exterior.html" %}
 
 {% block title %}
-  <title>Sign up | CvHire</title>
-  <meta name="description" content="CvHire">
-  <meta name="og:description" content="CvHire">
+  <title>Sign up | CVhire</title>
+  <meta name="description" content="CVhire">
+  <meta name="og:description" content="CVhire">
 {% endblock %}
 
 {% block contentBodyExceptNavbarAndFooter %}
@@ -14,18 +14,31 @@
 </div>
 {% endif %}
 <!-- ----------------------------------- alert end ----------------------------------- -->
-Signup
-<form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
-  <div class="form-group">
-    <label for="uiEmail">Email</label>
-    <input type="email" class="form-control" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" placeholder="Email *" required>
+<div class="custom-bg-tilted-1">
+  <div class="custom-bg-solid-1"></div>
+  <div class="custom-bg-obj-2"></div>
+  <div class="custom-bg-obj-1"></div>
+  <div class="custom-bg-obj-3"></div>
+</div>
+<div class="custom-display-flex custom-width-1000 mx-auto custom-pt-100">
+  <div class="custom-display-block custom-width-50 custom-p-50">
+    <h2>CVhire</h2>
   </div>
-  <div class="form-group">
-    <label for="uiPassword">Password</label>
-    <input type="password" class="form-control" id="uiPassword" name="uiPassword" placeholder="Password *" title="Minimum 4 characters" required>
+  <div class="custom-display-block custom-width-50 custom-p-50 custom-br-15 shadow outline custom-bg-white custom-index-1">
+    <div class="custom-mb-50">
+      <h3>Create your CVhire account</h3>
+    </div>
+    <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+      <div class="form-group custom-mb-50">
+        <label for="uiEmail">Email</label>
+        <input type="email" class="form-control" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" required>
+      </div>
+      <div class="form-group custom-mb-50">
+        <label for="uiPassword">Password</label>
+        <input type="password" class="form-control" id="uiPassword" name="uiPassword" title="Minimum 4 characters" required>
+      </div>
+      <button type="submit" class="btn btn-primary custom-width-100">Get started</button>
+    </form>
   </div>
-  <button type="submit" class="btn btn-primary">Get started</button>
-</form>
-<a href="/login" class="btn btn-outline-secondary">Login</a>
-<a href="/" class="btn btn-outline-secondary">Home</a>
+</div>
 {% endblock %}

@@ -80,7 +80,7 @@ def cv_forgot_password_function(url_redirect_code=None):
       # ------------------------ send email with token url start ------------------------
       serializer_token_obj = UserObj.get_reset_token_function(self=user_exists)
       output_email = ui_email
-      output_subject_line = 'Password Reset | CvHire'
+      output_subject_line = 'Password Reset | CVhire'
       output_message_content = f"To reset your password, visit the following link: http://127.0.0.1/reset/{serializer_token_obj}/ \
                                 This link will expire after 30 minutes.\nIf you did not make this request then simply ignore this email and no changes will be made."
       send_email_template_function(output_email, output_subject_line, output_message_content)
