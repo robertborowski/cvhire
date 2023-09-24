@@ -44,6 +44,11 @@ def cv_signup_function(url_redirect_code=None):
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
+  # ------------------------ carry over values start ------------------------
+  page_dict['carry_over_email'] = ''
+  if url_redirect_code != None and page_dict['alert_message_dict']['message'] == '':
+    page_dict['carry_over_email'] = url_redirect_code
+  # ------------------------ carry over values end ------------------------
   if request.method == 'POST':
     # ------------------------ post method hit #2 - full sign up start ------------------------
     ui_email = request.form.get('uiEmail')
@@ -109,6 +114,12 @@ def cv_signup_function(url_redirect_code=None):
       # ------------------------ email self end ------------------------
       return redirect(url_for('cv_views_interior.cv_dashboard_function'))
     # ------------------------ post method hit #2 - full sign up end ------------------------
+  print(' ------------- 100-signup start ------------- ')
+  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+  for k,v in page_dict.items():
+    print(f"k: {k} | v: {v}")
+    pass
+  print(' ------------- 100-signup end ------------- ')
   return render_template('exterior/signup/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -165,7 +176,7 @@ def cv_login_function(url_redirect_code=None):
     # ------------------------ see if user exists start ------------------------
     user = UserObj.query.filter_by(email=ui_email).first()
     if user == None or user == []:
-      return redirect(url_for('cv_auth.cv_signup_function'))
+      return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code=ui_email))
     # ------------------------ see if user exists end ------------------------
     if user:
       if check_password_hash(user.password, ui_password):

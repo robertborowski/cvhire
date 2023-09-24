@@ -14,17 +14,43 @@
 </div>
 {% endif %}
 <!-- ----------------------------------- alert end ----------------------------------- -->
-Reset confirmation
-<form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
-  <div class="form-group">
-    <label for="uiPassword1">Password</label>
-    <input type="password" class="form-control" id="uiPassword1" name="uiPassword1" placeholder="Password *" title="Minimum 4 characters" required>
+<div class="custom-bg-tilted-1">
+  <div class="custom-bg-solid-1"></div>
+  <div class="custom-bg-obj-2"></div>
+  <div class="custom-bg-obj-1"></div>
+  <div class="custom-bg-obj-3"></div>
+</div>
+<!-- ----------------------------------- top half start ----------------------------------- -->
+<div class="custom-width-600 mx-auto custom-vh-95" id="id-remove-custom-vh-95">
+  <div class="custom-pt-50 custom-width-600 mx-auto custom-pb-50">
+    <h2 class="custom-m-0 custom-ml-25">CVhire</h2>
   </div>
-  <div class="form-group">
-    <label for="uiPassword2">Password</label>
-    <input type="password" class="form-control" id="uiPassword2" name="uiPassword2" placeholder="Confirm password *" title="Minimum 4 characters" required>
+  <!-- ----------------------------------- display start ----------------------------------- -->
+  <div class="custom-display-flex-row-to-column-mobile mx-auto">
+    <div class="custom-display-block custom-width-100 mx-auto custom-p-50 custom-br-15 shadow-lg outline custom-bg-white custom-index-1">
+      <div class="custom-mb-50">
+        <h3 class="fw-bolder">Set your new password</h3>
+        <p class="custom-opacity-75 custom-m-0 custom-mt-25">Please enter your new password.</p>
+      </div>
+      <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+        <div class="form-group custom-mb-50">
+          <label for="uiPassword1">Password</label>
+          <input type="password" class="form-control custom-mt-10" id="uiPassword1" name="uiPassword1" title="Minimum 4 characters" required>
+        </div>
+        <div class="form-group custom-mb-50">
+          <label for="uiPassword2">Confirm password</label>
+          <input type="password" class="form-control custom-mt-10" id="uiPassword2" name="uiPassword2" title="Minimum 4 characters" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg custom-width-100">Reset password</button>
+      </form>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Get started</button>
-</form>
-<a href="/" class="btn btn-outline-secondary">Home</a>
+  <!-- ----------------------------------- display end ----------------------------------- -->
+</div>
+<!-- ----------------------------------- top half end ----------------------------------- -->
+<!-- ----------------------------------- bottom half start ----------------------------------- -->
+<div class="custom-width-600 mx-auto custom-position-relative">
+  <p class="custom-header-12"><a href="/" class="custom-a-black-underline custom-hover-pointer-opacity-1 custom-opacity-50">@CVhire</a> | <a href="mailto:support@cvhire.com" class="custom-a-black-underline custom-hover-pointer-opacity-1 custom-opacity-50">Contact</a> | <a href="/privacy" class="custom-a-black-underline custom-hover-pointer-opacity-1 custom-opacity-50">Privacy & terms</a></p>
+</div>
+<!-- ----------------------------------- bottom half end ----------------------------------- -->
 {% endblock %}
