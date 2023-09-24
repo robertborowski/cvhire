@@ -543,7 +543,7 @@
 /* ------------------- flex end ------------------- */
 /* ------------------- google start ------------------- */
 .custom-google-font-1 {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 /* ------------------- google end ------------------- */
 /* ------------------- grid start ------------------- */
@@ -1110,7 +1110,7 @@
   margin-top: 15px;
 }
 .custom-mt-7 {
-  margin-top: 300px;
+  margin-top: 7px;
 }
 .custom-mt-10 {
   margin-top: 10px;
@@ -2036,6 +2036,14 @@
 }
 .custom-width-1000 {
   width: 1000px;
+  max-width: 90%;
+}
+.custom-width-1100 {
+  width: 1100px;
+  max-width: 90%;
+}
+.custom-width-1200 {
+  width: 1200px;
   max-width: 90%;
 }
 .custom-wh-1 {
