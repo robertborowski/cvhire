@@ -49,6 +49,12 @@ class EmailSentObj(db.Model):
   body = db.Column(db.String(5000))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class EmailBlockObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):

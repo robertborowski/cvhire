@@ -1,6 +1,9 @@
 # ------------------------ imports start ------------------------
 import re
 from website.backend.static_lists import get_list_function
+from website.models import EmailBlockObj
+from website import db
+from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
