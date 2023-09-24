@@ -89,7 +89,7 @@ def cv_forgot_password_function(url_redirect_code=None):
       pass
     # ------------------------ check if user email exists in db end ------------------------
     # ------------------------ success code start ------------------------
-    alert_message_dict = get_alert_message_function('s13')
+    alert_message_dict = get_alert_message_function('s3')
     page_dict['alert_message_dict'] = alert_message_dict
     # ------------------------ success code end ------------------------
   return render_template('exterior/reset/index.html', page_dict_html=page_dict)

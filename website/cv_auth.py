@@ -74,7 +74,7 @@ def cv_signup_function(url_redirect_code=None):
     # ------------------------ check if user email already exists in db start ------------------------
     user_exists = UserObj.query.filter_by(email=ui_email).first()
     if user_exists != None and user_exists != []:
-      return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code='e3'))
+      return redirect(url_for('cv_auth.cv_login_function', url_redirect_code=ui_email))
     # ------------------------ check if user email already exists in db start ------------------------
     else:
       new_user_id = create_uuid_function('user_')
@@ -139,6 +139,11 @@ def cv_login_function(url_redirect_code=None):
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
+  # ------------------------ carry over values start ------------------------
+  page_dict['carry_over_email'] = ''
+  if url_redirect_code != None and page_dict['alert_message_dict']['message'] == '':
+    page_dict['carry_over_email'] = url_redirect_code
+  # ------------------------ carry over values end ------------------------
   # ------------------------ auto sign in with cookie start ------------------------
   get_cookie_value_from_browser = redis_check_if_cookie_exists_function()
   if get_cookie_value_from_browser != None:
