@@ -14,18 +14,48 @@
 </div>
 {% endif %}
 <!-- ----------------------------------- alert end ----------------------------------- -->
-Login
-<form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
-  <div class="form-group">
-    <label for="uiEmail">Email</label>
-    <input type="email" class="form-control" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" placeholder="Email *" required>
+<div class="custom-bg-tilted-1">
+  <div class="custom-bg-solid-1"></div>
+  <div class="custom-bg-obj-2"></div>
+  <div class="custom-bg-obj-1"></div>
+  <div class="custom-bg-obj-3"></div>
+</div>
+<!-- ----------------------------------- top half start ----------------------------------- -->
+<div class="custom-width-600 mx-auto custom-vh-95" id="id-remove-custom-vh-95">
+  <div class="custom-pt-50 custom-width-600 mx-auto custom-pb-50">
+    <h2 class="custom-m-0 custom-ml-25">CVhire</h2>
   </div>
-  <div class="form-group">
-    <label for="uiPassword">Password</label>
-    <input type="password" class="form-control" id="uiPassword" name="uiPassword" placeholder="Password *" title="Minimum 4 characters" required>
+  <!-- ----------------------------------- display start ----------------------------------- -->
+  <div class="custom-display-flex-row-to-column-mobile mx-auto">
+    <div class="custom-display-block custom-width-100 mx-auto custom-p-50 custom-br-15 shadow-lg outline custom-bg-white custom-index-1">
+      <div class="custom-mb-50">
+        <h3 class="fw-bolder">Sign in to your account</h3>
+      </div>
+      <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+        <div class="form-group custom-mb-50">
+          <label for="uiEmail">Email</label>
+          <input type="email" class="form-control custom-mt-10" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" required>
+        </div>
+        <div class="form-group custom-mb-50">
+          <div class="custom-display-flex custom-jc-between">
+            <label for="uiPassword">Password</label>
+            <a href="/reset" class="custom-a-black-underline custom-opacity-50 custom-hover-pointer-opacity-1">Forgot your password?</a>
+          </div>
+          <input type="password" class="form-control custom-mt-10" id="uiPassword" name="uiPassword" title="Minimum 4 characters" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg custom-width-100">Get started</button>
+      </form>
+      <div class="text-center custom-mt-25">
+        <p>Don't have an account? <a href="/signup" class="custom-a-black-underline custom-underline-1">Sign up</a></p>
+      </div>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Get started</button>
-</form>
-<a href="/" class="btn btn-outline-secondary">Home</a>
-<a href="/reset" class="btn btn-outline-secondary">Forgot password</a>
+  <!-- ----------------------------------- display end ----------------------------------- -->
+</div>
+<!-- ----------------------------------- top half end ----------------------------------- -->
+<!-- ----------------------------------- bottom half start ----------------------------------- -->
+<div class="custom-width-600 mx-auto custom-position-relative">
+  <p class="custom-header-12"><a href="/" class="custom-a-black-underline custom-hover-pointer-opacity-1 custom-opacity-50">@CVhire</a> | <a href="mailto:support@cvhire.com" class="custom-a-black-underline custom-hover-pointer-opacity-1 custom-opacity-50">Contact</a> | <a href="/privacy" class="custom-a-black-underline custom-hover-pointer-opacity-1 custom-opacity-50">Privacy & terms</a></p>
+</div>
+<!-- ----------------------------------- bottom half end ----------------------------------- -->
 {% endblock %}
