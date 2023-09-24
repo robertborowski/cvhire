@@ -14,13 +14,42 @@
 </div>
 {% endif %}
 <!-- ----------------------------------- alert end ----------------------------------- -->
-Reset
-<form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
-  <div class="form-group">
-    <label for="uiEmail">Email</label>
-    <input type="email" class="form-control" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" placeholder="Email *" required>
+<div class="custom-bg-tilted-1">
+  <div class="custom-bg-solid-1"></div>
+  <div class="custom-bg-obj-2"></div>
+  <div class="custom-bg-obj-1"></div>
+  <div class="custom-bg-obj-3"></div>
+</div>
+<!-- ----------------------------------- top half start ----------------------------------- -->
+<div class="custom-width-600 mx-auto custom-vh-95" id="id-remove-custom-vh-95">
+  <div class="custom-pt-50 custom-width-600 mx-auto custom-pb-50">
+    <h2 class="custom-m-0 custom-ml-25">CVhire</h2>
   </div>
-  <button type="submit" class="btn btn-primary">Get started</button>
-</form>
-<a href="/" class="btn btn-outline-secondary">Home</a>
+  <!-- ----------------------------------- display start ----------------------------------- -->
+  <div class="custom-display-flex-row-to-column-mobile mx-auto">
+    <div class="custom-display-block custom-width-100 mx-auto custom-p-50 custom-br-15 shadow-lg outline custom-bg-white custom-index-1">
+      <div class="custom-mb-50">
+        <h3 class="fw-bolder">Reset your password</h3>
+        <p class="custom-opacity-75 custom-m-0 custom-mt-25">Enter the email address associated with your account and we'll send you a link to reset your password.</p>
+      </div>
+      <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+        <div class="form-group custom-mb-50">
+          <label for="uiEmail">Email</label>
+          <input type="email" class="form-control custom-mt-10" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg custom-width-100">Send email</button>
+      </form>
+      <div class="text-center custom-mt-25">
+        <p><a href="/login" class="custom-a-black-underline custom-opacity-50 custom-hover-pointer-opacity-1">Return to sign in</a></p>
+      </div>
+    </div>
+  </div>
+  <!-- ----------------------------------- display end ----------------------------------- -->
+</div>
+<!-- ----------------------------------- top half end ----------------------------------- -->
+<!-- ----------------------------------- bottom half start ----------------------------------- -->
+<div class="custom-width-600 mx-auto custom-position-relative">
+  <p class="custom-header-12"><a href="/" class="custom-a-black-underline custom-hover-pointer-opacity-1 custom-opacity-50">@CVhire</a> | <a href="mailto:support@cvhire.com" class="custom-a-black-underline custom-hover-pointer-opacity-1 custom-opacity-50">Contact</a> | <a href="/privacy" class="custom-a-black-underline custom-hover-pointer-opacity-1 custom-opacity-50">Privacy & terms</a></p>
+</div>
+<!-- ----------------------------------- bottom half end ----------------------------------- -->
 {% endblock %}
