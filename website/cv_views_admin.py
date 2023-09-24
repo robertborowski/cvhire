@@ -18,7 +18,7 @@ from datetime import datetime
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.sanitize import sanitize_email_function
-from website.backend.static_lists import get_list_function
+from website.backend.static_lists import get_list_function, redis_all_keys_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -93,6 +93,19 @@ def admin_function(url_redirect_code=None):
       else:
         return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='i2'))
     # ------------------------ post #2 end ------------------------
+    # ------------------------ post #3 start ------------------------
+    ui_redis_clear_all = request.form.get('uiRedisClearAll')
+    if ui_redis_clear_all != None:
+      redis_all_keys = redis_all_keys_function()
+      # ------------------------ loop through keys start ------------------------
+      for key in redis_all_keys:
+        redis_value = redis_connection.get(key).decode('utf-8')
+        if 'bcooke' in key.decode('utf-8'):
+          pass
+          # print(f"key: {key} | redis_value: {redis_value}")
+          # redis_connection.delete(key.decode('utf-8'))
+      # ------------------------ loop through keys end ------------------------
+    # ------------------------ post #3 end ------------------------
   print(' ------------- 100-admin start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():

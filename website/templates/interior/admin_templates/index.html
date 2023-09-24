@@ -15,8 +15,11 @@
 {% endif %}
 <!-- ----------------------------------- alert end ----------------------------------- -->
 <div class="container">
-  <div class="custom-pt-25">
+  <div class="custom-pt-25 custom-display-flex custom-jc-between">
     <h2>Admin</h2>
+    <div>
+      <a href="/dashboard" class="btn btn-outline-success btn-lg">Dashboard</a>
+    </div>
   </div>
   <!-- ----------------------------------- form lock email start ----------------------------------- -->
   <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="custom-border-1 custom-p-50 custom-br-15 custom-m-50">
@@ -24,7 +27,7 @@
       <label for="uiEmail">Lock Account | Email</label>
       <input type="email" class="form-control" id="uiEmail" name="uiEmail" required>
     </div>
-    <button type="submit" class="btn btn-primary">Lock</button>
+    <button type="submit" class="btn btn-danger">Lock</button>
   </form>
   <!-- ----------------------------------- form lock email end ----------------------------------- -->
   <!-- ----------------------------------- form block email like start ----------------------------------- -->
@@ -33,7 +36,16 @@
       <label for="uiBlockEmailLike">Block email str's like</label>
       <input type="text" class="form-control" id="uiBlockEmailLike" name="uiBlockEmailLike" required>
     </div>
-    <button type="submit" class="btn btn-primary">Add to block list</button>
+    <button type="submit" class="btn btn-danger">Add to block list</button>
+  </form>
+  <!-- ----------------------------------- form block email like end ----------------------------------- -->
+  <!-- ----------------------------------- form block email like start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="custom-border-1 custom-p-50 custom-br-15 custom-m-50">
+    <div class="form-group">
+      <label for="uiRedisClearAll">Redis clear all</label>
+      <input type="text" class="form-control" id="uiRedisClearAll" name="uiRedisClearAll" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Clear</button>
   </form>
   <!-- ----------------------------------- form block email like end ----------------------------------- -->
 </div>
