@@ -140,3 +140,10 @@ def cv_reset_forgot_password_function(token, url_redirect_code=None):
     # ------------------------ update db end ------------------------
   return render_template('exterior/reset/reset_confirm/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_exterior.route('/privacy')
+@cv_views_exterior.route('/privacy/')
+def cv_privacy_function():
+  return render_template('exterior/privacy_terms/index.html')
+# ------------------------ individual route end ------------------------
