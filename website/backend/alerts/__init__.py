@@ -22,7 +22,7 @@ def get_alert_message_function(redirect_var=None):
     }
   elif redirect_var == 'e3':
     alert_message_dict = {
-      'message':'Account already created for email',
+      'message':'Account already created for email, please login',
       'type':'danger'
     }
   elif redirect_var == 'e4':
@@ -33,6 +33,11 @@ def get_alert_message_function(redirect_var=None):
   elif redirect_var == 'e5':
     alert_message_dict = {
       'message':'You are not an admin',
+      'type':'danger'
+    }
+  elif redirect_var == 'e6':
+    alert_message_dict = {
+      'message':'Invalid/lenghty full name',
       'type':'danger'
     }
   # ------------------------ errors end ------------------------

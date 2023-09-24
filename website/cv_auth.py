@@ -14,10 +14,10 @@ from website import db
 from flask_login import login_user, login_required, logout_user, current_user
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 import os
-from .models import UserObj
+from .models import UserObj, UserAttributesObj
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
-from website.backend.sanitize import sanitize_email_function, sanitize_password_function
+from website.backend.sanitize import sanitize_email_function, sanitize_password_function, sanitize_fullname_function
 from website.backend.sendgrid import send_email_template_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, redis_logout_all_other_signins_function
 # ------------------------ imports end ------------------------
@@ -48,6 +48,7 @@ def cv_signup_function(url_redirect_code=None):
     # ------------------------ post method hit #2 - full sign up start ------------------------
     ui_email = request.form.get('uiEmail')
     ui_password = request.form.get('uiPassword')
+    ui_full_name = request.form.get('uiFullName')
     # ------------------------ sanitize/check user inputs start ------------------------
     # ------------------------ sanitize/check user input email start ------------------------
     ui_email_cleaned = sanitize_email_function(ui_email, 'false')
@@ -59,6 +60,11 @@ def cv_signup_function(url_redirect_code=None):
     if ui_password_cleaned == False:
       return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code='e2'))
     # ------------------------ sanitize/check user input password end ------------------------
+    # ------------------------ sanitize/check user input password start ------------------------
+    ui_full_name_cleaned = sanitize_fullname_function(ui_full_name)
+    if ui_full_name_cleaned == False:
+      return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code='e6'))
+    # ------------------------ sanitize/check user input password end ------------------------
     # ------------------------ sanitize/check user inputs end ------------------------
     # ------------------------ check if user email already exists in db start ------------------------
     user_exists = UserObj.query.filter_by(email=ui_email).first()
@@ -66,9 +72,10 @@ def cv_signup_function(url_redirect_code=None):
       return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code='e3'))
     # ------------------------ check if user email already exists in db start ------------------------
     else:
+      new_user_id = create_uuid_function('user_')
       # ------------------------ create new user in db start ------------------------
       new_row = UserObj(
-        id=create_uuid_function('user_'),
+        id=new_user_id,
         created_timestamp=create_timestamp_function(),
         email=ui_email.lower(),
         password=generate_password_hash(ui_password, method="sha256")
@@ -79,6 +86,17 @@ def cv_signup_function(url_redirect_code=None):
       # ------------------------ keep user logged in start ------------------------
       login_user(new_row, remember=True)
       # ------------------------ keep user logged in end ------------------------
+      # ------------------------ new attribute start ------------------------
+      new_row = UserAttributesObj(
+        id=create_uuid_function('attribute_'),
+        created_timestamp=create_timestamp_function(),
+        fk_user_id=new_user_id,
+        attribute_key='fullname',
+        attribute_value=ui_full_name
+      )
+      db.session.add(new_row)
+      db.session.commit()
+      # ------------------------ new attribute end ------------------------
       # ------------------------ email self start ------------------------
       if ui_email != os.environ.get('RUN_TEST_EMAIL'):
         try:
