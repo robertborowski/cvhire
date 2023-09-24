@@ -14,13 +14,27 @@
 </div>
 {% endif %}
 <!-- ----------------------------------- alert end ----------------------------------- -->
-Admin
-Lock out account
-<form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
-  <div class="form-group">
-    <label for="uiEmail">Email</label>
-    <input type="email" class="form-control" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" placeholder="Email *" required>
+<div class="container">
+  <div class="custom-pt-25">
+    <h2>Admin</h2>
   </div>
-  <button type="submit" class="btn btn-primary">Lock</button>
-</form>
+  <!-- ----------------------------------- form lock email start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="custom-border-1 custom-p-50 custom-br-15 custom-m-50">
+    <div class="form-group">
+      <label for="uiEmail">Lock Account | Email</label>
+      <input type="email" class="form-control" id="uiEmail" name="uiEmail" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Lock</button>
+  </form>
+  <!-- ----------------------------------- form lock email end ----------------------------------- -->
+  <!-- ----------------------------------- form block email like start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="custom-border-1 custom-p-50 custom-br-15 custom-m-50">
+    <div class="form-group">
+      <label for="uiBlockEmailLike">Block email str's like</label>
+      <input type="text" class="form-control" id="uiBlockEmailLike" name="uiBlockEmailLike" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add to block list</button>
+  </form>
+  <!-- ----------------------------------- form block email like end ----------------------------------- -->
+</div>
 {% endblock %}

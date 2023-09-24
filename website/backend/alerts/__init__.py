@@ -40,6 +40,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Invalid/lenghty full name',
       'type':'danger'
     }
+  elif redirect_var == 'e7':
+    alert_message_dict = {
+      'message':'Error on upload',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
@@ -49,7 +54,7 @@ def get_alert_message_function(redirect_var=None):
     }
   elif redirect_var == 's2':
     alert_message_dict = {
-      'message':'a',
+      'message':'Added to db',
       'type':'success'
     }
   # ------------------------ success end ------------------------
@@ -61,7 +66,7 @@ def get_alert_message_function(redirect_var=None):
     }
   elif redirect_var == 'i2':
     alert_message_dict = {
-      'message':'User is subscribed.',
+      'message':'Already exists in db',
       'type':'info'
     }
   # ------------------------ info end ------------------------
