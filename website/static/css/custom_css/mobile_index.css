@@ -1,4 +1,31 @@
 @media (max-width: 1200px) {
+    /* ------------------- background start ------------------- */
+    .custom-bg-obj-1-mobile {
+      height: 40px;
+      top: 425px;
+      left: calc(0% - 100px);
+      right: calc(50% + 200px);
+      position: absolute;
+      background: var(--custom-color-black-faded);
+    }
+    .custom-bg-obj-2-mobile {
+      height: 40px;
+      top: 450px;
+      left: -10px;
+      right: calc(50% + 200px);
+      position: absolute;
+      background: var(--custom-color-primary);
+    }
+    .custom-bg-obj-3-mobile {
+      height: 40px;
+      top: 700px;
+      left: calc(50% + 170px);
+      right: -10px;
+      position: absolute;
+      background: var(--custom-color-primary);
+      z-index: -10;
+    }
+    /* ------------------- background end ------------------- */
     /* ------------------- border start ------------------- */
     .custom-br-2-mobile {
       border-radius: 15px;
