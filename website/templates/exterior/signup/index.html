@@ -20,71 +20,80 @@
   <div class="custom-bg-obj-1"></div>
   <div class="custom-bg-obj-3"></div>
 </div>
-<div class="custom-display-flex custom-width-1100 mx-auto custom-pt-100">
-  <!-- ----------------------------------- display 1 start ----------------------------------- -->
-  <div class="custom-display-block custom-width-50 custom-p-50">
-    <div class="custom-mb-25">
-      <h2>CVhire</h2>
+<div class="custom-width-1100 mx-auto custom-border-2 custom-vh-100">
+  <!-- ----------------------------------- top half start ----------------------------------- -->
+  <div class="custom-display-flex mx-auto custom-pt-100 custom-border-3">
+    <!-- ----------------------------------- display 1 start ----------------------------------- -->
+    <div class="custom-display-block custom-width-50 custom-p-50">
+      <div class="custom-mb-25">
+        <h2>CVhire</h2>
+      </div>
+      <!-- ----------------------------------- section start ----------------------------------- -->
+      <div class="custom-display-flex custom-mb-25">
+        <div class="custom-display-block">
+          <i class="fa-solid fa-circle-check custom-mt-7 custom-color-success"></i>
+        </div>
+        <div class="custom-display-block custom-ml-10">
+          <p class="custom-m-0 custom-header-20">Save time CV screening with AI</p>
+          <p class="custom-m-0 custom-header-15 custom-opacity-75">Screen resumes & CVs at scale with AI. No coding necessary.</p>
+        </div>
+      </div>
+      <!-- ----------------------------------- section end ----------------------------------- -->
+      <!-- ----------------------------------- section start ----------------------------------- -->
+      <div class="custom-display-flex custom-mb-25">
+        <div class="custom-display-block">
+          <i class="fa-solid fa-circle-check custom-mt-7 custom-color-success"></i>
+        </div>
+        <div class="custom-display-block custom-ml-10">
+          <p class="custom-m-0 custom-header-20">Get started quickly</p>
+          <p class="custom-m-0 custom-header-15 custom-opacity-75">See candidate validity dashboard in seconds. No credit card necessary.</p>
+        </div>
+      </div>
+      <!-- ----------------------------------- section end ----------------------------------- -->
+      <!-- ----------------------------------- section start ----------------------------------- -->
+      <div class="custom-display-flex custom-mb-25">
+        <div class="custom-display-block">
+          <i class="fa-solid fa-circle-check custom-mt-7 custom-color-success"></i>
+        </div>
+        <div class="custom-display-block custom-ml-10">
+          <p class="custom-m-0 custom-header-20">Join thousands of businesses</p>
+          <p class="custom-m-0 custom-header-15 custom-opacity-75">CVhire is trusted by thousands of recruiters across industries.</p>
+        </div>
+      </div>
+      <!-- ----------------------------------- section end ----------------------------------- -->
     </div>
-    <!-- ----------------------------------- section start ----------------------------------- -->
-    <div class="custom-display-flex custom-mb-25">
-      <div class="custom-display-block">
-        <i class="fa-solid fa-circle-check custom-mt-7 custom-color-success"></i>
+    <!-- ----------------------------------- display 1 end ----------------------------------- -->
+    <!-- ----------------------------------- display 2 start ----------------------------------- -->
+    <div class="custom-display-block custom-width-50 custom-p-50 custom-br-15 shadow-lg outline custom-bg-white custom-index-1">
+      <div class="custom-mb-50">
+        <h3 class="fw-bolder">Create your CVhire account</h3>
       </div>
-      <div class="custom-display-block custom-ml-10">
-        <p class="custom-m-0 custom-header-20">Save time CV screening with AI</p>
-        <p class="custom-m-0 custom-header-15 custom-opacity-75">Screen resumes & CVs at scale with AI. No coding necessary.</p>
-      </div>
-    </div>
-    <!-- ----------------------------------- section end ----------------------------------- -->
-    <!-- ----------------------------------- section start ----------------------------------- -->
-    <div class="custom-display-flex custom-mb-25">
-      <div class="custom-display-block">
-        <i class="fa-solid fa-circle-check custom-mt-7 custom-color-success"></i>
-      </div>
-      <div class="custom-display-block custom-ml-10">
-        <p class="custom-m-0 custom-header-20">Get started quickly</p>
-        <p class="custom-m-0 custom-header-15 custom-opacity-75">See candidate validity dashboard in seconds. No credit card necessary.</p>
-      </div>
-    </div>
-    <!-- ----------------------------------- section end ----------------------------------- -->
-    <!-- ----------------------------------- section start ----------------------------------- -->
-    <div class="custom-display-flex custom-mb-25">
-      <div class="custom-display-block">
-        <i class="fa-solid fa-circle-check custom-mt-7 custom-color-success"></i>
-      </div>
-      <div class="custom-display-block custom-ml-10">
-        <p class="custom-m-0 custom-header-20">Join thousands of businesses</p>
-        <p class="custom-m-0 custom-header-15 custom-opacity-75">CVhire is trusted by thousands of recruiters across industries.</p>
+      <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+        <div class="form-group custom-mb-50">
+          <label for="uiEmail">Email</label>
+          <input type="email" class="form-control custom-mt-10" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" required>
+        </div>
+        <div class="form-group custom-mb-50">
+          <label for="uiFullName">Full name</label>
+          <input type="text" class="form-control custom-mt-10" id="uiFullName" name="uiFullName" required>
+        </div>
+        <div class="form-group custom-mb-50">
+          <label for="uiPassword">Password</label>
+          <input type="password" class="form-control custom-mt-10" id="uiPassword" name="uiPassword" title="Minimum 4 characters" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg custom-width-100">Get started</button>
+      </form>
+      <div class="text-center custom-mt-25">
+        <p>Have an account? <a href="/login" class="custom-a-black-underline custom-underline-1">Sign in</a></p>
       </div>
     </div>
-    <!-- ----------------------------------- section end ----------------------------------- -->
+    <!-- ----------------------------------- display 2 start ----------------------------------- -->
   </div>
-  <!-- ----------------------------------- display 1 end ----------------------------------- -->
-  <!-- ----------------------------------- display 2 start ----------------------------------- -->
-  <div class="custom-display-block custom-width-50 custom-p-50 custom-br-15 shadow-lg outline custom-bg-white custom-index-1">
-    <div class="custom-mb-50">
-      <h3 class="fw-bolder">Create your CVhire account</h3>
-    </div>
-    <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
-      <div class="form-group custom-mb-50">
-        <label for="uiEmail">Email</label>
-        <input type="email" class="form-control custom-mt-10" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" required>
-      </div>
-      <div class="form-group custom-mb-50">
-        <label for="uiFullName">Full name</label>
-        <input type="text" class="form-control custom-mt-10" id="uiFullName" name="uiFullName" required>
-      </div>
-      <div class="form-group custom-mb-50">
-        <label for="uiPassword">Password</label>
-        <input type="password" class="form-control custom-mt-10" id="uiPassword" name="uiPassword" title="Minimum 4 characters" required>
-      </div>
-      <button type="submit" class="btn btn-primary btn-lg custom-width-100">Get started</button>
-    </form>
-    <div class="text-center custom-mt-25">
-      <p>Have an account? <a href="/login" class="custom-a-black-underline custom-underline-1">Sign in</a></p>
-    </div>
-  </div>
-  <!-- ----------------------------------- display 2 start ----------------------------------- -->
+  <!-- ----------------------------------- top half end ----------------------------------- -->
+  <!-- ----------------------------------- bottom half start ----------------------------------- -->
+  <!-- <div class="custom-position-relative">
+    <p class="custom-position-absolute custom-bottom-0 custom-left-0">Support</p>
+  </div> -->
+  <!-- ----------------------------------- bottom half end ----------------------------------- -->
 </div>
 {% endblock %}
