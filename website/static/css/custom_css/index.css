@@ -141,7 +141,7 @@
   background-color: rgb(231 241 255);
 }
 .custom-bg-grey-1 {
-  background-color: rgb(244, 244, 244);
+  background-color: rgb(246, 248, 250);
 }
 .custom-bg-grey-2 {
   background-color: rgb(248, 248, 248);
@@ -469,6 +469,11 @@
   border-radius: 500px;
 }
 /* ------------------- border end ------------------- */
+/* ------------------- director start ------------------- */
+.custom-no-decoration {
+  list-style-type: none;
+}
+/* ------------------- director end ------------------- */
 /* ------------------- display start ------------------- */
 .custom-display-flex {
   display: flex;
@@ -1437,6 +1442,10 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+.custom-plr-15 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
 .custom-plr-20 {
   padding-left: 20px;
   padding-right: 20px;
@@ -2085,6 +2094,9 @@
 .custom-wh-3 {
   width: 30%;
   height: 0px;
+}
+.custom-width-interior-1100 {
+  min-width: 1100px;
 }
 /* ------------------- width end ------------------- */
 /* ------------------- wrap start ------------------- */
