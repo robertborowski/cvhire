@@ -8,7 +8,7 @@
 {% block contentBody %}
 <body class="custom-google-font-1">
   <!-- ------------------------------------- navbar start ------------------------------------- -->
-  <nav class="custom-width-interior-1100 mx-auto fixed-top shadow-sm">
+  <nav class="custom-width-interior-1100 mx-auto shadow-sm">
     <!-- ------------------------------------- section 1 start ------------------------------------- -->
     <div class="custom-display-flex custom-jc-between custom-ptb-10 custom-plr-50 custom-header-18 custom-bg-grey-1">
       <a href="/home" class="custom-a-black-none">CVhire</a>
@@ -29,7 +29,7 @@
       <ul class="custom-m-0 custom-display-flex custom-no-decoration">
         {% for k,v in page_dict_html['navbar_link_dict'].items() %}
           {% if v == page_dict_html['navbar_link_current'] %}
-            <li><a href="/{{ v }}" class="custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-black-2 custom-a-white custom-ptb-2">{{ k }}</a></li>
+            <li><a href="/{{ v }}" class="custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-primary custom-a-black-none custom-ptb-2">{{ k }}</a></li>
           {% else %}
             <li><a href="/{{ v }}" class="custom-a-black-none custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-hover-1">{{ k }}</a></li>
           {% endif %}
@@ -38,7 +38,6 @@
     </div>
     <!-- ------------------------------------- section 2 end ------------------------------------- -->
   </nav>
-  <div class="custom-height-77-px"></div>
   <!-- ----------------------------------- alert start ----------------------------------- -->
   {% if page_dict_html['alert_message_dict']['message'] != '' %}
   <div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">

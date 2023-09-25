@@ -1308,6 +1308,12 @@
 .custom-overflow-1 {
   overflow: scroll;
 }
+.custom-overflow-y {
+  overflow-y: scroll;
+}
+.custom-overflow-x {
+  overflow-y: scroll;
+}
 /* ------------------- overflow end ------------------- */
 /* ------------------- padding start ------------------- */
 .custom-p-0 {
@@ -1970,6 +1976,9 @@
 }
 .custom-weight-700 {
   font-weight: 700;
+}
+.custom-weight-900 {
+  font-weight: 900;
 }
 /* ------------------- weight end ------------------- */
 /* ------------------- width start ------------------- */
