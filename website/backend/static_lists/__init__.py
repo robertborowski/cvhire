@@ -33,7 +33,7 @@ def navbar_link_dict_function():
   output_dict = {
     'Home': 'home',
     'CVs & Resumes': 'cv',
-    'Roles': 'roles',
+    'Open Roles': 'roles',
     'Favorites': 'favorites',
     'Export': 'export'
   }
