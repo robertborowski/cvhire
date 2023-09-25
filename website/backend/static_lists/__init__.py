@@ -39,3 +39,26 @@ def navbar_link_dict_function():
   }
   return output_dict
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def navbar_link_dict_function_v2():
+  output_dict = {
+    'Help': {
+      'icon':'<i class="fa-solid fa-circle-question"></i>',
+      'url':'help'
+    },
+    'Notifications': {
+      'icon':'<i class="fa-solid fa-bell"></i>',
+      'url':'notifications'
+    },
+    'Settings': {
+      'icon':'<i class="fa-solid fa-gear"></i>',
+      'url':'settings'
+    },
+    'Account': {
+      'icon':'<i class="fa-solid fa-user"></i>',
+      'url':'account'
+    }
+  }
+  return output_dict
+# ------------------------ individual function end ------------------------

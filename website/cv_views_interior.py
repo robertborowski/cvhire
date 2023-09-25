@@ -20,7 +20,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.user_attributes_check import onboarding_checks_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
-from website.backend.static_lists import navbar_link_dict_function
+from website.backend.static_lists import navbar_link_dict_function, navbar_link_dict_function_v2
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -58,6 +58,8 @@ def cv_dashboard_function(url_redirect_code=None):
   # ------------------------ get navbar sites start ------------------------
   navbar_link_dict = navbar_link_dict_function()
   page_dict['navbar_link_dict'] = navbar_link_dict
+  navbar_link_dict_v2 = navbar_link_dict_function_v2()
+  page_dict['navbar_link_dict_v2'] = navbar_link_dict_v2
   page_dict['navbar_link_current'] = str(request.url_rule).split('/')[1]
   # ------------------------ get navbar sites end ------------------------
   """
