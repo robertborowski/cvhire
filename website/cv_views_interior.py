@@ -113,3 +113,38 @@ def cv_locked_function(url_redirect_code=None):
   # ------------------------ page dict end ------------------------
   return render_template('interior/locked/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/account', methods=['GET', 'POST'])
+@cv_views_interior.route('/account/', methods=['GET', 'POST'])
+@cv_views_interior.route('/account/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/account/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_account_function(url_redirect_code=None):
+  # ------------------------ page dict start ------------------------
+  if url_redirect_code == None:
+    try:
+      url_redirect_code = request.args.get('url_redirect_code')
+    except:
+      pass
+  alert_message_dict = get_alert_message_function(url_redirect_code)
+  page_dict = {}
+  page_dict['alert_message_dict'] = alert_message_dict
+  # ------------------------ page dict end ------------------------
+  # ------------------------ locked status start ------------------------
+  if current_user.locked == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ locked status end ------------------------
+  # ------------------------ get company name start ------------------------
+  db_attribute_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='company_name').first()
+  page_dict['company_name'] = db_attribute_obj.attribute_value
+  # ------------------------ get company name start ------------------------
+  # ------------------------ get navbar sites start ------------------------
+  navbar_link_dict = navbar_link_dict_function()
+  page_dict['navbar_link_dict'] = navbar_link_dict
+  navbar_link_dict_v2 = navbar_link_dict_function_v2()
+  page_dict['navbar_link_dict_v2'] = navbar_link_dict_v2
+  page_dict['navbar_link_current'] = str(request.url_rule).split('/')[1]
+  # ------------------------ get navbar sites end ------------------------
+  return render_template('interior/account/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------

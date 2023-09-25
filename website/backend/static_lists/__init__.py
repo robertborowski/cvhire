@@ -44,19 +44,19 @@ def navbar_link_dict_function():
 def navbar_link_dict_function_v2():
   output_dict = {
     'Help': {
-      'icon':'<i class="fa-solid fa-circle-question"></i>',
+      'icon':'fa-solid fa-circle-question',
       'url':'help'
     },
     'Notifications': {
-      'icon':'<i class="fa-solid fa-bell"></i>',
+      'icon':'fa-solid fa-bell',
       'url':'notifications'
     },
     'Settings': {
-      'icon':'<i class="fa-solid fa-gear"></i>',
+      'icon':'fa-solid fa-gear',
       'url':'settings'
     },
     'Account': {
-      'icon':'<i class="fa-solid fa-user"></i>',
+      'icon':'fa-solid fa-user',
       'url':'account'
     }
   }
