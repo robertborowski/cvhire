@@ -28,12 +28,16 @@ def pre_page_load_checks_function(current_user, url_redirect_code=None):
   db_attribute_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='company_name').first()
   page_dict['company_name'] = db_attribute_obj.attribute_value
   # ------------------------ get company name start ------------------------
+  # ------------------------ get current site start ------------------------
+  page_dict['navbar_link_current'] = str(request.url_rule)
+  if page_dict['navbar_link_current'][-1] == '/':
+    page_dict['navbar_link_current'] = page_dict['navbar_link_current'][:-1]
+  # ------------------------ get current site end ------------------------
   # ------------------------ get navbar sites start ------------------------
   navbar_link_dict = navbar_link_dict_function()
   page_dict['navbar_link_dict'] = navbar_link_dict
   navbar_link_dict_v2 = navbar_link_dict_function_v2()
   page_dict['navbar_link_dict_v2'] = navbar_link_dict_v2
-  page_dict['navbar_link_current'] = str(request.url_rule).split('/')[1]
   # ------------------------ get navbar sites end ------------------------
   """
   # ------------------------ onboarding checks start ------------------------

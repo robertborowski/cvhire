@@ -31,11 +31,11 @@ def redis_all_keys_function():
 # ------------------------ individual function start ------------------------
 def navbar_link_dict_function():
   output_dict = {
-    'Home': 'home',
-    'CVs & Resumes': 'cv',
-    'Roles': 'roles',
-    'Favorites': 'favorites',
-    'Export': 'export'
+    'Home': '/home',
+    'CVs & Resumes': '/cv',
+    'Roles': '/roles',
+    'Favorites': '/favorites',
+    'Export': '/export'
   }
   return output_dict
 # ------------------------ individual function end ------------------------
@@ -45,19 +45,19 @@ def navbar_link_dict_function_v2():
   output_dict = {
     'Help': {
       'icon':'fa-solid fa-circle-question',
-      'url':'help'
+      'url':'/help'
     },
     'Notifications': {
       'icon':'fa-solid fa-bell',
-      'url':'notifications'
+      'url':'/notifications'
     },
     'Settings': {
       'icon':'fa-solid fa-gear',
-      'url':'settings'
+      'url':'/settings'
     },
     'Account': {
       'icon':'fa-solid fa-user',
-      'url':'account'
+      'url':'/account'
     }
   }
   return output_dict

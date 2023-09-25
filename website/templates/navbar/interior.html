@@ -16,9 +16,9 @@
       <ul class="custom-m-0 custom-display-flex custom-no-decoration">
         {% for k,v in page_dict_html['navbar_link_dict_v2'].items() %}
           {% if v['url'] == page_dict_html['navbar_link_current'] %}
-            <li><a href="/{{ v['url'] }}" class="custom-a-black-none custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
+            <li><a href="{{ v['url'] }}" class="custom-a-black-none custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
           {% else %}
-            <li><a href="/{{ v['url'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
+            <li><a href="{{ v['url'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
           {% endif %}
         {% endfor %}
       </ul>
@@ -29,9 +29,9 @@
       <ul class="custom-m-0 custom-display-flex custom-no-decoration">
         {% for k,v in page_dict_html['navbar_link_dict'].items() %}
           {% if v == page_dict_html['navbar_link_current'] %}
-            <li><a href="/{{ v }}" class="custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-primary custom-a-black-none custom-ptb-2">{{ k }}</a></li>
+            <li><a href="{{ v }}" class="custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-primary custom-a-black-none custom-ptb-2">{{ k }}</a></li>
           {% else %}
-            <li><a href="/{{ v }}" class="custom-a-black-none custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-hover-1">{{ k }}</a></li>
+            <li><a href="{{ v }}" class="custom-a-black-none custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-hover-1">{{ k }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
