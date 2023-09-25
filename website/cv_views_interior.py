@@ -20,6 +20,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
+from website.backend.static_lists import roles_links_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -166,11 +167,24 @@ def cv_resume_function(url_redirect_code=None):
 @cv_views_interior.route('/roles/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
 def cv_roles_function(url_redirect_code=None):
+  return redirect(url_for('cv_views_interior.cv_roles_all_function', url_redirect_code=url_redirect_code))
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/roles/open', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/open/', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/open/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/open/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_roles_all_function(url_redirect_code=None):
   # ------------------------ pre load page checks start ------------------------
   page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ get list start ------------------------
+  page_dict['role_link_dict'] = roles_links_function()
+  # ------------------------ get list end ------------------------
   return render_template('interior/roles/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 

@@ -62,3 +62,14 @@ def navbar_link_dict_function_v2():
   }
   return output_dict
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def roles_links_function():
+  output_dict = {
+    'Open': '/roles/open',
+    'Filled': '/roles/filled',
+    'Archived': '/roles/archive',
+    'All roles': '/roles/all'
+  }
+  return output_dict
+# ------------------------ individual function end ------------------------

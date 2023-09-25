@@ -983,6 +983,9 @@
 .custom-jc-center {
   justify-content: center;
 }
+.custom-jc-start {
+  justify-content: flex-start;
+}
 /* ------------------- justify end ------------------- */
 /* ------------------- jQuery start ------------------- */
 .uiSearchItemVisible {
@@ -1221,8 +1224,14 @@
 .custom-mr-10 {
   margin-right: 10px;
 }
+.custom-mr-15 {
+  margin-right: 15px;
+}
 .custom-mr-25 {
   margin-right: 25px;
+}
+.custom-mr-30 {
+  margin-right: 30px;
 }
 .custom-ml-1 {
   margin-left: 5px;

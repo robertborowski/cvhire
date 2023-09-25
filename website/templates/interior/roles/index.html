@@ -15,7 +15,17 @@
   </div>
   <!-- ------------------------------------- title end ------------------------------------- -->
   <!-- ------------------------------------- options start ------------------------------------- -->
-  <div class="custom-display-flex custom-border-1">
+  <div class="custom-border-1 custom-header-12 custom-ptb-5">
+      <ul class="custom-m-0 custom-p-0 custom-display-flex custom-no-decoration custom-jc-start">
+        {% for k,v in page_dict_html['role_link_dict'].items() %}
+          {% if v in page_dict_html['navbar_link_current'] %}
+            <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-bg-primary custom-a-black-none custom-ptb-2">{{ k }}</a></li>
+          {% else %}
+            <li><a href="{{ v }}" class="custom-a-black-none custom-mr-30 custom-plr-15 custom-br-50 custom-bg-hover-1">{{ k }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
   </div>
   <!-- ------------------------------------- options end ------------------------------------- -->
 </div>
