@@ -414,6 +414,7 @@
 }
 /* ------------------- color end ------------------- */
 /* ------------------- border start ------------------- */
+.custom-border-primary {border: 1px solid var(--custom-color-primary);}
 .custom-border-1 {border: 1px solid black;}
 .custom-border-2 {border: 1px solid red;}
 .custom-border-3 {border: 1px solid blue;}
