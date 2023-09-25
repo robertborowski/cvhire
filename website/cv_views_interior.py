@@ -50,6 +50,10 @@ def cv_dashboard_function(url_redirect_code=None):
   if current_user.locked == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ locked status end ------------------------
+  # ------------------------ get company name start ------------------------
+  db_attribute_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='company_name').first()
+  page_dict['company_name'] = db_attribute_obj.attribute_value
+  # ------------------------ get company name start ------------------------
   """
   # ------------------------ onboarding checks start ------------------------
   onbaording_status = onboarding_checks_function(current_user)

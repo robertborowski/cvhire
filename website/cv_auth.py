@@ -20,6 +20,7 @@ from website.backend.alerts import get_alert_message_function
 from website.backend.sanitize import sanitize_email_function, sanitize_password_function, sanitize_fullname_function
 from website.backend.sendgrid import send_email_template_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, redis_logout_all_other_signins_function
+from website.backend.user_inputs import get_company_name_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -56,7 +57,7 @@ def cv_signup_function(url_redirect_code=None):
     ui_full_name = request.form.get('uiFullName')
     # ------------------------ sanitize/check user inputs start ------------------------
     # ------------------------ sanitize/check user input email start ------------------------
-    ui_email_cleaned = sanitize_email_function(ui_email, 'true')
+    ui_email_cleaned = sanitize_email_function(ui_email, 'false')
     if ui_email_cleaned == False:
       return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code='e1'))
     # ------------------------ sanitize/check user input email end ------------------------
@@ -96,12 +97,23 @@ def cv_signup_function(url_redirect_code=None):
         id=create_uuid_function('attribute_'),
         created_timestamp=create_timestamp_function(),
         fk_user_id=new_user_id,
-        attribute_key='fullname',
+        attribute_key='full_name',
         attribute_value=ui_full_name
       )
       db.session.add(new_row)
       db.session.commit()
       # ------------------------ new attribute end ------------------------
+      # ------------------------ new attribute 2 start ------------------------
+      new_row = UserAttributesObj(
+        id=create_uuid_function('attribute_'),
+        created_timestamp=create_timestamp_function(),
+        fk_user_id=new_user_id,
+        attribute_key='company_name',
+        attribute_value=get_company_name_function(ui_email.lower())
+      )
+      db.session.add(new_row)
+      db.session.commit()
+      # ------------------------ new attribute 2 end ------------------------
       # ------------------------ email self start ------------------------
       if ui_email != os.environ.get('RUN_TEST_EMAIL'):
         try:
