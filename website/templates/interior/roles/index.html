@@ -9,19 +9,19 @@
 {% block contentBodyExceptNavbarAndFooter %}
 <div class="custom-width-interior-1100 mx-auto custom-plr-50">
   <!-- ------------------------------------- title start ------------------------------------- -->
-  <div class="custom-pt-25 custom-display-flex custom-jc-between custom-border-2">
+  <div class="custom-pt-25 custom-display-flex custom-jc-between">
     <h2 class="custom-header-30 custom-weight-900 custom-m-0">Roles</h2>
     <a href="/roles/add" class="btn btn-primary custom-br-10"><i class="fa-solid fa-plus"></i> Add role</a>
   </div>
   <!-- ------------------------------------- title end ------------------------------------- -->
   <!-- ------------------------------------- options start ------------------------------------- -->
-  <div class="custom-border-1 custom-header-12 custom-ptb-5">
+  <div class="custom-header-15 custom-ptb-10 border-bottom">
       <ul class="custom-m-0 custom-p-0 custom-display-flex custom-no-decoration custom-jc-start">
         {% for k,v in page_dict_html['role_link_dict'].items() %}
           {% if v in page_dict_html['navbar_link_current'] %}
-            <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-bg-primary custom-a-black-none custom-ptb-2">{{ k }}</a></li>
+            <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-primary">{{ k }}</a></li>
           {% else %}
-            <li><a href="{{ v }}" class="custom-a-black-none custom-mr-30 custom-plr-15 custom-br-50 custom-bg-hover-1">{{ k }}</a></li>
+            <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-hover-1">{{ k }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
@@ -29,4 +29,8 @@
   </div>
   <!-- ------------------------------------- options end ------------------------------------- -->
 </div>
+<!-- ------------------------------------- different role subpages start ------------------------------------- -->
+{% block contentBodyRoles %}
+{% endblock %}
+<!-- ------------------------------------- different role subpages end ------------------------------------- -->
 {% endblock %}

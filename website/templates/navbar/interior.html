@@ -25,13 +25,13 @@
     </div>
     <!-- ------------------------------------- section 1 end ------------------------------------- -->
     <!-- ------------------------------------- section 2 start ------------------------------------- -->
-    <div class="custom-ptb-5 custom-header-12 border custom-bg-white">
+    <div class="custom-ptb-10 custom-header-15 border custom-bg-white">
       <ul class="custom-m-0 custom-display-flex custom-no-decoration">
         {% for k,v in page_dict_html['navbar_link_dict'].items() %}
           {% if v in page_dict_html['navbar_link_current'] %}
-            <li><a href="{{ v }}" class="custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-primary custom-a-black-none custom-ptb-2">{{ k }}</a></li>
+            <li><a href="{{ v }}" class="custom-mlr-15 custom-plr-15 custom-br-50 custom-ptb-5 custom-bg-primary custom-a-black-none">{{ k }}</a></li>
           {% else %}
-            <li><a href="{{ v }}" class="custom-a-black-none custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-hover-1">{{ k }}</a></li>
+            <li><a href="{{ v }}" class="custom-mlr-15 custom-plr-15 custom-br-50 custom-ptb-5 custom-a-black-none custom-bg-hover-1">{{ k }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
