@@ -25,7 +25,7 @@
     </div>
     <!-- ------------------------------------- section 1 end ------------------------------------- -->
     <!-- ------------------------------------- section 2 start ------------------------------------- -->
-    <div class="custom-ptb-5 custom-header-12 border">
+    <div class="custom-ptb-5 custom-header-12 border custom-bg-white">
       <ul class="custom-m-0 custom-display-flex custom-no-decoration">
         {% for k,v in page_dict_html['navbar_link_dict'].items() %}
           {% if v == page_dict_html['navbar_link_current'] %}
@@ -38,7 +38,7 @@
     </div>
     <!-- ------------------------------------- section 2 end ------------------------------------- -->
   </nav>
-  <div class="custom-height-100-px"></div>
+  <div class="custom-height-77-px"></div>
   <!-- ----------------------------------- alert start ----------------------------------- -->
   {% if page_dict_html['alert_message_dict']['message'] != '' %}
   <div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">

@@ -96,11 +96,110 @@ def cv_account_function(url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
-  print(' ------------- 100-account start ------------- ')
-  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
-  for k,v in page_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100-account end ------------- ')
   return render_template('interior/account/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/help', methods=['GET', 'POST'])
+@cv_views_interior.route('/help/', methods=['GET', 'POST'])
+@cv_views_interior.route('/help/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/help/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_help_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  return render_template('interior/help/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/notifications', methods=['GET', 'POST'])
+@cv_views_interior.route('/notifications/', methods=['GET', 'POST'])
+@cv_views_interior.route('/notifications/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/notifications/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_notifications_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  return render_template('interior/notifications/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/settings', methods=['GET', 'POST'])
+@cv_views_interior.route('/settings/', methods=['GET', 'POST'])
+@cv_views_interior.route('/settings/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/settings/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_settings_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  return render_template('interior/settings_user/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/cv', methods=['GET', 'POST'])
+@cv_views_interior.route('/cv/', methods=['GET', 'POST'])
+@cv_views_interior.route('/cv/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/cv/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_resume_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  return render_template('interior/cv/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/roles', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_roles_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  return render_template('interior/roles/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/favorites', methods=['GET', 'POST'])
+@cv_views_interior.route('/favorites/', methods=['GET', 'POST'])
+@cv_views_interior.route('/favorites/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/favorites/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_favorites_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  return render_template('interior/favorites/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/export', methods=['GET', 'POST'])
+@cv_views_interior.route('/export/', methods=['GET', 'POST'])
+@cv_views_interior.route('/export/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/export/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_export_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  return render_template('interior/export_user/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
