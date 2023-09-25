@@ -1454,6 +1454,10 @@
   padding-left: 25px;
   padding-right: 25px;
 }
+.custom-plr-50 {
+  padding-left: 50px;
+  padding-right: 50px;
+}
 .custom-pt-1 {
   padding-top: 50px;
 }
