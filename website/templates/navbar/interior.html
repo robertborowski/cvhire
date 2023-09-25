@@ -39,6 +39,13 @@
     <!-- ------------------------------------- section 2 end ------------------------------------- -->
   </nav>
   <div class="custom-height-100-px"></div>
+  <!-- ----------------------------------- alert start ----------------------------------- -->
+  {% if page_dict_html['alert_message_dict']['message'] != '' %}
+  <div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">
+    {{ page_dict_html['alert_message_dict']['message'] }}
+  </div>
+  {% endif %}
+  <!-- ----------------------------------- alert end ----------------------------------- -->
   <!-- ------------------------------------- navbar end ------------------------------------- -->
   {% block contentBodyExceptNavbarAndFooter %}
   {% endblock %}

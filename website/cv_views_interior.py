@@ -8,7 +8,6 @@
 # ------------------------ info about this file end ------------------------
 
 # ------------------------ imports start ------------------------
-from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
@@ -16,11 +15,11 @@ from website.models import UserObj, EmailSentObj, UserAttributesObj
 import os
 import json
 from datetime import datetime
+from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
-from website.backend.user_attributes_check import onboarding_checks_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
-from website.backend.static_lists import navbar_link_dict_function, navbar_link_dict_function_v2
+from website.backend.pre_page_load_checks import pre_page_load_checks_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -37,49 +36,20 @@ redis_connection = redis_connect_open_function()
 @cv_views_interior.route('/home/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
 def cv_dashboard_function(url_redirect_code=None):
-  # ------------------------ page dict start ------------------------
-  if url_redirect_code == None:
-    try:
-      url_redirect_code = request.args.get('url_redirect_code')
-    except:
-      pass
-  alert_message_dict = get_alert_message_function(url_redirect_code)
-  page_dict = {}
-  page_dict['alert_message_dict'] = alert_message_dict
-  # ------------------------ page dict end ------------------------
-  # ------------------------ locked status start ------------------------
-  if current_user.locked == True:
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ locked status end ------------------------
-  # ------------------------ get company name start ------------------------
-  db_attribute_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='company_name').first()
-  page_dict['company_name'] = db_attribute_obj.attribute_value
-  # ------------------------ get company name start ------------------------
-  # ------------------------ get navbar sites start ------------------------
-  navbar_link_dict = navbar_link_dict_function()
-  page_dict['navbar_link_dict'] = navbar_link_dict
-  navbar_link_dict_v2 = navbar_link_dict_function_v2()
-  page_dict['navbar_link_dict_v2'] = navbar_link_dict_v2
-  page_dict['navbar_link_current'] = str(request.url_rule).split('/')[1]
-  # ------------------------ get navbar sites end ------------------------
-  """
-  # ------------------------ onboarding checks start ------------------------
-  onbaording_status = onboarding_checks_function(current_user)
-  if onbaording_status == 'verify':
-    page_dict['verified_email_status'] = False
-  if onbaording_status != None:
-    return redirect(url_for('cv_views_interior.cv_feedback_function', url_feedback_code=onbaording_status))
-  # ------------------------ onboarding checks end ------------------------
-  """
-  # ------------------------ for setting cookie start ------------------------
-  template_location_url = 'interior/dashboard/index.html'
-  # ------------------------ for setting cookie end ------------------------
+  # ------------------------ pre load page checks end ------------------------
   print(' ------------- 100-dashboard start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
     print(f"k: {k} | v: {v}")
     pass
   print(' ------------- 100-dashboard end ------------- ')
+  # ------------------------ for setting cookie start ------------------------
+  template_location_url = 'interior/dashboard/index.html'
+  # ------------------------ for setting cookie end ------------------------
   # ------------------------ auto set cookie start ------------------------
   get_cookie_value_from_browser = redis_check_if_cookie_exists_function()
   if get_cookie_value_from_browser != None:
@@ -121,30 +91,16 @@ def cv_locked_function(url_redirect_code=None):
 @cv_views_interior.route('/account/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
 def cv_account_function(url_redirect_code=None):
-  # ------------------------ page dict start ------------------------
-  if url_redirect_code == None:
-    try:
-      url_redirect_code = request.args.get('url_redirect_code')
-    except:
-      pass
-  alert_message_dict = get_alert_message_function(url_redirect_code)
-  page_dict = {}
-  page_dict['alert_message_dict'] = alert_message_dict
-  # ------------------------ page dict end ------------------------
-  # ------------------------ locked status start ------------------------
-  if current_user.locked == True:
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ locked status end ------------------------
-  # ------------------------ get company name start ------------------------
-  db_attribute_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='company_name').first()
-  page_dict['company_name'] = db_attribute_obj.attribute_value
-  # ------------------------ get company name start ------------------------
-  # ------------------------ get navbar sites start ------------------------
-  navbar_link_dict = navbar_link_dict_function()
-  page_dict['navbar_link_dict'] = navbar_link_dict
-  navbar_link_dict_v2 = navbar_link_dict_function_v2()
-  page_dict['navbar_link_dict_v2'] = navbar_link_dict_v2
-  page_dict['navbar_link_current'] = str(request.url_rule).split('/')[1]
-  # ------------------------ get navbar sites end ------------------------
+  # ------------------------ pre load page checks end ------------------------
+  print(' ------------- 100-account start ------------- ')
+  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+  for k,v in page_dict.items():
+    print(f"k: {k} | v: {v}")
+    pass
+  print(' ------------- 100-account end ------------- ')
   return render_template('interior/account/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
