@@ -167,7 +167,7 @@ def cv_resume_function(url_redirect_code=None):
 @cv_views_interior.route('/roles/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
 def cv_roles_function(url_redirect_code=None):
-  return redirect(url_for('cv_views_interior.cv_roles_all_function', url_redirect_code=url_redirect_code))
+  return redirect(url_for('cv_views_interior.cv_roles_open_function', url_redirect_code=url_redirect_code))
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -176,7 +176,7 @@ def cv_roles_function(url_redirect_code=None):
 @cv_views_interior.route('/roles/open/<url_redirect_code>', methods=['GET', 'POST'])
 @cv_views_interior.route('/roles/open/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
-def cv_roles_all_function(url_redirect_code=None):
+def cv_roles_open_function(url_redirect_code=None):
   # ------------------------ pre load page checks start ------------------------
   page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
   if page_dict['current_user_locked'] == True:
@@ -204,6 +204,42 @@ def cv_roles_filled_function(url_redirect_code=None):
   page_dict['role_link_dict'] = roles_links_function()
   # ------------------------ get list end ------------------------
   return render_template('interior/roles/filled/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/roles/archive', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/archive/', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/archive/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/archive/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_roles_archive_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ get list start ------------------------
+  page_dict['role_link_dict'] = roles_links_function()
+  # ------------------------ get list end ------------------------
+  return render_template('interior/roles/archive_role/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/roles/all', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/all/', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/all/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/all/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_roles_all_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ get list start ------------------------
+  page_dict['role_link_dict'] = roles_links_function()
+  # ------------------------ get list end ------------------------
+  return render_template('interior/roles/all_role/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
