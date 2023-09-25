@@ -57,7 +57,7 @@ def cv_signup_function(url_redirect_code=None):
     ui_full_name = request.form.get('uiFullName')
     # ------------------------ sanitize/check user inputs start ------------------------
     # ------------------------ sanitize/check user input email start ------------------------
-    ui_email_cleaned = sanitize_email_function(ui_email, 'false')
+    ui_email_cleaned = sanitize_email_function(ui_email, 'true')
     if ui_email_cleaned == False:
       return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code='e1'))
     # ------------------------ sanitize/check user input email end ------------------------
