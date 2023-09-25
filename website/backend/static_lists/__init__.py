@@ -27,3 +27,15 @@ def redis_all_keys_function():
     pass
   return redis_keys
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def navbar_link_dict_function():
+  output_dict = {
+    'Home': 'home',
+    'CVs & Resumes': 'cv',
+    'Roles': 'roles',
+    'Favorites': 'favorites',
+    'Export': 'export'
+  }
+  return output_dict
+# ------------------------ individual function end ------------------------

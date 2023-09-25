@@ -92,6 +92,13 @@
 }
 /* ------------------- a end ------------------- */
 /* ------------------- background start ------------------- */
+.custom-bg-hover-1 {
+  position: relative
+}
+.custom-bg-hover-1:hover {
+  transition: 0.5s;
+  background-color: rgba(0, 0, 0, 0.10);
+}
 .custom-bg-see-through {
   background-color: rgba(255, 255, 255, 0) !important;
 }
@@ -484,6 +491,9 @@
 }
 .custom-display-block {
   display: block;
+}
+.custom-display-inline-block {
+  display: inline-block;
 }
 .custom-mobile-display-2 {
   display: none;
@@ -1247,6 +1257,18 @@
 .custom-ml-100 {
   margin-left: 100px;
 }
+.custom-mlr-10 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.custom-mlr-15 {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.custom-mlr-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .custom-mlt-1 {
   margin-left: 7px;
   margin-top: 7px;
@@ -1387,8 +1409,8 @@
   padding-bottom: 10px;
 }
 .custom-ptb-2 {
-  padding-top: 175px;
-  padding-bottom: 50px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 .custom-ptb-3 {
   padding-top: 50px;
@@ -1456,6 +1478,24 @@
 }
 .custom-plr-50 {
   padding-left: 50px;
+  padding-right: 50px;
+}
+.custom-pr-5 {
+  padding-right: 5px;
+}
+.custom-pr-10 {
+  padding-right: 10px;
+}
+.custom-pr-15 {
+  padding-right: 15px;
+}
+.custom-pr-20 {
+  padding-right: 20px;
+}
+.custom-pr-25 {
+  padding-right: 25px;
+}
+.custom-pr-50 {
   padding-right: 50px;
 }
 .custom-pt-1 {

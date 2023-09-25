@@ -20,6 +20,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.user_attributes_check import onboarding_checks_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
+from website.backend.static_lists import navbar_link_dict_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -30,10 +31,10 @@ redis_connection = redis_connect_open_function()
 # ------------------------ connect to redis end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_interior.route('/dashboard', methods=['GET', 'POST'])
-@cv_views_interior.route('/dashboard/', methods=['GET', 'POST'])
-@cv_views_interior.route('/dashboard/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior.route('/dashboard/<url_redirect_code>/', methods=['GET', 'POST'])
+@cv_views_interior.route('/home', methods=['GET', 'POST'])
+@cv_views_interior.route('/home/', methods=['GET', 'POST'])
+@cv_views_interior.route('/home/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/home/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
 def cv_dashboard_function(url_redirect_code=None):
   # ------------------------ page dict start ------------------------
@@ -54,6 +55,11 @@ def cv_dashboard_function(url_redirect_code=None):
   db_attribute_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='company_name').first()
   page_dict['company_name'] = db_attribute_obj.attribute_value
   # ------------------------ get company name start ------------------------
+  # ------------------------ get navbar sites start ------------------------
+  navbar_link_dict = navbar_link_dict_function()
+  page_dict['navbar_link_dict'] = navbar_link_dict
+  page_dict['navbar_link_current'] = str(request.url_rule).split('/')[1]
+  # ------------------------ get navbar sites end ------------------------
   """
   # ------------------------ onboarding checks start ------------------------
   onbaording_status = onboarding_checks_function(current_user)

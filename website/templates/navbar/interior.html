@@ -8,16 +8,34 @@
 {% block contentBody %}
 <body class="custom-google-font-1">
   <!-- ------------------------------------- navbar start ------------------------------------- -->
-  <nav class="custom-width-interior-1100 mx-auto custom-display-flex custom-jc-between custom-ptb-10 custom-plr-50 custom-header-18 custom-bg-grey-1">
-    <a href="/" class="custom-a-black-none">CVhire</a>
-    <a href="/" class="custom-a-black-none" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Edit"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="" class="custom-img-size-20 custom-mt-negative-5 custom-mr-5">{{ page_dict_html['company_name'] }}</a>
-    <ul class="custom-m-0 custom-display-flex custom-no-decoration">
-      <li><a href="/" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Help"><i class="fa-solid fa-circle-question"></i></a></li>
-      <li><a href="/" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-20" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Notifications"><i class="fa-solid fa-bell"></i></a></li>
-      <li><a href="/" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-20" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Settings"><i class="fa-solid fa-gear"></i></a></li>
-      <li><a href="/" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-20" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Account"><i class="fa-solid fa-user custom-a-black"></i></a></li>
-    </ul>
+  <nav class="custom-width-interior-1100 mx-auto fixed-top shadow-sm">
+    <!-- ------------------------------------- section 1 start ------------------------------------- -->
+    <div class="custom-display-flex custom-jc-between custom-ptb-10 custom-plr-50 custom-header-18 custom-bg-grey-1">
+      <a href="/home" class="custom-a-black-none">CVhire</a>
+      <a href="/account" class="custom-a-black-none" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Edit"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="" class="custom-img-size-20 custom-mt-negative-5 custom-mr-5">{{ page_dict_html['company_name'] }}</a>
+      <ul class="custom-m-0 custom-display-flex custom-no-decoration">
+        <li><a href="/" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Help"><i class="fa-solid fa-circle-question"></i></a></li>
+        <li><a href="/" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-20" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Notifications"><i class="fa-solid fa-bell"></i></a></li>
+        <li><a href="/" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-20" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Settings"><i class="fa-solid fa-gear"></i></a></li>
+        <li><a href="/" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-20" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Account"><i class="fa-solid fa-user custom-a-black"></i></a></li>
+      </ul>
+    </div>
+    <!-- ------------------------------------- section 1 end ------------------------------------- -->
+    <!-- ------------------------------------- section 2 start ------------------------------------- -->
+    <div class="custom-ptb-5 custom-header-12 border">
+      <ul class="custom-m-0 custom-display-flex custom-no-decoration">
+        {% for k,v in page_dict_html['navbar_link_dict'].items() %}
+          {% if v == page_dict_html['navbar_link_current'] %}
+            <li><a href="/{{ v }}" class="custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-black custom-a-white custom-ptb-2">{{ k }}</a></li>
+          {% else %}
+            <li><a href="/{{ v }}" class="custom-a-black-none custom-mlr-15 custom-plr-15 custom-br-50 custom-bg-hover-1">{{ k }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <!-- ------------------------------------- section 2 end ------------------------------------- -->
   </nav>
+  <div class="custom-height-100-px"></div>
   <!-- ------------------------------------- navbar end ------------------------------------- -->
   {% block contentBodyExceptNavbarAndFooter %}
   {% endblock %}
