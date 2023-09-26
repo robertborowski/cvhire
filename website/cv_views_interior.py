@@ -331,8 +331,8 @@ def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
     return redirect(url_for('cv_views_interior.cv_roles_open_function'))
   # ------------------------ if no role id given end ------------------------
   # ------------------------ check if role id exists and is assigned to user start ------------------------
-  db_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,id=url_role_id).first()
-  page_dict['db_role_dict'] = convert_obj_row_to_dict_function(db_obj)
+  db_role_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,id=url_role_id).first()
+  page_dict['db_role_dict'] = convert_obj_row_to_dict_function(db_role_obj)
   # ------------------------ check if role id exists and is assigned to user end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
@@ -352,27 +352,29 @@ def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
     # ------------------------ sanitize user inputs error end ------------------------
     change_occured = False
     # ------------------------ check if chenges occured start ------------------------
-    if db_obj.name != ui_role_name:
+    if db_role_obj.name != ui_role_name:
       # ------------------------ check if role exists start ------------------------
       db_role_name_check_obj = RolesObj.query.filter_by(name=ui_role_name,fk_user_id=current_user.id).first()
       if db_role_name_check_obj != None and db_role_name_check_obj != []:
         return redirect(url_for('cv_views_interior.cv_roles_edit_function', url_role_id=url_role_id, url_redirect_code='e9'))
       else:
-        db_obj.name = ui_role_name
+        db_role_obj.name = ui_role_name
         change_occured = True
       # ------------------------ check if role exists end ------------------------
-    if db_obj.about != ui_about:
-      db_obj.about = ui_about
+    if db_role_obj.about != ui_about:
+      db_role_obj.about = ui_about
       change_occured = True
-    if db_obj.requirements != ui_requirements:
-      db_obj.requirements = ui_requirements
+    if db_role_obj.requirements != ui_requirements:
+      db_role_obj.requirements = ui_requirements
       change_occured = True
-    if db_obj.nice_to_haves != ui_nice_to_haves:
-      db_obj.nice_to_haves = ui_nice_to_haves
+    if db_role_obj.nice_to_haves != ui_nice_to_haves:
+      db_role_obj.nice_to_haves = ui_nice_to_haves
       change_occured = True
     if change_occured == True:
       db.session.commit()
       return redirect(url_for('cv_views_interior.cv_roles_open_function', url_redirect_code='s5'))
+    if change_occured == False:
+      return redirect(url_for('cv_views_interior.cv_roles_open_function', url_redirect_code='i1'))
     # ------------------------ check if chenges occured end ------------------------
   # ------------------------ post end ------------------------
   return render_template('interior/roles/add/index.html', page_dict_html=page_dict)
