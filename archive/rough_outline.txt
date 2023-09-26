@@ -1,3 +1,14 @@
+# ------------------------ print start ------------------------
 print(' ------------- 0 ------------- ')
 print(f"i | type: {type(i)} | {i}")
 print(' ------------- 0 ------------- ')
+# ------------------------ print end ------------------------
+
+# ------------------------ pretty print start ------------------------
+print(' ------------- 100-roles_archive start ------------- ')
+page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+for k,v in page_dict.items():
+print(f"k: {k} | v: {v}")
+pass
+print(' ------------- 100-roles_archive end ------------- ')
+# ------------------------ pretty print end ------------------------
