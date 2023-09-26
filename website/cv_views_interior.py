@@ -21,6 +21,7 @@ from website.backend.alerts import get_alert_message_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import roles_links_function
+from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -265,6 +266,16 @@ def cv_roles_add_function(url_redirect_code=None):
     ui_requirements = request.form.get('uiRequirements')
     ui_nice_to_haves = request.form.get('uiNiceToHaves')
     # ------------------------ user inputs end ------------------------
+    # ------------------------ sanitize user inputs error start ------------------------
+    ui_role_name_check = sanitize_chars_function_v2(ui_role_name)
+    ui_about_check = sanitize_chars_function_v1(ui_about)
+    ui_requirements_check = sanitize_chars_function_v1(ui_requirements)
+    ui_nice_to_haves_check = sanitize_chars_function_v1(ui_nice_to_haves)
+    if ui_role_name_check == False or ui_about_check == False or ui_requirements_check == False or ui_nice_to_haves_check == False:
+      return redirect(url_for('cv_views_interior.cv_roles_add_function', url_redirect_code='e8'))
+    # ------------------------ sanitize user inputs error end ------------------------
+    # ------------------------ new row start ------------------------
+    # ------------------------ new row end ------------------------
   # ------------------------ post end ------------------------
   return render_template('interior/roles/add/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

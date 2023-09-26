@@ -45,6 +45,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Error on upload',
       'type':'danger'
     }
+  elif redirect_var == 'e8':
+    alert_message_dict = {
+      'message':'Inputs too long',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
