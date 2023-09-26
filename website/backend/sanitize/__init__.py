@@ -37,7 +37,7 @@ def sanitize_fullname_function(user_input):
 
 # ------------------------ individual function start ------------------------
 def sanitize_chars_function_v1(user_input):
-  if len(user_input) > 1000 or len(user_input) < 1:
+  if len(user_input) > 3000 or len(user_input) < 1:
     return False
   return user_input
 # ------------------------ individual function end ------------------------

@@ -186,6 +186,16 @@ def cv_roles_open_function(url_redirect_code=None):
   # ------------------------ get list start ------------------------
   page_dict['role_link_dict'] = roles_links_function()
   # ------------------------ get list end ------------------------
+  # ------------------------ get category roles start ------------------------
+  db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status='open').order_by(RolesObj.name).all()
+  page_dict['total_roles_open'] = len(db_roles_obj)
+  # ------------------------ get category roles end ------------------------
+  print(' ------------- 100-roles_open start ------------- ')
+  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+  for k,v in page_dict.items():
+    print(f"k: {k} | v: {v}")
+    pass
+  print(' ------------- 100-roles_open end ------------- ')
   return render_template('interior/roles/open/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -204,6 +214,16 @@ def cv_roles_filled_function(url_redirect_code=None):
   # ------------------------ get list start ------------------------
   page_dict['role_link_dict'] = roles_links_function()
   # ------------------------ get list end ------------------------
+  # ------------------------ get category roles start ------------------------
+  db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status='filled').order_by(RolesObj.name).all()
+  page_dict['total_roles_filled'] = len(db_roles_obj)
+  # ------------------------ get category roles end ------------------------
+  print(' ------------- 100-roles_filled start ------------- ')
+  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+  for k,v in page_dict.items():
+    print(f"k: {k} | v: {v}")
+    pass
+  print(' ------------- 100-roles_filled end ------------- ')
   return render_template('interior/roles/filled/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -222,6 +242,16 @@ def cv_roles_archive_function(url_redirect_code=None):
   # ------------------------ get list start ------------------------
   page_dict['role_link_dict'] = roles_links_function()
   # ------------------------ get list end ------------------------
+  # ------------------------ get category roles start ------------------------
+  db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status='archive').order_by(RolesObj.name).all()
+  page_dict['total_roles_archive'] = len(db_roles_obj)
+  # ------------------------ get category roles end ------------------------
+  print(' ------------- 100-roles_archive start ------------- ')
+  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+  for k,v in page_dict.items():
+    print(f"k: {k} | v: {v}")
+    pass
+  print(' ------------- 100-roles_archive end ------------- ')
   return render_template('interior/roles/archive_role/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -240,6 +270,16 @@ def cv_roles_all_function(url_redirect_code=None):
   # ------------------------ get list start ------------------------
   page_dict['role_link_dict'] = roles_links_function()
   # ------------------------ get list end ------------------------
+  # ------------------------ get category roles start ------------------------
+  db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id).order_by(RolesObj.name).all()
+  page_dict['total_roles_all'] = len(db_roles_obj)
+  # ------------------------ get category roles end ------------------------
+  print(' ------------- 100-roles_all start ------------- ')
+  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+  for k,v in page_dict.items():
+    print(f"k: {k} | v: {v}")
+    pass
+  print(' ------------- 100-roles_all end ------------- ')
   return render_template('interior/roles/all_role/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -285,6 +325,7 @@ def cv_roles_add_function(url_redirect_code=None):
         id=create_uuid_function('role_'),
         created_timestamp=create_timestamp_function(),
         fk_user_id=current_user.id,
+        status='open',
         name=ui_role_name,
         about=ui_about,
         requirements=ui_requirements,

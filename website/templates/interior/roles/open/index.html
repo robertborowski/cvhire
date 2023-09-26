@@ -8,10 +8,16 @@
 
 {% block contentBodyRoles %}
 <div class="custom-width-interior-1100 mx-auto custom-plr-50">
-  <!-- ------------------------------------- options start ------------------------------------- -->
-  <div class="custom-header-18">
-    <p class="custom-m-0">Open</p>
+  <!-- ------------------------------------- content start ------------------------------------- -->
+  <div class="custom-header-18 custom-mt-25">
+    {% if page_dict_html['total_roles_open'] == 0 %}
+      <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow-sm">
+        <a href="/roles/add" class="custom-opacity-60 custom-a-black-underline">Add your first open role</a>
+      </div>
+    {% else %}
+      <p class="custom-m-0">Open</p>
+    {% endif %}
   </div>
-  <!-- ------------------------------------- options end ------------------------------------- -->
+  <!-- ------------------------------------- content end ------------------------------------- -->
 </div>
 {% endblock %}

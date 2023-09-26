@@ -60,10 +60,11 @@ class RolesObj(db.Model):
   id = db.Column(db.String(150), primary_key=True)
   created_timestamp = db.Column(db.DateTime(timezone=True))
   fk_user_id = db.Column(db.String(150))
+  status = db.Column(db.String(20))
   name = db.Column(db.String(150))
-  about = db.Column(db.String(1000))
-  requirements = db.Column(db.String(1000))
-  nice_to_haves = db.Column(db.String(1000))
+  about = db.Column(db.String(3000))
+  requirements = db.Column(db.String(3000))
+  nice_to_haves = db.Column(db.String(3000))
 # ------------------------ individual model end ------------------------
 
 """
