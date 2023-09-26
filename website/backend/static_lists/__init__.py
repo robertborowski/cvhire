@@ -75,6 +75,12 @@ def roles_links_function():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def role_status_codes_function():
+  arr = ['open','filled','archive']
+  return arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def roles_table_links_function(role_type):
   output_dict = {}
   # ------------------------ type start ------------------------

@@ -16,9 +16,5 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
       i_dict['name_display'] = i_dict['name'][:35]
     # ------------------------ additional details end ------------------------
     arr.append(i_dict)
-  # ------------------------ return dict if only 1 start ------------------------
-  if len(arr) == 1:
-    return arr[0]
-  # ------------------------ return dict if only 1 end ------------------------
   return arr
 # ------------------------ individual function end ------------------------
