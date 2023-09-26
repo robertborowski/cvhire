@@ -23,6 +23,7 @@ from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import roles_links_function, roles_table_links_function
 from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
 from website.backend.db_obj_checks import get_roles_function
+from website.backend.convert import convert_obj_row_to_dict_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -265,6 +266,9 @@ def cv_roles_add_function(url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ for later edits start ------------------------
+  page_dict['db_role_dict'] = None
+  # ------------------------ for later edits end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ user inputs start ------------------------
@@ -304,6 +308,72 @@ def cv_roles_add_function(url_redirect_code=None):
     except:
       pass
     # ------------------------ new row end ------------------------
+  # ------------------------ post end ------------------------
+  return render_template('interior/roles/add/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior.route('/roles/edit', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/edit/', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/edit/<url_role_id>', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/edit/<url_role_id>/', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/edit/<url_role_id>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/edit/<url_role_id>/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if no role id given start ------------------------
+  if url_role_id == None:
+    return redirect(url_for('cv_views_interior.cv_roles_open_function'))
+  # ------------------------ if no role id given end ------------------------
+  # ------------------------ check if role id exists and is assigned to user start ------------------------
+  db_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,id=url_role_id).first()
+  page_dict['db_role_dict'] = convert_obj_row_to_dict_function(db_obj)
+  # ------------------------ check if role id exists and is assigned to user end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ user inputs start ------------------------
+    ui_role_name = request.form.get('uiRoleName')
+    ui_about = request.form.get('uiAbout')
+    ui_requirements = request.form.get('uiRequirements')
+    ui_nice_to_haves = request.form.get('uiNiceToHaves')
+    # ------------------------ user inputs end ------------------------
+    # ------------------------ sanitize user inputs error start ------------------------
+    ui_role_name_check = sanitize_chars_function_v2(ui_role_name)
+    ui_about_check = sanitize_chars_function_v1(ui_about)
+    ui_requirements_check = sanitize_chars_function_v1(ui_requirements)
+    ui_nice_to_haves_check = sanitize_chars_function_v1(ui_nice_to_haves)
+    if ui_role_name_check == False or ui_about_check == False or ui_requirements_check == False or ui_nice_to_haves_check == False:
+      return redirect(url_for('cv_views_interior.cv_roles_edit_function', url_role_id=url_role_id, url_redirect_code='e8'))
+    # ------------------------ sanitize user inputs error end ------------------------
+    change_occured = False
+    # ------------------------ check if chenges occured start ------------------------
+    if db_obj.name != ui_role_name:
+      # ------------------------ check if role exists start ------------------------
+      db_role_name_check_obj = RolesObj.query.filter_by(name=ui_role_name,fk_user_id=current_user.id).first()
+      if db_role_name_check_obj != None and db_role_name_check_obj != []:
+        return redirect(url_for('cv_views_interior.cv_roles_edit_function', url_role_id=url_role_id, url_redirect_code='e9'))
+      else:
+        db_obj.name = ui_role_name
+        change_occured = True
+      # ------------------------ check if role exists end ------------------------
+    if db_obj.about != ui_about:
+      db_obj.about = ui_about
+      change_occured = True
+    if db_obj.requirements != ui_requirements:
+      db_obj.requirements = ui_requirements
+      change_occured = True
+    if db_obj.nice_to_haves != ui_nice_to_haves:
+      db_obj.nice_to_haves = ui_nice_to_haves
+      change_occured = True
+    if change_occured == True:
+      db.session.commit()
+      return redirect(url_for('cv_views_interior.cv_roles_open_function', url_redirect_code='s5'))
+    # ------------------------ check if chenges occured end ------------------------
   # ------------------------ post end ------------------------
   return render_template('interior/roles/add/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
