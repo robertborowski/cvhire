@@ -7,6 +7,13 @@
 
 {% block contentBody %}
 <body class="custom-google-font-1">
+  <!-- ----------------------------------- alert start ----------------------------------- -->
+  {% if page_dict_html['alert_message_dict']['message'] != '' %}
+  <div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid custom-m-0" role="alert">
+    {{ page_dict_html['alert_message_dict']['message'] }}
+  </div>
+  {% endif %}
+  <!-- ----------------------------------- alert end ----------------------------------- -->
   <!-- ------------------------------------- navbar start ------------------------------------- -->
   <nav class="custom-width-interior-1100 mx-auto">
     <!-- ------------------------------------- section 1 start ------------------------------------- -->
@@ -38,13 +45,6 @@
     </div>
     <!-- ------------------------------------- section 2 end ------------------------------------- -->
   </nav>
-  <!-- ----------------------------------- alert start ----------------------------------- -->
-  {% if page_dict_html['alert_message_dict']['message'] != '' %}
-  <div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">
-    {{ page_dict_html['alert_message_dict']['message'] }}
-  </div>
-  {% endif %}
-  <!-- ----------------------------------- alert end ----------------------------------- -->
   <!-- ------------------------------------- navbar end ------------------------------------- -->
   {% block contentBodyExceptNavbarAndFooter %}
   {% endblock %}

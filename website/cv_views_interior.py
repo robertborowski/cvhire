@@ -276,22 +276,25 @@ def cv_roles_add_function(url_redirect_code=None):
     # ------------------------ sanitize user inputs error end ------------------------
     # ------------------------ check if role exists start ------------------------
     db_obj = RolesObj.query.filter_by(name=ui_role_name,fk_user_id=current_user.id).first()
-    if db_obj != None or db_obj != []:
+    if db_obj != None and db_obj != []:
       return redirect(url_for('cv_views_interior.cv_roles_add_function', url_redirect_code='e9'))
     # ------------------------ check if role exists end ------------------------
     # ------------------------ new row start ------------------------
-    new_row = RolesObj(
-      id=create_uuid_function('role_'),
-      created_timestamp=create_timestamp_function(),
-      fk_user_id=current_user.id,
-      name=ui_role_name,
-      about=ui_about,
-      requirements=ui_requirements,
-      nice_to_haves=ui_nice_to_haves
-    )
-    db.session.add(new_row)
-    db.session.commit()
-    return redirect(url_for('cv_views_interior.cv_roles_open_function', url_redirect_code='s4'))
+    try:
+      new_row = RolesObj(
+        id=create_uuid_function('role_'),
+        created_timestamp=create_timestamp_function(),
+        fk_user_id=current_user.id,
+        name=ui_role_name,
+        about=ui_about,
+        requirements=ui_requirements,
+        nice_to_haves=ui_nice_to_haves
+      )
+      db.session.add(new_row)
+      db.session.commit()
+      return redirect(url_for('cv_views_interior.cv_roles_open_function', url_redirect_code='s4'))
+    except:
+      pass
     # ------------------------ new row end ------------------------
   # ------------------------ post end ------------------------
   return render_template('interior/roles/add/index.html', page_dict_html=page_dict)
