@@ -243,6 +243,24 @@ def cv_roles_all_function(url_redirect_code=None):
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
+@cv_views_interior.route('/roles/add', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/add/', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/add/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/add/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_roles_add_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ get list start ------------------------
+  page_dict['role_link_dict'] = roles_links_function()
+  # ------------------------ get list end ------------------------
+  return render_template('interior/roles/add/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
 @cv_views_interior.route('/favorites', methods=['GET', 'POST'])
 @cv_views_interior.route('/favorites/', methods=['GET', 'POST'])
 @cv_views_interior.route('/favorites/<url_redirect_code>', methods=['GET', 'POST'])
