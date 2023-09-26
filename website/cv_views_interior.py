@@ -257,6 +257,15 @@ def cv_roles_add_function(url_redirect_code=None):
   # ------------------------ get list start ------------------------
   page_dict['role_link_dict'] = roles_links_function()
   # ------------------------ get list end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ user inputs start ------------------------
+    ui_role_name = request.form.get('uiRoleName')
+    ui_about = request.form.get('uiAbout')
+    ui_requirements = request.form.get('uiRequirements')
+    ui_nice_to_haves = request.form.get('uiNiceToHaves')
+    # ------------------------ user inputs end ------------------------
+  # ------------------------ post end ------------------------
   return render_template('interior/roles/add/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 

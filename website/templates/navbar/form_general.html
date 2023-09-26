@@ -9,6 +9,13 @@
 <body class="custom-google-font-1">
   <!-- ------------------------------------- navbar start ------------------------------------- -->
   <!-- ------------------------------------- navbar end ------------------------------------- -->
+  <!-- ----------------------------------- alert start ----------------------------------- -->
+  {% if page_dict_html['alert_message_dict']['message'] != '' %}
+  <div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">
+    {{ page_dict_html['alert_message_dict']['message'] }}
+  </div>
+  {% endif %}
+  <!-- ----------------------------------- alert end ----------------------------------- -->
   {% block contentBodyExceptNavbarAndFooter %}
   {% endblock %}
   <!-- ------------------------------------- footer start ------------------------------------- -->
