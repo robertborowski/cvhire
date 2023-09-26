@@ -73,3 +73,73 @@ def roles_links_function():
   }
   return output_dict
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def roles_table_links_function(role_type):
+  output_dict = {}
+  # ------------------------ type start ------------------------
+  if role_type == 'open':
+    output_dict = {
+      'Edit role': {
+        'icon':'fa-solid fa-pen-to-square',
+        'url':'/roles/edit'
+      },
+      'Move to filled': {
+        'icon':'fa-regular fa-square-minus',
+        'url':'/roles/status/filled'
+      },
+      'Move to archive': {
+        'icon':'fa-solid fa-square-xmark',
+        'url':'/roles/status/archive'
+      }
+    }
+  # ------------------------ type end ------------------------
+  # ------------------------ type start ------------------------
+  elif role_type == 'filled':
+    output_dict = {
+      'Edit role': {
+        'icon':'fa-solid fa-pen-to-square',
+        'url':'/roles/edit'
+      },
+      'Move to open': {
+        'icon':'fa-regular fa-square-check',
+        'url':'/roles/status/open'
+      },
+      'Move to archive': {
+        'icon':'fa-solid fa-square-xmark',
+        'url':'/roles/status/archive'
+      }
+    }
+  # ------------------------ type end ------------------------
+  # ------------------------ type start ------------------------
+  elif role_type == 'archive':
+    output_dict = {
+      'Edit role': {
+        'icon':'fa-solid fa-pen-to-square',
+        'url':'/roles/edit'
+      },
+      'Move to open': {
+        'icon':'fa-regular fa-square-check',
+        'url':'/roles/status/open'
+      },
+      'Move to filled': {
+        'icon':'fa-regular fa-square-minus',
+        'url':'/roles/status/filled'
+      },
+      'Delete role': {
+        'icon':'fa-solid fa-trash',
+        'url':'/roles/status/delete'
+      }
+    }
+  # ------------------------ type end ------------------------
+  # ------------------------ type start ------------------------
+  elif role_type == 'all':
+    output_dict = {
+      'Edit role': {
+        'icon':'fa-solid fa-pen-to-square',
+        'url':'/roles/edit'
+      }
+    }
+  # ------------------------ type end ------------------------
+  return output_dict
+# ------------------------ individual function end ------------------------

@@ -20,7 +20,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
-from website.backend.static_lists import roles_links_function
+from website.backend.static_lists import roles_links_function, roles_table_links_function
 from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
 from website.backend.db_obj_checks import get_roles_function
 # ------------------------ imports end ------------------------
@@ -184,6 +184,9 @@ def cv_roles_open_function(url_redirect_code=None):
   # ------------------------ get roles start ------------------------
   page_dict = get_roles_function(current_user, page_dict, 'open')
   # ------------------------ get roles end ------------------------
+  # ------------------------ get role table links start ------------------------
+  page_dict['roles_table_links_dict'] = roles_table_links_function('open')
+  # ------------------------ get role table links end ------------------------
   return render_template('interior/roles/open/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 

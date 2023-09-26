@@ -35,7 +35,7 @@
 <!-- ------------------------------------- different role subpages end ------------------------------------- -->
 <!-- ------------------------------------- content start ------------------------------------- -->
 <div class="custom-width-interior-1100 mx-auto custom-plr-50">
-  <div class="custom-header-18 custom-mt-25">
+  <div class="custom-header-15 custom-mt-25">
     {% if page_dict_html['total_roles'] == 0 %}
       {% if page_dict_html['role_status_type'] == 'open' or page_dict_html['role_status_type'] == 'all' %}
         <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow-sm">
@@ -51,11 +51,22 @@
         </div>
       {% endif %}
     {% else %}
-      <div class="custom-border-1">
-        {% for i in page_dict_html['total_roles_arr_of_dicts'] %}
-          <p class="custom-m-0">{{ i['name'] }} | {{ i['status'] }}</p>
-        {% endfor %}
-      </div>
+      {% for i in page_dict_html['total_roles_arr_of_dicts'] %}
+        <div class="custom-ptb-25 border-bottom">
+          <div class="custom-display-flex custom-jc-between">
+            <div>
+              <a href="/" class="custom-a-black-underline">{{ i['name'] }} <a href="/home" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Test CVs</a></a>
+            </div>
+            <div class="custom-header-20">
+              <ul class="custom-m-0 custom-display-flex custom-no-decoration">
+                {% for k,v in page_dict_html['roles_table_links_dict'].items() %}
+                  <li><a href="{{ v['url'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-ml-30" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     {% endif %}
   </div>
 </div>
