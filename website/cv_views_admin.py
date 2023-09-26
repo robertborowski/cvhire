@@ -106,11 +106,5 @@ def admin_function(url_redirect_code=None):
           # redis_connection.delete(key.decode('utf-8'))
       # ------------------------ loop through keys end ------------------------
     # ------------------------ post #3 end ------------------------
-  print(' ------------- 100-admin start ------------- ')
-  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
-  for k,v in page_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100-admin end ------------- ')
   return render_template('interior/admin_templates/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

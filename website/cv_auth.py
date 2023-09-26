@@ -126,12 +126,6 @@ def cv_signup_function(url_redirect_code=None):
       # ------------------------ email self end ------------------------
       return redirect(url_for('cv_views_interior.cv_dashboard_function'))
     # ------------------------ post method hit #2 - full sign up end ------------------------
-  print(' ------------- 100-signup start ------------- ')
-  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
-  for k,v in page_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100-signup end ------------- ')
   return render_template('exterior/signup/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 

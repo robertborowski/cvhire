@@ -44,12 +44,6 @@ def cv_dashboard_function(url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
-  print(' ------------- 100-dashboard start ------------- ')
-  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
-  for k,v in page_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100-dashboard end ------------- ')
   # ------------------------ for setting cookie start ------------------------
   template_location_url = 'interior/dashboard/index.html'
   # ------------------------ for setting cookie end ------------------------
@@ -190,12 +184,6 @@ def cv_roles_open_function(url_redirect_code=None):
   # ------------------------ get roles start ------------------------
   page_dict = get_roles_function(current_user, page_dict, 'open')
   # ------------------------ get roles end ------------------------
-  print(' ------------- 100-roles_open start ------------- ')
-  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
-  for k,v in page_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100-roles_open end ------------- ')
   return render_template('interior/roles/open/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -217,12 +205,6 @@ def cv_roles_filled_function(url_redirect_code=None):
   # ------------------------ get roles start ------------------------
   page_dict = get_roles_function(current_user, page_dict, 'filled')
   # ------------------------ get roles end ------------------------
-  print(' ------------- 100-roles_filled start ------------- ')
-  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
-  for k,v in page_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100-roles_filled end ------------- ')
   return render_template('interior/roles/filled/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -244,12 +226,6 @@ def cv_roles_archive_function(url_redirect_code=None):
   # ------------------------ get roles start ------------------------
   page_dict = get_roles_function(current_user, page_dict, 'archive')
   # ------------------------ get roles end ------------------------
-  print(' ------------- 100-roles_archive start ------------- ')
-  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
-  for k,v in page_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100-roles_archive end ------------- ')
   return render_template('interior/roles/archive_role/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -271,12 +247,6 @@ def cv_roles_all_function(url_redirect_code=None):
   # ------------------------ get roles start ------------------------
   page_dict = get_roles_function(current_user, page_dict, 'all')
   # ------------------------ get roles end ------------------------
-  print(' ------------- 100-roles_all start ------------- ')
-  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
-  for k,v in page_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100-roles_all end ------------- ')
   return render_template('interior/roles/all_role/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
