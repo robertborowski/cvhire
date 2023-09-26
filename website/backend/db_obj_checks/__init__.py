@@ -19,7 +19,7 @@ def get_roles_function(current_user, page_dict, input_status):
   # ------------------------ pull from db end ------------------------
   # ------------------------ assign variables start ------------------------
   page_dict['total_roles'] = len(db_roles_obj)
-  page_dict['total_roles_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_roles_obj)
+  page_dict['total_roles_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_roles_obj, 'roles')
   # ------------------------ assign variables end ------------------------
   return page_dict
 # ------------------------ individual function end ------------------------

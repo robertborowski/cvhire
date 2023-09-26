@@ -7,9 +7,14 @@ def convert_obj_row_to_dict_function(row):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def objs_to_arr_of_dicts_function(db_obj):
+def objs_to_arr_of_dicts_function(db_obj, identifier=None):
   arr = []
   for i_obj in db_obj:
-    arr.append(convert_obj_row_to_dict_function(i_obj))
+    i_dict = convert_obj_row_to_dict_function(i_obj)
+    # ------------------------ additional details start ------------------------
+    if identifier == 'roles':
+      i_dict['name_display'] = i_dict['name'][:35]
+    # ------------------------ additional details end ------------------------
+    arr.append(i_dict)
   return arr
 # ------------------------ individual function end ------------------------
