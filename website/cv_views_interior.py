@@ -265,9 +265,6 @@ def cv_roles_add_function(url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
-  # ------------------------ get list start ------------------------
-  page_dict['role_link_dict'] = roles_links_function()
-  # ------------------------ get list end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ user inputs start ------------------------
