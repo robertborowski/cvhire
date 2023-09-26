@@ -22,6 +22,7 @@ from website.backend.cookies import redis_check_if_cookie_exists_function, brows
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import roles_links_function
 from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
+from website.backend.db_obj_checks import get_roles_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -186,10 +187,9 @@ def cv_roles_open_function(url_redirect_code=None):
   # ------------------------ get list start ------------------------
   page_dict['role_link_dict'] = roles_links_function()
   # ------------------------ get list end ------------------------
-  # ------------------------ get category roles start ------------------------
-  db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status='open').order_by(RolesObj.name).all()
-  page_dict['total_roles_open'] = len(db_roles_obj)
-  # ------------------------ get category roles end ------------------------
+  # ------------------------ get roles start ------------------------
+  page_dict = get_roles_function(current_user, page_dict, 'open')
+  # ------------------------ get roles end ------------------------
   print(' ------------- 100-roles_open start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
@@ -214,10 +214,9 @@ def cv_roles_filled_function(url_redirect_code=None):
   # ------------------------ get list start ------------------------
   page_dict['role_link_dict'] = roles_links_function()
   # ------------------------ get list end ------------------------
-  # ------------------------ get category roles start ------------------------
-  db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status='filled').order_by(RolesObj.name).all()
-  page_dict['total_roles_filled'] = len(db_roles_obj)
-  # ------------------------ get category roles end ------------------------
+  # ------------------------ get roles start ------------------------
+  page_dict = get_roles_function(current_user, page_dict, 'filled')
+  # ------------------------ get roles end ------------------------
   print(' ------------- 100-roles_filled start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
@@ -242,10 +241,9 @@ def cv_roles_archive_function(url_redirect_code=None):
   # ------------------------ get list start ------------------------
   page_dict['role_link_dict'] = roles_links_function()
   # ------------------------ get list end ------------------------
-  # ------------------------ get category roles start ------------------------
-  db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status='archive').order_by(RolesObj.name).all()
-  page_dict['total_roles_archive'] = len(db_roles_obj)
-  # ------------------------ get category roles end ------------------------
+  # ------------------------ get roles start ------------------------
+  page_dict = get_roles_function(current_user, page_dict, 'archive')
+  # ------------------------ get roles end ------------------------
   print(' ------------- 100-roles_archive start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
@@ -270,10 +268,9 @@ def cv_roles_all_function(url_redirect_code=None):
   # ------------------------ get list start ------------------------
   page_dict['role_link_dict'] = roles_links_function()
   # ------------------------ get list end ------------------------
-  # ------------------------ get category roles start ------------------------
-  db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id).order_by(RolesObj.name).all()
-  page_dict['total_roles_all'] = len(db_roles_obj)
-  # ------------------------ get category roles end ------------------------
+  # ------------------------ get roles start ------------------------
+  page_dict = get_roles_function(current_user, page_dict, 'all')
+  # ------------------------ get roles end ------------------------
   print(' ------------- 100-roles_all start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():
