@@ -7,6 +7,7 @@ from website.backend.convert import objs_to_arr_of_dicts_function
 # ------------------------ individual function start ------------------------
 def get_roles_function(current_user, page_dict, input_status):
   # ------------------------ set variables start ------------------------
+  page_dict['role_status_type'] = input_status
   page_dict['total_roles'] = 0
   db_roles_obj = None
   # ------------------------ set variables end ------------------------
