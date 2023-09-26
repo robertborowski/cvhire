@@ -209,6 +209,9 @@ def cv_roles_filled_function(url_redirect_code=None):
   # ------------------------ get roles start ------------------------
   page_dict = get_roles_function(current_user, page_dict, 'filled')
   # ------------------------ get roles end ------------------------
+  # ------------------------ get role table links start ------------------------
+  page_dict['roles_table_links_dict'] = roles_table_links_function('filled')
+  # ------------------------ get role table links end ------------------------
   return render_template('interior/roles/filled/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -230,6 +233,9 @@ def cv_roles_archive_function(url_redirect_code=None):
   # ------------------------ get roles start ------------------------
   page_dict = get_roles_function(current_user, page_dict, 'archive')
   # ------------------------ get roles end ------------------------
+  # ------------------------ get role table links start ------------------------
+  page_dict['roles_table_links_dict'] = roles_table_links_function('archive')
+  # ------------------------ get role table links end ------------------------
   return render_template('interior/roles/archive_role/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -251,6 +257,9 @@ def cv_roles_all_function(url_redirect_code=None):
   # ------------------------ get roles start ------------------------
   page_dict = get_roles_function(current_user, page_dict, 'all')
   # ------------------------ get roles end ------------------------
+  # ------------------------ get role table links start ------------------------
+  page_dict['roles_table_links_dict'] = roles_table_links_function('all')
+  # ------------------------ get role table links end ------------------------
   return render_template('interior/roles/all_role/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
