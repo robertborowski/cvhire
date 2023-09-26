@@ -50,6 +50,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Inputs too long',
       'type':'danger'
     }
+  elif redirect_var == 'e9':
+    alert_message_dict = {
+      'message':'Role name already exists',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
@@ -65,6 +70,11 @@ def get_alert_message_function(redirect_var=None):
   elif redirect_var == 's3':
     alert_message_dict = {
       'message':'Email sent',
+      'type':'success'
+    }
+  elif redirect_var == 's4':
+    alert_message_dict = {
+      'message':'Successfully created role',
       'type':'success'
     }
   # ------------------------ success end ------------------------

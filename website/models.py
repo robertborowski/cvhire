@@ -55,6 +55,17 @@ class EmailBlockObj(db.Model):
   created_timestamp = db.Column(db.DateTime(timezone=True))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class RolesObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  fk_user_id = db.Column(db.String(150))
+  name = db.Column(db.String(150))
+  about = db.Column(db.String(1000))
+  requirements = db.Column(db.String(1000))
+  nice_to_haves = db.Column(db.String(1000))
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):
