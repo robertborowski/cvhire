@@ -103,8 +103,6 @@ def create_database_function(app):
     with app.app_context():
       db.create_all()
     # ------------------------ new - editing model tables end ------------------------
-    print('Created database!')
   else:
-    print('Database already exists!')
     pass
 # ------------------------ create_db_function end ------------------------
