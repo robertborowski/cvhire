@@ -14,3 +14,4 @@ stripe
 openai
 selenium
 praw
+pypdf2

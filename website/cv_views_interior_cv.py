@@ -118,22 +118,24 @@ def cv_add_function(url_redirect_code=None):
           aws_file_name = cv_aws_id + file_format_suffix
           # ------------------------ set variables end ------------------------
           # ------------------------ upload to aws s3 start ------------------------
-          s3 = boto3.client('s3')
-          s3.upload_fileobj(i_file, S3_BUCKET_NAME, aws_file_name)
+          # s3 = boto3.client('s3')
+          # s3.upload_fileobj(i_file, S3_BUCKET_NAME, aws_file_name)
           # ------------------------ upload to aws s3 end ------------------------
+          # ------------------------ read candidate name and email from file start ------------------------
+          # ------------------------ read candidate name and email from file end ------------------------
           # ------------------------ upload to db start ------------------------
-          new_row = CvObj(
-            id=create_uuid_function('cv_'),
-            created_timestamp=create_timestamp_function(),
-            fk_user_id=current_user.id,
-            status='active',
-            cv_upload_name=i_file.filename,
-            cv_aws_id=aws_file_name,
-            candidate_email=None,
-            candidate_name=None
-          )
-          db.session.add(new_row)
-          db.session.commit()
+          # new_row = CvObj(
+          #   id=create_uuid_function('cv_'),
+          #   created_timestamp=create_timestamp_function(),
+          #   fk_user_id=current_user.id,
+          #   status='active',
+          #   cv_upload_name=i_file.filename,
+          #   cv_aws_id=aws_file_name,
+          #   candidate_email=None,
+          #   candidate_name=None
+          # )
+          # db.session.add(new_row)
+          # db.session.commit()
           # ------------------------ upload to db end ------------------------
         except Exception as e:
           pass
