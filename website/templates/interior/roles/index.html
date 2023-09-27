@@ -51,14 +51,25 @@
         </div>
       {% endif %}
     {% else %}
+      <!-- ------------------------------------- search bar start ------------------------------------- -->
+      <input type="text" class="form-control" id="ui_search_bar" name="ui_search_bar" placeholder="Search (x{{ page_dict_html['total_roles_arr_of_dicts']|length }})">
+      <!-- ------------------------------------- search bar end ------------------------------------- -->
+      <!-- ------------------------------------- divider start ------------------------------------- -->
+      <div class="custom-display-flex custom-jc-between border-bottom custom-mt-25">
+        <p class="custom-m-0 custom-opacity-50 custom-header-12">Item</p>
+        <p class="custom-m-0 custom-opacity-50 custom-header-12">Actions</p>
+      </div>
+      <!-- ------------------------------------- divider end ------------------------------------- -->
+      <!-- ------------------------------------- rows content start ------------------------------------- -->
       {% for i in page_dict_html['total_roles_arr_of_dicts'] %}
-        <div class="custom-ptb-25 border-bottom">
+        <div class="custom-ptb-25 border-bottom uiSearchItem">
           <div class="custom-display-flex custom-jc-between">
             <div>
-              <a href="/roles/view/{{ i['id'] }}" class="custom-a-black-underline">{{ i['name_display'] }} <a href="/home" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Test CVs</a></a>
+              <a href="/roles/view/{{ i['id'] }}" class="custom-a-black-underline">{{ i['name_display'] }}</a>
             </div>
             <div class="custom-header-20">
               <ul class="custom-m-0 custom-display-flex custom-no-decoration">
+                  <li><a href="/home" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Screen CVs</a></li>
                 {% for k,v in page_dict_html['roles_table_links_dict'].items() %}
                   <li><a href="{{ v['url'] }}/{{ i['id'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-ml-30" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
                 {% endfor %}
@@ -67,6 +78,7 @@
           </div>
         </div>
       {% endfor %}
+      <!-- ------------------------------------- rows content end ------------------------------------- -->
     {% endif %}
   </div>
 </div>
