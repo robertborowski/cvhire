@@ -425,6 +425,31 @@ def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
+@cv_views_interior.route('/roles/view/<url_role_id>', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/view/<url_role_id>/', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/view/<url_role_id>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior.route('/roles/view/<url_role_id>/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_roles_view_function(url_role_id=None, url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if no role id given start ------------------------
+  if url_role_id == None:
+    return redirect(url_for('cv_views_interior.cv_roles_open_function'))
+  # ------------------------ if no role id given end ------------------------
+  # ------------------------ check if role id exists and is assigned to user start ------------------------
+  db_role_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,id=url_role_id).first()
+  if db_role_obj == None:
+    return redirect(url_for('cv_views_interior.cv_roles_open_function'))
+  page_dict['db_role_dict'] = convert_obj_row_to_dict_function(db_role_obj)
+  # ------------------------ check if role id exists and is assigned to user end ------------------------
+  return render_template('interior/roles/view_role/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
 @cv_views_interior.route('/favorites', methods=['GET', 'POST'])
 @cv_views_interior.route('/favorites/', methods=['GET', 'POST'])
 @cv_views_interior.route('/favorites/<url_redirect_code>', methods=['GET', 'POST'])

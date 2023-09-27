@@ -1,0 +1,47 @@
+{% extends "navbar/form_general.html" %}
+
+{% block title %}
+  <title>View role | CVhire</title>
+  <meta name="description" content="CVhire">
+  <meta name="og:description" content="CVhire">
+{% endblock %}
+
+{% block contentBodyExceptNavbarAndFooter %}
+<div class="custom-width-600 mx-auto">
+  <!-- ------------------------------------- title start ------------------------------------- -->
+  <div class="custom-ptb-50">
+    <h2 class="custom-m-0 custom-header-30">Role information <a href="/roles" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
+  </div>
+  <!-- ------------------------------------- title end ------------------------------------- -->
+  <!-- ------------------------------------- name start ------------------------------------- -->
+  <div class="custom-pb-50">
+    <h3 class="custom-m-0 custom-header-25">{{ page_dict_html['db_role_dict']['name'] }}</h3>
+  </div>
+  <!-- ------------------------------------- name end ------------------------------------- -->
+  <!-- ------------------------------------- about start ------------------------------------- -->
+  <div class="custom-pb-50">
+    <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">In this role, you will have the opportunity to </h3>
+    <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_role_dict']['about'] }}</p>
+  </div>
+  <!-- ------------------------------------- about end ------------------------------------- -->
+  <!-- ------------------------------------- requirements start ------------------------------------- -->
+  <div class="custom-pb-50">
+    <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Role requirements</h3>
+    <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_role_dict']['requirements'] }}</p>
+  </div>
+  <!-- ------------------------------------- requirements end ------------------------------------- -->
+  <!-- ------------------------------------- requirements start ------------------------------------- -->
+  <div class="custom-pb-50">
+    <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Role nice to haves</h3>
+    <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_role_dict']['nice_to_haves'] }}</p>
+  </div>
+  <!-- ------------------------------------- requirements end ------------------------------------- -->
+  <!-- ------------------------------------- buttons start ------------------------------------- -->
+  <div class="custom-mb-50">
+    <div class="text-center custom-mt-25">
+      <a href="/roles" class="btn btn-primary btn-lg custom-width-100">Back</a>
+    </div>
+  </div>
+  <!-- ------------------------------------- buttons end ------------------------------------- -->
+</div>
+{% endblock %}
