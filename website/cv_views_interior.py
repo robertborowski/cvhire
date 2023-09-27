@@ -139,21 +139,6 @@ def cv_settings_function(url_redirect_code=None):
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_interior.route('/cv', methods=['GET', 'POST'])
-@cv_views_interior.route('/cv/', methods=['GET', 'POST'])
-@cv_views_interior.route('/cv/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior.route('/cv/<url_redirect_code>/', methods=['GET', 'POST'])
-@login_required
-def cv_resume_function(url_redirect_code=None):
-  # ------------------------ pre load page checks start ------------------------
-  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
-  if page_dict['current_user_locked'] == True:
-    return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ pre load page checks end ------------------------
-  return render_template('interior/cv/index.html', page_dict_html=page_dict)
-# ------------------------ individual route end ------------------------
-
-# ------------------------ individual route start ------------------------
 @cv_views_interior.route('/favorites', methods=['GET', 'POST'])
 @cv_views_interior.route('/favorites/', methods=['GET', 'POST'])
 @cv_views_interior.route('/favorites/<url_redirect_code>', methods=['GET', 'POST'])
