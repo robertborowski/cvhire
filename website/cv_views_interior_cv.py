@@ -13,6 +13,7 @@ from website.backend.cookies import redis_check_if_cookie_exists_function, brows
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import cv_status_codes_function, dashboard_section_links_dict_cv_function, cv_table_links_function
 from website.backend.db_obj_checks import get_content_function
+from website.backend.uploads_user import allowed_cv_file_upload_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -88,5 +89,36 @@ def cv_add_function(url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ if no files uploaded start ------------------------
+    if 'uiFormFileMultipleUpload' not in request.files:
+      return redirect(url_for('cv_views_interior_cv.cv_add_function', url_redirect_code='e10'))
+    # ------------------------ if no files uploaded end ------------------------
+    # ------------------------ get user inputs start ------------------------
+    files_uploaded_arr = request.files.getlist('uiFormFileMultipleUpload')
+    # ------------------------ get user inputs end ------------------------
+    # ------------------------ loop through each file start ------------------------
+    for i_file in files_uploaded_arr:
+      # ------------------------ check valid file name start ------------------------
+      if i_file.filename == '':
+        return redirect(url_for('cv_views_interior_cv.cv_add_function', url_redirect_code='e11'))
+      # ------------------------ check valid file name end ------------------------
+      # ------------------------ check valid file format start ------------------------
+      valid_format = allowed_cv_file_upload_function(i_file.filename)
+      # ------------------------ check valid file format end ------------------------
+      # ------------------------ next start ------------------------
+      if i_file and valid_format == True:
+        try:
+          filename = os.path.join('uploads/', i_file.filename)
+          i_file.save(filename)
+        except Exception as e:
+          print(f'Fail e: {e}')
+      else:
+        pass
+      # ------------------------ next end ------------------------
+    # ------------------------ loop through each file end ------------------------
+    return redirect(url_for('cv_views_interior_cv.cv_add_function', url_redirect_code='s7'))
+  # ------------------------ post end ------------------------
   return render_template('interior/cv/add/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

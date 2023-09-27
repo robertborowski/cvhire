@@ -60,6 +60,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Invalid',
       'type':'danger'
     }
+  elif redirect_var == 'e11':
+    alert_message_dict = {
+      'message':'Invalid file name',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
@@ -90,6 +95,11 @@ def get_alert_message_function(redirect_var=None):
   elif redirect_var == 's6':
     alert_message_dict = {
       'message':'Successfully deleted role',
+      'type':'success'
+    }
+  elif redirect_var == 's7':
+    alert_message_dict = {
+      'message':'Successfully uploaded file(s)',
       'type':'success'
     }
   # ------------------------ success end ------------------------

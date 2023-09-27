@@ -42,7 +42,8 @@ def create_app_function():
   app.permanent_session_lifetime = datetime.timedelta(days=30)
   # For removing cache from images for quiz questions. The URL was auto caching and not updating
   app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-  app.config['UPLOAD_FOLDER'] = './website/backend/candidates/user_inputs/'
+  app.config['UPLOAD_FOLDER'] = 'uploads'
+  app.config['ALLOWED_EXTENSIONS'] = {'doc', 'docx', 'pdf', 'txt'}
   app.config['MAX_CONTENT_PATH'] = 16 * 1024 * 1024
   # ------------------------ additional flask app configurations end ------------------------
   # ------------------------ Handleing Error Messages START ------------------------
