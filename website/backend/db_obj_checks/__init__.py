@@ -5,17 +5,16 @@ from website.backend.convert import objs_to_arr_of_dicts_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
-def get_roles_function(current_user, page_dict, input_status):
+def get_roles_function(current_user, page_dict, url_status_code):
   # ------------------------ set variables start ------------------------
-  page_dict['role_status_type'] = input_status
   page_dict['total_roles'] = 0
   db_roles_obj = None
   # ------------------------ set variables end ------------------------
   # ------------------------ pull from db start ------------------------
-  if input_status == 'all':
+  if url_status_code == 'all':
     db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id).filter(RolesObj.status != 'delete').order_by(RolesObj.name).all()
   else:
-    db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status=input_status).order_by(RolesObj.name).all()
+    db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(RolesObj.name).all()
   # ------------------------ pull from db end ------------------------
   # ------------------------ assign variables start ------------------------
   page_dict['total_roles'] = len(db_roles_obj)

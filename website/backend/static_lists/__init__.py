@@ -76,7 +76,7 @@ def roles_links_function():
 
 # ------------------------ individual function start ------------------------
 def role_status_codes_function():
-  arr = ['open','filled','archive','delete']
+  arr = ['open','filled','archive','all','delete']
   return arr
 # ------------------------ individual function end ------------------------
 

@@ -34,144 +34,58 @@ redis_connection = redis_connect_open_function()
 # ------------------------ individual route start ------------------------
 @cv_views_interior_roles.route('/roles', methods=['GET', 'POST'])
 @cv_views_interior_roles.route('/roles/', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
-def cv_roles_function(url_redirect_code=None):
-  return redirect(url_for('cv_views_interior_roles.cv_roles_open_function', url_redirect_code=url_redirect_code))
+def cv_roles_function():
+  return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open'))
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_interior_roles.route('/roles/open', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/open/', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/open/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/open/<url_redirect_code>/', methods=['GET', 'POST'])
+@cv_views_interior_roles.route('/roles/<url_status_code>', methods=['GET', 'POST'])
+@cv_views_interior_roles.route('/roles/<url_status_code>/', methods=['GET', 'POST'])
+@cv_views_interior_roles.route('/roles/<url_status_code>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior_roles.route('/roles/<url_status_code>/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
-def cv_roles_open_function(url_redirect_code=None):
+def cv_roles_dashboard_function(url_status_code='open', url_redirect_code=None):
   # ------------------------ pre load page checks start ------------------------
   page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
-  # ------------------------ get list start ------------------------
-  page_dict['role_link_dict'] = roles_links_function()
-  # ------------------------ get list end ------------------------
-  # ------------------------ get roles start ------------------------
-  page_dict = get_roles_function(current_user, page_dict, 'open')
-  # ------------------------ get roles end ------------------------
-  # ------------------------ get role table links start ------------------------
-  page_dict['roles_table_links_dict'] = roles_table_links_function('open')
-  # ------------------------ get role table links end ------------------------
-  return render_template('interior/roles/open/index.html', page_dict_html=page_dict)
-# ------------------------ individual route end ------------------------
-
-# ------------------------ individual route start ------------------------
-@cv_views_interior_roles.route('/roles/filled', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/filled/', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/filled/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/filled/<url_redirect_code>/', methods=['GET', 'POST'])
-@login_required
-def cv_roles_filled_function(url_redirect_code=None):
-  # ------------------------ pre load page checks start ------------------------
-  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
-  if page_dict['current_user_locked'] == True:
-    return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ pre load page checks end ------------------------
-  # ------------------------ get list start ------------------------
-  page_dict['role_link_dict'] = roles_links_function()
-  # ------------------------ get list end ------------------------
-  # ------------------------ get roles start ------------------------
-  page_dict = get_roles_function(current_user, page_dict, 'filled')
-  # ------------------------ get roles end ------------------------
-  # ------------------------ get role table links start ------------------------
-  page_dict['roles_table_links_dict'] = roles_table_links_function('filled')
-  # ------------------------ get role table links end ------------------------
-  return render_template('interior/roles/filled/index.html', page_dict_html=page_dict)
-# ------------------------ individual route end ------------------------
-
-# ------------------------ individual route start ------------------------
-@cv_views_interior_roles.route('/roles/archive', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/archive/', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/archive/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/archive/<url_redirect_code>/', methods=['GET', 'POST'])
-@login_required
-def cv_roles_archive_function(url_redirect_code=None):
-  # ------------------------ pre load page checks start ------------------------
-  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
-  if page_dict['current_user_locked'] == True:
-    return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ pre load page checks end ------------------------
-  # ------------------------ get list start ------------------------
-  page_dict['role_link_dict'] = roles_links_function()
-  # ------------------------ get list end ------------------------
-  # ------------------------ get roles start ------------------------
-  page_dict = get_roles_function(current_user, page_dict, 'archive')
-  # ------------------------ get roles end ------------------------
-  # ------------------------ get role table links start ------------------------
-  page_dict['roles_table_links_dict'] = roles_table_links_function('archive')
-  # ------------------------ get role table links end ------------------------
-  return render_template('interior/roles/archive_role/index.html', page_dict_html=page_dict)
-# ------------------------ individual route end ------------------------
-
-# ------------------------ individual route start ------------------------
-@cv_views_interior_roles.route('/roles/all', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/all/', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/all/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/all/<url_redirect_code>/', methods=['GET', 'POST'])
-@login_required
-def cv_roles_all_function(url_redirect_code=None):
-  # ------------------------ pre load page checks start ------------------------
-  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
-  if page_dict['current_user_locked'] == True:
-    return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ pre load page checks end ------------------------
-  # ------------------------ get list start ------------------------
-  page_dict['role_link_dict'] = roles_links_function()
-  # ------------------------ get list end ------------------------
-  # ------------------------ get roles start ------------------------
-  page_dict = get_roles_function(current_user, page_dict, 'all')
-  # ------------------------ get roles end ------------------------
-  # ------------------------ get role table links start ------------------------
-  page_dict['roles_table_links_dict'] = roles_table_links_function('all')
-  # ------------------------ get role table links end ------------------------
-  return render_template('interior/roles/all_role/index.html', page_dict_html=page_dict)
-# ------------------------ individual route end ------------------------
-
-# ------------------------ individual route start ------------------------
-@cv_views_interior_roles.route('/roles/status/<url_status_code>/<url_role_id>', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/status/<url_status_code>/<url_role_id>/', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/status/<url_status_code>/<url_role_id>/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior_roles.route('/roles/status/<url_status_code>/<url_role_id>/<url_redirect_code>/', methods=['GET', 'POST'])
-@login_required
-def cv_roles_status_change_function(url_status_code=None, url_role_id=None, url_redirect_code=None):
-  # ------------------------ pre load page checks start ------------------------
-  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
-  if page_dict['current_user_locked'] == True:
-    return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ pre load page checks end ------------------------
-  # ------------------------ if none start ------------------------
-  if url_status_code == None or url_role_id == None:
-    return redirect(url_for('cv_views_interior_roles.cv_roles_open_function', url_redirect_code='e10'))
-  # ------------------------ if none end ------------------------
   # ------------------------ check if status code is valid start ------------------------
   role_status_codes_arr = role_status_codes_function()
   if url_status_code not in role_status_codes_arr:
-    return redirect(url_for('cv_views_interior_roles.cv_roles_open_function', url_redirect_code='e10'))
+    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='e10'))
   # ------------------------ check if status code is valid end ------------------------
-  # ------------------------ check if role id is valid for user start ------------------------
-  db_role_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,id=url_role_id).first()
-  if db_role_obj == None:
-    return redirect(url_for('cv_views_interior_roles.cv_roles_open_function', url_redirect_code='e10'))
-  # ------------------------ check if role id is valid for user end ------------------------
-  # ------------------------ change status start ------------------------
-  if db_role_obj.status != url_status_code:
-    db_role_obj.status = url_status_code
-    db.session.commit()
-    if url_status_code == 'delete':
-      return redirect(url_for(f'cv_views_interior_roles.cv_roles_open_function', url_redirect_code='s6'))
-    return redirect(url_for(f'cv_views_interior_roles.cv_roles_{url_status_code}_function', url_redirect_code='s5'))
-  # ------------------------ change status end ------------------------
-  return redirect(url_for('cv_views_interior_roles.cv_roles_open_function', url_redirect_code='i1'))
+  # ------------------------ get status code start ------------------------
+  page_dict['url_status_code'] = url_status_code
+  # ------------------------ get status code end ------------------------
+  # ------------------------ get list start ------------------------
+  page_dict['role_link_dict'] = roles_links_function()
+  # ------------------------ get list end ------------------------
+  # ------------------------ get roles start ------------------------
+  page_dict = get_roles_function(current_user, page_dict, url_status_code)
+  # ------------------------ get roles end ------------------------
+  # ------------------------ get role table links start ------------------------
+  page_dict['roles_table_links_dict'] = roles_table_links_function(url_status_code)
+  # ------------------------ get role table links end ------------------------
+  print(' ------------- 100 start ------------- ')
+  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+  for k,v in page_dict.items():
+    print(f"k: {k} | v: {v}")
+    pass
+  print(' ------------- 100 end ------------- ')
+  # ------------------------ choose correct template start ------------------------
+  correct_template = ''
+  if url_status_code == 'open':
+    correct_template = 'interior/roles/open/index.html'
+  if url_status_code == 'filled':
+    correct_template = 'interior/roles/filled/index.html'
+  if url_status_code == 'archive':
+    correct_template = 'interior/roles/archive_role/index.html'
+  if url_status_code == 'all':
+    correct_template = 'interior/roles/all_role/index.html'
+  # ------------------------ choose correct template end ------------------------
+  return render_template(correct_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -224,7 +138,7 @@ def cv_roles_add_function(url_redirect_code=None):
       )
       db.session.add(new_row)
       db.session.commit()
-      return redirect(url_for('cv_views_interior_roles.cv_roles_open_function', url_redirect_code='s4'))
+      return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='s4'))
     except:
       pass
     # ------------------------ new row end ------------------------
@@ -248,7 +162,7 @@ def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
   # ------------------------ pre load page checks end ------------------------
   # ------------------------ if no role id given start ------------------------
   if url_role_id == None:
-    return redirect(url_for('cv_views_interior_roles.cv_roles_open_function'))
+    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open'))
   # ------------------------ if no role id given end ------------------------
   # ------------------------ check if role id exists and is assigned to user start ------------------------
   db_role_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,id=url_role_id).first()
@@ -292,9 +206,9 @@ def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
       change_occured = True
     if change_occured == True:
       db.session.commit()
-      return redirect(url_for('cv_views_interior_roles.cv_roles_open_function', url_redirect_code='s5'))
+      return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='s5'))
     if change_occured == False:
-      return redirect(url_for('cv_views_interior_roles.cv_roles_open_function', url_redirect_code='i1'))
+      return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='i1'))
     # ------------------------ check if chenges occured end ------------------------
   # ------------------------ post end ------------------------
   return render_template('interior/roles/add/index.html', page_dict_html=page_dict)
@@ -314,13 +228,50 @@ def cv_roles_view_function(url_role_id=None, url_redirect_code=None):
   # ------------------------ pre load page checks end ------------------------
   # ------------------------ if no role id given start ------------------------
   if url_role_id == None:
-    return redirect(url_for('cv_views_interior_roles.cv_roles_open_function'))
+    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open',))
   # ------------------------ if no role id given end ------------------------
   # ------------------------ check if role id exists and is assigned to user start ------------------------
   db_role_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,id=url_role_id).first()
   if db_role_obj == None:
-    return redirect(url_for('cv_views_interior_roles.cv_roles_open_function'))
+    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open',))
   page_dict['db_role_dict'] = convert_obj_row_to_dict_function(db_role_obj)
   # ------------------------ check if role id exists and is assigned to user end ------------------------
   return render_template('interior/roles/view_role/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_roles.route('/roles/status/<url_status_code>/<url_role_id>', methods=['GET', 'POST'])
+@cv_views_interior_roles.route('/roles/status/<url_status_code>/<url_role_id>/', methods=['GET', 'POST'])
+@cv_views_interior_roles.route('/roles/status/<url_status_code>/<url_role_id>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior_roles.route('/roles/status/<url_status_code>/<url_role_id>/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_roles_status_change_function(url_status_code=None, url_role_id=None, url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if none start ------------------------
+  if url_status_code == None or url_role_id == None:
+    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='e10'))
+  # ------------------------ if none end ------------------------
+  # ------------------------ check if status code is valid start ------------------------
+  role_status_codes_arr = role_status_codes_function()
+  if url_status_code not in role_status_codes_arr:
+    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='e10'))
+  # ------------------------ check if status code is valid end ------------------------
+  # ------------------------ check if role id is valid for user start ------------------------
+  db_role_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,id=url_role_id).first()
+  if db_role_obj == None:
+    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='e10'))
+  # ------------------------ check if role id is valid for user end ------------------------
+  # ------------------------ change status start ------------------------
+  if db_role_obj.status != url_status_code:
+    db_role_obj.status = url_status_code
+    db.session.commit()
+    if url_status_code == 'delete':
+      return redirect(url_for(f'cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='s6'))
+    return redirect(url_for(f'cv_views_interior_roles.cv_roles_dashboard_function', url_status_code=url_status_code, url_redirect_code='s5'))
+  # ------------------------ change status end ------------------------
+  return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='i1'))
 # ------------------------ individual route end ------------------------
