@@ -68,6 +68,11 @@ def cv_roles_dashboard_function(url_status_code='open', url_redirect_code=None):
   # ------------------------ get role table links start ------------------------
   page_dict['roles_table_links_dict'] = roles_table_links_function(url_status_code)
   # ------------------------ get role table links end ------------------------
+  # ------------------------ dashboard variables start ------------------------
+  page_dict['dashboard_name'] = 'Roles'
+  page_dict['dashboard_action'] = 'Add role'
+  page_dict['dashboard_action_link'] = '/roles/add'
+  # ------------------------ dashboard variables end ------------------------
   print(' ------------- 100 start ------------- ')
   page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
   for k,v in page_dict.items():

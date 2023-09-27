@@ -1,7 +1,7 @@
 {% extends "navbar/interior.html" %}
 
 {% block title %}
-  <title>Roles | CVhire</title>
+  <title>Dashboard | CVhire</title>
   <meta name="description" content="CVhire">
   <meta name="og:description" content="CVhire">
 {% endblock %}
@@ -10,8 +10,8 @@
 <div class="custom-width-interior-1100 mx-auto custom-plr-50">
   <!-- ------------------------------------- title start ------------------------------------- -->
   <div class="custom-pt-25 custom-display-flex custom-jc-between custom-mb-10">
-    <h2 class="custom-header-30 custom-weight-900 custom-m-0">Roles</h2>
-    <a href="/roles/add" class="btn btn-primary custom-br-10"><i class="fa-solid fa-plus"></i> Add role</a>
+    <h2 class="custom-header-30 custom-weight-900 custom-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
+    <a href="{{ page_dict_html['dashboard_action_link'] }}" class="btn btn-primary custom-br-10"><i class="fa-solid fa-plus"></i> {{ page_dict_html['dashboard_action'] }}</a>
   </div>
   <!-- ------------------------------------- title end ------------------------------------- -->
   <!-- ------------------------------------- options start ------------------------------------- -->
