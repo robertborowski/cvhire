@@ -1,0 +1,33 @@
+{% extends "navbar/form_general.html" %}
+
+{% block title %}
+  <title>Add roles | CVhire</title>
+  <meta name="description" content="CVhire">
+  <meta name="og:description" content="CVhire">
+{% endblock %}
+
+{% block contentBodyExceptNavbarAndFooter %}
+<div class="custom-width-600 mx-auto">
+  <!-- ------------------------------------- title start ------------------------------------- -->
+  <div class="custom-ptb-50">
+    <h2 class="custom-m-0 custom-header-30">Add CVs / Resumes</h2>
+  </div>
+  <!-- ------------------------------------- title end ------------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+    <!-- ------------------------------------- upload start ------------------------------------- -->
+    <div class="custom-mb-50">
+      <label for="formFileMultiple" class="form-label">Bulk upload</label>
+      <input class="form-control" type="file" id="formFileMultiple" multiple required>
+    </div>
+    <!-- ------------------------------------- upload end ------------------------------------- -->
+    <!-- ------------------------------------- buttons start ------------------------------------- -->
+    <div class="custom-mb-50">
+      <button type="submit" class="btn btn-primary btn-lg custom-width-100">Upload CVs</button>
+      <div class="text-center custom-mt-25">
+        <a href="/roles" class="custom-a-black-underline custom-opacity-75">Cancel</a>
+      </div>
+    </div>
+    <!-- ------------------------------------- buttons end ------------------------------------- -->
+  </form>
+</div>
+{% endblock %}

@@ -75,3 +75,18 @@ def cv_dashboard_general_function(url_status_code='active', url_redirect_code=No
   # ------------------------ choose correct template end ------------------------
   return render_template(correct_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_cv.route('/cv/add', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/add/', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/add/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/add/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_add_function(url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  return render_template('interior/cv/add/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
