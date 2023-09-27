@@ -293,6 +293,8 @@ def cv_roles_status_change_function(url_status_code=None, url_role_id=None, url_
   if db_role_obj.status != url_status_code:
     db_role_obj.status = url_status_code
     db.session.commit()
+    if url_status_code == 'delete':
+      return redirect(url_for(f'cv_views_interior.cv_roles_open_function', url_redirect_code='s6'))
     return redirect(url_for(f'cv_views_interior.cv_roles_{url_status_code}_function', url_redirect_code='s5'))
   # ------------------------ change status end ------------------------
   return redirect(url_for('cv_views_interior.cv_roles_open_function', url_redirect_code='i1'))

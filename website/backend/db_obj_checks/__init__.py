@@ -13,7 +13,7 @@ def get_roles_function(current_user, page_dict, input_status):
   # ------------------------ set variables end ------------------------
   # ------------------------ pull from db start ------------------------
   if input_status == 'all':
-    db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id).order_by(RolesObj.name).all()
+    db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id).filter(RolesObj.status != 'delete').order_by(RolesObj.name).all()
   else:
     db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status=input_status).order_by(RolesObj.name).all()
   # ------------------------ pull from db end ------------------------

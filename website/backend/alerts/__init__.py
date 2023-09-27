@@ -87,6 +87,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Successfully updated role',
       'type':'success'
     }
+  elif redirect_var == 's6':
+    alert_message_dict = {
+      'message':'Successfully deleted role',
+      'type':'success'
+    }
   # ------------------------ success end ------------------------
   # ------------------------ info end ------------------------
   elif redirect_var == 'i1':
