@@ -16,7 +16,7 @@ import stripe
 # Result: No SQL is needed to create, maintain, and query the db! ORM: Object Relational Mapping 
 # and you can connect it directly to Postgres
 db = SQLAlchemy()
-DB_NAME = os.environ.get('HEROKU_POSTGRESQL_BRONZE_URL')
+DB_NAME = os.environ.get('DATABASE_URL')
 # ------------------------ define/initialize a new db sql_alchemy function end ------------------------
 
 secret_key_ref = os.urandom(64)
@@ -34,7 +34,7 @@ def create_app_function():
   app = Flask(__name__)
   # To use a session, there has to be a secret key. The string should be something difficult to guess
   app.secret_key = secret_key_ref
-  app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('HEROKU_POSTGRESQL_BRONZE_URL').replace("postgres://", "postgresql://", 1) # This .replace was added because of an issue when pushing to heroku. Link: https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy 
+  app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("postgres://", "postgresql://", 1) # This .replace was added because of an issue when pushing to heroku. Link: https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy 
   db.init_app(app)
   # ------------------------ create flask app end ------------------------
   # ------------------------ additional flask app configurations start ------------------------
