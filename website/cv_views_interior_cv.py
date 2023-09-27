@@ -20,6 +20,8 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
+from website.backend.static_lists import cv_status_codes_function, dashboard_section_links_dict_cv_function, cv_table_links_function
+from website.backend.db_obj_checks import get_content_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -32,14 +34,61 @@ redis_connection = redis_connect_open_function()
 # ------------------------ individual route start ------------------------
 @cv_views_interior_cv.route('/cv', methods=['GET', 'POST'])
 @cv_views_interior_cv.route('/cv/', methods=['GET', 'POST'])
-@cv_views_interior_cv.route('/cv/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior_cv.route('/cv/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
-def cv_resume_function(url_redirect_code=None):
+def cv_none_function():
+  return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active'))
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_cv.route('/cv/<url_status_code>', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/<url_status_code>/', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/<url_status_code>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/<url_status_code>/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_dashboard_general_function(url_status_code='active', url_redirect_code=None):
   # ------------------------ pre load page checks start ------------------------
-  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code, url_replace_value=url_status_code)
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
-  return render_template('interior/cv/index.html', page_dict_html=page_dict)
+  # ------------------------ check if status code is valid start ------------------------
+  status_codes_arr = cv_status_codes_function()
+  if url_status_code not in status_codes_arr:
+    return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='e10'))
+  # ------------------------ check if status code is valid end ------------------------
+  # ------------------------ get status code start ------------------------
+  page_dict['url_status_code'] = url_status_code
+  # ------------------------ get status code end ------------------------
+  # ------------------------ get list start ------------------------
+  page_dict['dashboard_section_links_dict'] = dashboard_section_links_dict_cv_function()
+  # ------------------------ get list end ------------------------
+  # ------------------------ get roles start ------------------------
+  page_dict = get_content_function(current_user, page_dict, url_status_code, 'cv')
+  # ------------------------ get roles end ------------------------
+  # ------------------------ get role table links start ------------------------
+  page_dict['roles_table_links_dict'] = cv_table_links_function(url_status_code)
+  # ------------------------ get role table links end ------------------------
+  # ------------------------ dashboard variables start ------------------------
+  page_dict['dashboard_name'] = 'CVs & resumes'
+  page_dict['dashboard_action'] = 'Add CV'
+  page_dict['dashboard_action_link'] = '/roles/add'
+  # ------------------------ dashboard variables end ------------------------
+  # ------------------------ pretty print start ------------------------
+  print(' ------------- 100 start ------------- ')
+  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+  for k,v in page_dict.items():
+    print(f"k: {k} | v: {v}")
+    pass
+  print(' ------------- 100 end ------------- ')
+  # ------------------------ pretty print end ------------------------
+  # ------------------------ choose correct template start ------------------------
+  correct_template = ''
+  if url_status_code == 'active':
+    correct_template = 'interior/cv/active/index.html'
+  if url_status_code == 'archive':
+    correct_template = 'interior/cv/archive_cv/index.html'
+  if url_status_code == 'all':
+    correct_template = 'interior/cv/all_cv/index.html'
+  # ------------------------ choose correct template end ------------------------
+  return render_template(correct_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

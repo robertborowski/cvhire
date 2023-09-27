@@ -75,8 +75,24 @@ def dashboard_section_links_dict_roles_function():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def dashboard_section_links_dict_cv_function():
+  output_dict = {
+    'Active': '/cv/active',
+    'Archived': '/cv/archive',
+    'All CVs': '/cv/all'
+  }
+  return output_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def role_status_codes_function():
   arr = ['open','filled','archive','all','delete']
+  return arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def cv_status_codes_function():
+  arr = ['active','archive','all','delete']
   return arr
 # ------------------------ individual function end ------------------------
 
@@ -133,6 +149,43 @@ def roles_table_links_function(role_type):
         'url':'/roles/status/filled'
       },
       'Delete role': {
+        'icon':'fa-solid fa-trash',
+        'url':'/roles/status/delete'
+      }
+    }
+  # ------------------------ type end ------------------------
+  # ------------------------ type start ------------------------
+  elif role_type == 'all':
+    output_dict = {
+      'Edit role': {
+        'icon':'fa-solid fa-pen-to-square',
+        'url':'/roles/edit'
+      }
+    }
+  # ------------------------ type end ------------------------
+  return output_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def cv_table_links_function(role_type):
+  output_dict = {}
+  # ------------------------ type start ------------------------
+  if role_type == 'active':
+    output_dict = {
+      'Move to archive': {
+        'icon':'fa-solid fa-square-xmark',
+        'url':'/roles/status/archive'
+      }
+    }
+  # ------------------------ type end ------------------------
+  # ------------------------ type start ------------------------
+  elif role_type == 'archive':
+    output_dict = {
+      'Move to active': {
+        'icon':'fa-regular fa-square-check',
+        'url':'/roles/status/open'
+      },
+      'Delete CV': {
         'icon':'fa-solid fa-trash',
         'url':'/roles/status/delete'
       }

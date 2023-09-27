@@ -67,6 +67,15 @@ class RolesObj(db.Model):
   nice_to_haves = db.Column(db.String(3000))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class CvObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  fk_user_id = db.Column(db.String(150))
+  status = db.Column(db.String(20))
+  cv_attachment_id = db.Column(db.String(150))
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):
@@ -113,164 +122,11 @@ class EmailScrapedObj(db.Model):
 # # ------------------------ individual model end ------------------------
 
 # # ------------------------ individual model start ------------------------
-# class BlogPollingObj(db.Model):
+# class BlogObj(db.Model):
 #   id = db.Column(db.String(150), primary_key=True)
 #   created_timestamp = db.Column(db.DateTime(timezone=True))
 #   title = db.Column(db.String(150))
 #   details = db.Column(db.String(150))
 #   aws_image_url = db.Column(db.String(150))
 #   status = db.Column(db.Boolean, default=False)
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class PlatformsObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   name = db.Column(db.String(150))
-#   status = db.Column(db.Boolean, default=False)
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class PollsObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   type = db.Column(db.String(150))
-#   fk_show_id = db.Column(db.String(150))
-#   question = db.Column(db.String(150))
-#   answer_choices = db.Column(db.String(1000))
-#   written_response_allowed = db.Column(db.Boolean, default=True)
-#   topics = db.Column(db.String(150))
-#   status_approved = db.Column(db.Boolean, default=False)
-#   status_removed = db.Column(db.Boolean, default=False)
-#   fk_user_id = db.Column(db.String(150))
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class PollsAnsweredObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   fk_show_id = db.Column(db.String(150))
-#   fk_poll_id = db.Column(db.String(150))
-#   fk_user_id = db.Column(db.String(150))
-#   poll_answer_submitted = db.Column(db.String(500))
-#   written_answer_submitted = db.Column(db.String(150))
-#   status_answer_anonymous = db.Column(db.Boolean, default=False)
-#   poll_vote_updown_question = db.Column(db.Boolean)
-#   poll_vote_updown_feedback = db.Column(db.Boolean)
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class PollsStandInObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   fk_show_id = db.Column(db.String(150))
-#   fk_poll_id = db.Column(db.String(150))
-#   standin_key = db.Column(db.String(150))
-#   standin_values = db.Column(db.String(1000))
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class ShowsFollowingObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   fk_platform_id = db.Column(db.String(150))
-#   fk_show_id = db.Column(db.String(150))
-#   fk_user_id = db.Column(db.String(150))
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class ShowsObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   name = db.Column(db.String(150))
-#   description = db.Column(db.String(1000))
-#   topics = db.Column(db.String(150))
-#   fk_platform_id = db.Column(db.String(150))
-#   status = db.Column(db.Boolean, default=False)
-#   platform_reference_id = db.Column(db.String(150))
-#   platform_image_large = db.Column(db.String(150))
-#   platform_image_medium = db.Column(db.String(150))
-#   platform_image_small = db.Column(db.String(150))
-#   platform_url = db.Column(db.String(150))
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class ShowsAttributesObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   fk_show_id = db.Column(db.String(150))
-#   attribute_key = db.Column(db.String(150))
-#   attribute_value = db.Column(db.String(150))
-#   attribute_note = db.Column(db.String(150))
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class ShowsQueueObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   fk_platform_id = db.Column(db.String(150))
-#   platform_reference_id = db.Column(db.String(150))
-#   name = db.Column(db.String(150))
-#   description = db.Column(db.String(1000))
-#   img_large = db.Column(db.String(150))
-#   img_medium = db.Column(db.String(150))
-#   img_small = db.Column(db.String(150))
-#   show_url = db.Column(db.String(150))
-#   fk_show_id = db.Column(db.String(150))
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class RedditPostsObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   community = db.Column(db.String(100))
-#   title = db.Column(db.String(300))
-#   total_votes = db.Column(db.Integer)
-#   total_comments = db.Column(db.Integer)
-#   post_url = db.Column(db.String(300))
-#   total_upvotes = db.Column(db.Integer)
-#   upvote_ratio = db.Column(db.Float)
-#   total_views = db.Column(db.Integer)
-#   poll_data_obj = db.Column(db.String(1000))
-#   post_removed = db.Column(db.Boolean)
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class RedditPostsRequestedObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   fk_show_id = db.Column(db.String(150))
-#   fk_poll_id = db.Column(db.String(150))
-#   fk_user_id = db.Column(db.String(150))
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class RedditCommentsObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   fk_reddit_post_id = db.Column(db.String(150))
-#   author = db.Column(db.String(150))
-#   comment = db.Column(db.String(1000))
-#   upvotes = db.Column(db.Integer)
-#   downvotes = db.Column(db.Integer)
-#   created_at = db.Column(db.DateTime(timezone=True))
-#   comment_url = db.Column(db.String(300))
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class RedditMappingObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   fk_poll_id = db.Column(db.String(150))
-#   fk_reddit_post_id = db.Column(db.String(150))
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class HostMarketingObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   podcast_name = db.Column(db.String(150))
-#   host_email = db.Column(db.String(150))
-#   greeting_name = db.Column(db.String(150))
-#   unsubscribed = db.Column(db.Boolean, default=False)
 # # ------------------------ individual model end ------------------------

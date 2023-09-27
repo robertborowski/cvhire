@@ -20,7 +20,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import dashboard_section_links_dict_roles_function, roles_table_links_function, role_status_codes_function
 from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
-from website.backend.db_obj_checks import get_roles_function
+from website.backend.db_obj_checks import get_content_function
 from website.backend.convert import convert_obj_row_to_dict_function
 # ------------------------ imports end ------------------------
 
@@ -63,7 +63,7 @@ def cv_roles_dashboard_function(url_status_code='open', url_redirect_code=None):
   page_dict['dashboard_section_links_dict'] = dashboard_section_links_dict_roles_function()
   # ------------------------ get list end ------------------------
   # ------------------------ get roles start ------------------------
-  page_dict = get_roles_function(current_user, page_dict, url_status_code)
+  page_dict = get_content_function(current_user, page_dict, url_status_code, 'roles')
   # ------------------------ get roles end ------------------------
   # ------------------------ get role table links start ------------------------
   page_dict['roles_table_links_dict'] = roles_table_links_function(url_status_code)
