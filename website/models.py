@@ -73,7 +73,10 @@ class CvObj(db.Model):
   created_timestamp = db.Column(db.DateTime(timezone=True))
   fk_user_id = db.Column(db.String(150))
   status = db.Column(db.String(20))
-  cv_attachment_id = db.Column(db.String(150))
+  cv_upload_name = db.Column(db.String(150))
+  cv_aws_id = db.Column(db.String(150))
+  candidate_email = db.Column(db.String(150))
+  candidate_name = db.Column(db.String(150))
 # ------------------------ individual model end ------------------------
 
 """

@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj
+from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj, CvObj
 import os
 import json
 from datetime import datetime
@@ -13,7 +13,8 @@ from website.backend.cookies import redis_check_if_cookie_exists_function, brows
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import cv_status_codes_function, dashboard_section_links_dict_cv_function, cv_table_links_function
 from website.backend.db_obj_checks import get_content_function
-from website.backend.uploads_user import allowed_cv_file_upload_function
+from website.backend.uploads_user import allowed_cv_file_upload_function, get_file_suffix_function
+import boto3
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -91,6 +92,7 @@ def cv_add_function(url_redirect_code=None):
   # ------------------------ pre load page checks end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
+    S3_BUCKET_NAME = os.environ.get('AWS_CVHIRE_BUCKET_NAME')
     # ------------------------ if no files uploaded start ------------------------
     if 'uiFormFileMultipleUpload' not in request.files:
       return redirect(url_for('cv_views_interior_cv.cv_add_function', url_redirect_code='e10'))
@@ -100,25 +102,46 @@ def cv_add_function(url_redirect_code=None):
     # ------------------------ get user inputs end ------------------------
     # ------------------------ loop through each file start ------------------------
     for i_file in files_uploaded_arr:
-      # ------------------------ check valid file name start ------------------------
+      # ------------------------ check file name empty start ------------------------
       if i_file.filename == '':
         return redirect(url_for('cv_views_interior_cv.cv_add_function', url_redirect_code='e11'))
-      # ------------------------ check valid file name end ------------------------
+      # ------------------------ check file name empty end ------------------------
       # ------------------------ check valid file format start ------------------------
       valid_format = allowed_cv_file_upload_function(i_file.filename)
       # ------------------------ check valid file format end ------------------------
-      # ------------------------ next start ------------------------
+      # ------------------------ look and upload start ------------------------
       if i_file and valid_format == True:
         try:
-          filename = os.path.join('uploads/', i_file.filename)
-          i_file.save(filename)
+          # ------------------------ set variables start ------------------------
+          file_format_suffix = get_file_suffix_function(i_file.filename)
+          cv_aws_id = create_uuid_function('cv_aws_')
+          aws_file_name = cv_aws_id + file_format_suffix
+          # ------------------------ set variables end ------------------------
+          # ------------------------ upload to aws s3 start ------------------------
+          s3 = boto3.client('s3')
+          s3.upload_fileobj(i_file, S3_BUCKET_NAME, aws_file_name)
+          # ------------------------ upload to aws s3 end ------------------------
+          # ------------------------ upload to db start ------------------------
+          new_row = CvObj(
+            id=create_uuid_function('cv_'),
+            created_timestamp=create_timestamp_function(),
+            fk_user_id=current_user.id,
+            status='active',
+            cv_upload_name=i_file.filename,
+            cv_aws_id=aws_file_name,
+            candidate_email=None,
+            candidate_name=None
+          )
+          db.session.add(new_row)
+          db.session.commit()
+          # ------------------------ upload to db end ------------------------
         except Exception as e:
-          print(f'Fail e: {e}')
+          pass
       else:
-        pass
-      # ------------------------ next end ------------------------
+        continue
+      # ------------------------ look and upload end ------------------------
     # ------------------------ loop through each file end ------------------------
-    return redirect(url_for('cv_views_interior_cv.cv_add_function', url_redirect_code='s7'))
+    return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='s7'))
   # ------------------------ post end ------------------------
   return render_template('interior/cv/add/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
