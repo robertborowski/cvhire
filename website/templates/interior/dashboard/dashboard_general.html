@@ -38,18 +38,30 @@
   <div class="custom-header-15 custom-mt-25">
     <!-- ------------------------------------- no content start ------------------------------------- -->
     {% if page_dict_html['content_total_rows'] == 0 %}
-      {% if page_dict_html['url_status_code'] == 'open' or page_dict_html['url_status_code'] == 'all' %}
-        <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-          <a href="/roles/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add your first open role</a>
-        </div>
-      {% elif page_dict_html['url_status_code'] == 'filled' %}
-        <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-          <a href="/roles/open" class="custom-opacity-60 custom-a-black-underline">No filled roles</a>
-        </div>
-      {% elif page_dict_html['url_status_code'] == 'archive' %}
-        <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-          <a href="/roles/open" class="custom-opacity-60 custom-a-black-underline">No archived roles</a>
-        </div>
+      {% if page_dict_html['dashboard_name'] == 'Roles' %}
+        {% if page_dict_html['url_status_code'] == 'open' or page_dict_html['url_status_code'] == 'all' %}
+          <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
+            <a href="/roles/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add your first open role</a>
+          </div>
+        {% elif page_dict_html['url_status_code'] == 'filled' %}
+          <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
+            <a href="/roles/open" class="custom-opacity-60 custom-a-black-underline">No filled roles</a>
+          </div>
+        {% elif page_dict_html['url_status_code'] == 'archive' %}
+          <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
+            <a href="/roles/open" class="custom-opacity-60 custom-a-black-underline">No archived roles</a>
+          </div>
+        {% endif %}
+      {% elif page_dict_html['dashboard_name'] == 'CVs & Resumes' %}
+        {% if page_dict_html['url_status_code'] == 'active' or page_dict_html['url_status_code'] == 'all' %}
+          <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
+            <a href="/cv/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add candidate CVs</a>
+          </div>
+        {% elif page_dict_html['url_status_code'] == 'archive' %}
+          <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
+            <a href="/cv/active" class="custom-opacity-60 custom-a-black-underline">No archived CVs</a>
+          </div>
+        {% endif %}
       {% endif %}
     <!-- ------------------------------------- no content end ------------------------------------- -->
     <!-- ------------------------------------- yes content start ------------------------------------- -->
