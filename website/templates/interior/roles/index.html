@@ -17,7 +17,7 @@
   <!-- ------------------------------------- options start ------------------------------------- -->
   <div class="custom-header-15 custom-ptb-10 border-bottom">
       <ul class="custom-m-0 custom-p-0 custom-display-flex custom-no-decoration custom-jc-start">
-        {% for k,v in page_dict_html['role_link_dict'].items() %}
+        {% for k,v in page_dict_html['dashboard_section_links_dict'].items() %}
           {% if v in page_dict_html['navbar_link_current'] %}
             <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-primary">{{ k }}</a></li>
           {% else %}
@@ -29,14 +29,15 @@
   </div>
   <!-- ------------------------------------- options end ------------------------------------- -->
 </div>
-<!-- ------------------------------------- different role subpages start ------------------------------------- -->
-{% block contentBodyRoles %}
+<!-- ------------------------------------- different dashboard subpages start ------------------------------------- -->
+{% block contentBodyDashboard %}
 {% endblock %}
-<!-- ------------------------------------- different role subpages end ------------------------------------- -->
+<!-- ------------------------------------- different dashboard subpages end ------------------------------------- -->
 <!-- ------------------------------------- content start ------------------------------------- -->
 <div class="custom-width-interior-1100 mx-auto custom-plr-50">
   <div class="custom-header-15 custom-mt-25">
-    {% if page_dict_html['total_roles'] == 0 %}
+    <!-- ------------------------------------- no content start ------------------------------------- -->
+    {% if page_dict_html['content_total_rows'] == 0 %}
       {% if page_dict_html['url_status_code'] == 'open' or page_dict_html['url_status_code'] == 'all' %}
         <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
           <a href="/roles/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add your first open role</a>
@@ -50,9 +51,11 @@
           <a href="/roles/open" class="custom-opacity-60 custom-a-black-underline">No archived roles</a>
         </div>
       {% endif %}
+    <!-- ------------------------------------- no content end ------------------------------------- -->
+    <!-- ------------------------------------- yes content start ------------------------------------- -->
     {% else %}
       <!-- ------------------------------------- search bar start ------------------------------------- -->
-      <input type="text" class="form-control" id="ui_search_bar" name="ui_search_bar" placeholder="Search (x{{ page_dict_html['total_roles'] }})">
+      <input type="text" class="form-control" id="ui_search_bar" name="ui_search_bar" placeholder="Search (x{{ page_dict_html['content_total_rows'] }})">
       <!-- ------------------------------------- search bar end ------------------------------------- -->
       <!-- ------------------------------------- divider start ------------------------------------- -->
       <div class="custom-display-flex custom-jc-between border-bottom custom-mt-25">
@@ -61,7 +64,7 @@
       </div>
       <!-- ------------------------------------- divider end ------------------------------------- -->
       <!-- ------------------------------------- rows content start ------------------------------------- -->
-      {% for i in page_dict_html['total_roles_arr_of_dicts'] %}
+      {% for i in page_dict_html['content_total_rows_arr_of_dicts'] %}
         <div class="custom-ptb-25 border-bottom uiSearchItem">
           <div class="custom-display-flex custom-jc-between">
             <div>
@@ -80,6 +83,7 @@
       {% endfor %}
       <!-- ------------------------------------- rows content end ------------------------------------- -->
     {% endif %}
+    <!-- ------------------------------------- yes content end ------------------------------------- -->
   </div>
 </div>
 <!-- ------------------------------------- content end ------------------------------------- -->

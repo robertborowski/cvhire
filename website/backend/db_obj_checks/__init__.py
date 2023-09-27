@@ -7,7 +7,7 @@ from website.backend.convert import objs_to_arr_of_dicts_function
 # ------------------------ individual function start ------------------------
 def get_roles_function(current_user, page_dict, url_status_code):
   # ------------------------ set variables start ------------------------
-  page_dict['total_roles'] = 0
+  page_dict['content_total_rows'] = 0
   db_roles_obj = None
   # ------------------------ set variables end ------------------------
   # ------------------------ pull from db start ------------------------
@@ -17,8 +17,8 @@ def get_roles_function(current_user, page_dict, url_status_code):
     db_roles_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(RolesObj.name).all()
   # ------------------------ pull from db end ------------------------
   # ------------------------ assign variables start ------------------------
-  page_dict['total_roles'] = len(db_roles_obj)
-  page_dict['total_roles_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_roles_obj, 'roles')
+  page_dict['content_total_rows'] = len(db_roles_obj)
+  page_dict['content_total_rows_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_roles_obj, 'roles')
   # ------------------------ assign variables end ------------------------
   return page_dict
 # ------------------------ individual function end ------------------------

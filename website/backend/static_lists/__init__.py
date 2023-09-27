@@ -64,7 +64,7 @@ def navbar_link_dict_function_v2():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def roles_links_function():
+def dashboard_section_links_dict_roles_function():
   output_dict = {
     'Open': '/roles/open',
     'Filled': '/roles/filled',
