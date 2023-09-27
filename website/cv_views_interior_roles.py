@@ -47,7 +47,7 @@ def cv_roles_function():
 @login_required
 def cv_roles_dashboard_function(url_status_code='open', url_redirect_code=None):
   # ------------------------ pre load page checks start ------------------------
-  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code, url_replace_value=url_status_code)
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------

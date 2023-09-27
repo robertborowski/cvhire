@@ -6,7 +6,7 @@ from website.backend.alerts import get_alert_message_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual route start ------------------------
-def pre_page_load_checks_function(current_user, url_redirect_code=None):
+def pre_page_load_checks_function(current_user, url_redirect_code=None, url_replace_value=None):
   # ------------------------ page dict start ------------------------
   page_dict = {}
   # ------------------------ page dict end ------------------------
@@ -29,7 +29,14 @@ def pre_page_load_checks_function(current_user, url_redirect_code=None):
   page_dict['company_name'] = db_attribute_obj.attribute_value
   # ------------------------ get company name start ------------------------
   # ------------------------ get current site start ------------------------
-  page_dict['navbar_link_current'] = str(request.url_rule)
+  page_dict['navbar_link_current'] = str(request.url_rule.rule)
+  # ------------------------ special case roles start ------------------------
+  try:
+    if '<url_status_code>' in page_dict['navbar_link_current']:
+      page_dict['navbar_link_current'] = str(request.url_rule.rule).replace('<url_status_code>', url_replace_value)
+  except:
+    pass
+  # ------------------------ special case roles end ------------------------
   if page_dict['navbar_link_current'][-1] == '/':
     page_dict['navbar_link_current'] = page_dict['navbar_link_current'][:-1]
   # ------------------------ get current site end ------------------------
