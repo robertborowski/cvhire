@@ -57,7 +57,7 @@ def cv_roles_dashboard_function(url_status_code='open', url_redirect_code=None):
   page_dict = get_content_function(current_user, page_dict, url_status_code, 'roles')
   # ------------------------ get roles end ------------------------
   # ------------------------ get role table links start ------------------------
-  page_dict['roles_table_links_dict'] = roles_table_links_function(url_status_code)
+  page_dict['sub_table_links_dict'] = roles_table_links_function(url_status_code)
   # ------------------------ get role table links end ------------------------
   # ------------------------ dashboard variables start ------------------------
   page_dict['dashboard_name'] = 'Roles'
@@ -218,12 +218,12 @@ def cv_roles_view_function(url_role_id=None, url_redirect_code=None):
   # ------------------------ pre load page checks end ------------------------
   # ------------------------ if no role id given start ------------------------
   if url_role_id == None:
-    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open',))
+    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open'))
   # ------------------------ if no role id given end ------------------------
   # ------------------------ check if role id exists and is assigned to user start ------------------------
   db_role_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,id=url_role_id).first()
   if db_role_obj == None:
-    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open',))
+    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open'))
   page_dict['db_role_dict'] = convert_obj_row_to_dict_function(db_role_obj)
   # ------------------------ check if role id exists and is assigned to user end ------------------------
   return render_template('interior/roles/view_role/index.html', page_dict_html=page_dict)

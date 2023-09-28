@@ -1,8 +1,8 @@
 # ------------------------ imports start ------------------------
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, make_response
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj, CvObj, CvInvalidFormatObj
+from website.models import CvObj, CvInvalidFormatObj
 import os
 import json
 from datetime import datetime
@@ -17,6 +17,8 @@ from website.backend.uploads_user import allowed_cv_file_upload_function, get_fi
 from website.backend.read_files import get_file_contents_function
 import boto3
 from website.backend.open_ai_chatgpt import get_name_and_email_from_cv_function
+from website.backend.convert import convert_obj_row_to_dict_function
+from website.backend.aws_logic import get_file_from_aws_function, upload_file_to_aws_s3_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -57,12 +59,12 @@ def cv_dashboard_general_function(url_status_code='active', url_redirect_code=No
   # ------------------------ get list start ------------------------
   page_dict['dashboard_section_links_dict'] = dashboard_section_links_dict_cv_function()
   # ------------------------ get list end ------------------------
-  # ------------------------ get roles start ------------------------
+  # ------------------------ get content start ------------------------
   page_dict = get_content_function(current_user, page_dict, url_status_code, 'cv')
-  # ------------------------ get roles end ------------------------
-  # ------------------------ get role table links start ------------------------
-  page_dict['roles_table_links_dict'] = cv_table_links_function(url_status_code)
-  # ------------------------ get role table links end ------------------------
+  # ------------------------ get content end ------------------------
+  # ------------------------ get content table links start ------------------------
+  page_dict['sub_table_links_dict'] = cv_table_links_function(url_status_code)
+  # ------------------------ get content table links end ------------------------
   # ------------------------ dashboard variables start ------------------------
   page_dict['dashboard_name'] = 'CVs & Resumes'
   page_dict['dashboard_action'] = 'Add CV'
@@ -94,7 +96,6 @@ def cv_add_function(url_redirect_code=None):
   # ------------------------ pre load page checks end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
-    S3_BUCKET_NAME = os.environ.get('AWS_CVHIRE_BUCKET_NAME')
     # ------------------------ if no files uploaded start ------------------------
     if 'uiFormFileMultipleUpload' not in request.files:
       return redirect(url_for('cv_views_interior_cv.cv_add_function', url_redirect_code='e10'))
@@ -141,8 +142,7 @@ def cv_add_function(url_redirect_code=None):
             cv_name, cv_email, cv_phone = get_name_and_email_from_cv_function(cv_contents)
             # ------------------------ read candidate name and email from contents end ------------------------
             # ------------------------ upload to aws s3 start ------------------------
-            s3 = boto3.client('s3')
-            s3.upload_fileobj(i_file, S3_BUCKET_NAME, aws_file_name)
+            upload_file_to_aws_s3_function(i_file, aws_file_name)
             # ------------------------ upload to aws s3 end ------------------------
             # ------------------------ upload to db start ------------------------
             new_row = CvObj(
@@ -170,4 +170,48 @@ def cv_add_function(url_redirect_code=None):
     return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='s7'))
   # ------------------------ post end ------------------------
   return render_template('interior/cv/add/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_cv.route('/cv/view/<url_cv_id>', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/view/<url_cv_id>/', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/view/<url_cv_id>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/view/<url_cv_id>/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_view_function(url_cv_id=None, url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if no id given start ------------------------
+  if url_cv_id == None:
+    return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active'))
+  # ------------------------ if no id given end ------------------------
+  # ------------------------ check if id exists and is assigned to user start ------------------------
+  db_obj = CvObj.query.filter_by(fk_user_id=current_user.id,id=url_cv_id).first()
+  if db_obj == None:
+    return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active'))
+  # ------------------------ check if id exists and is assigned to user end ------------------------
+  try:
+    # ------------------------ pull cv from aws start ------------------------
+    file_from_aws = get_file_from_aws_function(db_obj.cv_aws_id)
+    print(' ------------- 0 ------------- ')
+    print(f"file_from_aws | type: {type(file_from_aws)} | {file_from_aws}")
+    print(' ------------- 0 ------------- ')
+    # ------------------------ pull cv from aws end ------------------------
+    response = make_response(file_from_aws)
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = 'inline; filename=%s.pdf' % 'yourfilename'
+    return response
+  except Exception as e:
+    return f"An error occurred: {str(e)}"
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_cv.route('/<url_cv_id>')
+# @login_required
+def cv_view_function_2(url_cv_id=None):
+  if id is not None:
+    return render_template('interior/cv/view_cv/index.html', url_cv_id=url_cv_id)
 # ------------------------ individual route end ------------------------
