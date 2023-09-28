@@ -14,7 +14,9 @@ from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import cv_status_codes_function, dashboard_section_links_dict_cv_function, cv_table_links_function
 from website.backend.db_obj_checks import get_content_function
 from website.backend.uploads_user import allowed_cv_file_upload_function, get_file_suffix_function
+from website.backend.read_files import get_file_contents_function
 import boto3
+from website.backend.open_ai_chatgpt import get_name_and_email_from_cv_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -117,12 +119,16 @@ def cv_add_function(url_redirect_code=None):
           cv_aws_id = create_uuid_function('cv_aws_')
           aws_file_name = cv_aws_id + file_format_suffix
           # ------------------------ set variables end ------------------------
+          # ------------------------ read file contents start ------------------------
+          file_contents = get_file_contents_function(i_file, file_format_suffix)
+          # ------------------------ read file contents end ------------------------
+          # ------------------------ read candidate name and email from contents start ------------------------
+          # candidate_name_from_file, candidate_email_from_file = get_name_and_email_from_cv_function(file_contents)
+          # ------------------------ read candidate name and email from contents end ------------------------
           # ------------------------ upload to aws s3 start ------------------------
           # s3 = boto3.client('s3')
           # s3.upload_fileobj(i_file, S3_BUCKET_NAME, aws_file_name)
           # ------------------------ upload to aws s3 end ------------------------
-          # ------------------------ read candidate name and email from file start ------------------------
-          # ------------------------ read candidate name and email from file end ------------------------
           # ------------------------ upload to db start ------------------------
           # new_row = CvObj(
           #   id=create_uuid_function('cv_'),
@@ -131,13 +137,14 @@ def cv_add_function(url_redirect_code=None):
           #   status='active',
           #   cv_upload_name=i_file.filename,
           #   cv_aws_id=aws_file_name,
-          #   candidate_email=None,
-          #   candidate_name=None
+          #   candidate_email=candidate_email_from_file,
+          #   candidate_name=candidate_name_from_file
           # )
           # db.session.add(new_row)
           # db.session.commit()
           # ------------------------ upload to db end ------------------------
         except Exception as e:
+          print(f'Exception as e: {e}')
           pass
       else:
         continue
