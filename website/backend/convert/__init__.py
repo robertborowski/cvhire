@@ -15,6 +15,23 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
     if identifier == 'roles':
       i_dict['name_display'] = i_dict['name'][:35]
     # ------------------------ additional details end ------------------------
+    # ------------------------ additional details start ------------------------
+    if identifier == 'cv':
+      char_limit = 30
+      i_dict['cv_upload_name_display'] = i_dict['cv_upload_name'][:char_limit]
+      try:
+        i_dict['candidate_email_display'] = i_dict['candidate_email'][:char_limit]
+      except:
+        pass
+      try:
+        i_dict['candidate_name_display'] = i_dict['candidate_name'][:char_limit]
+      except:
+        pass
+      try:
+        i_dict['candidate_phone_display'] = i_dict['candidate_phone'][:char_limit]
+      except:
+        pass
+    # ------------------------ additional details end ------------------------
     arr.append(i_dict)
   return arr
 # ------------------------ individual function end ------------------------

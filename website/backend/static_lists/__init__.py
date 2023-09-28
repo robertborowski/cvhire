@@ -174,7 +174,7 @@ def cv_table_links_function(role_type):
     output_dict = {
       'Move to archive': {
         'icon':'fa-solid fa-square-xmark',
-        'url':'/roles/status/archive'
+        'url':'/cv/status/archive'
       }
     }
   # ------------------------ type end ------------------------
@@ -183,21 +183,21 @@ def cv_table_links_function(role_type):
     output_dict = {
       'Move to active': {
         'icon':'fa-regular fa-square-check',
-        'url':'/roles/status/open'
+        'url':'/cv/status/active'
       },
       'Delete CV': {
         'icon':'fa-solid fa-trash',
-        'url':'/roles/status/delete'
+        'url':'/cv/status/delete'
       }
     }
   # ------------------------ type end ------------------------
   # ------------------------ type start ------------------------
   elif role_type == 'all':
     output_dict = {
-      'Edit role': {
-        'icon':'fa-solid fa-pen-to-square',
-        'url':'/roles/edit'
-      }
+      # 'Edit role': {
+      #   'icon':'fa-solid fa-pen-to-square',
+      #   'url':'/roles/edit'
+      # }
     }
   # ------------------------ type end ------------------------
   return output_dict
