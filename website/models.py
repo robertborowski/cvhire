@@ -75,8 +75,9 @@ class CvObj(db.Model):
   status = db.Column(db.String(20))
   cv_upload_name = db.Column(db.String(150))
   cv_aws_id = db.Column(db.String(150))
-  candidate_email = db.Column(db.String(150))
-  candidate_name = db.Column(db.String(150))
+  candidate_email = db.Column(db.String(100))
+  candidate_name = db.Column(db.String(50))
+  candidate_phone = db.Column(db.String(15))
 # ------------------------ individual model end ------------------------
 
 """

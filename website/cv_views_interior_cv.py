@@ -123,7 +123,7 @@ def cv_add_function(url_redirect_code=None):
           file_contents = get_file_contents_function(i_file, file_format_suffix)
           # ------------------------ read file contents end ------------------------
           # ------------------------ read candidate name and email from contents start ------------------------
-          # candidate_name_from_file, candidate_email_from_file = get_name_and_email_from_cv_function(file_contents)
+          candidate_name_from_file, candidate_email_from_file, candidate_phone_from_file = get_name_and_email_from_cv_function(file_contents)
           # ------------------------ read candidate name and email from contents end ------------------------
           # ------------------------ upload to aws s3 start ------------------------
           # s3 = boto3.client('s3')
@@ -139,6 +139,7 @@ def cv_add_function(url_redirect_code=None):
           #   cv_aws_id=aws_file_name,
           #   candidate_email=candidate_email_from_file,
           #   candidate_name=candidate_name_from_file
+          #   candidate_phone=candidate_phone_from_file
           # )
           # db.session.add(new_row)
           # db.session.commit()
