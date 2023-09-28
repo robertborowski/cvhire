@@ -120,29 +120,29 @@ def cv_add_function(url_redirect_code=None):
           aws_file_name = cv_aws_id + file_format_suffix
           # ------------------------ set variables end ------------------------
           # ------------------------ read file contents start ------------------------
-          file_contents = get_file_contents_function(i_file, file_format_suffix)
+          cv_contents = get_file_contents_function(i_file, file_format_suffix)
           # ------------------------ read file contents end ------------------------
           # ------------------------ read candidate name and email from contents start ------------------------
-          cv_name, cv_email, cv_phone = get_name_and_email_from_cv_function(file_contents)
+          cv_name, cv_email, cv_phone = get_name_and_email_from_cv_function(cv_contents)
           # ------------------------ read candidate name and email from contents end ------------------------
           # ------------------------ upload to aws s3 start ------------------------
-          # s3 = boto3.client('s3')
-          # s3.upload_fileobj(i_file, S3_BUCKET_NAME, aws_file_name)
+          s3 = boto3.client('s3')
+          s3.upload_fileobj(i_file, S3_BUCKET_NAME, aws_file_name)
           # ------------------------ upload to aws s3 end ------------------------
           # ------------------------ upload to db start ------------------------
-          # new_row = CvObj(
-          #   id=create_uuid_function('cv_'),
-          #   created_timestamp=create_timestamp_function(),
-          #   fk_user_id=current_user.id,
-          #   status='active',
-          #   cv_upload_name=i_file.filename,
-          #   cv_aws_id=aws_file_name,
-          #   candidate_email=cv_email,
-          #   candidate_name=cv_name,
-          #   candidate_phone=cv_phone
-          # )
-          # db.session.add(new_row)
-          # db.session.commit()
+          new_row = CvObj(
+            id=create_uuid_function('cv_'),
+            created_timestamp=create_timestamp_function(),
+            fk_user_id=current_user.id,
+            status='active',
+            cv_upload_name=i_file.filename,
+            cv_aws_id=aws_file_name,
+            candidate_email=cv_email,
+            candidate_name=cv_name,
+            candidate_phone=cv_phone
+          )
+          db.session.add(new_row)
+          db.session.commit()
           # ------------------------ upload to db end ------------------------
         except Exception as e:
           print(f'Exception as e: {e}')

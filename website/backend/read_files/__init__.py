@@ -11,6 +11,7 @@ def get_file_contents_function(input_file, input_file_type):
     pdf_reader = PyPDF2.PdfReader(input_file)
     for page in pdf_reader.pages:
       file_content += page.extract_text()
+    return file_content
   # ------------------------ format end ------------------------
   # ------------------------ format start ------------------------
   if input_file_type == '.docx':
@@ -30,6 +31,11 @@ def get_file_contents_function(input_file, input_file_type):
       for para in section.footer.paragraphs:
         full_text.append(para.text)
     return '\n'.join(full_text)
+  # ------------------------ format end ------------------------
+  # ------------------------ format start ------------------------
+  if input_file_type == '.txt':
+    file_content = input_file.read()
+    return file_content
   # ------------------------ format end ------------------------
   return file_content
 # ------------------------ individual function end ------------------------
