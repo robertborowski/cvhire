@@ -80,6 +80,14 @@ class CvObj(db.Model):
   candidate_phone = db.Column(db.String(15))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class CvInvalidFormatObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  fk_user_id = db.Column(db.String(150))
+  invalid_file_type = db.Column(db.String(20))
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):
