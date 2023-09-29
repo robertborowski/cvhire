@@ -193,11 +193,14 @@ def cv_view_function(url_cv_id=None):
       return Response(response, content_type='application/pdf')
     # ------------------------ file type end ------------------------
     # ------------------------ file type start ------------------------
-    elif file_format_suffix == '.docx':
+    elif file_format_suffix == '.docx' or file_format_suffix == '.txt':
       response = get_file_static_from_aws_function(db_obj.cv_aws_id)
       output = Response(response)
       output.headers["Content-Disposition"] = f"attachment; filename={db_obj.cv_upload_name}"
-      output.headers["Content-Type"] = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"  # MIME type for .docx
+      if file_format_suffix == '.docx':
+        output.headers["Content-Type"] = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"  # MIME type for .docx
+      elif file_format_suffix == '.txt':
+        output.headers["Content-Type"] = "text/plain"  # MIME type for .txt
       return output
     # ------------------------ file type end ------------------------
   except Exception as e:
