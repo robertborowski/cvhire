@@ -15,7 +15,7 @@ from website.backend.uploads_user import allowed_cv_file_upload_function, get_fi
 from website.backend.read_files import get_file_contents_function
 from website.backend.open_ai_chatgpt import get_name_and_email_from_cv_function
 from website.backend.convert import convert_obj_row_to_dict_function
-from website.backend.aws_logic import get_file_from_aws_function, upload_file_to_aws_s3_function, initial_cv_scrape_function
+from website.backend.aws_logic import get_file_contents_from_aws_function, upload_file_to_aws_s3_function, initial_cv_scrape_function, get_file_static_from_aws_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -170,17 +170,10 @@ def cv_add_function(url_redirect_code=None):
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_interior_cv.route('/cv/view/<url_cv_id>', methods=['GET', 'POST'])
-@cv_views_interior_cv.route('/cv/view/<url_cv_id>/', methods=['GET', 'POST'])
-@cv_views_interior_cv.route('/cv/view/<url_cv_id>/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior_cv.route('/cv/view/<url_cv_id>/<url_redirect_code>/', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/view/<url_cv_id>')
+@cv_views_interior_cv.route('/cv/view/<url_cv_id>/')
 @login_required
-def cv_view_function(url_cv_id=None, url_redirect_code=None):
-  # ------------------------ pre load page checks start ------------------------
-  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
-  if page_dict['current_user_locked'] == True:
-    return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ pre load page checks end ------------------------
+def cv_view_function(url_cv_id=None):
   # ------------------------ if no id given start ------------------------
   if url_cv_id == None:
     return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active'))
@@ -190,15 +183,24 @@ def cv_view_function(url_cv_id=None, url_redirect_code=None):
   if db_obj == None:
     return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active'))
   # ------------------------ check if id exists and is assigned to user end ------------------------
+  # ------------------------ get file suffix start ------------------------
+  file_format_suffix = get_file_suffix_function(db_obj.cv_aws_id)
+  # ------------------------ get file suffix end ------------------------
   try:
-    # ------------------------ pull cv from aws start ------------------------
-    file_from_aws = get_file_from_aws_function(db_obj.cv_aws_id)
-    # file_content = file_from_aws['Body'].read()
-    # response = Response(file_content, content_type="application/pdf")
-    # response.headers["Content-Disposition"] = f"attachment; filename={db_obj.cv_aws_id}"
-    # return response
-    # ------------------------ pull cv from aws end ------------------------
+    # ------------------------ file type start ------------------------
+    if file_format_suffix == '.pdf':
+      response = get_file_static_from_aws_function(db_obj.cv_aws_id)
+      return Response(response, content_type='application/pdf')
+    # ------------------------ file type end ------------------------
+    # ------------------------ file type start ------------------------
+    elif file_format_suffix == '.docx':
+      response = get_file_static_from_aws_function(db_obj.cv_aws_id)
+      output = Response(response)
+      output.headers["Content-Disposition"] = f"attachment; filename={db_obj.cv_upload_name}"
+      output.headers["Content-Type"] = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"  # MIME type for .docx
+      return output
+    # ------------------------ file type end ------------------------
   except Exception as e:
-    return f"An error occurred: {str(e)}"
+    return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='e12'))
 # ------------------------ individual route end ------------------------
 

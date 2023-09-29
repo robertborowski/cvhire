@@ -65,6 +65,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Invalid file name',
       'type':'danger'
     }
+  elif redirect_var == 'e12':
+    alert_message_dict = {
+      'message':'Download failed',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
