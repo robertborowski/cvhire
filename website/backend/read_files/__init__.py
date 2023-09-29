@@ -14,7 +14,7 @@ def get_file_contents_function(input_file, input_file_type):
     return file_content
   # ------------------------ format end ------------------------
   # ------------------------ format start ------------------------
-  if input_file_type == '.docx':
+  elif input_file_type == '.docx':
     doc = Document(input_file)
     full_text = []
     # Extract content from the main body of the document
@@ -33,7 +33,7 @@ def get_file_contents_function(input_file, input_file_type):
     return '\n'.join(full_text)
   # ------------------------ format end ------------------------
   # ------------------------ format start ------------------------
-  if input_file_type == '.txt':
+  elif input_file_type == '.txt':
     file_content = input_file.read()
     return file_content
   # ------------------------ format end ------------------------

@@ -1,10 +1,8 @@
 # ------------------------ imports start ------------------------
-from flask import Blueprint, render_template, request, redirect, url_for, make_response
+from flask import Blueprint, render_template, request, redirect, url_for, make_response, send_file, Response
 from flask_login import login_required, current_user, logout_user
 from website import db
 from website.models import CvObj, CvInvalidFormatObj
-import os
-import json
 from datetime import datetime
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
@@ -15,7 +13,6 @@ from website.backend.static_lists import cv_status_codes_function, dashboard_sec
 from website.backend.db_obj_checks import get_content_function
 from website.backend.uploads_user import allowed_cv_file_upload_function, get_file_suffix_function
 from website.backend.read_files import get_file_contents_function
-import boto3
 from website.backend.open_ai_chatgpt import get_name_and_email_from_cv_function
 from website.backend.convert import convert_obj_row_to_dict_function
 from website.backend.aws_logic import get_file_from_aws_function, upload_file_to_aws_s3_function
@@ -70,6 +67,8 @@ def cv_dashboard_general_function(url_status_code='active', url_redirect_code=No
   page_dict['dashboard_action'] = 'Add CV'
   page_dict['dashboard_action_link'] = '/cv/add'
   # ------------------------ dashboard variables end ------------------------
+  # ------------------------ autofill newly added cv/resumes start ------------------------
+  # ------------------------ autofill newly added cv/resumes end ------------------------
   # ------------------------ choose correct template start ------------------------
   correct_template = ''
   if url_status_code == 'active':
@@ -135,15 +134,17 @@ def cv_add_function(url_redirect_code=None):
             cv_aws_id = create_uuid_function('cv_aws_')
             aws_file_name = cv_aws_id + file_format_suffix
             # ------------------------ set variables end ------------------------
+            # ------------------------ upload to aws s3 start ------------------------
+            upload_file_to_aws_s3_function(i_file, aws_file_name)
+            # ------------------------ upload to aws s3 end ------------------------
+            """
             # ------------------------ read file contents start ------------------------
             cv_contents = get_file_contents_function(i_file, file_format_suffix)
             # ------------------------ read file contents end ------------------------
             # ------------------------ read candidate name and email from contents start ------------------------
             cv_name, cv_email, cv_phone = get_name_and_email_from_cv_function(cv_contents)
             # ------------------------ read candidate name and email from contents end ------------------------
-            # ------------------------ upload to aws s3 start ------------------------
-            upload_file_to_aws_s3_function(i_file, aws_file_name)
-            # ------------------------ upload to aws s3 end ------------------------
+            """
             # ------------------------ upload to db start ------------------------
             new_row = CvObj(
               id=create_uuid_function('cv_'),
@@ -152,9 +153,10 @@ def cv_add_function(url_redirect_code=None):
               status='active',
               cv_upload_name=i_file.filename,
               cv_aws_id=aws_file_name,
-              candidate_email=cv_email,
-              candidate_name=cv_name,
-              candidate_phone=cv_phone
+              candidate_email=None,
+              candidate_name=None,
+              candidate_phone=None,
+              initial_scrape_complete=False
             )
             db.session.add(new_row)
             db.session.commit()
@@ -196,22 +198,12 @@ def cv_view_function(url_cv_id=None, url_redirect_code=None):
   try:
     # ------------------------ pull cv from aws start ------------------------
     file_from_aws = get_file_from_aws_function(db_obj.cv_aws_id)
-    print(' ------------- 0 ------------- ')
-    print(f"file_from_aws | type: {type(file_from_aws)} | {file_from_aws}")
-    print(' ------------- 0 ------------- ')
+    # file_content = file_from_aws['Body'].read()
+    # response = Response(file_content, content_type="application/pdf")
+    # response.headers["Content-Disposition"] = f"attachment; filename={db_obj.cv_aws_id}"
+    # return response
     # ------------------------ pull cv from aws end ------------------------
-    response = make_response(file_from_aws)
-    response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = 'inline; filename=%s.pdf' % 'yourfilename'
-    return response
   except Exception as e:
     return f"An error occurred: {str(e)}"
 # ------------------------ individual route end ------------------------
 
-# ------------------------ individual route start ------------------------
-@cv_views_interior_cv.route('/<url_cv_id>')
-# @login_required
-def cv_view_function_2(url_cv_id=None):
-  if id is not None:
-    return render_template('interior/cv/view_cv/index.html', url_cv_id=url_cv_id)
-# ------------------------ individual route end ------------------------

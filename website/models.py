@@ -78,6 +78,7 @@ class CvObj(db.Model):
   candidate_email = db.Column(db.String(100))
   candidate_name = db.Column(db.String(50))
   candidate_phone = db.Column(db.String(15))
+  initial_scrape_complete = db.Column(db.Boolean, default=False)
 # ------------------------ individual model end ------------------------
 
 # ------------------------ individual model start ------------------------
