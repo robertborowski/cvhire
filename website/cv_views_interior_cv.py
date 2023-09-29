@@ -15,7 +15,7 @@ from website.backend.uploads_user import allowed_cv_file_upload_function, get_fi
 from website.backend.read_files import get_file_contents_function
 from website.backend.open_ai_chatgpt import get_name_and_email_from_cv_function
 from website.backend.convert import convert_obj_row_to_dict_function
-from website.backend.aws_logic import get_file_from_aws_function, upload_file_to_aws_s3_function
+from website.backend.aws_logic import get_file_from_aws_function, upload_file_to_aws_s3_function, initial_cv_scrape_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -68,6 +68,9 @@ def cv_dashboard_general_function(url_status_code='active', url_redirect_code=No
   page_dict['dashboard_action_link'] = '/cv/add'
   # ------------------------ dashboard variables end ------------------------
   # ------------------------ autofill newly added cv/resumes start ------------------------
+  updates_occurred = initial_cv_scrape_function(current_user.id)
+  if updates_occurred == True:
+    return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code=url_redirect_code))
   # ------------------------ autofill newly added cv/resumes end ------------------------
   # ------------------------ choose correct template start ------------------------
   correct_template = ''
@@ -137,14 +140,6 @@ def cv_add_function(url_redirect_code=None):
             # ------------------------ upload to aws s3 start ------------------------
             upload_file_to_aws_s3_function(i_file, aws_file_name)
             # ------------------------ upload to aws s3 end ------------------------
-            """
-            # ------------------------ read file contents start ------------------------
-            cv_contents = get_file_contents_function(i_file, file_format_suffix)
-            # ------------------------ read file contents end ------------------------
-            # ------------------------ read candidate name and email from contents start ------------------------
-            cv_name, cv_email, cv_phone = get_name_and_email_from_cv_function(cv_contents)
-            # ------------------------ read candidate name and email from contents end ------------------------
-            """
             # ------------------------ upload to db start ------------------------
             new_row = CvObj(
               id=create_uuid_function('cv_'),
