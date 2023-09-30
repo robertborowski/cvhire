@@ -13,7 +13,8 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
     i_dict = convert_obj_row_to_dict_function(i_obj)
     # ------------------------ additional details start ------------------------
     if identifier == 'roles':
-      i_dict['name_display'] = i_dict['name'][:35]
+      char_limit = 35
+      i_dict['name_display'] = i_dict['name'][:char_limit]
     # ------------------------ additional details end ------------------------
     # ------------------------ additional details start ------------------------
     if identifier == 'cv':

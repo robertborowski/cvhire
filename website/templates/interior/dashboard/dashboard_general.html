@@ -11,10 +11,7 @@
   <!-- ------------------------------------- title start ------------------------------------- -->
   <div class="custom-pt-25 custom-display-flex custom-jc-between custom-mb-10">
     <h2 class="custom-header-30 custom-weight-900 custom-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
-    {% if page_dict_html['starting_route'] == 'ai' %}
-    {% else %}
-      <a href="{{ page_dict_html['dashboard_action_link'] }}" class="btn btn-primary custom-br-10"><i class="fa-solid fa-plus"></i> {{ page_dict_html['dashboard_action'] }}</a>
-    {% endif %}
+    <a href="{{ page_dict_html['dashboard_action_link'] }}" class="btn btn-primary custom-br-10"><i class="fa-solid fa-plus"></i> {{ page_dict_html['dashboard_action'] }}</a>
   </div>
   <!-- ------------------------------------- title end ------------------------------------- -->
   <!-- ------------------------------------- options start ------------------------------------- -->
