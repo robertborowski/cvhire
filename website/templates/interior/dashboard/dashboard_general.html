@@ -11,7 +11,10 @@
   <!-- ------------------------------------- title start ------------------------------------- -->
   <div class="custom-pt-25 custom-display-flex custom-jc-between custom-mb-10">
     <h2 class="custom-header-30 custom-weight-900 custom-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
-    <a href="{{ page_dict_html['dashboard_action_link'] }}" class="btn btn-primary custom-br-10"><i class="fa-solid fa-plus"></i> {{ page_dict_html['dashboard_action'] }}</a>
+    {% if page_dict_html['starting_route'] == 'ai' %}
+    {% else %}
+      <a href="{{ page_dict_html['dashboard_action_link'] }}" class="btn btn-primary custom-br-10"><i class="fa-solid fa-plus"></i> {{ page_dict_html['dashboard_action'] }}</a>
+    {% endif %}
   </div>
   <!-- ------------------------------------- title end ------------------------------------- -->
   <!-- ------------------------------------- options start ------------------------------------- -->
@@ -38,7 +41,7 @@
   <div class="custom-header-15 custom-mt-25">
     <!-- ------------------------------------- no content start ------------------------------------- -->
     {% if page_dict_html['content_total_rows'] == 0 %}
-      {% if page_dict_html['dashboard_name'] == 'Roles' %}
+      {% if page_dict_html['starting_route'] == 'roles' %}
         {% if page_dict_html['url_status_code'] == 'open' or page_dict_html['url_status_code'] == 'all' %}
           <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
             <a href="/roles/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add your first open role</a>
@@ -52,7 +55,7 @@
             <a href="/roles/open" class="custom-opacity-60 custom-a-black-underline">No archived roles</a>
           </div>
         {% endif %}
-      {% elif page_dict_html['dashboard_name'] == 'CVs & Resumes' %}
+      {% elif page_dict_html['starting_route'] == 'cv' %}
         {% if page_dict_html['url_status_code'] == 'active' or page_dict_html['url_status_code'] == 'all' %}
           <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
             <a href="/cv/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add candidate CVs</a>
@@ -86,12 +89,12 @@
         <div class="custom-ptb-25 border-bottom uiSearchItem">
           <div class="custom-display-flex custom-jc-between">
             <div>
-              {% if page_dict_html['dashboard_name'] == 'Roles' %}
+              {% if page_dict_html['starting_route'] == 'roles' %}
                 <div class="custom-display-flex custom-f-direction-col">
                   <a href="/roles/view/{{ i['id'] }}" class="custom-a-black-underline">{{ i['name_display'] }}</a>
                   <a href="/roles/view/{{ i['id'] }}" class="custom-a-black-underline custom-mt-5 custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
                 </div>
-              {% elif page_dict_html['dashboard_name'] == 'CVs & Resumes' %}
+              {% elif page_dict_html['starting_route'] == 'cv' %}
                 <div class="custom-display-flex custom-f-direction-col">
                   <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline custom-header-20">{{ i['candidate_name_display'] }}</a>
                   <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline">{{ i['candidate_email_display'] }}</a>
@@ -103,9 +106,9 @@
             </div>
             <div class="custom-header-20 my-auto">
               <ul class="custom-m-0 custom-display-flex custom-no-decoration">
-                {% if page_dict_html['dashboard_name'] == 'Roles' %}
+                {% if page_dict_html['starting_route'] == 'roles' %}
                   <li><a href="/ai/one-role-many-cvs" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Screen CVs</a></li>
-                {% elif page_dict_html['dashboard_name'] == 'CVs & Resumes' %}
+                {% elif page_dict_html['starting_route'] == 'cv' %}
                   <li><a href="/ai/one-role-many-cvs" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Screen CV</a></li>
                 {% endif %}
                 {% for k,v in page_dict_html['sub_table_links_dict'].items() %}

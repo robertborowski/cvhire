@@ -55,8 +55,6 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
   # ------------------------ get list end ------------------------
   # ------------------------ dashboard variables start ------------------------
   page_dict['dashboard_name'] = 'Artificial Intelligence'
-  page_dict['dashboard_action'] = 'Start screening'
-  page_dict['dashboard_action_link'] = '#'
   # ------------------------ dashboard variables end ------------------------
   # ------------------------ for setting cookie start ------------------------
   correct_template = ''
