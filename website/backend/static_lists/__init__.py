@@ -31,7 +31,7 @@ def redis_all_keys_function():
 # ------------------------ individual function start ------------------------
 def navbar_link_dict_function():
   output_dict = {
-    'Home': '/home',
+    'Home': '/ai',
     'CVs & Resumes': '/cv',
     'Roles': '/roles',
     'Results': '/results',
@@ -80,6 +80,15 @@ def dashboard_section_links_dict_cv_function():
     'Active': '/cv/active',
     'Archived': '/cv/archive',
     'All CVs': '/cv/all'
+  }
+  return output_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def dashboard_section_links_dict_ai_function():
+  output_dict = {
+    'One Role, Many CVs': '/cv/one-role-many-cvs',
+    'One CV, Many Roles': '/cv/one-cv-many-roles'
   }
   return output_dict
 # ------------------------ individual function end ------------------------
