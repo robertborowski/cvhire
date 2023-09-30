@@ -12,6 +12,7 @@ from website.backend.alerts import get_alert_message_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import ai_status_codes_function, dashboard_section_links_dict_ai_function
+from website.backend.db_obj_checks import get_content_split_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -56,6 +57,16 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
   # ------------------------ dashboard variables start ------------------------
   page_dict['dashboard_name'] = 'Artificial Intelligence'
   # ------------------------ dashboard variables end ------------------------
+  # ------------------------ get content start ------------------------
+  page_dict = get_content_split_function(current_user, page_dict, 'roles')
+  page_dict = get_content_split_function(current_user, page_dict, 'cv')
+  # ------------------------ get content end ------------------------
+  print(' ------------- 100 start ------------- ')
+  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+  for k,v in page_dict.items():
+    print(f"k: {k} | v: {v}")
+    pass
+  print(' ------------- 100 end ------------- ')
   # ------------------------ for setting cookie start ------------------------
   correct_template = ''
   if url_status_code == 'one-role-many-cvs':

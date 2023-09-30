@@ -88,3 +88,30 @@ def get_content_function(current_user, page_dict, url_status_code, dashboard_typ
   # ------------------------ assign variables end ------------------------
   return page_dict
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_content_split_function(current_user, page_dict, item_type):
+  # ------------------------ set variables start ------------------------
+  page_dict[f'content_total_rows_{item_type}'] = 0
+  page_dict[f'content_total_rows_arr_of_dicts_{item_type}'] = None
+  db_obj = None
+  # ------------------------ set variables end ------------------------
+  # ------------------------ pull from db start ------------------------
+  # ------------------------ roles start ------------------------
+  if item_type == 'roles':
+    db_obj = RolesObj.query.filter_by(fk_user_id=current_user.id,status='open').order_by(RolesObj.name).all()
+  # ------------------------ roles end ------------------------
+  # ------------------------ cv start ------------------------
+  elif item_type == 'cv':
+    db_obj = CvObj.query.filter_by(fk_user_id=current_user.id,status='active').order_by(CvObj.candidate_name).all()
+  # ------------------------ cv end ------------------------
+  # ------------------------ pull from db end ------------------------
+  # ------------------------ assign variables start ------------------------
+  page_dict[f'content_total_rows_{item_type}'] = len(db_obj)
+  if item_type == 'roles':
+    page_dict[f'content_total_rows_arr_of_dicts_{item_type}'] = objs_to_arr_of_dicts_function(db_obj, 'roles')
+  if item_type == 'cv':
+    page_dict[f'content_total_rows_arr_of_dicts_{item_type}'] = objs_to_arr_of_dicts_function(db_obj, 'cv')
+  # ------------------------ assign variables end ------------------------
+  return page_dict
+# ------------------------ individual function end ------------------------
