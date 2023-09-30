@@ -563,6 +563,16 @@
 .custom-f-direction-row {
   flex-direction: row;
 }
+.custom-flex-gap-25 {
+  content: '';
+  flex: none;
+  width: 25px;
+}
+.custom-flex-gap-25 {
+  content: '';
+  flex: none;
+  width: 50px;
+}
 /* ------------------- flex end ------------------- */
 /* ------------------- google start ------------------- */
 .custom-google-font-1 {

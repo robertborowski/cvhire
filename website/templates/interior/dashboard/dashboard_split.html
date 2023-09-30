@@ -1,0 +1,55 @@
+{% extends "navbar/interior.html" %}
+
+{% block title %}
+  <title>Dashboard | CVhire</title>
+  <meta name="description" content="CVhire">
+  <meta name="og:description" content="CVhire">
+{% endblock %}
+
+{% block contentBodyExceptNavbarAndFooter %}
+<form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+  <div class="custom-width-interior-1100 mx-auto custom-plr-50">
+    <!-- ------------------------------------- title start ------------------------------------- -->
+    <div class="custom-pt-25 custom-display-flex custom-jc-between custom-mb-10">
+      <h2 class="custom-header-30 custom-weight-900 custom-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
+      <button type="submit" class="btn btn-success custom-br-10">Screen CV</button>
+    </div>
+    <!-- ------------------------------------- title end ------------------------------------- -->
+    <!-- ------------------------------------- options start ------------------------------------- -->
+    <div class="custom-header-15 custom-ptb-10 border-bottom">
+        <ul class="custom-m-0 custom-p-0 custom-display-flex custom-no-decoration custom-jc-start">
+          {% for k,v in page_dict_html['dashboard_section_links_dict'].items() %}
+            {% if v in page_dict_html['navbar_link_current'] %}
+              <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-primary">{{ k }}</a></li>
+            {% else %}
+              <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-hover-1">{{ k }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <!-- ------------------------------------- options end ------------------------------------- -->
+  </div>
+  <!-- ------------------------------------- different dashboard subpages start ------------------------------------- -->
+  {% block contentBodyDashboard %}
+  {% endblock %}
+  <!-- ------------------------------------- different dashboard subpages end ------------------------------------- -->
+  <!-- ------------------------------------- content start ------------------------------------- -->
+  <div class="custom-width-interior-1100 mx-auto custom-plr-50 custom-border-1">
+    <div class="custom-header-15 custom-mt-25 custom-display-flex">
+      <!-- ------------------------------------- left start ------------------------------------- -->
+      <div class="custom-display-block custom-width-100 custom-border-2">
+        <p class="custom-m-0">Roles</p>
+      </div>
+      <!-- ------------------------------------- left end ------------------------------------- -->
+      <div class="custom-flex-gap-25"></div>
+      <!-- ------------------------------------- right start ------------------------------------- -->
+      <div class="custom-display-block custom-width-100 custom-border-3">
+        <p class="custom-m-0">CVs</p>
+      </div>
+      <!-- ------------------------------------- right end ------------------------------------- -->
+    </div>
+  </div>
+</form>
+<!-- ------------------------------------- content end ------------------------------------- -->
+{% endblock %}
