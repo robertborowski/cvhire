@@ -97,6 +97,12 @@ def cv_status_codes_function():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def ai_status_codes_function():
+  arr = ['one-role-many-cvs','one-cv-many-roles']
+  return arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def roles_table_links_function(role_type):
   output_dict = {}
   # ------------------------ type start ------------------------

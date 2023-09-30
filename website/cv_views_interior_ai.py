@@ -11,7 +11,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
-from website.backend.static_lists import role_status_codes_function, cv_status_codes_function
+from website.backend.static_lists import ai_status_codes_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -41,6 +41,15 @@ def cv_dashboard_function(url_status_code='1-role-many-cvs', url_redirect_code=N
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ check if status code is valid start ------------------------
+  status_codes_arr = ai_status_codes_function()
+  if url_status_code not in status_codes_arr:
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e10'))
+  # ------------------------ check if status code is valid end ------------------------
+  # ------------------------ get status code start ------------------------
+  page_dict['url_status_code'] = url_status_code
+  page_dict['starting_route'] = 'ai'
+  # ------------------------ get status code end ------------------------
   # ------------------------ for setting cookie start ------------------------
   template_location_url = 'interior/dashboard/index.html'
   # ------------------------ for setting cookie end ------------------------
