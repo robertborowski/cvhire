@@ -24,10 +24,18 @@ redis_connection = redis_connect_open_function()
 # ------------------------ individual route start ------------------------
 @cv_views_interior_ai.route('/home', methods=['GET', 'POST'])
 @cv_views_interior_ai.route('/home/', methods=['GET', 'POST'])
-@cv_views_interior_ai.route('/home/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior_ai.route('/home/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
-def cv_dashboard_function(url_redirect_code=None):
+def cv_none_ai_function():
+  return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs'))
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_ai.route('/ai/<url_status_code>', methods=['GET', 'POST'])
+@cv_views_interior_ai.route('/ai/<url_status_code>', methods=['GET', 'POST'])
+@cv_views_interior_ai.route('/ai/<url_status_code>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior_ai.route('/ai/<url_status_code>/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def cv_dashboard_function(url_status_code='1-role-many-cvs', url_redirect_code=None):
   # ------------------------ pre load page checks start ------------------------
   page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
   if page_dict['current_user_locked'] == True:
