@@ -34,7 +34,7 @@ def navbar_link_dict_function():
     'Home': '/home',
     'CVs & Resumes': '/cv',
     'Roles': '/roles',
-    'Favorites': '/favorites',
+    'Results': '/results',
     'Export': '/export'
   }
   return output_dict
