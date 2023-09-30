@@ -59,15 +59,19 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
   page_dict['dashboard_action_link'] = '#'
   # ------------------------ dashboard variables end ------------------------
   # ------------------------ for setting cookie start ------------------------
-  template_location_url = 'interior/ai/index.html'
+  correct_template = ''
+  if url_status_code == 'one-role-many-cvs':
+    correct_template = 'interior/ai/one-role-many-cvs/index.html'
+  if url_status_code == 'one-cv-many-roles':
+    correct_template = 'interior/ai/one-cv-many-roles/index.html'
   # ------------------------ for setting cookie end ------------------------
   # ------------------------ auto set cookie start ------------------------
   get_cookie_value_from_browser = redis_check_if_cookie_exists_function()
   if get_cookie_value_from_browser != None:
     redis_connection.set(get_cookie_value_from_browser, current_user.id.encode('utf-8'))
-    return render_template(template_location_url, user=current_user, page_dict_html=page_dict)
+    return render_template(correct_template, user=current_user, page_dict_html=page_dict)
   else:
-    browser_response = browser_response_set_cookie_function(current_user, template_location_url, page_dict)
+    browser_response = browser_response_set_cookie_function(current_user, correct_template, page_dict)
     return browser_response
   # ------------------------ auto set cookie end ------------------------
 # ------------------------ individual route end ------------------------
