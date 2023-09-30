@@ -69,6 +69,12 @@
       <!-- ------------------------------------- search bar start ------------------------------------- -->
       <input type="text" class="form-control" id="ui_search_bar" name="ui_search_bar" placeholder="Search (x{{ page_dict_html['content_total_rows'] }})">
       <!-- ------------------------------------- search bar end ------------------------------------- -->
+      <div class="custom-display-flex custom-jc-between custom-mt-25">
+        <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_a" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mr-10">Name <i class="fa-solid fa-caret-down"></i></a>
+        <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_z" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mlr-10">Name <i class="fa-solid fa-caret-up"></i></a>
+        <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_a" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mlr-10">Upload <i class="fa-solid fa-caret-down"></i></a>
+        <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_z" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-ml-10">Upload <i class="fa-solid fa-caret-up"></i></a>
+      </div>
       <!-- ------------------------------------- divider start ------------------------------------- -->
       <div class="custom-display-flex custom-jc-between border-bottom custom-mt-25">
         <p class="custom-m-0 custom-opacity-50 custom-header-12">Item</p>
@@ -81,13 +87,17 @@
           <div class="custom-display-flex custom-jc-between">
             <div>
               {% if page_dict_html['dashboard_name'] == 'Roles' %}
-                <a href="/roles/view/{{ i['id'] }}" class="custom-a-black-underline">{{ i['name_display'] }}</a>
+                <div class="custom-display-flex custom-f-direction-col">
+                  <a href="/roles/view/{{ i['id'] }}" class="custom-a-black-underline">{{ i['name_display'] }}</a>
+                  <a href="/roles/view/{{ i['id'] }}" class="custom-a-black-underline custom-mt-5 custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
+                </div>
               {% elif page_dict_html['dashboard_name'] == 'CVs & Resumes' %}
                 <div class="custom-display-flex custom-f-direction-col">
-                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline">{{ i['candidate_name_display'] }}</a>
+                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline custom-header-20">{{ i['candidate_name_display'] }}</a>
                   <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline">{{ i['candidate_email_display'] }}</a>
                   <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline">{{ i['candidate_phone_display'] }}</a>
-                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline">{{ i['cv_upload_name_display'] }}</a>
+                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline custom-header-12 custom-mt-5">{{ i['cv_upload_name_display'] }}</a>
+                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
                 </div>
               {% endif %}
             </div>

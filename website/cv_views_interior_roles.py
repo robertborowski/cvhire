@@ -49,12 +49,19 @@ def cv_roles_dashboard_function(url_status_code='open', url_redirect_code=None):
   # ------------------------ check if status code is valid end ------------------------
   # ------------------------ get status code start ------------------------
   page_dict['url_status_code'] = url_status_code
+  page_dict['starting_route'] = 'roles'
   # ------------------------ get status code end ------------------------
   # ------------------------ get list start ------------------------
   page_dict['dashboard_section_links_dict'] = dashboard_section_links_dict_roles_function()
   # ------------------------ get list end ------------------------
+  # ------------------------ check if sort option passed start ------------------------
+  sort_option_passed = None
+  if url_redirect_code != None:
+    if 'sort_' in url_redirect_code:
+      sort_option_passed = url_redirect_code
+  # ------------------------ check if sort option passed end ------------------------
   # ------------------------ get roles start ------------------------
-  page_dict = get_content_function(current_user, page_dict, url_status_code, 'roles')
+  page_dict = get_content_function(current_user, page_dict, url_status_code, page_dict['starting_route'], sort_option_passed)
   # ------------------------ get roles end ------------------------
   # ------------------------ get role table links start ------------------------
   page_dict['sub_table_links_dict'] = roles_table_links_function(url_status_code)
