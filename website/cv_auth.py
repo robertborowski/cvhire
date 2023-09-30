@@ -124,7 +124,7 @@ def cv_signup_function(url_redirect_code=None):
         except:
           pass
       # ------------------------ email self end ------------------------
-      return redirect(url_for('cv_views_interior.cv_dashboard_function'))
+      return redirect(url_for('cv_views_interior_ai.cv_dashboard_function'))
     # ------------------------ post method hit #2 - full sign up end ------------------------
   return render_template('exterior/signup/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
@@ -164,7 +164,7 @@ def cv_login_function(url_redirect_code=None):
           except:
             pass
         # ------------------------ keep user logged in end ------------------------
-        return redirect(url_for('cv_views_interior.cv_dashboard_function'))
+        return redirect(url_for('cv_views_interior_ai.cv_dashboard_function'))
     except:
       pass
   # ------------------------ auto sign in with cookie end ------------------------
@@ -194,7 +194,7 @@ def cv_login_function(url_redirect_code=None):
         # ------------------------ keep user logged in start ------------------------
         login_user(user, remember=True)
         # ------------------------ keep user logged in end ------------------------
-        return redirect(url_for('cv_views_interior.cv_dashboard_function'))
+        return redirect(url_for('cv_views_interior_ai.cv_dashboard_function'))
       else:
         return redirect(url_for('cv_auth.cv_login_function', url_redirect_code='e4'))
     else:

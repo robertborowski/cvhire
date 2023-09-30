@@ -22,32 +22,6 @@ redis_connection = redis_connect_open_function()
 # ------------------------ connect to redis end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_interior.route('/home', methods=['GET', 'POST'])
-@cv_views_interior.route('/home/', methods=['GET', 'POST'])
-@cv_views_interior.route('/home/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior.route('/home/<url_redirect_code>/', methods=['GET', 'POST'])
-@login_required
-def cv_dashboard_function(url_redirect_code=None):
-  # ------------------------ pre load page checks start ------------------------
-  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
-  if page_dict['current_user_locked'] == True:
-    return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ pre load page checks end ------------------------
-  # ------------------------ for setting cookie start ------------------------
-  template_location_url = 'interior/dashboard/index.html'
-  # ------------------------ for setting cookie end ------------------------
-  # ------------------------ auto set cookie start ------------------------
-  get_cookie_value_from_browser = redis_check_if_cookie_exists_function()
-  if get_cookie_value_from_browser != None:
-    redis_connection.set(get_cookie_value_from_browser, current_user.id.encode('utf-8'))
-    return render_template(template_location_url, user=current_user, page_dict_html=page_dict)
-  else:
-    browser_response = browser_response_set_cookie_function(current_user, template_location_url, page_dict)
-    return browser_response
-  # ------------------------ auto set cookie end ------------------------
-# ------------------------ individual route end ------------------------
-
-# ------------------------ individual route start ------------------------
 @cv_views_interior.route('/locked', methods=['GET', 'POST'])
 @cv_views_interior.route('/locked/<url_redirect_code>', methods=['GET', 'POST'])
 @cv_views_interior.route('/locked/<url_redirect_code>/', methods=['GET', 'POST'])
@@ -55,7 +29,7 @@ def cv_dashboard_function(url_redirect_code=None):
 def cv_locked_function(url_redirect_code=None):
   # ------------------------ locked status start ------------------------
   if current_user.locked != True:
-    return redirect(url_for('cv_views_interior.cv_dashboard_function'))
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function'))
   # ------------------------ locked status end ------------------------
   # ------------------------ page dict start ------------------------
   if url_redirect_code == None:
@@ -174,7 +148,7 @@ def cv_general_status_change_function(url_section_code=None, url_status_code=Non
   # ------------------------ pre load page checks end ------------------------
   # ------------------------ if none start ------------------------
   if url_section_code == None or url_status_code == None or url_db_item_id == None:
-    return redirect(url_for('cv_views_interior.cv_dashboard_function', url_redirect_code='e10'))
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_redirect_code='e10'))
   # ------------------------ if none end ------------------------
   # ------------------------ check if status code is valid start ------------------------
   if url_section_code == 'roles':
