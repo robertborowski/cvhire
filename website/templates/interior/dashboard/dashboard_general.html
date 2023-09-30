@@ -104,9 +104,9 @@
             <div class="custom-header-20 my-auto">
               <ul class="custom-m-0 custom-display-flex custom-no-decoration">
                 {% if page_dict_html['dashboard_name'] == 'Roles' %}
-                  <li><a href="/home" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Screen CVs</a></li>
+                  <li><a href="/ai/one-role-many-cvs" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Screen CVs</a></li>
                 {% elif page_dict_html['dashboard_name'] == 'CVs & Resumes' %}
-                  <li><a href="/home" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Screen CV</a></li>
+                  <li><a href="/ai/one-role-many-cvs" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Screen CV</a></li>
                 {% endif %}
                 {% for k,v in page_dict_html['sub_table_links_dict'].items() %}
                   <li><a href="{{ v['url'] }}/{{ i['id'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-ml-30" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
