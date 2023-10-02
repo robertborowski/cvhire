@@ -76,12 +76,72 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
     ui_many_roles_selected = request.form.getlist('checkbox-many-roles')
     ui_one_cv_selected = request.form.get('radio-one-cv')
     # ------------------------ get user inputs end ------------------------
-    print(' ------------- 0 ------------- ')
-    print(f"1) ui_one_role_selected | type: {type(ui_one_role_selected)} | {ui_one_role_selected}")
-    print(f"2) ui_many_cv_selected | type: {type(ui_many_cv_selected)} | {ui_many_cv_selected}")
-    print(f"3) ui_many_roles_selected | type: {type(ui_many_roles_selected)} | {ui_many_roles_selected}")
-    print(f"4) ui_one_cv_selected | type: {type(ui_one_cv_selected)} | {ui_one_cv_selected}")
-    print(' ------------- 0 ------------- ')
+    # ------------------------ only two allowed inputs start ------------------------
+    bad_inputs = False
+    if (ui_one_role_selected == None and ui_many_cv_selected != []) or (ui_one_cv_selected == None and ui_many_roles_selected != []):
+      bad_inputs = True
+    if (ui_one_role_selected != None and ui_many_cv_selected == []) or (ui_one_cv_selected != None and ui_many_roles_selected == []):
+      bad_inputs = True
+    if bad_inputs == True:
+      return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e10'))
+    # ------------------------ only two allowed inputs end ------------------------
+    # ------------------------ set variables start ------------------------
+    question_type = 'one-role-many-cvs'
+    if ui_one_role_selected == None:
+      question_type = 'one-cv-many-roles'
+    single_value = ''
+    multiple_arr = []
+    multiple_value = ''
+    # ------------------------ set variables end ------------------------
+    # ------------------------ get from db start ------------------------
+    # ------------------------ question type 1 start ------------------------
+    if question_type == 'one-role-many-cvs':
+      # ------------------------ single start ------------------------
+      db_role_obj = RolesObj.query.filter_by(id=ui_one_role_selected).first()
+      if db_role_obj == None:
+        return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e10'))
+      single_value = ui_one_role_selected
+      # ------------------------ single end ------------------------
+      # ------------------------ multiple start ------------------------
+      for i in ui_many_cv_selected:
+        db_cv_obj = CvObj.query.filter_by(id=i).first()
+        multiple_arr.append(db_cv_obj.id)
+      if len(multiple_arr) == 0:
+        return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e10'))
+      multiple_value = ','.join(multiple_arr)
+      if len(multiple_value) > 2000:
+        return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e13'))
+      # ------------------------ multiple end ------------------------
+    # ------------------------ question type 1 end ------------------------
+    # ------------------------ question type 2 start ------------------------
+    if question_type == 'one-cv-many-roles':
+      # ------------------------ single start ------------------------
+      db_cv_obj = CvObj.query.filter_by(id=ui_one_cv_selected).first()
+      if db_cv_obj == None:
+        return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e10'))
+      single_value = ui_one_cv_selected
+      # ------------------------ single end ------------------------
+      # ------------------------ multiple start ------------------------
+      for i in ui_many_roles_selected:
+        db_role_obj = RolesObj.query.filter_by(id=i).first()
+        multiple_arr.append(db_role_obj.id)
+      if len(multiple_arr) == 0:
+        return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e10'))
+      multiple_value = ','.join(multiple_arr)
+      if len(multiple_value) > 2000:
+        return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e13'))
+      # ------------------------ multiple end ------------------------
+    # ------------------------ question type 2 end ------------------------
+    # ------------------------ get from db end ------------------------
+    print(' ------------- 1 ------------- ')
+    print(f"single_value | type: {type(single_value)} | {single_value}")
+    print(f"multiple_arr | type: {type(multiple_arr)} | {multiple_arr}")
+    print(f"multiple_value | type: {type(multiple_value)} | {multiple_value}")
+    print(' ------------- 1 ------------- ')
+    # ------------------------ add to queue start ------------------------
+    # ------------------------ add to queue end ------------------------
+    # ------------------------ trigger queue start ------------------------
+    # ------------------------ trigger queue end ------------------------
     return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs'))
   # ------------------------ post end ------------------------
   # ------------------------ auto set cookie start ------------------------

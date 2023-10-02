@@ -70,6 +70,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Download failed',
       'type':'danger'
     }
+  elif redirect_var == 'e13':
+    alert_message_dict = {
+      'message':'Selection exceeded limit',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':

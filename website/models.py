@@ -89,6 +89,17 @@ class CvInvalidFormatObj(db.Model):
   invalid_file_type = db.Column(db.String(20))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class OpenAiQueueObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  fk_user_id = db.Column(db.String(150))
+  status = db.Column(db.String(50))
+  question_type = db.Column(db.String(50))
+  single_value = db.Column(db.String(150))
+  multiple_values = db.Column(db.String(2000))
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):
