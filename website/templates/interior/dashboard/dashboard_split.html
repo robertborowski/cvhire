@@ -119,7 +119,13 @@
               {% for i in page_dict_html['content_total_rows_arr_of_dicts_cv'] %}
                 <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
                   <input type="checkbox" class="btn-check" name="checkbox-many-cvs" id="{{ i['cv_count_id'] }}" value="{{ i['id'] }}" autocomplete="off">
-                  <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['cv_count_id'] }}">{{ i['candidate_name'] }}</label>
+                  <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['cv_count_id'] }}">
+                    <div>
+                      <p class="custom-m-0">{{ i['candidate_name'] }}</p>
+                      <p class="custom-m-0">{{ i['candidate_email'] }}</p>
+                      <p class="custom-m-0">{{ i['candidate_phone'] }}</p>
+                    </div>
+                  </label>
                 </div>
               {% endfor %}
             </div>
@@ -130,7 +136,13 @@
               {% for i in page_dict_html['content_total_rows_arr_of_dicts_cv'] %}
                 <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
                   <input type="radio" class="btn-check" name="radio-one-cv" id="{{ i['cv_count_id'] }}" value="{{ i['id'] }}" autocomplete="off" required>
-                  <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['cv_count_id'] }}">{{ i['candidate_name'] }}</label>
+                  <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['cv_count_id'] }}">
+                    <div>
+                      <p class="custom-m-0">{{ i['candidate_name'] }}</p>
+                      <p class="custom-m-0">{{ i['candidate_email'] }}</p>
+                      <p class="custom-m-0">{{ i['candidate_phone'] }}</p>
+                    </div>
+                  </label>
                 </div>
               {% endfor %}
             </div>
