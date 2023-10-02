@@ -1,3 +1,4 @@
+// ------------------------------------- individual function start -------------------------------------
 $(document).ready(function() {
   let radioSelected = false;
   let checkboxSelected = false;
@@ -30,3 +31,37 @@ $(document).ready(function() {
     }
   }
 });
+// ------------------------------------- individual function end -------------------------------------
+
+// ------------------------------------- individual function start -------------------------------------
+$(document).ready(function() {
+  // ------------------------------------- cv start -------------------------------------
+  $('#id_cv_select_all').on('change', function() {
+    if ($(this).is(':checked')) {
+      // If "select all" checkbox is checked, uncheck all other checkboxes
+      $('input[type="checkbox"]').not('#id_cv_select_all').prop('checked', false);
+    }
+  });
+  // Optional: If any other checkbox is selected, you can auto-deselect the "select all" checkbox
+  $('input[type="checkbox"]').not('#id_cv_select_all').on('change', function() {
+    if ($(this).is(':checked')) {
+      $('#id_cv_select_all').prop('checked', false);
+    }
+  });
+  // ------------------------------------- cv end -------------------------------------
+  // ------------------------------------- role start -------------------------------------
+  $('#id_role_select_all').on('change', function() {
+    if ($(this).is(':checked')) {
+      // If "select all" checkbox is checked, uncheck all other checkboxes
+      $('input[type="checkbox"]').not('#id_role_select_all').prop('checked', false);
+    }
+  });
+  // Optional: If any other checkbox is selected, you can auto-deselect the "select all" checkbox
+  $('input[type="checkbox"]').not('#id_role_select_all').on('change', function() {
+    if ($(this).is(':checked')) {
+      $('#id_role_select_all').prop('checked', false);
+    }
+  });
+  // ------------------------------------- role end -------------------------------------
+});
+// ------------------------------------- individual function end -------------------------------------
