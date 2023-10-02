@@ -124,6 +124,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Already exists in db',
       'type':'info'
     }
+  elif redirect_var == 'i3':
+    alert_message_dict = {
+      'message':'Loading...',
+      'type':'info'
+    }
   # ------------------------ info end ------------------------
   # ------------------------ warning end ------------------------
   elif redirect_var == 'w1':

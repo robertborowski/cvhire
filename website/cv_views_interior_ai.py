@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj, CvObj
+from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj, CvObj, OpenAiQueueObj
 import os
 import json
 from datetime import datetime
@@ -133,16 +133,22 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
       # ------------------------ multiple end ------------------------
     # ------------------------ question type 2 end ------------------------
     # ------------------------ get from db end ------------------------
-    print(' ------------- 1 ------------- ')
-    print(f"single_value | type: {type(single_value)} | {single_value}")
-    print(f"multiple_arr | type: {type(multiple_arr)} | {multiple_arr}")
-    print(f"multiple_value | type: {type(multiple_value)} | {multiple_value}")
-    print(' ------------- 1 ------------- ')
     # ------------------------ add to queue start ------------------------
+    new_row = OpenAiQueueObj(
+      id = create_uuid_function('queue_'),
+      created_timestamp = create_timestamp_function(),
+      fk_user_id = current_user.id,
+      status = 'requested',
+      question_type = question_type,
+      single_value = single_value,
+      multiple_values = multiple_value
+    )
+    db.session.add(new_row)
+    db.session.commit()
     # ------------------------ add to queue end ------------------------
     # ------------------------ trigger queue start ------------------------
     # ------------------------ trigger queue end ------------------------
-    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs'))
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='i3'))
   # ------------------------ post end ------------------------
   # ------------------------ auto set cookie start ------------------------
   get_cookie_value_from_browser = redis_check_if_cookie_exists_function()
