@@ -1,6 +1,6 @@
 # ------------------------ imports start ------------------------
 import psycopg2
-from psycopg2 import Error
+from psycopg2 import Error, extras
 import os
 import redis
 # ------------------------ imports end ------------------------
@@ -10,7 +10,7 @@ def postgres_connect_open_function():
   # Heroku Postgres connection
   DATABASE_URL = os.environ.get('DATABASE_URL')
   postgres_connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-  postgres_cursor = postgres_connection.cursor()
+  postgres_cursor = postgres_connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
   return postgres_connection, postgres_cursor
 # ------------------------ individual function end ------------------------
 
