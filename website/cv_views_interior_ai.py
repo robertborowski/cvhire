@@ -73,10 +73,14 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
     # ------------------------ get user inputs start ------------------------
     ui_one_role_selected = request.form.get('radio-one-role')
     ui_many_cv_selected = request.form.getlist('checkbox-many-cvs')
+    ui_many_roles_selected = request.form.getlist('checkbox-many-roles')
+    ui_one_cv_selected = request.form.get('radio-one-cv')
     # ------------------------ get user inputs end ------------------------
     print(' ------------- 0 ------------- ')
-    print(f"ui_one_role_selected | type: {type(ui_one_role_selected)} | {ui_one_role_selected}")
-    print(f"ui_many_cv_selected | type: {type(ui_many_cv_selected)} | {ui_many_cv_selected}")
+    print(f"1) ui_one_role_selected | type: {type(ui_one_role_selected)} | {ui_one_role_selected}")
+    print(f"2) ui_many_cv_selected | type: {type(ui_many_cv_selected)} | {ui_many_cv_selected}")
+    print(f"3) ui_many_roles_selected | type: {type(ui_many_roles_selected)} | {ui_many_roles_selected}")
+    print(f"4) ui_one_cv_selected | type: {type(ui_one_cv_selected)} | {ui_one_cv_selected}")
     print(' ------------- 0 ------------- ')
     return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs'))
   # ------------------------ post end ------------------------
