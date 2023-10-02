@@ -61,12 +61,6 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
   page_dict = get_content_split_function(current_user, page_dict, 'roles')
   page_dict = get_content_split_function(current_user, page_dict, 'cv')
   # ------------------------ get content end ------------------------
-  print(' ------------- 100 start ------------- ')
-  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
-  for k,v in page_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100 end ------------- ')
   # ------------------------ for setting cookie start ------------------------
   correct_template = ''
   if url_status_code == 'one-role-many-cvs':
@@ -74,6 +68,16 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
   if url_status_code == 'one-cv-many-roles':
     correct_template = 'interior/ai/one-cv-many-roles/index.html'
   # ------------------------ for setting cookie end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ get user inputs start ------------------------
+    ui_one_role_selected = request.form.get('radio-one-role')
+    # ------------------------ get user inputs end ------------------------
+    print(' ------------- 0 ------------- ')
+    print(f"ui_one_role_selected | type: {type(ui_one_role_selected)} | {ui_one_role_selected}")
+    print(' ------------- 0 ------------- ')
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs'))
+  # ------------------------ post end ------------------------
   # ------------------------ auto set cookie start ------------------------
   get_cookie_value_from_browser = redis_check_if_cookie_exists_function()
   if get_cookie_value_from_browser != None:

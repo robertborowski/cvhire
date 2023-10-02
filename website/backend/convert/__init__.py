@@ -9,12 +9,21 @@ def convert_obj_row_to_dict_function(row):
 # ------------------------ individual function start ------------------------
 def objs_to_arr_of_dicts_function(db_obj, identifier=None):
   arr = []
+  # ------------------------ variables for radios and checkboxes start ------------------------
+  radio_count = 0
+  # ------------------------ variables for radios and checkboxes end ------------------------
   for i_obj in db_obj:
+    # ------------------------ variables for radios and checkboxes start ------------------------
+    radio_count += 1
+    # ------------------------ variables for radios and checkboxes end ------------------------
     i_dict = convert_obj_row_to_dict_function(i_obj)
     # ------------------------ additional details start ------------------------
     if identifier == 'roles':
       char_limit = 35
       i_dict['name_display'] = i_dict['name'][:char_limit]
+      # ------------------------ variables for radios and checkboxes start ------------------------
+      i_dict['radio_count_id'] = 'radio_count_' + str(radio_count)
+      # ------------------------ variables for radios and checkboxes end ------------------------
     # ------------------------ additional details end ------------------------
     # ------------------------ additional details start ------------------------
     if identifier == 'cv':
