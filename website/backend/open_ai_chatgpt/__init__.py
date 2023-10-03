@@ -33,3 +33,13 @@ def get_name_and_email_from_cv_function(file_contents):
     result_dict['phone'] = None
   return result_dict['name'], result_dict['email'], result_dict['phone']
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def role_and_cv_grade_v1_function(role_dict, cv_contents):
+  message = f"I am providing you with 1) a job description and 2) a candidate's cv/resume. Please provide me a python dictionary with the following keys ['summary','overall_score','follow_ups'] 1) 'summary' key should be 1 paragraph why this candidate is or is not qualified for this job description, 2) 'overall_score' key from 0-10 of how qualified this candidate is for the job description, 3) 'follow_ups' key five follow up questions that the interviewer should ask the candidate during an interview for this job description. Job description: [about: {role_dict['about']}. Requirements: {role_dict['requirements']}. Nice-to-haves: {role_dict['nice_to_haves']}]. Candidate CV/Resume content: [{cv_contents}]"
+  open_ai_reply = openai_chat_gpt_prompt_result_function(message)
+  print(' ------------- 3 ------------- ')
+  print(f"open_ai_reply | type: {type(open_ai_reply)} | {open_ai_reply}")
+  print(' ------------- 3 ------------- ')
+  return open_ai_reply
+# ------------------------ individual function end ------------------------
