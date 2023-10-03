@@ -5,7 +5,7 @@ import sendgrid
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Email, To, Content
 from website.backend.connection import postgres_connect_open_function, postgres_connect_close_function
-from website.backend.sql_queries import sql_general_function
+from website.backend.sql_queries import select_query_v1_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -21,9 +21,11 @@ def run_function():
       # ------------------------ open db connection start ------------------------
       postgres_connection, postgres_cursor = postgres_connect_open_function()
       # ------------------------ open db connection end ------------------------
-      # ------------------------ select start ------------------------
-      results_arr_of_dicts = sql_general_function(postgres_cursor, 'latest_queue', 'open_ai_queue_obj')
-      # ------------------------ select end ------------------------
+      # ------------------------ select queue start ------------------------
+      results_arr_of_dicts = select_query_v1_function(postgres_cursor, 'open_ai_queue_obj')
+      # ------------------------ select queue end ------------------------
+      for i_queue_dict in results_arr_of_dicts:
+        pass
       # ------------------------ close db connection start ------------------------
       postgres_connect_close_function(postgres_connection, postgres_cursor)
       # ------------------------ close db connection end ------------------------
