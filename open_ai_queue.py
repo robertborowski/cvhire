@@ -51,14 +51,14 @@ def run_function():
             # ------------------------ get single end ------------------------
             # ------------------------ get multiple start ------------------------
             if i_queue_dict['multiple_values'] == 'select_all_ids':
-              cv_dict_arr = select_query_v4_function(postgres_cursor, 'cv_obj', i_queue_dict['fk_user_id'], 'active')
+              cvs_dict_arr = select_query_v4_function(postgres_cursor, 'cv_obj', i_queue_dict['fk_user_id'], 'active')
             else:
-              cv_dict_arr = select_query_v3_function(postgres_cursor, 'cv_obj', i_queue_dict['fk_user_id'], 'active', i_queue_dict['multiple_values'])
+              cvs_dict_arr = select_query_v3_function(postgres_cursor, 'cv_obj', i_queue_dict['fk_user_id'], 'active', i_queue_dict['multiple_values'])
             # ------------------------ get multiple end ------------------------
             # ------------------------ loop multiple start ------------------------
-            total_to_be_graded = len(cv_dict_arr)
+            total_to_be_graded = len(cvs_dict_arr)
             total_graded_exists = 0
-            for i_cv_dict in cv_dict_arr:
+            for i_cv_dict in cvs_dict_arr:
               # ------------------------ check if grade already exists start ------------------------
               grade_exists = select_query_v5_function(postgres_cursor, role_dict['id'], i_cv_dict['id'], i_queue_dict['fk_user_id'])
               if len(grade_exists) != 0:
@@ -109,6 +109,74 @@ def run_function():
               # ------------------------ if grade does not exists end ------------------------
             # ------------------------ loop multiple end ------------------------
           # ------------------------ question type 1 end ------------------------
+          # ------------------------ question type 2 start ------------------------
+          elif i_queue_dict['question_type'] == 'one-cv-many-roles':
+            # ------------------------ get single start ------------------------
+            cv_dict_arr = select_query_v2_function(postgres_cursor, 'cv_obj', i_queue_dict['single_value'], i_queue_dict['fk_user_id'])
+            cv_dict = cv_dict_arr[0]
+            # ------------------------ get single end ------------------------
+            # ------------------------ single cv only start ------------------------
+            # ------------------------ get content from aws start ------------------------
+            cv_file_aws = get_file_contents_from_aws_function(cv_dict['cv_aws_id'])
+            # ------------------------ get content from aws end ------------------------
+            # ------------------------ get file suffix start ------------------------
+            cv_file_format_suffix = get_file_suffix_function(cv_dict['cv_aws_id'])
+            # ------------------------ get file suffix end ------------------------
+            # ------------------------ read file contents start ------------------------
+            cv_contents = get_file_contents_function(cv_file_aws, cv_file_format_suffix)
+            # ------------------------ read file contents end ------------------------
+            # ------------------------ single cv only end ------------------------
+            # ------------------------ get multiple start ------------------------
+            if i_queue_dict['multiple_values'] == 'select_all_ids':
+              roles_dict_arr = select_query_v4_function(postgres_cursor, 'roles_obj', i_queue_dict['fk_user_id'], 'open')
+            else:
+              roles_dict_arr = select_query_v3_function(postgres_cursor, 'roles_obj', i_queue_dict['fk_user_id'], 'open', i_queue_dict['multiple_values'])
+            # ------------------------ get multiple end ------------------------
+            # ------------------------ loop multiple start ------------------------
+            total_to_be_graded = len(roles_dict_arr)
+            total_graded_exists = 0
+            for i_role_dict in roles_dict_arr:
+              # ------------------------ check if grade already exists start ------------------------
+              grade_exists = select_query_v5_function(postgres_cursor, i_role_dict['id'], cv_dict['id'], i_queue_dict['fk_user_id'])
+              if len(grade_exists) != 0:
+                total_graded_exists += 1
+                # ------------------------ update db start ------------------------
+                if total_graded_exists == total_to_be_graded:
+                  update_query_v1_function(postgres_connection, postgres_cursor, 'graded', i_queue_dict['id'])
+                # ------------------------ update db end ------------------------
+                continue
+              # ------------------------ check if grade already exists end ------------------------
+              # ------------------------ if grade does not exists start ------------------------
+              if len(grade_exists) == 0:
+                # ------------------------ open ai grading start ------------------------
+                result_dict, open_ai_reply = role_and_cv_grade_v1_function(i_role_dict, cv_contents)
+                # ------------------------ open ai grading end ------------------------
+                # ------------------------ parse variables start ------------------------
+                follow_ups_str = ''
+                if type(result_dict['openai_follow_ups']) == list:
+                  follow_ups_str = '~'.join(result_dict['openai_follow_ups'])
+                else:
+                  follow_ups_str = result_dict['openai_follow_ups']
+                # ------------------------ parse variables end ------------------------
+                # ------------------------ set variables start ------------------------
+                id = create_uuid_function('grade_')
+                created_timestamp = create_timestamp_function()
+                fk_user_id = i_queue_dict['fk_user_id']
+                status = 'valid'
+                fk_role_id = i_role_dict['id']
+                fk_cv_id = cv_dict['id']
+                summary = result_dict['openai_summary']
+                score = float(result_dict['openai_score'])
+                follow_ups = follow_ups_str
+                openai_response = open_ai_reply
+                fk_ref_key = i_queue_dict['id']
+                # ------------------------ set variables end ------------------------
+                # ------------------------ insert to db start ------------------------
+                insert_query_v1_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key)
+                # ------------------------ insert to db end ------------------------
+              # ------------------------ if grade does not exists end ------------------------
+            # ------------------------ loop multiple end ------------------------
+          # ------------------------ question type 2 end ------------------------
         # ------------------------ loop queue end ------------------------
     except Exception as e:
       failure_counter += 1
