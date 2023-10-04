@@ -44,7 +44,7 @@ def select_query_v5_function(postgres_cursor, var1=None, var2=None, var3=None):
 # ------------------------ individual function start ------------------------
 def insert_query_v1_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key, question_type):
   try:
-    sql_query = "INSERT INTO graded_obj (id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+    sql_query = "INSERT INTO graded_obj (id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key, question_type) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
     data = (id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key, question_type)
     postgres_cursor.execute(sql_query, data)
     postgres_connection.commit()
