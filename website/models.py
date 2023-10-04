@@ -100,6 +100,21 @@ class OpenAiQueueObj(db.Model):
   multiple_values = db.Column(db.String(2000))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class GradedObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  fk_user_id = db.Column(db.String(150))
+  status = db.Column(db.String(50))
+  fk_role_id = db.Column(db.String(150))
+  fk_cv_id = db.Column(db.String(150))
+  summary = db.Column(db.String(2000))
+  score = db.Column(db.Float)
+  follow_ups = db.Column(db.String(2000))
+  openai_response = db.Column(db.String(2000))
+  fk_ref_key = db.Column(db.String(150))
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):

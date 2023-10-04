@@ -2,6 +2,7 @@
 import openai
 import os
 import json
+import re
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -20,26 +21,63 @@ def openai_chat_gpt_prompt_result_function(message):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def openai_str_to_dict_v1_function(open_ai_reply):
+  try:
+    open_ai_reply = open_ai_reply.replace("'s","s")
+  except:
+    pass
+  try:
+    open_ai_reply = open_ai_reply.replace("'",'"')
+  except:
+    pass
+  try:
+    open_ai_reply = open_ai_reply.replace("\t", " ")
+  except:
+    pass
+  try:
+    open_ai_reply = open_ai_reply.replace("\n", " ")
+  except:
+    pass
+  try:
+    open_ai_reply = open_ai_reply.replace("\r", "")
+  except:
+    pass
+  try:
+    open_ai_reply = re.sub(' +', ' ', open_ai_reply)
+  except:
+    pass
+  return json.loads(open_ai_reply)
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def get_name_and_email_from_cv_function(file_contents):
-  message = f"I am providing you all of the text on a person's cv/resume. Please give me back this person's 'name', 'email', and 'phone' in a python dictionary. Your response should be the python dictionary only, no additional words. Content: [{file_contents}]"
-  open_ai_reply = openai_chat_gpt_prompt_result_function(message)
-  open_ai_reply = open_ai_reply.replace("'",'"')
-  result_dict = json.loads(open_ai_reply)
-  if result_dict['name'] == '':
-    result_dict['name'] = None
-  if result_dict['email'] == '':
-    result_dict['email'] = None
-  if result_dict['phone'] == '':
-    result_dict['phone'] = None
-  return result_dict['name'], result_dict['email'], result_dict['phone']
+  try:
+    message = f"I am providing you all of the text on a person's cv/resume. Please give me back this person's 'name', 'email', and 'phone' in a python dictionary. Your response should be the python dictionary only, no additional words. Content: [{file_contents}]"
+    open_ai_reply = openai_chat_gpt_prompt_result_function(message)
+    result_dict = openai_str_to_dict_v1_function(open_ai_reply)
+    if result_dict['name'] == '':
+      result_dict['name'] = None
+    if result_dict['email'] == '':
+      result_dict['email'] = None
+    if result_dict['phone'] == '':
+      result_dict['phone'] = None
+    return result_dict['name'], result_dict['email'], result_dict['phone']
+  except Exception as e:
+    print(f'Error get_name_and_email_from_cv_function: {e}')
+    return None, None, None
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
 def role_and_cv_grade_v1_function(role_dict, cv_contents):
-  message = f"I am providing you with 1) a job description and 2) a candidate's cv/resume. Please provide me a python dictionary with the following keys ['summary','overall_score','follow_ups'] 1) 'summary' key should be 1 paragraph why this candidate is or is not qualified for this job description, 2) 'overall_score' key from 0-10 of how qualified this candidate is for the job description, 3) 'follow_ups' key five follow up questions that the interviewer should ask the candidate during an interview for this job description. Job description: [about: {role_dict['about']}. Requirements: {role_dict['requirements']}. Nice-to-haves: {role_dict['nice_to_haves']}]. Candidate CV/Resume content: [{cv_contents}]"
-  open_ai_reply = openai_chat_gpt_prompt_result_function(message)
-  print(' ------------- 3 ------------- ')
-  print(f"open_ai_reply | type: {type(open_ai_reply)} | {open_ai_reply}")
-  print(' ------------- 3 ------------- ')
-  return open_ai_reply
+  result_dict = None
+  open_ai_reply = None
+  try:
+    message = f"I am providing you with two pieces of content: 1) a job description and 2) a candidate's cv/resume. \nPlease provide me a python dictionary with the following 3 keys ['openai_summary','openai_score','openai_follow_ups'] \nFor the following keys \n1) key 'openai_summary' should be 1 written paragraph on why this candidate is or is not a qualified candidate for this job description, please include any strenghts and weaknesses in the 'openai_summary' key. The length of the 'openai_summary' should not exceed 2,000 characters in length. \n2) key 'openai__score' rate from 0-5 of how qualified this candidate is for this job description [range: from 0='not qualified' to 5='100% qualified based on job description'], \n3) key 'openai_follow_ups' should be five individual follow up questions that the interviewer should ask to the candidate based on this job description and CV content to help identify weaknesses in the candidate. The length of the 'openai_follow_ups' should not exceed 2,000 characters in length. \nLike I said in the begining here are two pieces of content: 1) Job description: [about: {role_dict['about']}. Requirements: {role_dict['requirements']}. 2) Nice-to-haves: {role_dict['nice_to_haves']}]. \nCandidate CV/Resume content: [{cv_contents}]. \nYour response should be the python dictionary only, no additional words."
+    open_ai_reply = openai_chat_gpt_prompt_result_function(message)
+    result_dict = openai_str_to_dict_v1_function(open_ai_reply)
+    if len(open_ai_reply) > 2000:
+      open_ai_reply = open_ai_reply[:1999]
+  except Exception as e:
+    print(f'Error role_and_cv_grade_v1_function: {e}')
+  return result_dict, open_ai_reply
 # ------------------------ individual function end ------------------------
