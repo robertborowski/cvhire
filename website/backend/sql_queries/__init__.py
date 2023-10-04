@@ -22,14 +22,14 @@ def select_query_v2_function(postgres_cursor, var1=None, var2=None, var3=None):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def select_query_v3_function(postgres_cursor, var1=None, var2=None, var3=None):
-  sql_query = f"SELECT * FROM {var1} WHERE fk_user_id='{var2}' and status='active' and id IN ({var3});"
+def select_query_v3_function(postgres_cursor, var1=None, var2=None, var3=None, var4=None):
+  sql_query = f"SELECT * FROM {var1} WHERE fk_user_id='{var2}' and status='{var3}' and id IN ({var4});"
   return sql_general_function(postgres_cursor, sql_query)
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def select_query_v4_function(postgres_cursor, var1=None, var2=None):
-  sql_query = f"SELECT * FROM {var1} WHERE fk_user_id='{var2}' and status='active';"
+def select_query_v4_function(postgres_cursor, var1=None, var2=None, var3=None):
+  sql_query = f"SELECT * FROM {var1} WHERE fk_user_id='{var2}' and status='{var3}';"
   return sql_general_function(postgres_cursor, sql_query)
 # ------------------------ individual function end ------------------------
 

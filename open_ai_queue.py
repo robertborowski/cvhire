@@ -51,9 +51,9 @@ def run_function():
             # ------------------------ get single end ------------------------
             # ------------------------ get multiple start ------------------------
             if i_queue_dict['multiple_values'] == 'select_all_ids':
-              cv_dict_arr = select_query_v4_function(postgres_cursor, 'cv_obj', i_queue_dict['fk_user_id'])
+              cv_dict_arr = select_query_v4_function(postgres_cursor, 'cv_obj', i_queue_dict['fk_user_id'], 'active')
             else:
-              cv_dict_arr = select_query_v3_function(postgres_cursor, 'cv_obj', i_queue_dict['fk_user_id'], i_queue_dict['multiple_values'])
+              cv_dict_arr = select_query_v3_function(postgres_cursor, 'cv_obj', i_queue_dict['fk_user_id'], 'active', i_queue_dict['multiple_values'])
             # ------------------------ get multiple end ------------------------
             # ------------------------ loop multiple start ------------------------
             total_to_be_graded = len(cv_dict_arr)
