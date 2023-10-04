@@ -16,8 +16,8 @@ def select_query_v1_function(postgres_cursor, var1=None):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def select_query_v2_function(postgres_cursor, var1=None, var2=None):
-  sql_query = f"SELECT * FROM {var1} WHERE id='{var2}' LIMIT 1;"
+def select_query_v2_function(postgres_cursor, var1=None, var2=None, var3=None):
+  sql_query = f"SELECT * FROM {var1} WHERE id='{var2}' AND fk_user_id='{var3}' LIMIT 1;"
   return sql_general_function(postgres_cursor, sql_query)
 # ------------------------ individual function end ------------------------
 
@@ -34,8 +34,8 @@ def select_query_v4_function(postgres_cursor, var1=None, var2=None):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def select_query_v5_function(postgres_cursor, var1=None, var2=None):
-  sql_query = f"SELECT * FROM graded_obj WHERE fk_role_id='{var1}' and fk_cv_id='{var2}' and status='valid';"
+def select_query_v5_function(postgres_cursor, var1=None, var2=None, var3=None):
+  sql_query = f"SELECT * FROM graded_obj WHERE fk_role_id='{var1}' and fk_cv_id='{var2}' and fk_user_id='{var3}' and status='valid';"
   return sql_general_function(postgres_cursor, sql_query)
 # ------------------------ individual function end ------------------------
 # ================================================ select end ================================================

@@ -46,7 +46,7 @@ def run_function():
           # ------------------------ question type 1 start ------------------------
           if i_queue_dict['question_type'] == 'one-role-many-cvs':
             # ------------------------ get single start ------------------------
-            role_dict_arr = select_query_v2_function(postgres_cursor, 'roles_obj', i_queue_dict['single_value'])
+            role_dict_arr = select_query_v2_function(postgres_cursor, 'roles_obj', i_queue_dict['single_value'], i_queue_dict['fk_user_id'])
             role_dict = role_dict_arr[0]
             # ------------------------ get single end ------------------------
             # ------------------------ get multiple start ------------------------
@@ -60,7 +60,7 @@ def run_function():
             total_graded_exists = 0
             for i_cv_dict in cv_dict_arr:
               # ------------------------ check if grade already exists start ------------------------
-              grade_exists = select_query_v5_function(postgres_cursor, role_dict['id'], i_cv_dict['id'])
+              grade_exists = select_query_v5_function(postgres_cursor, role_dict['id'], i_cv_dict['id'], i_queue_dict['fk_user_id'])
               if len(grade_exists) != 0:
                 total_graded_exists += 1
                 # ------------------------ update db start ------------------------
