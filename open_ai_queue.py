@@ -102,9 +102,10 @@ def run_function():
                 follow_ups = follow_ups_str
                 openai_response = open_ai_reply
                 fk_ref_key = i_queue_dict['id']
+                question_type = i_queue_dict['question_type']
                 # ------------------------ set variables end ------------------------
                 # ------------------------ insert to db start ------------------------
-                insert_query_v1_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key)
+                insert_query_v1_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key, question_type)
                 # ------------------------ insert to db end ------------------------
               # ------------------------ if grade does not exists end ------------------------
             # ------------------------ loop multiple end ------------------------
@@ -170,9 +171,10 @@ def run_function():
                 follow_ups = follow_ups_str
                 openai_response = open_ai_reply
                 fk_ref_key = i_queue_dict['id']
+                question_type = i_queue_dict['question_type']
                 # ------------------------ set variables end ------------------------
                 # ------------------------ insert to db start ------------------------
-                insert_query_v1_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key)
+                insert_query_v1_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key, question_type)
                 # ------------------------ insert to db end ------------------------
               # ------------------------ if grade does not exists end ------------------------
             # ------------------------ loop multiple end ------------------------

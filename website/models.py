@@ -113,6 +113,7 @@ class GradedObj(db.Model):
   follow_ups = db.Column(db.String(2000))
   openai_response = db.Column(db.String(2000))
   fk_ref_key = db.Column(db.String(150))
+  question_type = db.Column(db.String(50))
 # ------------------------ individual model end ------------------------
 
 """
