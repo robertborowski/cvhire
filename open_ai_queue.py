@@ -182,15 +182,15 @@ def run_function():
         # ------------------------ loop queue end ------------------------
     except Exception as e:
       failure_counter += 1
-      # ------------------------ email self start ------------------------
-      try:
-        output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
-        output_subject = f'Exception error 001'
-        output_body = f'failure_counter: {failure_counter} | Exception error 001: {e}'
-        send_email_template_function(output_to_email, output_subject, output_body)
-      except:
-        pass
-      # ------------------------ email self end ------------------------
+      # # ------------------------ email self start ------------------------
+      # try:
+      #   output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      #   output_subject = f'Exception error 001'
+      #   output_body = f'failure_counter: {failure_counter} | Exception error 001: {e}'
+      #   send_email_template_function(output_to_email, output_subject, output_body)
+      # except:
+      #   pass
+      # # ------------------------ email self end ------------------------
       # ------------------------ close db connection start ------------------------
       postgres_connect_close_function(postgres_connection, postgres_cursor)
       # ------------------------ close db connection end ------------------------
