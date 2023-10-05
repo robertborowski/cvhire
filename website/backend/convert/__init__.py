@@ -1,4 +1,5 @@
 # ------------------------ imports start ------------------------
+from website.backend.static_lists import get_stars_img_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -51,31 +52,29 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
       i_dict['fk_role_name_display'] = i_dict['fk_role_name'][:char_limit]
       i_dict['fk_cv_name_display'] = i_dict['fk_cv_name'][:char_limit]
       # ------------------------ star images start ------------------------
-      i_dict['score_all_stars'] = ''
-      if float(i_dict['score']) >= 4.51:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_5.png'
-      elif float(i_dict['score']) >= 4.5:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_4_half.png'
-      elif float(i_dict['score']) >= 4.0:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_4.png'
-      elif float(i_dict['score']) >= 3.5:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_3_half.png'
-      elif float(i_dict['score']) >= 3.0:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_3.png'
-      elif float(i_dict['score']) >= 2.5:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_2_half.png'
-      elif float(i_dict['score']) >= 2.0:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_2.png'
-      elif float(i_dict['score']) >= 1.5:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_1_half.png'
-      elif float(i_dict['score']) >= 1.0:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_1.png'
-      elif float(i_dict['score']) >= 0.5:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_0_half.png'
-      elif float(i_dict['score']) >= 0.0:
-        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_0.png'
+      i_dict = get_stars_img_function(i_dict)
       # ------------------------ star images end ------------------------
     # ------------------------ additional details end ------------------------
     arr.append(i_dict)
+  return arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_follow_ups_function(db_dict):
+  arr = []
+  try:
+    arr = db_dict['follow_ups'].split('~')
+    # ------------------------ counter start ------------------------
+    index = -1
+    counter = 0
+    for i_str in arr:
+      index += 1
+      counter += 1
+      count_str = str(counter) + '.'
+      if count_str not in i_str[:10]:
+        arr[index] = count_str + ' ' + i_str
+    # ------------------------ counter end ------------------------
+  except Exception as e:
+    pass
   return arr
 # ------------------------ individual function end ------------------------

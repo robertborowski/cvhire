@@ -17,6 +17,7 @@
   <div class="custom-pb-50">
     <h3 class="custom-m-0 custom-header-25">{{ page_dict_html['db_grade_dict']['fk_role_name'] }}</h3>
     <h3 class="custom-m-0 custom-header-25">{{ page_dict_html['db_grade_dict']['fk_cv_name'] }}</h3>
+    <h3 class="custom-m-0 custom-header-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-size-20"> {{ page_dict_html['db_grade_dict']['score'] }}</h3>
   </div>
   <!-- ------------------------------------- name end ------------------------------------- -->
   <!-- ------------------------------------- section start ------------------------------------- -->
@@ -25,10 +26,18 @@
     <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_grade_dict']['summary'] }}</p>
   </div>
   <!-- ------------------------------------- section end ------------------------------------- -->
+  <!-- ------------------------------------- section start ------------------------------------- -->
+  <div class="custom-pb-50">
+    <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Follow ups</h3>
+    {% for i_str in page_dict_html['db_grade_dict']['follow_ups_arr'] %}
+      <p class="custom-m-0 custom-mb-25 custom-header-15">{{ i_str }}</p>
+    {% endfor %}
+  </div>
+  <!-- ------------------------------------- section end ------------------------------------- -->
   <!-- ------------------------------------- buttons start ------------------------------------- -->
   <div class="custom-mb-50">
     <div class="text-center custom-mt-25">
-      <a href="/roles" class="btn btn-primary btn-lg custom-width-100">Back</a>
+      <a href="/results" class="btn btn-primary btn-lg custom-width-100">Back</a>
     </div>
   </div>
   <!-- ------------------------------------- buttons end ------------------------------------- -->

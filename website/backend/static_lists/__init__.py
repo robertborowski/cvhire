@@ -260,3 +260,31 @@ def results_table_links_function(role_type):
   # ------------------------ type end ------------------------
   return output_dict
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_stars_img_function(i_dict):
+  i_dict['score_all_stars'] = ''
+  if float(i_dict['score']) >= 4.51:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_5.png'
+  elif float(i_dict['score']) >= 4.5:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_4_half.png'
+  elif float(i_dict['score']) >= 4.0:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_4.png'
+  elif float(i_dict['score']) >= 3.5:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_3_half.png'
+  elif float(i_dict['score']) >= 3.0:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_3.png'
+  elif float(i_dict['score']) >= 2.5:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_2_half.png'
+  elif float(i_dict['score']) >= 2.0:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_2.png'
+  elif float(i_dict['score']) >= 1.5:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_1_half.png'
+  elif float(i_dict['score']) >= 1.0:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_1.png'
+  elif float(i_dict['score']) >= 0.5:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_0_half.png'
+  elif float(i_dict['score']) >= 0.0:
+    i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_0.png'
+  return i_dict
+# ------------------------ individual function end ------------------------

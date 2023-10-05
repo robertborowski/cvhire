@@ -9,12 +9,12 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
-from website.backend.static_lists import results_status_codes_function, dashboard_section_links_dict_results_function, results_table_links_function
+from website.backend.static_lists import results_status_codes_function, dashboard_section_links_dict_results_function, results_table_links_function, get_stars_img_function
 from website.backend.db_obj_checks import get_content_function
 from website.backend.uploads_user import allowed_cv_file_upload_function, get_file_suffix_function
 from website.backend.read_files import get_file_contents_function
 from website.backend.open_ai_chatgpt import get_name_and_email_from_cv_function
-from website.backend.convert import convert_obj_row_to_dict_function
+from website.backend.convert import convert_obj_row_to_dict_function, get_follow_ups_function
 from website.backend.aws_logic import get_file_contents_from_aws_function, upload_file_to_aws_s3_function, initial_cv_scrape_function, get_file_static_from_aws_function
 # ------------------------ imports end ------------------------
 
@@ -106,5 +106,17 @@ def results_view_function(url_grade_id=None, url_redirect_code=None):
     return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid'))
   page_dict['db_grade_dict'] = convert_obj_row_to_dict_function(db_obj)
   # ------------------------ check if role id exists and is assigned to user end ------------------------
+  # ------------------------ star images start ------------------------
+  page_dict['db_grade_dict'] = get_stars_img_function(page_dict['db_grade_dict'])
+  # ------------------------ star images end ------------------------
+  # ------------------------ follow ups start ------------------------
+  page_dict['db_grade_dict']['follow_ups_arr'] = get_follow_ups_function(page_dict['db_grade_dict'])
+  # ------------------------ follow ups end ------------------------
+  print(' ------------- 100 start ------------- ')
+  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
+  for k,v in page_dict.items():
+    print(f"k: {k} | v: {v}")
+    pass
+  print(' ------------- 100 end ------------- ')
   return render_template('interior/results/view_results/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
