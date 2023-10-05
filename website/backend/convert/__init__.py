@@ -50,6 +50,31 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
       char_limit = 35
       i_dict['fk_role_name_display'] = i_dict['fk_role_name'][:char_limit]
       i_dict['fk_cv_name_display'] = i_dict['fk_cv_name'][:char_limit]
+      # ------------------------ star images start ------------------------
+      i_dict['score_all_stars'] = ''
+      if float(i_dict['score']) >= 4.51:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_5.png'
+      elif float(i_dict['score']) >= 4.5:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_4_half.png'
+      elif float(i_dict['score']) >= 4.0:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_4.png'
+      elif float(i_dict['score']) >= 3.5:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_3_half.png'
+      elif float(i_dict['score']) >= 3.0:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_3.png'
+      elif float(i_dict['score']) >= 2.5:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_2_half.png'
+      elif float(i_dict['score']) >= 2.0:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_2.png'
+      elif float(i_dict['score']) >= 1.5:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_1_half.png'
+      elif float(i_dict['score']) >= 1.0:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_1.png'
+      elif float(i_dict['score']) >= 0.5:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_0_half.png'
+      elif float(i_dict['score']) >= 0.0:
+        i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_0.png'
+      # ------------------------ star images end ------------------------
     # ------------------------ additional details end ------------------------
     arr.append(i_dict)
   return arr

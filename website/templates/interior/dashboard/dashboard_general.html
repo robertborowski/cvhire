@@ -111,7 +111,7 @@
                 </div>
               {% elif page_dict_html['starting_route'] == 'results' %}
                 <div class="custom-display-flex custom-f-direction-col">
-                  <a href="/results/view/{{ i['id'] }}" class="custom-a-black-underline custom-header-20">{{ i['fk_role_name_display'] }} | {{ i['fk_cv_name_display'] }} | {{ i['score'] }}</a>
+                  <a href="/results/view/{{ i['id'] }}" class="custom-a-black-underline custom-header-20">{{ i['fk_role_name_display'] }} | {{ i['fk_cv_name_display'] }} | <img src="{{ i['score_all_stars'] }}" alt="" class="custom-img-size-20">{{ i['score'] }}</a>
                   <a href="/results/view/{{ i['id'] }}" class="custom-a-black-underline custom-mt-5 custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
                 </div>
               {% endif %}
