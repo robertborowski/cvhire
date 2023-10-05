@@ -57,6 +57,10 @@ def initial_cv_scrape_function(id_current_user):
     # ------------------------ read candidate name and email from contents start ------------------------
     cv_name, cv_email, cv_phone = get_name_and_email_from_cv_function(cv_contents)
     # ------------------------ read candidate name and email from contents end ------------------------
+    # ------------------------ fix name start ------------------------
+    if cv_name == '' or cv_name == None:
+      cv_name = 'No name'
+    # ------------------------ fix name end ------------------------
     # ------------------------ update db start ------------------------
     i_obj.initial_scrape_complete = True
     if cv_name != None or cv_email != None or cv_phone != None:
