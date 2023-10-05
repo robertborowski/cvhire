@@ -16,6 +16,7 @@ from website.backend.read_files import get_file_contents_function
 from website.backend.open_ai_chatgpt import get_name_and_email_from_cv_function
 from website.backend.convert import convert_obj_row_to_dict_function, get_follow_ups_function
 from website.backend.aws_logic import get_file_contents_from_aws_function, upload_file_to_aws_s3_function, initial_cv_scrape_function, get_file_static_from_aws_function
+from website.backend.db_manipulation import additional_cv_info_from_db_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -112,11 +113,8 @@ def results_view_function(url_grade_id=None, url_redirect_code=None):
   # ------------------------ follow ups start ------------------------
   page_dict['db_grade_dict']['follow_ups_arr'] = get_follow_ups_function(page_dict['db_grade_dict'])
   # ------------------------ follow ups end ------------------------
-  print(' ------------- 100 start ------------- ')
-  page_dict = dict(sorted(page_dict.items(),key=lambda x:x[0]))
-  for k,v in page_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100 end ------------- ')
+  # ------------------------ get additional CV info start ------------------------
+  page_dict['db_grade_dict'] = additional_cv_info_from_db_function(current_user.id, page_dict['db_grade_dict'])
+  # ------------------------ get additional CV info end ------------------------
   return render_template('interior/results/view_results/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
