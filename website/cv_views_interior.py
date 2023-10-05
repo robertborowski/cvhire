@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj, CvObj
+from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj, CvObj, GradedObj
 import os
 import json
 from datetime import datetime
@@ -11,7 +11,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
-from website.backend.static_lists import role_status_codes_function, cv_status_codes_function
+from website.backend.static_lists import role_status_codes_function, cv_status_codes_function, results_status_codes_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -144,6 +144,10 @@ def cv_general_status_change_function(url_section_code=None, url_status_code=Non
     status_codes_arr = cv_status_codes_function()
     if url_status_code not in status_codes_arr:
       return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='e10'))
+  if url_section_code == 'results':
+    status_codes_arr = results_status_codes_function()
+    if url_status_code not in status_codes_arr:
+      return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid', url_redirect_code='e10'))
   # ------------------------ check if status code is valid end ------------------------
   # ------------------------ check if role id is valid for user start ------------------------
   if url_section_code == 'roles':
@@ -154,23 +158,35 @@ def cv_general_status_change_function(url_section_code=None, url_status_code=Non
     db_obj = CvObj.query.filter_by(fk_user_id=current_user.id,id=url_db_item_id).first()
     if db_obj == None:
       return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='e10'))
+  if url_section_code == 'results':
+    db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,id=url_db_item_id).first()
+    if db_obj == None:
+      return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid', url_redirect_code='e10'))
   # ------------------------ check if role id is valid for user end ------------------------
   # ------------------------ change status start ------------------------
   if db_obj.status != url_status_code:
     db_obj.status = url_status_code
     db.session.commit()
+    # ------------------------ delete start ------------------------
     if url_status_code == 'delete':
       if url_section_code == 'roles':
         return redirect(url_for(f'cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='s6'))
       if url_section_code == 'cv':
         return redirect(url_for(f'cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='s6'))
+      if url_section_code == 'results':
+        return redirect(url_for(f'cv_views_interior_results.results_dashboard_general_function', url_status_code='valid', url_redirect_code='s6'))
+    # ------------------------ delete end ------------------------
     if url_section_code == 'roles':
       return redirect(url_for(f'cv_views_interior_roles.cv_roles_dashboard_function', url_status_code=url_status_code, url_redirect_code='s5'))
     if url_section_code == 'cv':
       return redirect(url_for(f'cv_views_interior_cv.cv_dashboard_general_function', url_status_code=url_status_code, url_redirect_code='s5'))
+    if url_section_code == 'results':
+      return redirect(url_for(f'cv_views_interior_results.results_dashboard_general_function', url_status_code=url_status_code, url_redirect_code='s5'))
   # ------------------------ change status end ------------------------
   if url_section_code == 'roles':
     return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='i1'))
   if url_section_code == 'cv':
     return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='i1'))
+  if url_section_code == 'results':
+    return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='active', url_redirect_code='i1'))
 # ------------------------ individual route end ------------------------

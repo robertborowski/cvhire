@@ -122,7 +122,7 @@ def ai_status_codes_function():
 
 # ------------------------ individual function start ------------------------
 def results_status_codes_function():
-  arr = ['valid','archive']
+  arr = ['valid','archive','delete']
   return arr
 # ------------------------ individual function end ------------------------
 
