@@ -75,6 +75,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Selection exceeded limit',
       'type':'danger'
     }
+  elif redirect_var == 'e14':
+    alert_message_dict = {
+      'message':'You cannot edit a role after it has been graded against at least one CV',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':

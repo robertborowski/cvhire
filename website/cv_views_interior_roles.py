@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj
+from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj, GradedObj
 import os
 import json
 from datetime import datetime
@@ -167,6 +167,11 @@ def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
   # ------------------------ check if role id exists and is assigned to user end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
+    # ------------------------ check if role already graded start ------------------------
+    db_grade_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,fk_role_id=url_role_id).first()
+    if db_grade_obj != None:
+      return redirect(url_for('cv_views_interior_roles.cv_roles_view_function', url_role_id=url_role_id, url_redirect_code='e14'))
+    # ------------------------ check if role already graded end ------------------------
     # ------------------------ user inputs start ------------------------
     ui_role_name = request.form.get('uiRoleName')
     ui_about = request.form.get('uiAbout')
