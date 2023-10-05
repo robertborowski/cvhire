@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, send_file, Response
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import CvObj, CvInvalidFormatObj
+from website.models import GradedObj
 from datetime import datetime
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
@@ -82,4 +82,29 @@ def results_dashboard_general_function(url_status_code='valid', url_redirect_cod
     correct_template = 'interior/results/archived/index.html'
   # ------------------------ choose correct template end ------------------------
   return render_template(correct_template, page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_results.route('/results/view/<url_grade_id>', methods=['GET', 'POST'])
+@cv_views_interior_results.route('/results/view/<url_grade_id>/', methods=['GET', 'POST'])
+@cv_views_interior_results.route('/results/view/<url_grade_id>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior_results.route('/results/view/<url_grade_id>/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def results_view_function(url_grade_id=None, url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if no role id given start ------------------------
+  if url_grade_id == None:
+    return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid'))
+  # ------------------------ if no role id given end ------------------------
+  # ------------------------ check if role id exists and is assigned to user start ------------------------
+  db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,id=url_grade_id).first()
+  if db_obj == None:
+    return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid'))
+  page_dict['db_grade_dict'] = convert_obj_row_to_dict_function(db_obj)
+  # ------------------------ check if role id exists and is assigned to user end ------------------------
+  return render_template('interior/results/view_results/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
