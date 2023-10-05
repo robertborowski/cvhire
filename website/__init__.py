@@ -63,6 +63,7 @@ def create_app_function():
   from .cv_views_interior_ai import cv_views_interior_ai
   from .cv_views_interior_cv import cv_views_interior_cv
   from .cv_views_interior_roles import cv_views_interior_roles
+  from .cv_views_interior_results import cv_views_interior_results
   # ------------------------ views/auths/routes imports end ------------------------
   # ------------------------ views/auths/routes register blueprints start ------------------------
   app.register_blueprint(cv_auth, url_prefix='/')
@@ -72,6 +73,7 @@ def create_app_function():
   app.register_blueprint(cv_views_interior_ai, url_prefix='/')
   app.register_blueprint(cv_views_interior_cv, url_prefix='/')
   app.register_blueprint(cv_views_interior_roles, url_prefix='/')
+  app.register_blueprint(cv_views_interior_results, url_prefix='/')
   # ------------------------ views/auths/routes register blueprints end ------------------------
   # ------------------------ import models before creating db for first time start ------------------------
   from .models import UserObj
