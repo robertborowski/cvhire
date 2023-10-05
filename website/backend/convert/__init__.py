@@ -45,6 +45,12 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
       except:
         pass
     # ------------------------ additional details end ------------------------
+    # ------------------------ additional details start ------------------------
+    if identifier == 'results':
+      char_limit = 35
+      i_dict['fk_role_name_display'] = i_dict['fk_role_name'][:char_limit]
+      i_dict['fk_cv_name_display'] = i_dict['fk_cv_name'][:char_limit]
+    # ------------------------ additional details end ------------------------
     arr.append(i_dict)
   return arr
 # ------------------------ individual function end ------------------------

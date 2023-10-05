@@ -62,6 +62,16 @@
             <a href="/cv/active" class="custom-opacity-60 custom-a-black-underline">No archived CVs</a>
           </div>
         {% endif %}
+      {% elif page_dict_html['starting_route'] == 'results' %}
+        {% if page_dict_html['url_status_code'] == 'all' %}
+          <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
+            <a href="/ai/one-role-many-cvs" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Screen CVs</a>
+          </div>
+        {% elif page_dict_html['url_status_code'] == 'archive' %}
+          <div class="custom-width-500 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
+            <a href="/results/all" class="custom-opacity-60 custom-a-black-underline">No archived results</a>
+          </div>
+        {% endif %}
       {% endif %}
     <!-- ------------------------------------- no content end ------------------------------------- -->
     <!-- ------------------------------------- yes content start ------------------------------------- -->
@@ -98,6 +108,11 @@
                   <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline">{{ i['candidate_phone_display'] }}</a>
                   <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline custom-header-12 custom-mt-5">{{ i['cv_upload_name_display'] }}</a>
                   <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
+                </div>
+              {% elif page_dict_html['starting_route'] == 'results' %}
+                <div class="custom-display-flex custom-f-direction-col">
+                  <a href="/results/view/{{ i['id'] }}" class="custom-a-black-underline custom-header-20">{{ i['fk_role_name_display'] }} | {{ i['fk_cv_name_display'] }} | {{ i['score'] }}</a>
+                  <a href="/results/view/{{ i['id'] }}" class="custom-a-black-underline custom-mt-5 custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
                 </div>
               {% endif %}
             </div>
