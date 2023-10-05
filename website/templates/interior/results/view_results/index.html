@@ -1,7 +1,7 @@
 {% extends "navbar/form_general.html" %}
 
 {% block title %}
-  <title>View results | CVhire</title>
+  <title>View result | CVhire</title>
   <meta name="description" content="CVhire">
   <meta name="og:description" content="CVhire">
 {% endblock %}
@@ -10,14 +10,14 @@
 <div class="custom-width-600 mx-auto">
   <!-- ------------------------------------- title start ------------------------------------- -->
   <div class="custom-ptb-50">
-    <h2 class="custom-m-0 custom-header-30">Results <a href="/results" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
+    <h2 class="custom-m-0 custom-header-30">Result <a href="/results" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
   </div>
   <!-- ------------------------------------- title end ------------------------------------- -->
   <!-- ------------------------------------- name start ------------------------------------- -->
   <div class="custom-pb-50">
-    <h3 class="custom-m-0 custom-header-25">{{ page_dict_html['db_grade_dict']['fk_role_name'] }}</h3>
-    <h3 class="custom-m-0 custom-header-25">{{ page_dict_html['db_grade_dict']['fk_cv_name'] }}</h3>
-    <h3 class="custom-m-0 custom-header-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-size-20"> {{ page_dict_html['db_grade_dict']['score'] }}</h3>
+    <h3 class="custom-m-0 custom-header-25 custom-mb-15">{{ page_dict_html['db_grade_dict']['fk_role_name'] }} <a href="/roles/view/{{ page_dict_html['db_grade_dict']['fk_role_id'] }}" target="_blank" class="btn btn-outline-secondary btn-sm custom-ml-10">View</a></h3>
+    <h3 class="custom-m-0 custom-header-25 custom-mb-15">{{ page_dict_html['db_grade_dict']['fk_cv_name'] }} <a href="/cv/view/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}" target="_blank" class="btn btn-outline-secondary btn-sm custom-ml-10">View</a></h3>
+    <h3 class="custom-m-0 custom-header-20"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-size-20 custom-mr-5"> {{ page_dict_html['db_grade_dict']['score'] }}</h3>
   </div>
   <!-- ------------------------------------- name end ------------------------------------- -->
   <!-- ------------------------------------- section start ------------------------------------- -->
@@ -30,7 +30,7 @@
   <div class="custom-pb-50">
     <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Follow ups</h3>
     {% for i_str in page_dict_html['db_grade_dict']['follow_ups_arr'] %}
-      <p class="custom-m-0 custom-mb-25 custom-header-15">{{ i_str }}</p>
+      <p class="custom-m-0 custom-mb-15 custom-header-15">{{ i_str }}</p>
     {% endfor %}
   </div>
   <!-- ------------------------------------- section end ------------------------------------- -->
