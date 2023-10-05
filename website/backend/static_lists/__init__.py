@@ -85,6 +85,15 @@ def dashboard_section_links_dict_cv_function():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def dashboard_section_links_dict_results_function():
+  output_dict = {
+    'All': '/results/all',
+    'Archived': '/results/archive'
+  }
+  return output_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def dashboard_section_links_dict_ai_function():
   output_dict = {
     'One role + many CVs': '/ai/one-role-many-cvs',
@@ -108,6 +117,12 @@ def cv_status_codes_function():
 # ------------------------ individual function start ------------------------
 def ai_status_codes_function():
   arr = ['one-role-many-cvs','one-cv-many-roles']
+  return arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def results_status_codes_function():
+  arr = ['all','archive']
   return arr
 # ------------------------ individual function end ------------------------
 
@@ -213,6 +228,34 @@ def cv_table_links_function(role_type):
       #   'icon':'fa-solid fa-pen-to-square',
       #   'url':'/roles/edit'
       # }
+    }
+  # ------------------------ type end ------------------------
+  return output_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def results_table_links_function(role_type):
+  output_dict = {}
+  # ------------------------ type start ------------------------
+  if role_type == 'all':
+    output_dict = {
+      'Move to archive': {
+        'icon':'fa-solid fa-square-xmark',
+        'url':'/results/status/archive'
+      }
+    }
+  # ------------------------ type end ------------------------
+  # ------------------------ type start ------------------------
+  elif role_type == 'archive':
+    output_dict = {
+      'Move to all': {
+        'icon':'fa-regular fa-square-check',
+        'url':'/results/status/all'
+      },
+      'Delete result': {
+        'icon':'fa-solid fa-trash',
+        'url':'/results/status/delete'
+      }
     }
   # ------------------------ type end ------------------------
   return output_dict

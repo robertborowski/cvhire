@@ -1,6 +1,6 @@
 # ------------------------ imports start ------------------------
 from website import db
-from website.models import RolesObj, CvObj
+from website.models import RolesObj, CvObj, GradedObj
 from website.backend.convert import objs_to_arr_of_dicts_function
 # ------------------------ imports end ------------------------
 
@@ -78,6 +78,39 @@ def get_content_function(current_user, page_dict, url_status_code, dashboard_typ
         db_obj = CvObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(CvObj.candidate_name).all()
       # ------------------------ sorting default end ------------------------
   # ------------------------ cv end ------------------------
+  # ------------------------ results start ------------------------
+  if dashboard_type == 'results':
+    if url_status_code == 'all':
+      # ------------------------ sorting custom start ------------------------
+      if sort_option_passed == 'sort_name_a':
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.name).all()
+      elif sort_option_passed == 'sort_name_z':
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.name.desc()).all()
+      elif sort_option_passed == 'sort_time_a':
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.created_timestamp).all()
+      elif sort_option_passed == 'sort_time_z':
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.created_timestamp.desc()).all()
+      # ------------------------ sorting custom end ------------------------
+      # ------------------------ sorting default start ------------------------
+      else:
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.name).all()
+      # ------------------------ sorting default end ------------------------
+    else:
+      # ------------------------ sorting custom start ------------------------
+      if sort_option_passed == 'sort_name_a':
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.name).all()
+      elif sort_option_passed == 'sort_name_z':
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.name.desc()).all()
+      elif sort_option_passed == 'sort_time_a':
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.created_timestamp).all()
+      elif sort_option_passed == 'sort_time_z':
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.created_timestamp.desc()).all()
+      # ------------------------ sorting custom end ------------------------
+      # ------------------------ sorting default start ------------------------
+      else:
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.name).all()
+      # ------------------------ sorting default end ------------------------
+  # ------------------------ results end ------------------------
   # ------------------------ pull from db end ------------------------
   # ------------------------ assign variables start ------------------------
   page_dict['content_total_rows'] = len(db_obj)
@@ -85,6 +118,8 @@ def get_content_function(current_user, page_dict, url_status_code, dashboard_typ
     page_dict['content_total_rows_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_obj, 'roles')
   if dashboard_type == 'cv':
     page_dict['content_total_rows_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_obj, 'cv')
+  if dashboard_type == 'results':
+    page_dict['content_total_rows_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_obj, 'results')
   # ------------------------ assign variables end ------------------------
   return page_dict
 # ------------------------ individual function end ------------------------
