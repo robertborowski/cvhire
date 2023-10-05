@@ -60,6 +60,8 @@ def initial_cv_scrape_function(id_current_user):
     # ------------------------ fix name start ------------------------
     if cv_name == '' or cv_name == None:
       cv_name = 'No name'
+    if len(cv_name) > 50:
+      cv_name = cv_name[:49]
     # ------------------------ fix name end ------------------------
     # ------------------------ update db start ------------------------
     i_obj.initial_scrape_complete = True

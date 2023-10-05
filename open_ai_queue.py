@@ -97,6 +97,8 @@ def run_function():
                 status = 'valid'
                 fk_role_id = role_dict['id']
                 fk_cv_id = i_cv_dict['id']
+                fk_role_name = role_dict['name']
+                fk_cv_name = i_cv_dict['candidate_name']
                 summary = result_dict['openai_summary']
                 score = float(result_dict['openai_score'])
                 follow_ups = follow_ups_str
@@ -105,7 +107,7 @@ def run_function():
                 question_type = i_queue_dict['question_type']
                 # ------------------------ set variables end ------------------------
                 # ------------------------ insert to db start ------------------------
-                insert_query_v1_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key, question_type)
+                insert_query_v1_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, fk_role_name, fk_cv_name, summary, score, follow_ups, openai_response, fk_ref_key, question_type)
                 # ------------------------ insert to db end ------------------------
               # ------------------------ if grade does not exists end ------------------------
             # ------------------------ loop multiple end ------------------------
@@ -166,6 +168,8 @@ def run_function():
                 status = 'valid'
                 fk_role_id = i_role_dict['id']
                 fk_cv_id = cv_dict['id']
+                fk_role_name = i_role_dict['name']
+                fk_cv_name = cv_dict['candidate_name']
                 summary = result_dict['openai_summary']
                 score = float(result_dict['openai_score'])
                 follow_ups = follow_ups_str
@@ -174,7 +178,7 @@ def run_function():
                 question_type = i_queue_dict['question_type']
                 # ------------------------ set variables end ------------------------
                 # ------------------------ insert to db start ------------------------
-                insert_query_v1_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, summary, score, follow_ups, openai_response, fk_ref_key, question_type)
+                insert_query_v1_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_role_id, fk_cv_id, fk_role_name, fk_cv_name, summary, score, follow_ups, openai_response, fk_ref_key, question_type)
                 # ------------------------ insert to db end ------------------------
               # ------------------------ if grade does not exists end ------------------------
             # ------------------------ loop multiple end ------------------------

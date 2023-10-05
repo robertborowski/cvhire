@@ -108,6 +108,8 @@ class GradedObj(db.Model):
   status = db.Column(db.String(50))
   fk_role_id = db.Column(db.String(150))
   fk_cv_id = db.Column(db.String(150))
+  fk_role_name = db.Column(db.String(150))
+  fk_cv_name = db.Column(db.String(50))
   summary = db.Column(db.String(2000))
   score = db.Column(db.Float)
   follow_ups = db.Column(db.String(2000))
