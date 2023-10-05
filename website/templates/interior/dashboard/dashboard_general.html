@@ -79,12 +79,22 @@
       <!-- ------------------------------------- search bar start ------------------------------------- -->
       <input type="text" class="form-control" id="ui_search_bar" name="ui_search_bar" placeholder="Search (x{{ page_dict_html['content_total_rows'] }})">
       <!-- ------------------------------------- search bar end ------------------------------------- -->
+      <!-- ------------------------------------- filtering start ------------------------------------- -->
       <div class="custom-display-flex custom-jc-between custom-mt-25">
         <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_a" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mr-10">Name <i class="fa-solid fa-caret-down"></i></a>
         <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_z" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mlr-10">Name <i class="fa-solid fa-caret-up"></i></a>
         <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_a" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mlr-10">Upload <i class="fa-solid fa-caret-down"></i></a>
         <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_z" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-ml-10">Upload <i class="fa-solid fa-caret-up"></i></a>
       </div>
+      <!-- ------------------------------------- filtering end ------------------------------------- -->
+      <!-- ------------------------------------- results message and refresh start ------------------------------------- -->
+      {% if page_dict_html['queue_status'] == true %}
+        <div class="custom-width-900 mx-auto custom-mt-50 custom-mb-50 border shadow-lg custom-p-75 custom-br-15">
+          <div class="alert alert-success" role="alert">Automated screening is currently in progress, please click below to load results when ready.</div>
+          <a href="/results/valid" class="btn btn-success btn-lg custom-width-100">Refresh</a>
+        </div>
+      {% endif %}
+      <!-- ------------------------------------- results message and refresh end ------------------------------------- -->
       <!-- ------------------------------------- divider start ------------------------------------- -->
       <div class="custom-display-flex custom-jc-between border-bottom custom-mt-25">
         <p class="custom-m-0 custom-opacity-50 custom-header-12">Item</p>

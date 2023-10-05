@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, send_file, Response
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import GradedObj
+from website.models import GradedObj, OpenAiQueueObj
 from datetime import datetime
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
@@ -75,6 +75,12 @@ def results_dashboard_general_function(url_status_code='valid', url_redirect_cod
   page_dict['dashboard_action'] = 'Screen CV'
   page_dict['dashboard_action_link'] = '/ai/one-role-many-cvs'
   # ------------------------ dashboard variables end ------------------------
+  # ------------------------ check if any grading is currently in progress start ------------------------
+  page_dict['queue_status'] = False
+  db_queue_obj = OpenAiQueueObj.query.filter_by(fk_user_id=current_user.id,status='requested').all()
+  if db_queue_obj != None and db_queue_obj != []:
+    page_dict['queue_status'] = True
+  # ------------------------ check if any grading is currently in progress end ------------------------
   # ------------------------ choose correct template start ------------------------
   correct_template = ''
   if url_status_code == 'valid':
