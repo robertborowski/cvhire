@@ -792,6 +792,12 @@
 }
 /* ------------------- hover end ------------------- */
 /* ------------------- img start ------------------- */
+.custom-img-height-25 {
+  max-height: 25px;
+}
+.custom-img-height-30 {
+  max-height: 30px;
+}
 .custom-img-size-1 {
   height: 40px;
 }
