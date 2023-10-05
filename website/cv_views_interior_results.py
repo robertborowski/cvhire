@@ -30,7 +30,7 @@ redis_connection = redis_connect_open_function()
 @cv_views_interior_results.route('/results/', methods=['GET', 'POST'])
 @login_required
 def results_none_function():
-  return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='all'))
+  return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid'))
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -39,7 +39,7 @@ def results_none_function():
 @cv_views_interior_results.route('/results/<url_status_code>/<url_redirect_code>', methods=['GET', 'POST'])
 @cv_views_interior_results.route('/results/<url_status_code>/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
-def results_dashboard_general_function(url_status_code='all', url_redirect_code=None):
+def results_dashboard_general_function(url_status_code='valid', url_redirect_code=None):
   # ------------------------ pre load page checks start ------------------------
   page_dict = pre_page_load_checks_function(current_user, url_redirect_code, url_replace_value=url_status_code)
   if page_dict['current_user_locked'] == True:
@@ -48,7 +48,7 @@ def results_dashboard_general_function(url_status_code='all', url_redirect_code=
   # ------------------------ check if status code is valid start ------------------------
   status_codes_arr = results_status_codes_function()
   if url_status_code not in status_codes_arr:
-    return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='all', url_redirect_code='e10'))
+    return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid', url_redirect_code='e10'))
   # ------------------------ check if status code is valid end ------------------------
   # ------------------------ get status code start ------------------------
   page_dict['url_status_code'] = url_status_code
@@ -76,8 +76,8 @@ def results_dashboard_general_function(url_status_code='all', url_redirect_code=
   # ------------------------ dashboard variables end ------------------------
   # ------------------------ choose correct template start ------------------------
   correct_template = ''
-  if url_status_code == 'all':
-    correct_template = 'interior/results/all/index.html'
+  if url_status_code == 'valid':
+    correct_template = 'interior/results/valid/index.html'
   if url_status_code == 'archive':
     correct_template = 'interior/results/archived/index.html'
   # ------------------------ choose correct template end ------------------------

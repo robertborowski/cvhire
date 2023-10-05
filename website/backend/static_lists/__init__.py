@@ -87,7 +87,7 @@ def dashboard_section_links_dict_cv_function():
 # ------------------------ individual function start ------------------------
 def dashboard_section_links_dict_results_function():
   output_dict = {
-    'All': '/results/all',
+    'Valid': '/results/valid',
     'Archived': '/results/archive'
   }
   return output_dict
@@ -122,7 +122,7 @@ def ai_status_codes_function():
 
 # ------------------------ individual function start ------------------------
 def results_status_codes_function():
-  arr = ['all','archive']
+  arr = ['valid','archive']
   return arr
 # ------------------------ individual function end ------------------------
 
@@ -237,7 +237,7 @@ def cv_table_links_function(role_type):
 def results_table_links_function(role_type):
   output_dict = {}
   # ------------------------ type start ------------------------
-  if role_type == 'all':
+  if role_type == 'valid':
     output_dict = {
       'Move to archive': {
         'icon':'fa-solid fa-square-xmark',
@@ -248,9 +248,9 @@ def results_table_links_function(role_type):
   # ------------------------ type start ------------------------
   elif role_type == 'archive':
     output_dict = {
-      'Move to all': {
+      'Move to valid': {
         'icon':'fa-regular fa-square-check',
-        'url':'/results/status/all'
+        'url':'/results/status/valid'
       },
       'Delete result': {
         'icon':'fa-solid fa-trash',
