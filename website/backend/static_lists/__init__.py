@@ -103,6 +103,14 @@ def dashboard_section_links_dict_ai_function():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def dashboard_section_links_dict_export_function():
+  output_dict = {
+    'Results': '/export/export_results'
+  }
+  return output_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def role_status_codes_function():
   arr = ['open','filled','archive','all','delete']
   return arr
@@ -123,6 +131,12 @@ def ai_status_codes_function():
 # ------------------------ individual function start ------------------------
 def results_status_codes_function():
   arr = ['valid','archive','delete']
+  return arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def export_status_codes_function():
+  arr = ['export_results']
   return arr
 # ------------------------ individual function end ------------------------
 
