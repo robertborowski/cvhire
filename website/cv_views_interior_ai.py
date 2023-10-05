@@ -156,7 +156,7 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
     # ------------------------ add to queue end ------------------------
     # ------------------------ trigger queue start ------------------------
     # ------------------------ trigger queue end ------------------------
-    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='i3'))
+    return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='all', url_redirect_code='i3'))
   # ------------------------ post end ------------------------
   # ------------------------ auto set cookie start ------------------------
   get_cookie_value_from_browser = redis_check_if_cookie_exists_function()

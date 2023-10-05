@@ -83,9 +83,9 @@ def get_content_function(current_user, page_dict, url_status_code, dashboard_typ
     if url_status_code == 'all':
       # ------------------------ sorting custom start ------------------------
       if sort_option_passed == 'sort_name_a':
-        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.name).all()
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.fk_role_name).all()
       elif sort_option_passed == 'sort_name_z':
-        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.name.desc()).all()
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.fk_role_name.desc()).all()
       elif sort_option_passed == 'sort_time_a':
         db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.created_timestamp).all()
       elif sort_option_passed == 'sort_time_z':
@@ -93,14 +93,14 @@ def get_content_function(current_user, page_dict, url_status_code, dashboard_typ
       # ------------------------ sorting custom end ------------------------
       # ------------------------ sorting default start ------------------------
       else:
-        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.name).all()
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').order_by(GradedObj.fk_role_name).all()
       # ------------------------ sorting default end ------------------------
     else:
       # ------------------------ sorting custom start ------------------------
       if sort_option_passed == 'sort_name_a':
-        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.name).all()
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.fk_role_name).all()
       elif sort_option_passed == 'sort_name_z':
-        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.name.desc()).all()
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.fk_role_name.desc()).all()
       elif sort_option_passed == 'sort_time_a':
         db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.created_timestamp).all()
       elif sort_option_passed == 'sort_time_z':
@@ -108,7 +108,7 @@ def get_content_function(current_user, page_dict, url_status_code, dashboard_typ
       # ------------------------ sorting custom end ------------------------
       # ------------------------ sorting default start ------------------------
       else:
-        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.name).all()
+        db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.fk_role_name).all()
       # ------------------------ sorting default end ------------------------
   # ------------------------ results end ------------------------
   # ------------------------ pull from db end ------------------------
