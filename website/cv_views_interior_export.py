@@ -15,6 +15,7 @@ from website.backend.db_obj_checks import get_content_function
 from website.backend.convert import convert_obj_row_to_dict_function
 from website.backend.sql_queries import select_query_v6_function
 import csv
+import io
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -76,23 +77,37 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
   # ------------------------ choose correct template end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
-    # ------------------------ open connection start ------------------------
-    postgres_connection, postgres_cursor = postgres_connect_open_function()
-    # ------------------------ open connection end ------------------------
-    # ------------------------ get sql results start ------------------------
-    results_arr_of_dicts = select_query_v6_function(postgres_cursor, current_user.id)
-    column_names = [desc[0] for desc in postgres_cursor.description]
-    # ------------------------ get sql results end ------------------------
-    # ------------------------ close connection start ------------------------
-    postgres_connect_close_function(postgres_connection, postgres_cursor)
-    # ------------------------ close connection end ------------------------
-    # ------------------------ to csv start ------------------------
-    # csv_file_name = 'output.csv'
-    # with open(csv_file_name, 'w', newline='') as csvfile:
-    #   csv_writer = csv.writer(csvfile)
-    #   csv_writer.writerow(column_names)
-    #   csv_writer.writerows(results_arr_of_dicts)
-    # ------------------------ to csv end ------------------------
+    try:
+      # ------------------------ open connection start ------------------------
+      postgres_connection, postgres_cursor = postgres_connect_open_function()
+      # ------------------------ open connection end ------------------------
+      # ------------------------ get sql results start ------------------------
+      results_arr_of_dicts = select_query_v6_function(postgres_cursor, current_user.id)
+      column_names = [desc[0] for desc in postgres_cursor.description]
+      # ------------------------ get sql results end ------------------------
+      # ------------------------ close connection start ------------------------
+      postgres_connect_close_function(postgres_connection, postgres_cursor)
+      # ------------------------ close connection end ------------------------
+      # ------------------------ csv to local storage start ------------------------
+      # csv_file_name = 'output.csv'
+      # with open(csv_file_name, 'w', newline='') as csvfile:
+      #   csv_writer = csv.writer(csvfile)
+      #   csv_writer.writerow(column_names)
+      #   csv_writer.writerows(results_arr_of_dicts)
+      # ------------------------ csv to local storage end ------------------------
+      # ------------------------ csv in memory start ------------------------
+      output = io.StringIO()
+      csv_writer = csv.writer(output)
+      csv_writer.writerow(column_names)
+      csv_writer.writerows(results_arr_of_dicts)
+      csv_content = output.getvalue()
+      output.close()
+      # ------------------------ csv in memory end ------------------------
+      # ------------------------ send email with attachment start ------------------------
+      # ------------------------ send email with attachment end ------------------------
+    except Exception as e:
+      print(f'Error export_dashboard_function: {e}')
+      return redirect(url_for('cv_views_interior_export.export_dashboard_function', url_status_code='export_results', url_redirect_code='s10'))
     return redirect(url_for('cv_views_interior_export.export_dashboard_function', url_status_code='export_results', url_redirect_code='s8'))
   # ------------------------ post end ------------------------
   return render_template(correct_template, page_dict_html=page_dict)
