@@ -3,19 +3,11 @@ from flask import Blueprint, render_template, request, redirect, url_for, make_r
 from flask_login import login_required, current_user, logout_user
 from website import db
 from website.models import GradedObj, OpenAiQueueObj
-from datetime import datetime
-from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
-from website.backend.alerts import get_alert_message_function
-from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import results_status_codes_function, dashboard_section_links_dict_results_function, results_table_links_function, get_stars_img_function
 from website.backend.db_obj_checks import get_content_function
-from website.backend.uploads_user import allowed_cv_file_upload_function, get_file_suffix_function
-from website.backend.read_files import get_file_contents_function
-from website.backend.open_ai_chatgpt import get_name_and_email_from_cv_function
 from website.backend.convert import convert_obj_row_to_dict_function, get_follow_ups_function
-from website.backend.aws_logic import get_file_contents_from_aws_function, upload_file_to_aws_s3_function, initial_cv_scrape_function, get_file_static_from_aws_function
 from website.backend.db_manipulation import additional_cv_info_from_db_function
 # ------------------------ imports end ------------------------
 

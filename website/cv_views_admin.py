@@ -5,7 +5,6 @@ from flask_login import login_required, current_user, logout_user
 from website import db
 from website.models import UserObj, EmailBlockObj
 import os
-from datetime import datetime
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.sanitize import sanitize_email_function

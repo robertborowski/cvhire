@@ -2,17 +2,13 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj, GradedObj
+from website.models import EmailSentObj, GradedObj
 import os
-import json
 from datetime import datetime
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function, postgres_connect_open_function, postgres_connect_close_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
-from website.backend.static_lists import dashboard_section_links_dict_export_function, roles_table_links_function, export_status_codes_function
-from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
-from website.backend.db_obj_checks import get_content_function
-from website.backend.convert import convert_obj_row_to_dict_function
+from website.backend.static_lists import dashboard_section_links_dict_export_function, export_status_codes_function
 from website.backend.sql_queries import select_query_v6_function
 import csv
 import io

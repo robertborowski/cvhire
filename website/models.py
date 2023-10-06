@@ -118,6 +118,15 @@ class GradedObj(db.Model):
   question_type = db.Column(db.String(50))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class FeedbackObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  fk_user_id = db.Column(db.String(150))
+  status = db.Column(db.String(50))
+  message = db.Column(db.String(1000))
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):

@@ -2,21 +2,14 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj, GradedObj
+from website.models import FeedbackObj
 import os
-import json
-from datetime import datetime
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
-from website.backend.connection import redis_connect_open_function, postgres_connect_open_function, postgres_connect_close_function
+from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
-from website.backend.static_lists import dashboard_section_links_dict_help_function, roles_table_links_function, help_status_codes_function
-from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
-from website.backend.db_obj_checks import get_content_function
-from website.backend.convert import convert_obj_row_to_dict_function
-from website.backend.sql_queries import select_query_v6_function
-import csv
-import io
-from website.backend.sendgrid import send_email_with_attachment_template_function, send_email_template_function
+from website.backend.static_lists import dashboard_section_links_dict_help_function, help_status_codes_function
+from website.backend.sanitize import sanitize_chars_function_v3
+from website.backend.sendgrid import send_email_template_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -59,7 +52,7 @@ def help_dashboard_function(url_status_code='request', url_redirect_code=None):
   page_dict['dashboard_section_links_dict'] = dashboard_section_links_dict_help_function()
   # ------------------------ get list end ------------------------
   # ------------------------ dashboard variables start ------------------------
-  page_dict['dashboard_name'] = 'Help'
+  page_dict['dashboard_name'] = 'Help center'
   page_dict['dashboard_action'] = 'Request feature'
   page_dict['dashboard_action_link'] = '/help/request'
   # ------------------------ dashboard variables end ------------------------
@@ -68,73 +61,53 @@ def help_dashboard_function(url_status_code='request', url_redirect_code=None):
   if url_status_code == 'request':
     correct_template = 'interior/help/request/index.html'
   # ------------------------ choose correct template end ------------------------
-  """
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     try:
-      # ------------------------ open connection start ------------------------
-      postgres_connection, postgres_cursor = postgres_connect_open_function()
-      # ------------------------ open connection end ------------------------
-      # ------------------------ get sql results start ------------------------
-      results_arr_of_dicts = select_query_v6_function(postgres_cursor, current_user.id)
-      if results_arr_of_dicts != [] and results_arr_of_dicts != None:
-        column_names = [desc[0] for desc in postgres_cursor.description]
-        # ------------------------ get sql results end ------------------------
-        # ------------------------ close connection start ------------------------
-        postgres_connect_close_function(postgres_connection, postgres_cursor)
-        # ------------------------ close connection end ------------------------
-        # ------------------------ csv in memory start ------------------------
-        output = io.StringIO()
-        csv_writer = csv.writer(output)
-        csv_writer.writerow(column_names)
-        csv_writer.writerows(results_arr_of_dicts)
-        csv_content = output.getvalue()
-        output.close()
-        # ------------------------ csv in memory end ------------------------
-        # ------------------------ set variables start ------------------------
-        csv_file_name = create_uuid_function('export_')
-        today = datetime.today()
-        formatted_date = today.strftime('%Y-%m-%d')
-        output_subject = ''
-        # ------------------------ set variables end ------------------------
-        # ------------------------ send email with attachment start ------------------------
-        try:
-          output_subject = f'Export results {formatted_date} | CVhire'
-          output_body = f'Your CVhire export is attached.'
-          send_email_with_attachment_template_function(current_user.email, output_subject, output_body, csv_content, csv_file_name)
-        except Exception as e:
-          print(f'Error sending attachment: {e}')
-          return redirect(url_for('cv_views_interior_help.help_dashboard_function', url_status_code='request', url_redirect_code='s10'))
-        # ------------------------ send email with attachment end ------------------------
-        # ------------------------ add to email sent table start ------------------------
-        try:
-          new_row = EmailSentObj(
-            id=create_uuid_function('sent_'),
-            created_timestamp=create_timestamp_function(),
-            from_user_id_fk='standard',
-            to_email=current_user.email,
-            subject=output_subject,
-            body='export results csv sent'
-          )
-          db.session.add(new_row)
-          db.session.commit()
-        except:
-          pass
-        # ------------------------ add to email sent table end ------------------------
-        # ------------------------ email self notifications start ------------------------
-        try:
-          output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
-          output_subject_self = f'{current_user.email} | {output_subject}'
-          output_body = f'{current_user.email} | {output_subject}'
-          send_email_template_function(output_to_email, output_subject_self, output_body)
-        except:
-          pass
-        # ------------------------ email self notifications end ------------------------
+      # ------------------------ get user inputs start ------------------------
+      ui_feedback = request.form.get('uiFeedback')
+      # ------------------------ get user inputs end ------------------------
+      # ------------------------ sanitize user inputs start ------------------------
+      ui_feedback_check = sanitize_chars_function_v3(ui_feedback)
+      if ui_feedback_check == False:
+        return redirect(url_for('cv_views_interior_help.help_dashboard_function', url_redirect_code='e8'))
+      # ------------------------ sanitize user inputs end ------------------------
+      # ------------------------ insert to db start ------------------------
+      try:
+        new_row = FeedbackObj(
+          id=create_uuid_function('feedback_'),
+          created_timestamp=create_timestamp_function(),
+          fk_user_id=current_user.id,
+          status='open',
+          message=ui_feedback
+        )
+        db.session.add(new_row)
+        db.session.commit()
+      except:
+        pass
+      # ------------------------ insert to db end ------------------------
+      # ------------------------ set variables start ------------------------
+      output_subject = f'{current_user.email} | Help center'
+      output_body = f'{current_user.email}: {ui_feedback}'
+      # ------------------------ set variables end ------------------------
+      # ------------------------ email self support start ------------------------
+      try:
+        output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
+        send_email_template_function(output_to_email, output_subject, output_body)
+      except:
+        pass
+      # ------------------------ email self support end ------------------------
+      # ------------------------ email self notifications start ------------------------
+      try:
+        output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+        send_email_template_function(output_to_email, output_subject, output_body)
+      except:
+        pass
+      # ------------------------ email self notifications end ------------------------
     except Exception as e:
       print(f'Error help_dashboard_function: {e}')
       return redirect(url_for('cv_views_interior_help.help_dashboard_function', url_status_code='request', url_redirect_code='s10'))
-    return redirect(url_for('cv_views_interior_help.help_dashboard_function', url_status_code='request', url_redirect_code='s8'))
+    return redirect(url_for('cv_views_interior_help.help_dashboard_function', url_status_code='request', url_redirect_code='s9'))
   # ------------------------ post end ------------------------
-  """
   return render_template(correct_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

@@ -2,14 +2,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailSentObj, UserAttributesObj, RolesObj, CvObj, GradedObj
-import os
-import json
-from datetime import datetime
-from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
+from website.models import RolesObj, CvObj, GradedObj
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
-from website.backend.cookies import redis_check_if_cookie_exists_function, browser_response_set_cookie_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import role_status_codes_function, cv_status_codes_function, results_status_codes_function
 # ------------------------ imports end ------------------------

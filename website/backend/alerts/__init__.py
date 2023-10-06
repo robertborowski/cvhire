@@ -122,6 +122,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Export in progress. We will send the .csv file to your email.',
       'type':'success'
     }
+  elif redirect_var == 's9':
+    alert_message_dict = {
+      'message':'Thank you! We will get back to you shortly.',
+      'type':'success'
+    }
   # ------------------------ success end ------------------------
   # ------------------------ info end ------------------------
   elif redirect_var == 'i1':
