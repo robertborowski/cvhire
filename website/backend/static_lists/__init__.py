@@ -111,6 +111,14 @@ def dashboard_section_links_dict_export_function():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def dashboard_section_links_dict_help_function():
+  output_dict = {
+    'Request': '/help/request'
+  }
+  return output_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def role_status_codes_function():
   arr = ['open','filled','archive','all','delete']
   return arr
@@ -137,6 +145,12 @@ def results_status_codes_function():
 # ------------------------ individual function start ------------------------
 def export_status_codes_function():
   arr = ['export_results']
+  return arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def help_status_codes_function():
+  arr = ['request']
   return arr
 # ------------------------ individual function end ------------------------
 
