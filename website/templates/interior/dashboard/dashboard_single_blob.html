@@ -51,17 +51,44 @@
       {% if page_dict_html['starting_route'] == 'export' %}
         <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
           <div class="custom-mt-50 custom-width-500 mx-auto border custom-p-50 custom-br-15 shadow">
+            <!-- ------------------------------------- title and subtitle start ------------------------------------- -->
             <h1 class="custom-header-30"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="" class="custom-img-height-35"> CVhire <span class="custom-header-20">| Simple export</span></h1>
             <div class="custom-mtb-25 custom-opacity-50">
               <p class="custom-m-0 custom-mb-5 custom-header-15"><i class="fa-regular fa-envelope"></i> {{ page_dict_html['current_user_email'] }}</p>
               <p class="custom-m-0 custom-header-12">Please check your spam folder as well.</p>
             </div>
+            <!-- ------------------------------------- title and subtitle end ------------------------------------- -->
+            <!-- ------------------------------------- submit start ------------------------------------- -->
             <button type="submit" class="btn btn-primary btn-lg custom-br-10 custom-width-100">Export</button>
+            <!-- ------------------------------------- submit end ------------------------------------- -->
             <div class="text-center custom-mt-15">
               <a href="/ai/one-role-many-cvs" class="custom-a-black-underline custom-opacity-50">Home</a>
             </div>
           </div>
         </form>
+      {% elif page_dict_html['starting_route'] == 'help' %}
+      <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+        <div class="custom-mt-50 custom-width-900 mx-auto border custom-p-50 custom-br-15 shadow">
+          <!-- ------------------------------------- title and subtitle start ------------------------------------- -->
+          <h1 class="custom-header-30"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="" class="custom-img-height-35"> CVhire <span class="custom-header-20">| Help center</span></h1>
+          <div class="custom-mtb-25 custom-opacity-50">
+            <a href="mailto:support@cvhire.com" class="custom-header-15 custom-a-black-underline">Support@CVhire.com</a>
+          </div>
+          <!-- ------------------------------------- title and subtitle end ------------------------------------- -->
+          <!-- ------------------------------------- requirements start ------------------------------------- -->
+          <div class="custom-pb-50">
+            <label for="uiFeedback" class="form-label">Ticket <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters."></i></label>
+            <textarea class="form-control" id="uiFeedback" name="uiFeedback" rows="7" required></textarea>
+          </div>
+          <!-- ------------------------------------- requirements end ------------------------------------- -->
+          <!-- ------------------------------------- submit start ------------------------------------- -->
+          <button type="submit" class="btn btn-primary btn-lg custom-br-10 custom-width-100">Submit</button>
+          <!-- ------------------------------------- submit end ------------------------------------- -->
+          <div class="text-center custom-mt-15">
+            <a href="/ai/one-role-many-cvs" class="custom-a-black-underline custom-opacity-50">Home</a>
+          </div>
+        </div>
+      </form>
       {% endif %}
       <!-- ------------------------------------- content end ------------------------------------- -->
     {% endif %}
