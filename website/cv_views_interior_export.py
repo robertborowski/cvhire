@@ -103,7 +103,7 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
         send_email_with_attachment_template_function(current_user.email, 'Export results | CVhire', output_body, csv_content)
       except Exception as e:
         print(f'Error sending attachment: {e}')
-        pass
+        return redirect(url_for('cv_views_interior_export.export_dashboard_function', url_status_code='export_results', url_redirect_code='s10'))
       # ------------------------ send email with attachment end ------------------------
     except Exception as e:
       print(f'Error export_dashboard_function: {e}')
