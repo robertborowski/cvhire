@@ -28,7 +28,7 @@ def send_email_template_function(output_email, output_subject_line, output_messa
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def send_email_with_attachment_template_function(output_email, output_subject_line, output_message_content, output_attachment):
+def send_email_with_attachment_template_function(output_email, output_subject_line, output_message_content, output_attachment, csv_file_name):
   sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY_TRIVIAFY'))
   from_email = Email(email = os.environ.get('CVHIRE_SUPPORT_EMAIL'), name = "CVhire")  # Change to your verified sender
   to_email = To(output_email)  # Change to your recipient
@@ -39,7 +39,7 @@ def send_email_with_attachment_template_function(output_email, output_subject_li
   encoded_csv_content = base64.b64encode(output_attachment.encode('utf-8')).decode()
   attachment = Attachment(
     FileContent(encoded_csv_content),
-    FileName(f"testing.csv"),
+    FileName(f"{csv_file_name}.csv"),
     FileType('text/csv'),
     Disposition('attachment')
   )

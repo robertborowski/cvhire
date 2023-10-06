@@ -97,10 +97,16 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
       csv_content = output.getvalue()
       output.close()
       # ------------------------ csv in memory end ------------------------
+      # ------------------------ set variables start ------------------------
+      csv_file_name = create_uuid_function('export_')
+      today = datetime.today()
+      formatted_date = today.strftime('%Y-%m-%d')
+      # ------------------------ set variables end ------------------------
       # ------------------------ send email with attachment start ------------------------
       try:
+        output_subject = f'Export results {formatted_date} | CVhire'
         output_body = f'Your CVhire export is attached.'
-        send_email_with_attachment_template_function(current_user.email, 'Export results | CVhire', output_body, csv_content)
+        send_email_with_attachment_template_function(current_user.email, output_subject, output_body, csv_content, csv_file_name)
       except Exception as e:
         print(f'Error sending attachment: {e}')
         return redirect(url_for('cv_views_interior_export.export_dashboard_function', url_status_code='export_results', url_redirect_code='s10'))
