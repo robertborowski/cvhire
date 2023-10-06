@@ -798,6 +798,18 @@
 .custom-img-height-30 {
   max-height: 30px;
 }
+.custom-img-height-35 {
+  max-height: 35px;
+}
+.custom-img-height-40 {
+  max-height: 40px;
+}
+.custom-img-height-150 {
+  max-height: 150px;
+}
+.custom-img-height-200 {
+  max-height: 200px;
+}
 .custom-img-size-1 {
   height: 40px;
 }

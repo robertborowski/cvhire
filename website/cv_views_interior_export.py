@@ -76,6 +76,9 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
   if url_status_code == 'export_results':
     correct_template = 'interior/export_pages/results/index.html'
   # ------------------------ choose correct template end ------------------------
+  # ------------------------ add email start ------------------------
+  page_dict['current_user_email'] = current_user.email
+  # ------------------------ add email end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     try:
