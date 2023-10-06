@@ -2,12 +2,14 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user
 from website.backend.connection import redis_connect_open_function
-from website.models import UserObj
+from website.models import UserObj, EmailSentObj
 from website import db
 from werkzeug.security import generate_password_hash
 from website.backend.alerts import get_alert_message_function
 from website.backend.sanitize import sanitize_email_function, sanitize_password_function
 from website.backend.sendgrid import send_email_template_function
+import os
+from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -75,6 +77,30 @@ def cv_forgot_password_function(url_redirect_code=None):
                                 This link will expire after 30 minutes.\nIf you did not make this request then simply ignore this email and no changes will be made."
       send_email_template_function(output_email, output_subject_line, output_message_content)
       # ------------------------ send email with token url end ------------------------
+      # ------------------------ add to email sent table start ------------------------
+      try:
+        new_row = EmailSentObj(
+          id=create_uuid_function('sent_'),
+          created_timestamp=create_timestamp_function(),
+          from_user_id_fk='standard',
+          to_email=ui_email,
+          subject=output_subject_line,
+          body='forgot password reset link'
+        )
+        db.session.add(new_row)
+        db.session.commit()
+      except:
+        pass
+      # ------------------------ add to email sent table end ------------------------
+      # ------------------------ email self notifications start ------------------------
+      try:
+        output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+        output_subject = f'{ui_email} | {output_subject_line}'
+        output_body = f'{ui_email} | {output_subject_line}'
+        send_email_template_function(output_to_email, output_subject, output_body)
+      except:
+        pass
+      # ------------------------ email self notifications end ------------------------
     else:
       pass
     # ------------------------ check if user email exists in db end ------------------------

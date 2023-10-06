@@ -10,7 +10,6 @@ from website.backend.aws_logic import get_file_contents_from_aws_function
 from website.backend.uploads_user import get_file_suffix_function
 from website.backend.read_files import get_file_contents_function
 from website.backend.open_ai_chatgpt import role_and_cv_grade_v1_function
-from website.backend.sendgrid import send_email_template_function
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 # ------------------------ imports end ------------------------
 
@@ -186,15 +185,6 @@ def run_function():
         # ------------------------ loop queue end ------------------------
     except Exception as e:
       failure_counter += 1
-      # # ------------------------ email self start ------------------------
-      # try:
-      #   output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
-      #   output_subject = f'Exception error 001'
-      #   output_body = f'failure_counter: {failure_counter} | Exception error 001: {e}'
-      #   send_email_template_function(output_to_email, output_subject, output_body)
-      # except:
-      #   pass
-      # # ------------------------ email self end ------------------------
       # ------------------------ close db connection start ------------------------
       postgres_connect_close_function(postgres_connection, postgres_cursor)
       # ------------------------ close db connection end ------------------------

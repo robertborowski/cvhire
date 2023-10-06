@@ -16,7 +16,7 @@ from website.backend.convert import convert_obj_row_to_dict_function
 from website.backend.sql_queries import select_query_v6_function
 import csv
 import io
-from website.backend.sendgrid import send_email_with_attachment_template_function
+from website.backend.sendgrid import send_email_with_attachment_template_function, send_email_template_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -102,6 +102,7 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
         csv_file_name = create_uuid_function('export_')
         today = datetime.today()
         formatted_date = today.strftime('%Y-%m-%d')
+        output_subject = ''
         # ------------------------ set variables end ------------------------
         # ------------------------ send email with attachment start ------------------------
         try:
@@ -112,6 +113,30 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
           print(f'Error sending attachment: {e}')
           return redirect(url_for('cv_views_interior_export.export_dashboard_function', url_status_code='export_results', url_redirect_code='s10'))
         # ------------------------ send email with attachment end ------------------------
+        # ------------------------ add to email sent table start ------------------------
+        try:
+          new_row = EmailSentObj(
+            id=create_uuid_function('sent_'),
+            created_timestamp=create_timestamp_function(),
+            from_user_id_fk='standard',
+            to_email=current_user.email,
+            subject=output_subject,
+            body='export results csv sent'
+          )
+          db.session.add(new_row)
+          db.session.commit()
+        except:
+          pass
+        # ------------------------ add to email sent table end ------------------------
+        # ------------------------ email self notifications start ------------------------
+        try:
+          output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+          output_subject = f'{current_user.email} | {output_subject}'
+          output_body = f'{current_user.email} | {output_subject}'
+          send_email_template_function(output_to_email, output_subject, output_body)
+        except:
+          pass
+        # ------------------------ email self notifications end ------------------------
     except Exception as e:
       print(f'Error export_dashboard_function: {e}')
       return redirect(url_for('cv_views_interior_export.export_dashboard_function', url_status_code='export_results', url_redirect_code='s10'))
