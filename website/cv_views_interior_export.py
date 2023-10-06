@@ -72,5 +72,11 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
   if url_status_code == 'export_results':
     correct_template = 'interior/export_pages/results/index.html'
   # ------------------------ choose correct template end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ get sql results start ------------------------
+    # ------------------------ get sql results end ------------------------
+    return redirect(url_for('cv_views_interior_export.export_dashboard_function', url_status_code='export_results', url_redirect_code='s8'))
+  # ------------------------ post end ------------------------
   return render_template(correct_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

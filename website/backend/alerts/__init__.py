@@ -117,6 +117,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Successfully uploaded file(s)',
       'type':'success'
     }
+  elif redirect_var == 's8':
+    alert_message_dict = {
+      'message':'Export in progress. We will send the .csv file to your email.',
+      'type':'success'
+    }
   # ------------------------ success end ------------------------
   # ------------------------ info end ------------------------
   elif redirect_var == 'i1':
