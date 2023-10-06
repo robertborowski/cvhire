@@ -1,51 +1,10 @@
-{% extends "navbar/form_general.html" %}
+{% extends "interior/form/general.html" %}
 
 {% block title %}
-  <title>Add roles | CVhire</title>
+  <title>Add role | CVhire</title>
   <meta name="description" content="CVhire">
   <meta name="og:description" content="CVhire">
 {% endblock %}
 
-{% block contentBodyExceptNavbarAndFooter %}
-<div class="custom-width-600 mx-auto">
-  <!-- ------------------------------------- title start ------------------------------------- -->
-  <div class="custom-ptb-50">
-    <h2 class="custom-m-0 custom-header-30">Role information</h2>
-  </div>
-  <!-- ------------------------------------- title end ------------------------------------- -->
-  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
-    <!-- ------------------------------------- name start ------------------------------------- -->
-    <div class="form-group custom-pb-50">
-      <label for="uiRoleName" class="form-label">Name of role <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 150 characters. Unique name."></i></label>
-      <input class="form-control" type="text" id="uiRoleName" name="uiRoleName" value="{{ page_dict_html['db_role_dict']['name'] }}" required>
-    </div>
-    <!-- ------------------------------------- name end ------------------------------------- -->
-    <!-- ------------------------------------- about start ------------------------------------- -->
-    <div class="custom-pb-50">
-      <label for="uiAbout" class="form-label">In this role, you will have the opportunity to <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
-      <textarea class="form-control" id="uiAbout" name="uiAbout" rows="5" required>{{ page_dict_html['db_role_dict']['about'] }}</textarea>
-    </div>
-    <!-- ------------------------------------- about end ------------------------------------- -->
-    <!-- ------------------------------------- requirements start ------------------------------------- -->
-    <div class="custom-pb-50">
-      <label for="uiRequirements" class="form-label">Role requirements <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
-      <textarea class="form-control" id="uiRequirements" name="uiRequirements" rows="10" required>{{ page_dict_html['db_role_dict']['requirements'] }}</textarea>
-    </div>
-    <!-- ------------------------------------- requirements end ------------------------------------- -->
-    <!-- ------------------------------------- requirements start ------------------------------------- -->
-    <div class="custom-pb-50">
-      <label for="uiNiceToHaves" class="form-label">Role nice to haves <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
-      <textarea class="form-control" id="uiNiceToHaves" name="uiNiceToHaves" rows="5" required>{{ page_dict_html['db_role_dict']['nice_to_haves'] }}</textarea>
-    </div>
-    <!-- ------------------------------------- requirements end ------------------------------------- -->
-    <!-- ------------------------------------- buttons start ------------------------------------- -->
-    <div class="custom-mb-50">
-      <button type="submit" class="btn btn-primary btn-lg custom-width-100">Confirm role</button>
-      <div class="text-center custom-mt-25">
-        <a href="/roles" class="custom-a-black-underline custom-opacity-75">Cancel</a>
-      </div>
-    </div>
-    <!-- ------------------------------------- buttons end ------------------------------------- -->
-  </form>
-</div>
+{% block contentBodyDashboard %}
 {% endblock %}

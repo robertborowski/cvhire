@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, send_file, Response
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import GradedObj, OpenAiQueueObj
+from website.models import GradedObj, OpenAiQueueObj, CvObj
 from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import results_status_codes_function, dashboard_section_links_dict_results_function, results_table_links_function, get_stars_img_function
@@ -114,5 +114,39 @@ def results_view_function(url_grade_id=None, url_redirect_code=None):
   # ------------------------ get additional CV info start ------------------------
   page_dict['db_grade_dict'] = additional_cv_info_from_db_function(current_user.id, page_dict['db_grade_dict'])
   # ------------------------ get additional CV info end ------------------------
+  return render_template('interior/results/view_results/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_results.route('/results/ask/<url_starting_route_id>/<url_item_id>', methods=['GET', 'POST'])
+@cv_views_interior_results.route('/results/ask/<url_starting_route_id>/<url_item_id>/', methods=['GET', 'POST'])
+@cv_views_interior_results.route('/results/ask/<url_starting_route_id>/<url_item_id>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior_results.route('/results/ask/<url_starting_route_id>/<url_item_id>/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def results_ask_function(url_starting_route_id=None, url_item_id=None, url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ route incorrect check start ------------------------
+  if url_starting_route_id == None or url_item_id == None:
+    return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid'))
+  # ------------------------ route incorrect check end ------------------------
+  # ------------------------ set variables start ------------------------
+  db_obj = None
+  page_dict['view_reason'] = None
+  # ------------------------ set variables end ------------------------
+  # ------------------------ starting route start ------------------------
+  if url_starting_route_id == 'cv':
+    # ------------------------ set variables start ------------------------
+    page_dict['view_reason'] = 'ask_cv'
+    # ------------------------ set variables end ------------------------
+    # ------------------------ get from db start ------------------------
+    db_obj = CvObj.query.filter_by(fk_user_id=current_user.id,id=url_item_id).filter(CvObj.status!='delete').first()
+    if db_obj == None or db_obj == []:
+      return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid',url_redirect_code='e10'))
+    # ------------------------ get from db end ------------------------
+  # ------------------------ starting route end ------------------------
   return render_template('interior/results/view_results/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
