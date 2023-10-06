@@ -54,6 +54,14 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
   # ------------------------ get list start ------------------------
   page_dict['dashboard_section_links_dict'] = dashboard_section_links_dict_export_function()
   # ------------------------ get list end ------------------------
+  # ------------------------ get total results start ------------------------
+  db_grade_obj = GradedObj.query.filter_by(fk_user_id=current_user.id).filter(GradedObj.status != 'delete').all()
+  page_dict['content_total_rows'] = 0
+  try:
+    page_dict['content_total_rows'] = len(db_grade_obj)
+  except:
+    pass
+  # ------------------------ get total results end ------------------------
   # ------------------------ dashboard variables start ------------------------
   page_dict['dashboard_name'] = 'Export'
   page_dict['dashboard_action'] = 'Export results'
