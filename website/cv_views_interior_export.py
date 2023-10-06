@@ -16,6 +16,7 @@ from website.backend.convert import convert_obj_row_to_dict_function
 from website.backend.sql_queries import select_query_v6_function
 import csv
 import io
+from website.backend.sendgrid import send_email_with_attachment_template_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -88,13 +89,6 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
       # ------------------------ close connection start ------------------------
       postgres_connect_close_function(postgres_connection, postgres_cursor)
       # ------------------------ close connection end ------------------------
-      # ------------------------ csv to local storage start ------------------------
-      # csv_file_name = 'output.csv'
-      # with open(csv_file_name, 'w', newline='') as csvfile:
-      #   csv_writer = csv.writer(csvfile)
-      #   csv_writer.writerow(column_names)
-      #   csv_writer.writerows(results_arr_of_dicts)
-      # ------------------------ csv to local storage end ------------------------
       # ------------------------ csv in memory start ------------------------
       output = io.StringIO()
       csv_writer = csv.writer(output)
@@ -104,6 +98,12 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
       output.close()
       # ------------------------ csv in memory end ------------------------
       # ------------------------ send email with attachment start ------------------------
+      try:
+        output_body = f'Your CVhire export is attached.'
+        send_email_with_attachment_template_function(current_user.email, 'Export results | CVhire', output_body, csv_content)
+      except Exception as e:
+        print(f'Error sending attachment: {e}')
+        pass
       # ------------------------ send email with attachment end ------------------------
     except Exception as e:
       print(f'Error export_dashboard_function: {e}')
