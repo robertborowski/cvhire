@@ -792,6 +792,9 @@
 }
 /* ------------------- hover end ------------------- */
 /* ------------------- img start ------------------- */
+.custom-img-height-20 {
+  max-height: 20px;
+}
 .custom-img-height-25 {
   max-height: 25px;
 }
@@ -803,6 +806,24 @@
 }
 .custom-img-height-40 {
   max-height: 40px;
+}
+.custom-img-height-50 {
+  max-height: 50px;
+}
+.custom-img-height-75 {
+  max-height: 75px;
+}
+.custom-img-height-80 {
+  max-height: 80px;
+}
+.custom-img-height-100 {
+  max-height: 100px;
+}
+.custom-img-height-125 {
+  max-height: 125px;
+}
+.custom-img-height-125-mobile {
+  max-height: 125px;
 }
 .custom-img-height-150 {
   max-height: 150px;

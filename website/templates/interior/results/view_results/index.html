@@ -1,4 +1,4 @@
-{% extends "navbar/form_general.html" %}
+{% extends "interior/form/general.html" %}
 
 {% block title %}
   <title>View result | CVhire</title>
@@ -6,46 +6,5 @@
   <meta name="og:description" content="CVhire">
 {% endblock %}
 
-{% block contentBodyExceptNavbarAndFooter %}
-<div class="custom-width-600 mx-auto">
-  <!-- ------------------------------------- title start ------------------------------------- -->
-  <div class="custom-ptb-50">
-    <h2 class="custom-m-0 custom-header-30">Result <a href="/results" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
-  </div>
-  <!-- ------------------------------------- title end ------------------------------------- -->
-  <!-- ------------------------------------- name start ------------------------------------- -->
-  <div class="custom-pb-50">
-    <h3 class="custom-m-0 custom-header-25 custom-mb-25">{{ page_dict_html['db_grade_dict']['fk_role_name'] }} <a href="/roles/view/{{ page_dict_html['db_grade_dict']['fk_role_id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10">View role</a></h3>
-    <h3 class="custom-m-0 custom-header-25 custom-mb-5">{{ page_dict_html['db_grade_dict']['fk_cv_name'] }} <a href="/cv/view/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10">View CV</a></h3>
-    {% if page_dict_html['db_grade_dict']['candidate_email'] != '' %}
-      <h3 class="custom-m-0 custom-header-15 custom-mb-5 custom-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_email'] }}</h3>
-    {% endif %}
-    {% if page_dict_html['db_grade_dict']['candidate_phone'] != '' %}
-      <h3 class="custom-m-0 custom-header-15 custom-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_phone'] }}</h3>
-    {% endif %}
-    <h3 class="custom-m-0 custom-header-20 custom-mt-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-height-25 custom-mr-5"> {{ page_dict_html['db_grade_dict']['score'] }}</h3>
-  </div>
-  <!-- ------------------------------------- name end ------------------------------------- -->
-  <!-- ------------------------------------- section start ------------------------------------- -->
-  <div class="custom-pb-50">
-    <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Summary</h3>
-    <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_grade_dict']['summary'] }}</p>
-  </div>
-  <!-- ------------------------------------- section end ------------------------------------- -->
-  <!-- ------------------------------------- section start ------------------------------------- -->
-  <div class="custom-pb-50">
-    <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Follow ups</h3>
-    {% for i_str in page_dict_html['db_grade_dict']['follow_ups_arr'] %}
-      <p class="custom-m-0 custom-mb-15 custom-header-15">{{ i_str }}</p>
-    {% endfor %}
-  </div>
-  <!-- ------------------------------------- section end ------------------------------------- -->
-  <!-- ------------------------------------- buttons start ------------------------------------- -->
-  <div class="custom-mb-50">
-    <div class="text-center custom-mt-25">
-      <a href="/results" class="btn btn-primary btn-lg custom-width-100">Back</a>
-    </div>
-  </div>
-  <!-- ------------------------------------- buttons end ------------------------------------- -->
-</div>
+{% block contentBodyDashboard %}
 {% endblock %}
