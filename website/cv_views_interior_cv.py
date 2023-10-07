@@ -259,7 +259,7 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
       created_timestamp = create_timestamp_function(),
       fk_user_id = current_user.id,
       status = 'requested',
-      question_type = 'cv_ask_ai',
+      question_type = 'cv-ask-ai',
       single_value = url_item_id,
       multiple_values = ui_cv_ask_ai
     )

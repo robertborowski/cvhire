@@ -182,6 +182,10 @@ def run_function():
               # ------------------------ if grade does not exists end ------------------------
             # ------------------------ loop multiple end ------------------------
           # ------------------------ question type 2 end ------------------------
+          # ------------------------ question type 3 start ------------------------
+          if i_queue_dict['question_type'] == 'one-role-many-cvs':
+            pass
+          # ------------------------ question type 3 end ------------------------
         # ------------------------ loop queue end ------------------------
     except Exception as e:
       failure_counter += 1
