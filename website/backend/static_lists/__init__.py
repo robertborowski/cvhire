@@ -97,7 +97,8 @@ def dashboard_section_links_dict_results_function():
 def dashboard_section_links_dict_ai_function():
   output_dict = {
     'One role + many CVs': '/ai/one-role-many-cvs',
-    'One CV + many roles': '/ai/one-cv-many-roles'
+    'One CV + many roles': '/ai/one-cv-many-roles',
+    'CV ask AI': '/cv/active'
   }
   return output_dict
 # ------------------------ individual function end ------------------------

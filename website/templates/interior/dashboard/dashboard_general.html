@@ -129,15 +129,26 @@
             <div class="custom-header-20 my-auto">
               <ul class="custom-m-0 custom-display-flex custom-no-decoration">
                 {% if page_dict_html['starting_route'] == 'roles' %}
-                  <li><a href="/ai/one-role-many-cvs" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Screen CVs</a></li>
+                  {% if page_dict_html['url_status_code'] == 'open' %}
+                    <li><a href="/ai/one-role-many-cvs" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20 custom-ptb-10">Screen CVs</a></li>
+                  {% elif page_dict_html['url_status_code'] == 'all' %}
+                    <li>{{ i['status'] }}</li>
+                  {% endif %}
                 {% elif page_dict_html['starting_route'] == 'cv' %}
-                  <li><a href="/ai/one-role-many-cvs" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">Screen CV</a></li>
+                  {% if page_dict_html['url_status_code'] == 'active' %}
+                    <li><a href="/ai/one-role-many-cvs" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20 custom-ptb-10">Screen CV</a></li>
+                    <li><a href="/cv/ask_ai/{{ i['id'] }}" class="custom-ml-10 btn btn-success btn-sm custom-br-10 custom-plr-20 custom-ptb-10">Ask AI</a></li>
+                  {% elif page_dict_html['url_status_code'] == 'all' %}
+                    <li>{{ i['status'] }}</li>
+                  {% endif %}
                 {% elif page_dict_html['starting_route'] == 'results' %}
                   <li><a href="/results/view/{{ i['id'] }}" class="custom-header-15 custom-a-black-underline">{{ i['fk_cv_name_display'] }} <img src="{{ i['score_all_stars'] }}" alt="" class="custom-img-size-20 custom-mlr-15"> {{ i['score'] }}</a></li>
                   <li><a href="/results/view/{{ i['id'] }}" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">View results</a></li>
                   {% endif %}
                 {% for k,v in page_dict_html['sub_table_links_dict'].items() %}
-                  <li><a href="{{ v['url'] }}/{{ i['id'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-ml-30" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
+                  <div class="my-auto">
+                    <li><a href="{{ v['url'] }}/{{ i['id'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-ml-30" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
+                  </div>
                 {% endfor %}
               </ul>
             </div>
