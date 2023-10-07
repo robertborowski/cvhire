@@ -47,6 +47,7 @@ def cv_roles_dashboard_function(url_status_code='open', url_redirect_code=None):
   # ------------------------ get status code start ------------------------
   page_dict['url_status_code'] = url_status_code
   page_dict['starting_route'] = 'roles'
+  page_dict['nav_header'] = True
   # ------------------------ get status code end ------------------------
   # ------------------------ get list start ------------------------
   page_dict['dashboard_section_links_dict'] = dashboard_section_links_dict_roles_function()
@@ -98,6 +99,7 @@ def cv_roles_add_function(url_redirect_code=None):
   page_dict['db_role_dict'] = None
   # ------------------------ for later edits end ------------------------
   # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = False
   page_dict['view_reason'] = 'add_role'
   # ------------------------ set variables end ------------------------
   # ------------------------ post start ------------------------
@@ -171,6 +173,7 @@ def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
     return redirect(url_for('cv_views_interior_roles.cv_roles_view_function', url_role_id=url_role_id, url_redirect_code='e14'))
   # ------------------------ check if role already graded end ------------------------
   # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = False
   page_dict['view_reason'] = 'edit_role'
   # ------------------------ set variables end ------------------------
   # ------------------------ post start ------------------------
@@ -247,6 +250,7 @@ def cv_roles_view_function(url_role_id=None, url_redirect_code=None):
   page_dict['db_role_dict'] = convert_obj_row_to_dict_function(db_role_obj)
   # ------------------------ check if role id exists and is assigned to user end ------------------------
   # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = False
   page_dict['view_reason'] = 'view_role'
   # ------------------------ set variables end ------------------------
   return render_template('interior/roles/view_role/index.html', page_dict_html=page_dict)

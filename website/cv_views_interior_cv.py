@@ -48,6 +48,7 @@ def cv_dashboard_general_function(url_status_code='active', url_redirect_code=No
   # ------------------------ get status code start ------------------------
   page_dict['url_status_code'] = url_status_code
   page_dict['starting_route'] = 'cv'
+  page_dict['nav_header'] = True
   # ------------------------ get status code end ------------------------
   # ------------------------ get list start ------------------------
   page_dict['dashboard_section_links_dict'] = dashboard_section_links_dict_cv_function()

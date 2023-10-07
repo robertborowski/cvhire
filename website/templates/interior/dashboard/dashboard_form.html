@@ -175,7 +175,7 @@
         <!-- ------------------------------------- no content end ------------------------------------- -->
         <!-- ------------------------------------- yes content start ------------------------------------- -->
         {% else %}
-          <!-- ------------------------------------- content start ------------------------------------- -->
+          <!-- ------------------------------------- view start ------------------------------------- -->
           {% if page_dict_html['view_reason'] == 'export' %}
             <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
               <div class="custom-mt-50 border custom-p-50 custom-br-15 shadow">
@@ -194,8 +194,8 @@
                 </div>
               </div>
             </form>
-          <!-- ------------------------------------- content end ------------------------------------- -->
-          <!-- ------------------------------------- content start ------------------------------------- -->
+          <!-- ------------------------------------- view end ------------------------------------- -->
+          <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'help' %}
             <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
               <div class="custom-mt-50 border custom-p-50 custom-br-15 shadow">
@@ -219,10 +219,140 @@
                 </div>
               </div>
             </form>
-          <!-- ------------------------------------- content end ------------------------------------- -->
-          <!-- ------------------------------------- content start ------------------------------------- -->
-          {% elif page_dict_html['view_reason'] == '' %}
-          <!-- ------------------------------------- content end ------------------------------------- -->
+          <!-- ------------------------------------- view end ------------------------------------- -->
+          <!-- ------------------------------------- view start ------------------------------------- -->
+          {% elif page_dict_html['view_reason'] == 'add_role' or page_dict_html['view_reason'] == 'edit_role' %}
+            <!-- ------------------------------------- title start ------------------------------------- -->
+            <div class="custom-ptb-50">
+              <h2 class="custom-m-0 custom-header-30">Role information</h2>
+            </div>
+            <!-- ------------------------------------- title end ------------------------------------- -->
+            <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+              <!-- ------------------------------------- name start ------------------------------------- -->
+              <div class="form-group custom-pb-50">
+                <label for="uiRoleName" class="form-label">Name of role <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 150 characters. Unique name."></i></label>
+                <input class="form-control" type="text" id="uiRoleName" name="uiRoleName" value="{{ page_dict_html['db_role_dict']['name'] }}" required>
+              </div>
+              <!-- ------------------------------------- name end ------------------------------------- -->
+              <!-- ------------------------------------- about start ------------------------------------- -->
+              <div class="custom-pb-50">
+                <label for="uiAbout" class="form-label">In this role, you will have the opportunity to <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
+                <textarea class="form-control" id="uiAbout" name="uiAbout" rows="5" required>{{ page_dict_html['db_role_dict']['about'] }}</textarea>
+              </div>
+              <!-- ------------------------------------- about end ------------------------------------- -->
+              <!-- ------------------------------------- requirements start ------------------------------------- -->
+              <div class="custom-pb-50">
+                <label for="uiRequirements" class="form-label">Role requirements <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
+                <textarea class="form-control" id="uiRequirements" name="uiRequirements" rows="10" required>{{ page_dict_html['db_role_dict']['requirements'] }}</textarea>
+              </div>
+              <!-- ------------------------------------- requirements end ------------------------------------- -->
+              <!-- ------------------------------------- requirements start ------------------------------------- -->
+              <div class="custom-pb-50">
+                <label for="uiNiceToHaves" class="form-label">Role nice to haves <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
+                <textarea class="form-control" id="uiNiceToHaves" name="uiNiceToHaves" rows="5" required>{{ page_dict_html['db_role_dict']['nice_to_haves'] }}</textarea>
+              </div>
+              <!-- ------------------------------------- requirements end ------------------------------------- -->
+              <!-- ------------------------------------- buttons start ------------------------------------- -->
+              <div class="custom-mb-50">
+                <button type="submit" class="btn btn-primary btn-lg custom-width-100">Confirm role</button>
+                <div class="text-center custom-mt-25">
+                  <a href="/roles" class="custom-a-black-underline custom-opacity-75">Cancel</a>
+                </div>
+              </div>
+              <!-- ------------------------------------- buttons end ------------------------------------- -->
+            </form>
+          <!-- ------------------------------------- view start ------------------------------------- -->
+          <!-- ------------------------------------- view start ------------------------------------- -->
+          {% elif page_dict_html['view_reason'] == 'view_role' %}
+            <!-- ------------------------------------- title start ------------------------------------- -->
+            <div class="custom-ptb-50">
+              <h2 class="custom-m-0 custom-header-30">Role information <a href="/roles/edit/{{ page_dict_html['db_role_dict']['id'] }}" class="custom-a-black-none custom-ml-10 custom-header-20 custom-opacity-50 custom-hover-pointer-opacity-1"><i class="fa-solid fa-pen-to-square"></i></a> <a href="/roles" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
+            </div>
+            <!-- ------------------------------------- title end ------------------------------------- -->
+            <!-- ------------------------------------- name start ------------------------------------- -->
+            <div class="custom-pb-50">
+              <h3 class="custom-m-0 custom-header-25">{{ page_dict_html['db_role_dict']['name'] }}</h3>
+            </div>
+            <!-- ------------------------------------- name end ------------------------------------- -->
+            <!-- ------------------------------------- about start ------------------------------------- -->
+            <div class="custom-pb-50">
+              <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">In this role, you will have the opportunity to </h3>
+              <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_role_dict']['about'] }}</p>
+            </div>
+            <!-- ------------------------------------- about end ------------------------------------- -->
+            <!-- ------------------------------------- requirements start ------------------------------------- -->
+            <div class="custom-pb-50">
+              <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Role requirements</h3>
+              <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_role_dict']['requirements'] }}</p>
+            </div>
+            <!-- ------------------------------------- requirements end ------------------------------------- -->
+            <!-- ------------------------------------- nice to haves start ------------------------------------- -->
+            <div class="custom-pb-50">
+              <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Role nice to haves</h3>
+              <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_role_dict']['nice_to_haves'] }}</p>
+            </div>
+            <!-- ------------------------------------- nice to haves end ------------------------------------- -->
+            <!-- ------------------------------------- buttons start ------------------------------------- -->
+            <div class="custom-mb-50">
+              <div class="text-center custom-mt-25">
+                <a href="/roles" class="btn btn-primary btn-lg custom-width-100">Back</a>
+              </div>
+            </div>
+            <!-- ------------------------------------- buttons end ------------------------------------- -->
+          <!-- ------------------------------------- view end ------------------------------------- -->
+          <!-- ------------------------------------- view start ------------------------------------- -->
+          {% elif page_dict_html['view_reason'] == 'view_result' %}
+            <!-- ------------------------------------- title start ------------------------------------- -->
+            <div class="custom-ptb-50">
+              <h2 class="custom-m-0 custom-header-30">Result <a href="/results" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
+            </div>
+            <!-- ------------------------------------- title end ------------------------------------- -->
+            <!-- ------------------------------------- name start ------------------------------------- -->
+            <div class="custom-pb-50">
+              <h3 class="custom-m-0 custom-header-25 custom-mb-25">{{ page_dict_html['db_grade_dict']['fk_role_name'] }} <a href="/roles/view/{{ page_dict_html['db_grade_dict']['fk_role_id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10">View role</a></h3>
+              <h3 class="custom-m-0 custom-header-25 custom-mb-5">{{ page_dict_html['db_grade_dict']['fk_cv_name'] }} <a href="/cv/view/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10">View CV</a></h3>
+              {% if page_dict_html['db_grade_dict']['candidate_email'] != '' %}
+                <h3 class="custom-m-0 custom-header-15 custom-mb-5 custom-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_email'] }}</h3>
+              {% endif %}
+              {% if page_dict_html['db_grade_dict']['candidate_phone'] != '' %}
+                <h3 class="custom-m-0 custom-header-15 custom-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_phone'] }}</h3>
+              {% endif %}
+              <h3 class="custom-m-0 custom-header-20 custom-mt-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-height-25 custom-mr-5"> {{ page_dict_html['db_grade_dict']['score'] }}</h3>
+            </div>
+            <!-- ------------------------------------- name end ------------------------------------- -->
+            <!-- ------------------------------------- section start ------------------------------------- -->
+            <div class="custom-pb-50">
+              <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Summary</h3>
+              <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_grade_dict']['summary'] }}</p>
+            </div>
+            <!-- ------------------------------------- section end ------------------------------------- -->
+            <!-- ------------------------------------- section start ------------------------------------- -->
+            <div class="custom-pb-50">
+              <div class="custom-display-flex custom-mb-15">
+                <h3 class="custom-header-20 custom-opacity-75">Follow ups</h3>
+                <a href="#" class="custom-a-black-underline custom-header-12 custom-opacity-75">Change/Edit/Add</a>
+              </div>
+              {% for i_str in page_dict_html['db_grade_dict']['follow_ups_arr'] %}
+                <p class="custom-m-0 custom-mb-15 custom-header-15">{{ i_str }}</p>
+              {% endfor %}
+            </div>
+            <!-- ------------------------------------- section end ------------------------------------- -->
+            <!-- ------------------------------------- buttons start ------------------------------------- -->
+            <div class="custom-mb-50">
+              <div class="text-center custom-mt-25">
+                <div class="custom-display-flex custom-mb-50">
+                  <a href="/results/ask/cv/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}" class="btn btn-success btn-lg custom-ptb-25 custom-width-100 custom-header-40">More insights</a>
+                  <a href="/results/ask/cv/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_black_no_bg.png" alt="" class="custom-img-height-125-mobile"></a>
+                </div>
+                <a href="/results" class="btn btn-primary btn-lg custom-width-100">Back</a>
+              </div>
+            </div>
+            <!-- ------------------------------------- buttons end ------------------------------------- -->
+          <!-- ------------------------------------- view end ------------------------------------- -->
+          <!-- ------------------------------------- view start ------------------------------------- -->
+          {% elif page_dict_html['view_reason'] == 'ask_cv' %}
+            <p>wip</p>
+          <!-- ------------------------------------- view end ------------------------------------- -->
           {% endif %}
         {% endif %}
         <!-- ------------------------------------- yes content end ------------------------------------- -->
