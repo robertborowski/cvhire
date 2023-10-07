@@ -503,6 +503,14 @@
   display: none;
 }
 /* ------------------- display end ------------------- */
+/* ------------------- divider start ------------------- */
+.custom-divider-1 {
+  border: 1px solid black;
+  width: 100%;
+  opacity: 0.10;
+  margin: 100px 0 100px 0;
+}
+/* ------------------- divider end ------------------- */
 /* ------------------- filler start ------------------- */
 .custom-filler-1 {
   height: 86px;

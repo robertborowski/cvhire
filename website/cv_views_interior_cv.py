@@ -243,6 +243,12 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
   # ------------------------ convert to dict start ------------------------
   page_dict['db_cv_dict'] = convert_obj_row_to_dict_function(db_obj)
   # ------------------------ convert to dict end ------------------------
+  # ------------------------ check if any grading is currently in progress start ------------------------
+  page_dict['queue_status'] = False
+  db_queue_obj = OpenAiQueueObj.query.filter_by(fk_user_id=current_user.id,status='requested',question_type='cv-ask-ai').all()
+  if db_queue_obj != None and db_queue_obj != []:
+    page_dict['queue_status'] = True
+  # ------------------------ check if any grading is currently in progress end -----------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ user inputs start ------------------------

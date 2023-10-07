@@ -383,8 +383,17 @@
             </form>
             <!-- ------------------------------------- top end ------------------------------------- -->
             <!-- ------------------------------------- divider start ------------------------------------- -->
+            <div class="custom-divider-1"></div>
             <!-- ------------------------------------- divider end ------------------------------------- -->
             <!-- ------------------------------------- bottom start ------------------------------------- -->
+            <!-- ------------------------------------- results message and refresh start ------------------------------------- -->
+            {% if page_dict_html['queue_status'] == true %}
+              <div class="custom-mt-50 custom-mb-50 border shadow-lg custom-p-75 custom-br-15">
+                <div class="alert alert-success" role="alert">Asking AI is currently in progress, please click below to load results when ready.</div>
+                <a href="/cv/ask_ai/{{ page_dict_html['db_cv_dict']['id'] }}" class="btn btn-success btn-lg custom-width-100">Refresh</a>
+              </div>
+            {% endif %}
+            <!-- ------------------------------------- results message and refresh end ------------------------------------- -->
             <!-- ------------------------------------- bottom end ------------------------------------- -->
           <!-- ------------------------------------- view end ------------------------------------- -->
           {% endif %}

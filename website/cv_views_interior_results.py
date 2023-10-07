@@ -1,6 +1,7 @@
 # ------------------------ imports start ------------------------
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, send_file, Response
 from flask_login import login_required, current_user, logout_user
+from sqlalchemy import or_
 from website import db
 from website.models import GradedObj, OpenAiQueueObj, CvObj
 from website.backend.connection import redis_connect_open_function
@@ -70,7 +71,7 @@ def results_dashboard_general_function(url_status_code='valid', url_redirect_cod
   # ------------------------ dashboard variables end ------------------------
   # ------------------------ check if any grading is currently in progress start ------------------------
   page_dict['queue_status'] = False
-  db_queue_obj = OpenAiQueueObj.query.filter_by(fk_user_id=current_user.id,status='requested').all()
+  db_queue_obj = (OpenAiQueueObj.query.filter_by(fk_user_id=current_user.id, status='requested').filter(or_(OpenAiQueueObj.question_type=='one-role-many-cvs', OpenAiQueueObj.question_type=='one-cv-many-roles')).all())
   if db_queue_obj != None and db_queue_obj != []:
     page_dict['queue_status'] = True
   # ------------------------ check if any grading is currently in progress end ------------------------
