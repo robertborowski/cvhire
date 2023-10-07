@@ -210,3 +210,37 @@ def cv_view_function(url_cv_id=None):
     return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='e12'))
 # ------------------------ individual route end ------------------------
 
+# ------------------------ individual route start ------------------------
+@cv_views_interior_cv.route('/cv/ask_ai/<url_item_id>', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/ask_ai/<url_item_id>/', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/ask_ai/<url_item_id>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/ask_ai/<url_item_id>/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def results_ask_function(url_item_id=None, url_redirect_code=None):
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ route incorrect check start ------------------------
+  if url_item_id == None:
+    return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_redirect_code='e10'))
+  # ------------------------ route incorrect check end ------------------------
+  # ------------------------ set variables start ------------------------
+  db_obj = None
+  # ------------------------ set variables end ------------------------
+  # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = False
+  page_dict['view_reason'] = 'ask_cv'
+  # ------------------------ set variables end ------------------------
+  # ------------------------ get from db start ------------------------
+  db_obj = CvObj.query.filter_by(fk_user_id=current_user.id,id=url_item_id).filter(CvObj.status!='delete').first()
+  if db_obj == None or db_obj == []:
+    return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_redirect_code='e10'))
+  # ------------------------ get from db end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    pass
+  # ------------------------ post end ------------------------
+  return render_template('interior/cv/ask_ai/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
