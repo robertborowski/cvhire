@@ -372,7 +372,7 @@
               <!-- ------------------------------------- requirements start ------------------------------------- -->
               <div class="custom-pb-50">
                 <label for="uiCvAskAi" class="form-label">Ask AI about this CV <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 200 characters. Example: What is this CV's biggest strength?"></i></label>
-                <textarea class="form-control" id="uiCvAskAi" name="uiCvAskAi" rows="3" required></textarea>
+                <textarea class="form-control" id="uiCvAskAi" name="uiCvAskAi" rows="3" required>What is this candidate's biggest strength?</textarea>
               </div>
               <!-- ------------------------------------- requirements end ------------------------------------- -->
               <!-- ------------------------------------- buttons start ------------------------------------- -->
@@ -394,6 +394,13 @@
               </div>
             {% endif %}
             <!-- ------------------------------------- results message and refresh end ------------------------------------- -->
+            <!-- ------------------------------------- no submissions yet start ------------------------------------- -->
+            {% if page_dict_html['content_total_rows_interior'] == 0 and page_dict_html['queue_status'] == false %}
+              <div class="mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
+                <a href="/ai/one-role-many-cvs" class="custom-opacity-60 custom-a-black-underline">No questions asked yet.</a>
+              </div>
+            {% endif %}
+            <!-- ------------------------------------- no submissions yet end ------------------------------------- -->
             <!-- ------------------------------------- bottom end ------------------------------------- -->
           <!-- ------------------------------------- view end ------------------------------------- -->
           {% endif %}

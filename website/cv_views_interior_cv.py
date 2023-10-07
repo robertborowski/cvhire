@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, send_file, Response
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import CvObj, CvInvalidFormatObj, OpenAiQueueObj
+from website.models import CvObj, CvInvalidFormatObj, OpenAiQueueObj, CvAskAiObj
 from datetime import datetime
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
@@ -249,6 +249,12 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
   if db_queue_obj != None and db_queue_obj != []:
     page_dict['queue_status'] = True
   # ------------------------ check if any grading is currently in progress end -----------------------
+  # ------------------------ count content start -----------------------
+  page_dict['content_total_rows_interior'] = 0
+  db_ask_obj = CvAskAiObj.query.filter_by(fk_user_id=current_user.id,fk_cv_id=url_item_id).filter(CvAskAiObj.status!='delete').order_by(CvAskAiObj.created_timestamp.desc()).all()
+  if db_obj != None and db_obj != []:
+    page_dict['content_total_rows_interior'] = len(db_ask_obj)
+  # ------------------------ count content end -----------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ user inputs start ------------------------
