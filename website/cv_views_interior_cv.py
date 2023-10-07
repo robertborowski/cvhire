@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, send_file, Response
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import CvObj, CvInvalidFormatObj
+from website.models import CvObj, CvInvalidFormatObj, OpenAiQueueObj
 from datetime import datetime
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
@@ -12,6 +12,7 @@ from website.backend.db_obj_checks import get_content_function
 from website.backend.uploads_user import allowed_cv_file_upload_function, get_file_suffix_function
 from website.backend.aws_logic import upload_file_to_aws_s3_function, initial_cv_scrape_function, get_file_static_from_aws_function
 from website.backend.convert import convert_obj_row_to_dict_function
+from website.backend.sanitize import sanitize_chars_function_v4
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -244,7 +245,30 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
   # ------------------------ convert to dict end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
-    pass
+    # ------------------------ user inputs start ------------------------
+    ui_cv_ask_ai = request.form.get('uiCvAskAi')
+    # ------------------------ user inputs end ------------------------
+    # ------------------------ sanitize user inputs start ------------------------
+    ui_cv_ask_ai_check = sanitize_chars_function_v4(ui_cv_ask_ai)
+    if ui_cv_ask_ai_check == False:
+      return redirect(url_for('cv_views_interior_cv.results_ask_function', url_item_id=url_item_id, url_redirect_code='e8'))
+    # ------------------------ sanitize user inputs end ------------------------
+    # ------------------------ add to queue start ------------------------
+    new_row = OpenAiQueueObj(
+      id = create_uuid_function('queue_'),
+      created_timestamp = create_timestamp_function(),
+      fk_user_id = current_user.id,
+      status = 'requested',
+      question_type = 'cv_ask_ai',
+      single_value = url_item_id,
+      multiple_values = ui_cv_ask_ai
+    )
+    db.session.add(new_row)
+    db.session.commit()
+    # ------------------------ add to queue end ------------------------
+    # ------------------------ reload page start ------------------------
+    return redirect(url_for('cv_views_interior_cv.results_ask_function', url_item_id=url_item_id))
+    # ------------------------ reload page end ------------------------
   # ------------------------ post end ------------------------
   return render_template('interior/cv/ask_ai/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

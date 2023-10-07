@@ -55,3 +55,10 @@ def sanitize_chars_function_v3(user_input):
     return False
   return user_input
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def sanitize_chars_function_v4(user_input):
+  if len(user_input) > 200 or len(user_input) < 1:
+    return False
+  return user_input
+# ------------------------ individual function end ------------------------

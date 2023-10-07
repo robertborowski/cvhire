@@ -351,6 +351,7 @@
           <!-- ------------------------------------- view end ------------------------------------- -->
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'ask_cv' %}
+            <!-- ------------------------------------- top start ------------------------------------- -->  
             <!-- ------------------------------------- title start ------------------------------------- -->
             <div class="custom-ptb-50">
               <h2 class="custom-m-0 custom-header-30">CV ask AI <a href="/cv/active" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
@@ -370,7 +371,7 @@
               <!-- ------------------------------------- name end ------------------------------------- -->
               <!-- ------------------------------------- requirements start ------------------------------------- -->
               <div class="custom-pb-50">
-                <label for="uiCvAskAi" class="form-label">Ask AI about this CV <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 200 characters."></i></label>
+                <label for="uiCvAskAi" class="form-label">Ask AI about this CV <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 200 characters. Example: What is this CV's biggest strength?"></i></label>
                 <textarea class="form-control" id="uiCvAskAi" name="uiCvAskAi" rows="3" required></textarea>
               </div>
               <!-- ------------------------------------- requirements end ------------------------------------- -->
@@ -380,6 +381,11 @@
               </div>
               <!-- ------------------------------------- buttons end ------------------------------------- -->
             </form>
+            <!-- ------------------------------------- top end ------------------------------------- -->
+            <!-- ------------------------------------- divider start ------------------------------------- -->
+            <!-- ------------------------------------- divider end ------------------------------------- -->
+            <!-- ------------------------------------- bottom start ------------------------------------- -->
+            <!-- ------------------------------------- bottom end ------------------------------------- -->
           <!-- ------------------------------------- view end ------------------------------------- -->
           {% endif %}
         {% endif %}
