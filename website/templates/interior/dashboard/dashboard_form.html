@@ -351,7 +351,35 @@
           <!-- ------------------------------------- view end ------------------------------------- -->
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'ask_cv' %}
-            <p>wip</p>
+            <!-- ------------------------------------- title start ------------------------------------- -->
+            <div class="custom-ptb-50">
+              <h2 class="custom-m-0 custom-header-30">CV ask AI <a href="/cv/active" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
+            </div>
+            <!-- ------------------------------------- title end ------------------------------------- -->
+            <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+              <!-- ------------------------------------- name start ------------------------------------- -->
+              <div class="custom-pb-50">
+                <h3 class="custom-m-0 custom-header-25 custom-mb-5">{{ page_dict_html['db_cv_dict']['candidate_name'] }} <a href="/cv/view/{{ page_dict_html['db_cv_dict']['id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10">View CV</a></h3>
+                {% if page_dict_html['db_cv_dict']['candidate_email'] != '' %}
+                  <h3 class="custom-m-0 custom-header-15 custom-mb-5 custom-opacity-75">{{ page_dict_html['db_cv_dict']['candidate_email'] }}</h3>
+                {% endif %}
+                {% if page_dict_html['db_cv_dict']['candidate_phone'] != '' %}
+                  <h3 class="custom-m-0 custom-header-15 custom-opacity-75">{{ page_dict_html['db_cv_dict']['candidate_phone'] }}</h3>
+                {% endif %}
+              </div>
+              <!-- ------------------------------------- name end ------------------------------------- -->
+              <!-- ------------------------------------- requirements start ------------------------------------- -->
+              <div class="custom-pb-50">
+                <label for="uiCvAskAi" class="form-label">Ask AI about this CV <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 200 characters."></i></label>
+                <textarea class="form-control" id="uiCvAskAi" name="uiCvAskAi" rows="3" required></textarea>
+              </div>
+              <!-- ------------------------------------- requirements end ------------------------------------- -->
+              <!-- ------------------------------------- buttons start ------------------------------------- -->
+              <div class="custom-mb-50">
+                <button type="submit" class="btn btn-primary btn-lg custom-width-100">Ask AI</button>
+              </div>
+              <!-- ------------------------------------- buttons end ------------------------------------- -->
+            </form>
           <!-- ------------------------------------- view end ------------------------------------- -->
           {% endif %}
         {% endif %}

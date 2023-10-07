@@ -11,6 +11,7 @@ from website.backend.static_lists import cv_status_codes_function, dashboard_sec
 from website.backend.db_obj_checks import get_content_function
 from website.backend.uploads_user import allowed_cv_file_upload_function, get_file_suffix_function
 from website.backend.aws_logic import upload_file_to_aws_s3_function, initial_cv_scrape_function, get_file_static_from_aws_function
+from website.backend.convert import convert_obj_row_to_dict_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -238,6 +239,9 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
   if db_obj == None or db_obj == []:
     return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_redirect_code='e10'))
   # ------------------------ get from db end ------------------------
+  # ------------------------ convert to dict start ------------------------
+  page_dict['db_cv_dict'] = convert_obj_row_to_dict_function(db_obj)
+  # ------------------------ convert to dict end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     pass
