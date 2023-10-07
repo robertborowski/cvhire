@@ -1,0 +1,165 @@
+{% extends "navbar/interior.html" %}
+
+{% block title %}
+  <title>Dashboard | CVhire</title>
+  <meta name="description" content="CVhire">
+  <meta name="og:description" content="CVhire">
+{% endblock %}
+
+{% block contentBodyExceptNavbarAndFooter %}
+<form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+  {% if page_dict_html['nav_header'] == true %}
+    <div class="custom-width-interior-1100 mx-auto custom-plr-50">
+      <!-- ------------------------------------- title start ------------------------------------- -->
+      <div class="custom-pt-25 custom-display-flex custom-jc-between custom-mb-10">
+        <h2 class="custom-header-30 custom-weight-900 custom-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
+        <button type="submit" class="btn btn-success custom-br-10" id="id_submit_button" disabled>Screen CV</button>
+      </div>
+      <!-- ------------------------------------- title end ------------------------------------- -->
+      <!-- ------------------------------------- options start ------------------------------------- -->
+      <div class="custom-header-15 custom-ptb-10 border-bottom">
+          <ul class="custom-m-0 custom-p-0 custom-display-flex custom-no-decoration custom-jc-start">
+            {% for k,v in page_dict_html['dashboard_section_links_dict'].items() %}
+              {% if v in page_dict_html['navbar_link_current'] %}
+                <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-primary">{{ k }}</a></li>
+              {% else %}
+                <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-hover-1">{{ k }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <!-- ------------------------------------- options end ------------------------------------- -->
+    </div>
+  {% endif %}
+  <!-- ------------------------------------- different dashboard subpages start ------------------------------------- -->
+  {% block contentBodyDashboard %}
+  {% endblock %}
+  <!-- ------------------------------------- different dashboard subpages end ------------------------------------- -->
+  <!-- ------------------------------------- content start ------------------------------------- -->
+  {% if page_dict_html['view_reason'] == 'one-role-many-cvs' or page_dict_html['view_reason'] == 'one-cv-many-roles' %}
+    <div class="custom-width-interior-1100 mx-auto custom-plr-50">
+      <div class="custom-header-15 custom-mt-25 custom-display-flex">
+        <!-- ------------------------------------- left start ------------------------------------- -->
+        <div class="custom-display-block custom-width-100">
+          <!-- ------------------------------------- subtitle start ------------------------------------- -->
+          {% if 'one-role-many-cvs' in page_dict_html['navbar_link_current'] %}
+            <p class="custom-m-0 custom-header-20 custom-mb-10">Select one role</p>
+          {% elif 'one-cv-many-roles' in page_dict_html['navbar_link_current'] %}
+            <p class="custom-m-0 custom-header-20 custom-mb-10">Select many roles</p>
+          {% endif %}
+          <!-- ------------------------------------- subtitle end ------------------------------------- -->
+          <!-- ------------------------------------- no content start ------------------------------------- -->
+          {% if page_dict_html['content_total_rows_roles'] == 0 %}
+            <div class="custom-width-100 custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow-sm">
+              <a href="/roles/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add your first open role</a>
+            </div>
+          <!-- ------------------------------------- no content end ------------------------------------- -->
+          <!-- ------------------------------------- yes content start ------------------------------------- -->
+          {% else %}
+            <!-- ------------------------------------- search bar start ------------------------------------- -->
+            <input type="text" class="form-control" id="ui_search_bar" name="ui_search_bar" placeholder="Search (x{{ page_dict_html['content_total_rows_roles'] }})">
+            <!-- ------------------------------------- search bar end ------------------------------------- -->
+            <!-- ------------------------------------- radio start ------------------------------------- -->
+            {% if 'one-role-many-cvs' in page_dict_html['navbar_link_current'] %}
+              <div class="custom-mt-25">
+                {% for i in page_dict_html['content_total_rows_arr_of_dicts_roles'] %}
+                  <div class="custom-display-block custom-width-100 uiSearchItem border-bottom">
+                    <input type="radio" class="btn-check" name="radio-one-role" id="{{ i['roles_count_id'] }}" value="{{ i['id'] }}" autocomplete="off" required>
+                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['roles_count_id'] }}">{{ i['name_display'] }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            <!-- ------------------------------------- radio end ------------------------------------- -->
+            <!-- ------------------------------------- checkbox start ------------------------------------- -->
+            {% elif 'one-cv-many-roles' in page_dict_html['navbar_link_current'] %}
+            <div class="custom-mt-25">
+              <div class="custom-display-block custom-width-100 uiSearchItem border-bottom">
+                <input type="checkbox" class="btn-check" name="checkbox-many-roles" id="id_role_select_all" value="select_all_ids" autocomplete="off">
+                <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="id_role_select_all">Select all</label>
+              </div>
+              {% for i in page_dict_html['content_total_rows_arr_of_dicts_roles'] %}
+                <div class="custom-display-block custom-width-100 uiSearchItem border-bottom">
+                  <input type="checkbox" class="btn-check" name="checkbox-many-roles" id="{{ i['roles_count_id'] }}" value="{{ i['id'] }}" autocomplete="off">
+                  <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['roles_count_id'] }}">{{ i['name_display'] }}</label>
+                </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+            <!-- ------------------------------------- checkbox end ------------------------------------- -->
+          {% endif %}
+          <!-- ------------------------------------- yes content end ------------------------------------- -->
+        </div>
+        <!-- ------------------------------------- left end ------------------------------------- -->
+        <div class="custom-flex-gap-25"></div>
+        <!-- ------------------------------------- right start ------------------------------------- -->
+        <div class="custom-display-block custom-width-100">
+          <!-- ------------------------------------- subtitle start ------------------------------------- -->
+          {% if 'one-role-many-cvs' in page_dict_html['navbar_link_current'] %}
+            <p class="custom-m-0 custom-header-20 custom-mb-10">Select many CVs</p>
+          {% elif 'one-cv-many-roles' in page_dict_html['navbar_link_current'] %}
+            <p class="custom-m-0 custom-header-20 custom-mb-10">Select one CV</p>
+          {% endif %}
+          <!-- ------------------------------------- subtitle end ------------------------------------- -->
+          <!-- ------------------------------------- no content start ------------------------------------- -->
+          {% if page_dict_html['content_total_rows_cv'] == 0 %}
+            <div class="custom-width-100 custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow-sm">
+              <a href="/cv/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add candidate CVs</a>
+            </div>
+          <!-- ------------------------------------- no content end ------------------------------------- -->
+          <!-- ------------------------------------- yes content start ------------------------------------- -->
+          {% else %}
+            <!-- ------------------------------------- search bar start ------------------------------------- -->
+            <input type="text" class="form-control" id="ui_search_bar_v2" name="ui_search_bar_v2" placeholder="Search (x{{ page_dict_html['content_total_rows_cv'] }})">
+            <!-- ------------------------------------- search bar end ------------------------------------- -->
+            <!-- ------------------------------------- checkbox start ------------------------------------- -->
+            {% if 'one-role-many-cvs' in page_dict_html['navbar_link_current'] %}
+              <div class="custom-mt-25">
+                <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
+                  <input type="checkbox" class="btn-check" name="checkbox-many-cvs" id="id_cv_select_all" value="select_all_ids" autocomplete="off">
+                  <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="id_cv_select_all">Select all</label>
+                </div>
+                {% for i in page_dict_html['content_total_rows_arr_of_dicts_cv'] %}
+                  <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
+                    <input type="checkbox" class="btn-check" name="checkbox-many-cvs" id="{{ i['cv_count_id'] }}" value="{{ i['id'] }}" autocomplete="off">
+                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['cv_count_id'] }}">
+                      <div>
+                        <p class="custom-m-0">{{ i['candidate_name'] }}</p>
+                        <p class="custom-m-0">{{ i['candidate_email'] }}</p>
+                        <p class="custom-m-0">{{ i['candidate_phone'] }}</p>
+                      </div>
+                    </label>
+                  </div>
+                {% endfor %}
+              </div>
+            <!-- ------------------------------------- checkbox end ------------------------------------- -->
+            <!-- ------------------------------------- radio start ------------------------------------- -->
+            {% elif 'one-cv-many-roles' in page_dict_html['navbar_link_current'] %}
+              <div class="custom-mt-25">
+                {% for i in page_dict_html['content_total_rows_arr_of_dicts_cv'] %}
+                  <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
+                    <input type="radio" class="btn-check" name="radio-one-cv" id="{{ i['cv_count_id'] }}" value="{{ i['id'] }}" autocomplete="off" required>
+                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['cv_count_id'] }}">
+                      <div>
+                        <p class="custom-m-0">{{ i['candidate_name'] }}</p>
+                        <p class="custom-m-0">{{ i['candidate_email'] }}</p>
+                        <p class="custom-m-0">{{ i['candidate_phone'] }}</p>
+                      </div>
+                    </label>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            <!-- ------------------------------------- radio end ------------------------------------- -->
+          {% endif %}
+        </div>
+        <!-- ------------------------------------- right end ------------------------------------- -->
+      </div>
+    </div>
+  <!-- ------------------------------------- content end ------------------------------------- -->
+  <!-- ------------------------------------- content start ------------------------------------- -->
+  {% elif page_dict_html['view_reason'] == '' %}
+  <!-- ------------------------------------- content end ------------------------------------- -->
+  {% endif %}
+</form>
+{% endblock %}

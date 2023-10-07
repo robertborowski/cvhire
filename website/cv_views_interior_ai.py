@@ -67,6 +67,10 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
   if url_status_code == 'one-cv-many-roles':
     correct_template = 'interior/ai/one-cv-many-roles/index.html'
   # ------------------------ for setting cookie end ------------------------
+  # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = True
+  page_dict['view_reason'] = url_status_code
+  # ------------------------ set variables end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ get user inputs start ------------------------
