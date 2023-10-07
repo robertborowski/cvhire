@@ -150,6 +150,10 @@ def results_ask_function(url_starting_route_id=None, url_item_id=None, url_redir
     if db_obj == None or db_obj == []:
       return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid',url_redirect_code='e10'))
     # ------------------------ get from db end ------------------------
+    # ------------------------ post start ------------------------
+    if request.method == 'POST':
+      pass
+    # ------------------------ post end ------------------------
   # ------------------------ starting route end ------------------------
   return render_template('interior/results/ask/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
