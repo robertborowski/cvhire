@@ -47,6 +47,8 @@ def help_dashboard_function(url_status_code='request', url_redirect_code=None):
   # ------------------------ get status code start ------------------------
   page_dict['url_status_code'] = url_status_code
   page_dict['starting_route'] = 'help'
+  page_dict['nav_header'] = True
+  page_dict['view_reason'] = 'help'
   # ------------------------ get status code end ------------------------
   # ------------------------ get list start ------------------------
   page_dict['dashboard_section_links_dict'] = dashboard_section_links_dict_help_function()

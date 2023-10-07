@@ -50,6 +50,8 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
   # ------------------------ get status code start ------------------------
   page_dict['url_status_code'] = url_status_code
   page_dict['starting_route'] = 'export'
+  page_dict['nav_header'] = True
+  page_dict['view_reason'] = 'export'
   # ------------------------ get status code end ------------------------
   # ------------------------ get list start ------------------------
   page_dict['dashboard_section_links_dict'] = dashboard_section_links_dict_export_function()

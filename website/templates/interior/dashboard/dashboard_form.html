@@ -13,7 +13,9 @@
       <!-- ------------------------------------- title start ------------------------------------- -->
       <div class="custom-pt-25 custom-display-flex custom-jc-between custom-mb-10">
         <h2 class="custom-header-30 custom-weight-900 custom-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
-        <button type="submit" class="btn btn-success custom-br-10" id="id_submit_button" disabled>Screen CV</button>
+        {% if page_dict_html['view_reason'] == 'one-role-many-cvs' or page_dict_html['view_reason'] == 'one-cv-many-roles' %}
+          <button type="submit" class="btn btn-success custom-br-10" id="id_submit_button" disabled>Screen CV</button>
+        {% endif %}
       </div>
       <!-- ------------------------------------- title end ------------------------------------- -->
       <!-- ------------------------------------- options start ------------------------------------- -->
@@ -36,7 +38,7 @@
   {% block contentBodyDashboard %}
   {% endblock %}
   <!-- ------------------------------------- different dashboard subpages end ------------------------------------- -->
-  <!-- ------------------------------------- content start ------------------------------------- -->
+  <!-- ------------------------------------- width change start ------------------------------------- -->
   {% if page_dict_html['view_reason'] == 'one-role-many-cvs' or page_dict_html['view_reason'] == 'one-cv-many-roles' %}
     <div class="custom-width-interior-1100 mx-auto custom-plr-50">
       <div class="custom-header-15 custom-mt-25 custom-display-flex">
@@ -156,10 +158,77 @@
         <!-- ------------------------------------- right end ------------------------------------- -->
       </div>
     </div>
-  <!-- ------------------------------------- content end ------------------------------------- -->
-  <!-- ------------------------------------- content start ------------------------------------- -->
-  {% elif page_dict_html['view_reason'] == '' %}
-  <!-- ------------------------------------- content end ------------------------------------- -->
+  <!-- ------------------------------------- width change end ------------------------------------- -->
+  <!-- ------------------------------------- width change start ------------------------------------- -->
+  {% else %}
+    <div class="custom-width-600 mx-auto">
+      <div class="custom-header-15 custom-mt-25">
+        <!-- ------------------------------------- no content start ------------------------------------- -->
+        {% if page_dict_html['content_total_rows'] == 0 %}
+          {% if page_dict_html['view_reason'] == 'export' %}
+            {% if page_dict_html['url_status_code'] == 'export_results' %}
+              <div class="custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
+                <a href="/ai/one-role-many-cvs" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Screen CVs</a>
+              </div>
+            {% endif %}
+          {% endif %}
+        <!-- ------------------------------------- no content end ------------------------------------- -->
+        <!-- ------------------------------------- yes content start ------------------------------------- -->
+        {% else %}
+          <!-- ------------------------------------- content start ------------------------------------- -->
+          {% if page_dict_html['view_reason'] == 'export' %}
+            <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+              <div class="custom-mt-50 border custom-p-50 custom-br-15 shadow">
+                <!-- ------------------------------------- title and subtitle start ------------------------------------- -->
+                <h1 class="custom-header-30"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="" class="custom-img-height-35"> CVhire <span class="custom-header-20">| Simple export</span></h1>
+                <div class="custom-mtb-25 custom-opacity-50">
+                  <p class="custom-m-0 custom-mb-5 custom-header-15"><i class="fa-regular fa-envelope"></i> {{ page_dict_html['current_user_email'] }}</p>
+                  <p class="custom-m-0 custom-header-12">Please check your spam folder as well.</p>
+                </div>
+                <!-- ------------------------------------- title and subtitle end ------------------------------------- -->
+                <!-- ------------------------------------- submit start ------------------------------------- -->
+                <button type="submit" class="btn btn-primary btn-lg custom-br-10 custom-width-100">Export</button>
+                <!-- ------------------------------------- submit end ------------------------------------- -->
+                <div class="text-center custom-mt-15">
+                  <a href="/ai/one-role-many-cvs" class="custom-a-black-underline custom-opacity-50">Home</a>
+                </div>
+              </div>
+            </form>
+          <!-- ------------------------------------- content end ------------------------------------- -->
+          <!-- ------------------------------------- content start ------------------------------------- -->
+          {% elif page_dict_html['view_reason'] == 'help' %}
+            <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+              <div class="custom-mt-50 border custom-p-50 custom-br-15 shadow">
+                <!-- ------------------------------------- title and subtitle start ------------------------------------- -->
+                <h1 class="custom-header-30"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="" class="custom-img-height-35"> CVhire <span class="custom-header-20">| Help center</span></h1>
+                <div class="custom-mtb-25 custom-opacity-50">
+                  <a href="mailto:support@cvhire.com" class="custom-header-15 custom-a-black-underline">Support@CVhire.com</a>
+                </div>
+                <!-- ------------------------------------- title and subtitle end ------------------------------------- -->
+                <!-- ------------------------------------- requirements start ------------------------------------- -->
+                <div class="custom-pb-50">
+                  <label for="uiFeedback" class="form-label">Ticket <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters."></i></label>
+                  <textarea class="form-control" id="uiFeedback" name="uiFeedback" rows="7" required></textarea>
+                </div>
+                <!-- ------------------------------------- requirements end ------------------------------------- -->
+                <!-- ------------------------------------- submit start ------------------------------------- -->
+                <button type="submit" class="btn btn-primary btn-lg custom-br-10 custom-width-100">Submit</button>
+                <!-- ------------------------------------- submit end ------------------------------------- -->
+                <div class="text-center custom-mt-15">
+                  <a href="/ai/one-role-many-cvs" class="custom-a-black-underline custom-opacity-50">Home</a>
+                </div>
+              </div>
+            </form>
+          <!-- ------------------------------------- content end ------------------------------------- -->
+          <!-- ------------------------------------- content start ------------------------------------- -->
+          {% elif page_dict_html['view_reason'] == '' %}
+          <!-- ------------------------------------- content end ------------------------------------- -->
+          {% endif %}
+        {% endif %}
+        <!-- ------------------------------------- yes content end ------------------------------------- -->
+      </div>
+    </div>
+  <!-- ------------------------------------- width change end ------------------------------------- -->
   {% endif %}
 </form>
 {% endblock %}
