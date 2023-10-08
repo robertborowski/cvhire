@@ -25,7 +25,7 @@
           {% for k,v in page_dict_html['navbar_link_dict_v2'].items() %}
             <!-- ------------------------------------- selected start ------------------------------------- -->
             {% if v['url'] in page_dict_html['navbar_link_current'] %}
-              {% if v['url'] == '/notifications' and page_dict_html['notifications_unread'] == true %}
+              {% if (v['url'] == '/notifications' and page_dict_html['notifications_unread'] == true) or (v['url'] == '/account' and page_dict_html['verified_email'] == false) %}
                 <li class="custom-position-relative"><a href="{{ v['url'] }}" class="custom-a-black-none custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i><div class="custom-badge-1"></div></a></li>
               {% else %}
                 <li><a href="{{ v['url'] }}" class="custom-a-black-none custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
@@ -33,7 +33,7 @@
             <!-- ------------------------------------- selected end ------------------------------------- -->
             <!-- ------------------------------------- not selected start ------------------------------------- -->
             {% else %}
-              {% if v['url'] == '/notifications' and page_dict_html['notifications_unread'] == true %}
+              {% if (v['url'] == '/notifications' and page_dict_html['notifications_unread'] == true) or (v['url'] == '/account' and page_dict_html['verified_email'] == false) %}
                 <li class="custom-position-relative"><a href="{{ v['url'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i><div class="custom-badge-1"></div></a></li>
               {% else %}
                 <li><a href="{{ v['url'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
