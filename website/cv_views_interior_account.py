@@ -69,6 +69,7 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
   page_dict = get_user_content_function(current_user, page_dict, url_status_code, page_dict['starting_route'])
   # ------------------------ get content end ------------------------
   # ------------------------ set variables start ------------------------
+  page_dict['current_user_email'] = current_user.email
   if url_status_code == 'user':
     page_dict['view_reason'] = 'edit_account'
   if url_status_code == 'settings':

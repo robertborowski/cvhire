@@ -54,6 +54,12 @@ def pre_page_load_checks_function(current_user, url_redirect_code=None, url_repl
   # ------------------------ new unread notifications check start ------------------------
   page_dict['notifications_unread'] = notifications_unread_function(current_user)
   # ------------------------ new unread notifications check end ------------------------
+  # ------------------------ verified status start ------------------------
+  page_dict['verified_email'] = False
+  db_attribute_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='verified_email').first()
+  if db_attribute_obj.attribute_value == 'yes_verified':
+    page_dict['verified_email'] = True
+  # ------------------------ verified status end ------------------------
   """
   # ------------------------ onboarding checks start ------------------------
   onbaording_status = onboarding_checks_function(current_user)

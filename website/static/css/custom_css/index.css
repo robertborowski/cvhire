@@ -90,6 +90,14 @@
   color: black;
   text-decoration: underline;
 }
+.custom-a-danger-underline, .custom-a-danger-underline:visited {
+  color: var(--custom-color-danger);
+  text-decoration: none;
+}
+.custom-a-danger-underline:hover {
+  color: var(--custom-color-danger);
+  text-decoration: underline;
+}
 /* ------------------- a end ------------------- */
 /* ------------------- background start ------------------- */
 .custom-bg-hover-1 {

@@ -436,6 +436,12 @@
               <h2 class="custom-m-0 custom-header-30">Information</h2>
             </div>
             <!-- ------------------------------------- title end ------------------------------------- -->
+            <!-- ------------------------------------- email verification start ------------------------------------- -->
+            <div class="form-group custom-mb-50">
+              <label>Email</label>
+              <p class="custom-m-0 custom-mt-10">{{ page_dict_html['current_user_email'] }} {% if page_dict_html['verified_email'] == false %}<a href="#" class="custom-ml-5 custom-a-danger-underline" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Send verification email">(not verified)</a>{% else %}<span class="custom-ml-5 custom-color-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Verified"><i class="fa-solid fa-circle-check"></i></span>{% endif %}</p>
+            </div>
+            <!-- ------------------------------------- email verification end ------------------------------------- -->
             <!-- ------------------------------------- inputs start ------------------------------------- -->
             {% for k,v in page_dict_html['info_dict'].items() %}
               {% if k != 'Photo' %}
