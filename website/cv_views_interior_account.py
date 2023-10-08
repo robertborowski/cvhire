@@ -199,3 +199,38 @@ def account_verify_send_function():
   # ------------------------ lock account if too many emails end ------------------------
   return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='s3'))
 # ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_account.route('/account/verify/email/receive/<url_verify_code>')
+@cv_views_interior_account.route('/account/verify/email/receive/<url_verify_code>/')
+# @login_required
+def account_verify_receive_function(url_verify_code=None):
+  # ------------------------ reroute start ------------------------
+  if url_verify_code == None:
+    return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user'))
+  # ------------------------ reroute end ------------------------
+  # ------------------------ pull from db start ------------------------
+  db_code_obj = UserAttributesObj.query.filter_by(attribute_value=url_verify_code).first()
+  # ------------------------ pull from db end ------------------------
+  # ------------------------ if not found start ------------------------
+  if db_code_obj == None or db_code_obj == []:
+    return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user'))
+  # ------------------------ if not found end ------------------------
+  # ------------------------ update attribute start ------------------------
+  user_to_verify = db_code_obj.fk_user_id
+  db_user_obj = UserAttributesObj.query.filter_by(fk_user_id=user_to_verify,attribute_key='verified_email').first()
+  # ------------------------ update attribute end ------------------------
+  # ------------------------ if not found start ------------------------
+  if db_user_obj == None or db_user_obj == []:
+    return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user'))
+  # ------------------------ if not found end ------------------------
+  # ------------------------ update db start ------------------------
+  db_user_obj.attribute_value = 'yes_verified'
+  db.session.commit()
+  # ------------------------ update db end ------------------------
+  # ------------------------ delete verify code row start ------------------------
+  UserAttributesObj.query.filter_by(attribute_value=url_verify_code).delete()
+  db.session.commit()
+  # ------------------------ delete verify code row end ------------------------
+  return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='s10'))
+# ------------------------ individual route end ------------------------

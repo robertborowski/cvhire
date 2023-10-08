@@ -127,6 +127,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Thank you! We will get back to you shortly.',
       'type':'success'
     }
+  elif redirect_var == 's10':
+    alert_message_dict = {
+      'message':'Successfully verified',
+      'type':'success'
+    }
   # ------------------------ success end ------------------------
   # ------------------------ info end ------------------------
   elif redirect_var == 'i1':
