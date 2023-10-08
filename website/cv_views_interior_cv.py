@@ -287,3 +287,30 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
   # ------------------------ post end ------------------------
   return render_template('interior/cv/ask_ai/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_cv.route('/cv/ask_ai/status_change/<url_item_id>/<url_status_code>', methods=['GET', 'POST'])
+@cv_views_interior_cv.route('/cv/ask_ai/status_change/<url_item_id>/<url_status_code>/', methods=['GET', 'POST'])
+@login_required
+def change_status_function(url_item_id=None, url_status_code=None):
+  try:
+    # ------------------------ valid check start ------------------------
+    if url_item_id == None or url_status_code == None:
+      return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active'))
+    # ------------------------ valid check end ------------------------
+    # ------------------------ get obj start ------------------------
+    db_ask_obj = CvAskAiObj.query.filter_by(fk_user_id=current_user.id,id=url_item_id).first()
+    if db_ask_obj == None or db_ask_obj == []:
+      return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active'))
+    # ------------------------ get obj end ------------------------
+    # ------------------------ update obj start ------------------------
+    if url_status_code == 'delete':
+      db_ask_obj.status = 'delete'
+      db.session.commit()
+    # ------------------------ update obj end ------------------------
+    # ------------------------ reload page start ------------------------
+    return redirect(url_for('cv_views_interior_cv.results_ask_function', url_item_id=db_ask_obj.fk_cv_id))
+    # ------------------------ reload page end ------------------------
+  except Exception as e:
+    return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active'))
+# ------------------------ individual route end ------------------------
