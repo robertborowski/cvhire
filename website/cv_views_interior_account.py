@@ -118,3 +118,38 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
   # ------------------------ choose correct template end ------------------------
   return render_template(correct_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_account.route('/account/verify/email/send', methods=['GET', 'POST'])
+@cv_views_interior_account.route('/account/verify/email/send/', methods=['GET', 'POST'])
+@login_required
+def account_verify_send_function():
+  # ------------------------ set variables start ------------------------
+  verification_code = ''
+  # ------------------------ set variables end ------------------------
+  # ------------------------ check if verify code exists start ------------------------
+  db_verify_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='verification_email_code').first()
+  # ------------------------ check if verify code exists end ------------------------
+  # ------------------------ if verify code does not exist start ------------------------
+  if db_verify_obj == None or db_verify_obj == []:
+    verification_code = create_uuid_function('verify_')
+    # ------------------------ new row start ------------------------
+    new_row = UserAttributesObj(
+      id=create_uuid_function('attribute_'),
+      created_timestamp=create_timestamp_function(),
+      fk_user_id=current_user.id,
+      attribute_key='verification_email_code',
+      attribute_value=verification_code
+    )
+    db.session.add(new_row)
+    db.session.commit()
+    # ------------------------ new row end ------------------------
+  # ------------------------ if verify code does not exist end ------------------------
+  # ------------------------ if verify code does exist start ------------------------
+  else:
+    verification_code = db_verify_obj.attribute_value
+  # ------------------------ if verify code does exist end ------------------------
+  # ------------------------ send email to user start ------------------------
+  # ------------------------ send email to user end ------------------------
+  return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='s3'))
+# ------------------------ individual route end ------------------------
