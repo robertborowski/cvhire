@@ -153,12 +153,26 @@ def get_content_split_function(current_user, page_dict, item_type):
 # ------------------------ individual function start ------------------------
 def get_user_content_function(current_user, page_dict, url_status_code, dashboard_type):
   if url_status_code == 'user':
+    # ------------------------ set variables start ------------------------
     user_info_dict = {
       'Email': current_user.email,
-      'Name': '',
+      'Full name': '',
       'Company': '',
       'Photo': ''
     }
+    # ------------------------ set variables end ------------------------
+    # ------------------------ pull from db start ------------------------
+    db_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='full_name').first()
+    user_info_dict['Full name'] = db_obj.attribute_value
+    # ------------------------ pull from db end ------------------------
+    # ------------------------ pull from db start ------------------------
+    db_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='company_name').first()
+    user_info_dict['Company'] = db_obj.attribute_value
+    # ------------------------ pull from db end ------------------------
+    # ------------------------ pull from db start ------------------------
+    db_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='profile_img').first()
+    user_info_dict['Photo'] = db_obj.attribute_value
+    # ------------------------ pull from db end ------------------------
     page_dict['user_info_dict'] = user_info_dict
   return page_dict
 # ------------------------ individual function end ------------------------

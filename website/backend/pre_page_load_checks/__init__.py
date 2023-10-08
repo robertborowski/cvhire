@@ -29,6 +29,10 @@ def pre_page_load_checks_function(current_user, url_redirect_code=None, url_repl
   db_attribute_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='company_name').first()
   page_dict['company_name'] = db_attribute_obj.attribute_value
   # ------------------------ get company name start ------------------------
+  # ------------------------ get profile img start ------------------------
+  db_attribute_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='profile_img').first()
+  page_dict['profile_img'] = db_attribute_obj.attribute_value
+  # ------------------------ get profile img end ------------------------
   # ------------------------ get current site start ------------------------
   page_dict['navbar_link_current'] = str(request.url_rule.rule)
   # ------------------------ special case roles start ------------------------

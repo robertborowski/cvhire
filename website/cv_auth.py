@@ -114,6 +114,17 @@ def cv_signup_function(url_redirect_code=None):
       db.session.add(new_row)
       db.session.commit()
       # ------------------------ new attribute 2 end ------------------------
+      # ------------------------ new attribute 3 start ------------------------
+      new_row = UserAttributesObj(
+        id=create_uuid_function('attribute_'),
+        created_timestamp=create_timestamp_function(),
+        fk_user_id=new_user_id,
+        attribute_key='profile_img',
+        attribute_value='https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png'
+      )
+      db.session.add(new_row)
+      db.session.commit()
+      # ------------------------ new attribute 3 end ------------------------
       # ------------------------ email self start ------------------------
       if ui_email != os.environ.get('RUN_TEST_EMAIL'):
         try:
