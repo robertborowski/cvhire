@@ -96,12 +96,14 @@
       <input type="text" class="form-control" id="ui_search_bar" name="ui_search_bar" placeholder="Search (x{{ page_dict_html['content_total_rows'] }})">
       <!-- ------------------------------------- search bar end ------------------------------------- -->
       <!-- ------------------------------------- filtering start ------------------------------------- -->
-      <div class="custom-display-flex custom-jc-between custom-mt-25">
-        <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_a" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mr-10">Name <i class="fa-solid fa-caret-down"></i></a>
-        <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_z" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mlr-10">Name <i class="fa-solid fa-caret-up"></i></a>
-        <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_a" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mlr-10">Upload <i class="fa-solid fa-caret-down"></i></a>
-        <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_z" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-ml-10">Upload <i class="fa-solid fa-caret-up"></i></a>
-      </div>
+      {% if page_dict_html['starting_route'] != 'notifications' %}
+        <div class="custom-display-flex custom-jc-between custom-mt-25">
+          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_a" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mr-10">Name <i class="fa-solid fa-caret-down"></i></a>
+          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_z" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mlr-10">Name <i class="fa-solid fa-caret-up"></i></a>
+          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_a" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mlr-10">Upload <i class="fa-solid fa-caret-down"></i></a>
+          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_z" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-ml-10">Upload <i class="fa-solid fa-caret-up"></i></a>
+        </div>
+      {% endif %}
       <!-- ------------------------------------- filtering end ------------------------------------- -->
       <!-- ------------------------------------- divider start ------------------------------------- -->
       <div class="custom-display-flex custom-jc-between border-bottom custom-mt-25">
@@ -131,6 +133,11 @@
                 <div class="custom-display-flex custom-f-direction-col">
                   <a href="/results/view/{{ i['id'] }}" class="custom-a-black-underline custom-header-20">{{ i['fk_role_name_display'] }}</a>
                   <a href="/results/view/{{ i['id'] }}" class="custom-a-black-underline custom-mt-5 custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
+                </div>
+              {% elif page_dict_html['starting_route'] == 'notifications' %}
+                <div class="custom-display-flex custom-f-direction-col">
+                  <p class="custom-m-0 custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
+                  <p class="custom-m-0 custom-mt-5 custom-header-15">{{ i['message'] }}</a>
                 </div>
               {% endif %}
             </div>

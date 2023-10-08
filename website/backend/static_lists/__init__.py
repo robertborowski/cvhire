@@ -311,7 +311,7 @@ def notifications_table_links_function(role_type):
   if role_type == 'unread':
     output_dict = {
       'Mark as read': {
-        'icon':'fa-solid fa-square-xmark',
+        'icon':'fa-solid fa-check',
         'url':'/notifications/status/read'
       }
     }

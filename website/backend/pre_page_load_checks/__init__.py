@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from website.models import UserObj, EmailSentObj, UserAttributesObj
 from website.backend.static_lists import navbar_link_dict_function, navbar_link_dict_function_v2
 from website.backend.alerts import get_alert_message_function
+from website.backend.notifications import notifications_unread_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -46,6 +47,9 @@ def pre_page_load_checks_function(current_user, url_redirect_code=None, url_repl
   navbar_link_dict_v2 = navbar_link_dict_function_v2()
   page_dict['navbar_link_dict_v2'] = navbar_link_dict_v2
   # ------------------------ get navbar sites end ------------------------
+  # ------------------------ new unread notifications check start ------------------------
+  page_dict['notifications_unread'] = notifications_unread_function(current_user)
+  # ------------------------ new unread notifications check end ------------------------
   """
   # ------------------------ onboarding checks start ------------------------
   onbaording_status = onboarding_checks_function(current_user)
