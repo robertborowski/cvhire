@@ -59,13 +59,26 @@ def insert_query_v1_function(postgres_connection, postgres_cursor, id, created_t
     return False
   return True
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def insert_query_v2_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_cv_id, question, answer, openai_response, fk_ref_key):
+  try:
+    sql_query = "INSERT INTO cv_ask_ai_obj (id, created_timestamp, fk_user_id, status, fk_cv_id, question, answer, openai_response, fk_ref_key) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"
+    data = (id, created_timestamp, fk_user_id, status, fk_cv_id, question, answer, openai_response, fk_ref_key)
+    postgres_cursor.execute(sql_query, data)
+    postgres_connection.commit()
+  except Exception as e:
+    print(f'Error insert_query_v1_function: {e}')
+    return False
+  return True
+# ------------------------ individual function end ------------------------
 # ================================================ insert end ================================================
 
 # ================================================ update start ================================================
 # ------------------------ individual function start ------------------------
-def update_query_v1_function(postgres_connection, postgres_cursor, var1=None, var2=None):
+def update_query_v1_function(postgres_connection, postgres_cursor, var1=None, var2=None, var3=None):
   try:
-    sql_query = f"UPDATE open_ai_queue_obj SET status='{var1}' WHERE id='{var2}';"
+    sql_query = f"UPDATE {var3} SET status='{var1}' WHERE id='{var2}';"
     postgres_cursor.execute(sql_query)
     postgres_connection.commit()
   except:

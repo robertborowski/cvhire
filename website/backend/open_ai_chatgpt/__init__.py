@@ -81,3 +81,18 @@ def role_and_cv_grade_v1_function(role_dict, cv_contents):
     print(f'Error role_and_cv_grade_v1_function: {e}')
   return result_dict, open_ai_reply
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def cv_ask_ai_function(ai_question, cv_contents):
+  result_dict = None
+  open_ai_reply = None
+  try:
+    message = f"I am providing you with two variables: variable one: 'candidate_cv_content' which is a candidate's cv/resume, and variable two: 'recruiters_question' a recruiter's question about the candidate's cv/resume. \nI need you to answer the 'recruiters_question' about the 'candidate_cv_content'. RULES START-[Your response should be a python dictionary with only one key named 'openai_result'. The length of the 'openai_result' value should not exceed 2,000 characters in length. Check that the variable 'recruiters_question' is an appropriate question to ask a candidate about their CV/resume, if variable 'recruiters_question' is not an appropriate question then please return a string that says 'cannot answer']-RULES END Like I said in the begining here are two variables provided: \n1) 'candidate_cv_content': {cv_contents}. \n2) 'recruiters_question': {ai_question}. \nYour response should be the python dictionary only, no additional words."
+    open_ai_reply = openai_chat_gpt_prompt_result_function(message)
+    result_dict = openai_str_to_dict_v1_function(open_ai_reply)
+    if len(open_ai_reply) > 2000:
+      open_ai_reply = open_ai_reply[:1999]
+  except Exception as e:
+    print(f'Error role_and_cv_grade_v1_function: {e}')
+  return result_dict, open_ai_reply
+# ------------------------ individual function end ------------------------

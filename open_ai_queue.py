@@ -5,11 +5,11 @@ import sendgrid
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Email, To, Content
 from website.backend.connection import postgres_connect_open_function, postgres_connect_close_function
-from website.backend.sql_queries import select_query_v1_function, select_query_v2_function, select_query_v3_function, select_query_v4_function, select_query_v5_function, update_query_v1_function, insert_query_v1_function
+from website.backend.sql_queries import select_query_v1_function, select_query_v2_function, select_query_v3_function, select_query_v4_function, select_query_v5_function, update_query_v1_function, insert_query_v1_function, insert_query_v2_function
 from website.backend.aws_logic import get_file_contents_from_aws_function
 from website.backend.uploads_user import get_file_suffix_function
 from website.backend.read_files import get_file_contents_function
-from website.backend.open_ai_chatgpt import role_and_cv_grade_v1_function
+from website.backend.open_ai_chatgpt import role_and_cv_grade_v1_function, cv_ask_ai_function
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 # ------------------------ imports end ------------------------
 
@@ -35,9 +35,9 @@ def run_function():
         postgres_connect_close_function(postgres_connection, postgres_cursor)
         # ------------------------ close db connection end ------------------------
         # ------------------------ logs start ------------------------
-        print('show queue empty')
+        print('Queue empty, waiting...')
         # ------------------------ logs end ------------------------
-        time.sleep(60)
+        time.sleep(30)
       # ------------------------ if queue empty end ------------------------
       else:
         # ------------------------ loop queue start ------------------------
@@ -64,7 +64,7 @@ def run_function():
                 total_graded_exists += 1
                 # ------------------------ update db start ------------------------
                 if total_graded_exists == total_to_be_graded:
-                  update_query_v1_function(postgres_connection, postgres_cursor, 'graded', i_queue_dict['id'])
+                  update_query_v1_function(postgres_connection, postgres_cursor, 'graded', i_queue_dict['id'], 'open_ai_queue_obj')
                 # ------------------------ update db end ------------------------
                 continue
               # ------------------------ check if grade already exists end ------------------------
@@ -144,7 +144,7 @@ def run_function():
                 total_graded_exists += 1
                 # ------------------------ update db start ------------------------
                 if total_graded_exists == total_to_be_graded:
-                  update_query_v1_function(postgres_connection, postgres_cursor, 'graded', i_queue_dict['id'])
+                  update_query_v1_function(postgres_connection, postgres_cursor, 'graded', i_queue_dict['id'], 'open_ai_queue_obj')
                 # ------------------------ update db end ------------------------
                 continue
               # ------------------------ check if grade already exists end ------------------------
@@ -183,11 +183,47 @@ def run_function():
             # ------------------------ loop multiple end ------------------------
           # ------------------------ question type 2 end ------------------------
           # ------------------------ question type 3 start ------------------------
-          if i_queue_dict['question_type'] == 'one-role-many-cvs':
-            pass
+          if i_queue_dict['question_type'] == 'cv-ask-ai':
+            # ------------------------ get single start ------------------------
+            cv_dict_arr = select_query_v2_function(postgres_cursor, 'cv_obj', i_queue_dict['single_value'], i_queue_dict['fk_user_id'])
+            cv_dict = cv_dict_arr[0]
+            # ------------------------ get single end ------------------------
+            # ------------------------ get content from aws start ------------------------
+            cv_file_aws = get_file_contents_from_aws_function(cv_dict['cv_aws_id'])
+            # ------------------------ get content from aws end ------------------------
+            # ------------------------ get file suffix start ------------------------
+            cv_file_format_suffix = get_file_suffix_function(cv_dict['cv_aws_id'])
+            # ------------------------ get file suffix end ------------------------
+            # ------------------------ read file contents start ------------------------
+            cv_contents = get_file_contents_function(cv_file_aws, cv_file_format_suffix)
+            # ------------------------ read file contents end ------------------------
+            # ------------------------ set variables start ------------------------
+            ai_question = i_queue_dict['multiple_values']
+            # ------------------------ set variables end ------------------------
+            # ------------------------ open ai start ------------------------
+            result_dict, open_ai_reply = cv_ask_ai_function(ai_question, cv_contents)
+            # ------------------------ open ai end ------------------------
+            # ------------------------ set variables start ------------------------
+            id = create_uuid_function('ask_ai_')
+            created_timestamp = create_timestamp_function()
+            fk_user_id = i_queue_dict['fk_user_id']
+            status = 'valid'
+            fk_cv_id = i_queue_dict['single_value']
+            question = ai_question
+            answer = result_dict['openai_result']
+            openai_response = open_ai_reply
+            fk_ref_key = i_queue_dict['id']
+            # ------------------------ set variables end ------------------------
+            # ------------------------ insert to db start ------------------------
+            insert_query_v2_function(postgres_connection, postgres_cursor, id, created_timestamp, fk_user_id, status, fk_cv_id, question, answer, openai_response, fk_ref_key)
+            # ------------------------ insert to db end ------------------------
+            # ------------------------ update queue start ------------------------
+            update_query_v1_function(postgres_connection, postgres_cursor, 'graded', i_queue_dict['id'], 'open_ai_queue_obj')
+            # ------------------------ update queue end ------------------------
           # ------------------------ question type 3 end ------------------------
         # ------------------------ loop queue end ------------------------
     except Exception as e:
+      print(f'Exception caught: {e}')
       failure_counter += 1
       # ------------------------ close db connection start ------------------------
       postgres_connect_close_function(postgres_connection, postgres_cursor)
