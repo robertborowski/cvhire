@@ -62,13 +62,17 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
   # ------------------------ get list end ------------------------
   # ------------------------ dashboard variables start ------------------------
   page_dict['dashboard_name'] = 'Account'
-  page_dict['dashboard_action'] = 'Update'
-  page_dict['dashboard_action_link'] = '/account/add'
   # ------------------------ dashboard variables end ------------------------
   # ------------------------ section start ------------------------
   # ------------------------ get content start ------------------------
   page_dict = get_user_content_function(current_user, page_dict, url_status_code, page_dict['starting_route'])
   # ------------------------ get content end ------------------------
+  # ------------------------ set variables start ------------------------
+  if url_status_code == 'user':
+    page_dict['view_reason'] = 'edit_account'
+  if url_status_code == 'settings':
+    page_dict['view_reason'] = 'edit_settings'
+  # ------------------------ set variables end ------------------------
   # ------------------------ choose correct template start ------------------------
   correct_template = ''
   if url_status_code == 'user':
