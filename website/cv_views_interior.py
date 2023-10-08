@@ -2,11 +2,11 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import RolesObj, CvObj, GradedObj
+from website.models import RolesObj, CvObj, GradedObj, NotificationsObj
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
-from website.backend.static_lists import role_status_codes_function, cv_status_codes_function, results_status_codes_function
+from website.backend.static_lists import role_status_codes_function, cv_status_codes_function, results_status_codes_function, notifications_status_codes_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -68,6 +68,10 @@ def cv_general_status_change_function(url_section_code=None, url_status_code=Non
     status_codes_arr = results_status_codes_function()
     if url_status_code not in status_codes_arr:
       return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid', url_redirect_code='e10'))
+  if url_section_code == 'notifications':
+    status_codes_arr = notifications_status_codes_function()
+    if url_status_code not in status_codes_arr:
+      return redirect(url_for('cv_views_interior_notifications.cv_notifications_dashboard_function', url_status_code='unread', url_redirect_code='e10'))
   # ------------------------ check if status code is valid end ------------------------
   # ------------------------ check if role id is valid for user start ------------------------
   if url_section_code == 'roles':
@@ -82,6 +86,10 @@ def cv_general_status_change_function(url_section_code=None, url_status_code=Non
     db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,id=url_db_item_id).first()
     if db_obj == None:
       return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid', url_redirect_code='e10'))
+  if url_section_code == 'notifications':
+    db_obj = NotificationsObj.query.filter_by(fk_user_id=current_user.id,id=url_db_item_id).first()
+    if db_obj == None:
+      return redirect(url_for('cv_views_interior_notifications.cv_notifications_dashboard_function', url_status_code='unread', url_redirect_code='e10'))
   # ------------------------ check if role id is valid for user end ------------------------
   # ------------------------ change status start ------------------------
   if db_obj.status != url_status_code:
@@ -102,6 +110,8 @@ def cv_general_status_change_function(url_section_code=None, url_status_code=Non
       return redirect(url_for(f'cv_views_interior_cv.cv_dashboard_general_function', url_status_code=url_status_code, url_redirect_code='s5'))
     if url_section_code == 'results':
       return redirect(url_for(f'cv_views_interior_results.results_dashboard_general_function', url_status_code=url_status_code, url_redirect_code='s5'))
+    if url_section_code == 'notifications':
+      return redirect(url_for(f'cv_views_interior_notifications.cv_notifications_dashboard_function', url_status_code=url_status_code, url_redirect_code='s5'))
   # ------------------------ change status end ------------------------
   if url_section_code == 'roles':
     return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='i1'))
@@ -109,6 +119,8 @@ def cv_general_status_change_function(url_section_code=None, url_status_code=Non
     return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='i1'))
   if url_section_code == 'results':
     return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='active', url_redirect_code='i1'))
+  if url_section_code == 'notifications':
+    return redirect(url_for('cv_views_interior_notifications.cv_notifications_dashboard_function', url_status_code='unread', url_redirect_code='i1'))
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------

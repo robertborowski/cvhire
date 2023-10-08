@@ -320,7 +320,7 @@ def notifications_table_links_function(role_type):
   elif role_type == 'read':
     output_dict = {
       'Mark as unread': {
-        'icon':'fa-regular fa-square-check',
+        'icon':'fa-solid fa-x',
         'url':'/notifications/status/unread'
       }
     }
