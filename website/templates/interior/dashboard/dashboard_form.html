@@ -266,7 +266,7 @@
           {% elif page_dict_html['view_reason'] == 'view_role' %}
             <!-- ------------------------------------- title start ------------------------------------- -->
             <div class="custom-ptb-50">
-              <h2 class="custom-m-0 custom-header-30">Role information <a href="/roles/edit/{{ page_dict_html['db_role_dict']['id'] }}" class="custom-a-black-none custom-ml-10 custom-header-20 custom-opacity-50 custom-hover-pointer-opacity-1"><i class="fa-solid fa-pen-to-square"></i></a> <a href="/roles" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
+              <h2 class="custom-m-0 custom-header-30">Role information {% if page_dict_html['at_least_one_graded'] == false %}<a href="/roles/edit/{{ page_dict_html['db_role_dict']['id'] }}" class="custom-a-black-none custom-ml-10 custom-header-20 custom-opacity-50 custom-hover-pointer-opacity-1"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %} <a href="/roles" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
             </div>
             <!-- ------------------------------------- title end ------------------------------------- -->
             <!-- ------------------------------------- name start ------------------------------------- -->

@@ -253,5 +253,11 @@ def cv_roles_view_function(url_role_id=None, url_redirect_code=None):
   page_dict['nav_header'] = False
   page_dict['view_reason'] = 'view_role'
   # ------------------------ set variables end ------------------------
+  # ------------------------ check if role already graded start ------------------------
+  page_dict['at_least_one_graded'] = False
+  db_grade_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,fk_role_id=url_role_id).first()
+  if db_grade_obj != None:
+    page_dict['at_least_one_graded'] = True
+  # ------------------------ check if role already graded end ------------------------
   return render_template('interior/roles/view_role/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
