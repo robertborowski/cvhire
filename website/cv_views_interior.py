@@ -112,21 +112,6 @@ def cv_general_status_change_function(url_section_code=None, url_status_code=Non
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_interior.route('/notifications', methods=['GET', 'POST'])
-@cv_views_interior.route('/notifications/', methods=['GET', 'POST'])
-@cv_views_interior.route('/notifications/<url_redirect_code>', methods=['GET', 'POST'])
-@cv_views_interior.route('/notifications/<url_redirect_code>/', methods=['GET', 'POST'])
-@login_required
-def cv_notifications_function(url_redirect_code=None):
-  # ------------------------ pre load page checks start ------------------------
-  page_dict = pre_page_load_checks_function(current_user, url_redirect_code)
-  if page_dict['current_user_locked'] == True:
-    return redirect(url_for('cv_views_interior.cv_locked_function'))
-  # ------------------------ pre load page checks end ------------------------
-  return render_template('interior/notifications/index.html', page_dict_html=page_dict)
-# ------------------------ individual route end ------------------------
-
-# ------------------------ individual route start ------------------------
 @cv_views_interior.route('/settings', methods=['GET', 'POST'])
 @cv_views_interior.route('/settings/', methods=['GET', 'POST'])
 @cv_views_interior.route('/settings/<url_redirect_code>', methods=['GET', 'POST'])

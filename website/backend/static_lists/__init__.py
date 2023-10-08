@@ -119,6 +119,15 @@ def dashboard_section_links_dict_help_function():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def dashboard_section_links_dict_notifications_function():
+  output_dict = {
+    'Unread': '/notifications/unread',
+    'Read': '/notifications/read'
+  }
+  return output_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def role_status_codes_function():
   arr = ['open','filled','archive','all','delete']
   return arr
@@ -151,6 +160,12 @@ def export_status_codes_function():
 # ------------------------ individual function start ------------------------
 def help_status_codes_function():
   arr = ['request']
+  return arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def notifications_status_codes_function():
+  arr = ['unread','read']
   return arr
 # ------------------------ individual function end ------------------------
 
@@ -283,6 +298,30 @@ def results_table_links_function(role_type):
       'Delete result': {
         'icon':'fa-solid fa-trash',
         'url':'/results/status/delete'
+      }
+    }
+  # ------------------------ type end ------------------------
+  return output_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def notifications_table_links_function(role_type):
+  output_dict = {}
+  # ------------------------ type start ------------------------
+  if role_type == 'unread':
+    output_dict = {
+      'Mark as read': {
+        'icon':'fa-solid fa-square-xmark',
+        'url':'/notifications/status/read'
+      }
+    }
+  # ------------------------ type end ------------------------
+  # ------------------------ type start ------------------------
+  elif role_type == 'read':
+    output_dict = {
+      'Mark as unread': {
+        'icon':'fa-regular fa-square-check',
+        'url':'/notifications/status/unread'
       }
     }
   # ------------------------ type end ------------------------

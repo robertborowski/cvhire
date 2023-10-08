@@ -11,7 +11,9 @@
   <!-- ------------------------------------- title start ------------------------------------- -->
   <div class="custom-pt-25 custom-display-flex custom-jc-between custom-mb-10">
     <h2 class="custom-header-30 custom-weight-900 custom-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
-    <a href="{{ page_dict_html['dashboard_action_link'] }}" class="btn btn-primary custom-br-10"><i class="fa-solid fa-plus"></i> {{ page_dict_html['dashboard_action'] }}</a>
+    {% if page_dict_html['dashboard_action'] != 'no action' %}
+      <a href="{{ page_dict_html['dashboard_action_link'] }}" class="btn btn-primary custom-br-10"><i class="fa-solid fa-plus"></i> {{ page_dict_html['dashboard_action'] }}</a>
+    {% endif %}
   </div>
   <!-- ------------------------------------- title end ------------------------------------- -->
   <!-- ------------------------------------- options start ------------------------------------- -->
@@ -78,6 +80,12 @@
         {% elif page_dict_html['url_status_code'] == 'archive' %}
           <div class="custom-width-600 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
             <a href="/results/all" class="custom-opacity-60 custom-a-black-underline">No archived results</a>
+          </div>
+        {% endif %}
+      {% elif page_dict_html['starting_route'] == 'notifications' %}
+        {% if page_dict_html['url_status_code'] == 'unread' or page_dict_html['url_status_code'] == 'read' %}
+          <div class="custom-width-600 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
+            <p class="custom-m-0 custom-opacity-60">No notifications</p>
           </div>
         {% endif %}
       {% endif %}

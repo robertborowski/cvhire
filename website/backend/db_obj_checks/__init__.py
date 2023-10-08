@@ -1,6 +1,6 @@
 # ------------------------ imports start ------------------------
 from website import db
-from website.models import RolesObj, CvObj, GradedObj
+from website.models import RolesObj, CvObj, GradedObj, NotificationsObj
 from website.backend.convert import objs_to_arr_of_dicts_function
 # ------------------------ imports end ------------------------
 
@@ -111,15 +111,14 @@ def get_content_function(current_user, page_dict, url_status_code, dashboard_typ
         db_obj = GradedObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(GradedObj.fk_role_name,GradedObj.score.desc(),GradedObj.fk_cv_name).all()
       # ------------------------ sorting default end ------------------------
   # ------------------------ results end ------------------------
+  # ------------------------ notifications start ------------------------
+  if dashboard_type == 'notifications':
+    db_obj = NotificationsObj.query.filter_by(fk_user_id=current_user.id,status=url_status_code).order_by(NotificationsObj.created_timestamp.desc()).all()
+  # ------------------------ notifications end ------------------------
   # ------------------------ pull from db end ------------------------
   # ------------------------ assign variables start ------------------------
   page_dict['content_total_rows'] = len(db_obj)
-  if dashboard_type == 'roles':
-    page_dict['content_total_rows_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_obj, 'roles')
-  if dashboard_type == 'cv':
-    page_dict['content_total_rows_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_obj, 'cv')
-  if dashboard_type == 'results':
-    page_dict['content_total_rows_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_obj, 'results')
+  page_dict['content_total_rows_arr_of_dicts'] = objs_to_arr_of_dicts_function(db_obj, dashboard_type)
   # ------------------------ assign variables end ------------------------
   return page_dict
 # ------------------------ individual function end ------------------------

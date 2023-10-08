@@ -140,6 +140,16 @@ class FeedbackObj(db.Model):
   message = db.Column(db.String(1000))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class NotificationsObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  fk_user_id = db.Column(db.String(150))
+  status = db.Column(db.String(50))
+  topic = db.Column(db.String(50))
+  message = db.Column(db.String(200))
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):
