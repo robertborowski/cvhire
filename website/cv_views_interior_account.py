@@ -109,6 +109,8 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
       if change_occurred == True:
         db.session.commit()
         return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='s5'))
+      if change_occurred == False:
+        return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='i1'))
       # ------------------------ update db end ------------------------
   # ------------------------ post end ------------------------
   # ------------------------ choose correct template start ------------------------
