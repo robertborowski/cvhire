@@ -281,6 +281,21 @@
   right: 0;
 }
 /* ------------------- background end ------------------- */
+/* ------------------- badge start ------------------- */
+.custom-badge-1 {
+  position: absolute; /* make the badge's position absolute */
+  top: 0; /* position the badge at the top-right corner of the parent */
+  right: 5px;
+  background-color: red; /* red background for the badge */
+  color: white; /* white text color */
+  border-radius: 100%; /* make the badge circular */
+  padding: 5px; /* some spacing for the text */
+  font-size: 10px; /* font size */
+  line-height: 1; /* to make sure the badge is nice and round */
+  min-width: 10px; /* to make sure the badge is at least a circle */
+  text-align: center; /* to center the number/text */
+}
+/* ------------------- badge end ------------------- */
 /* ------------------- blur start ------------------- */
 .custom-blur-1 {
   filter: blur(5px);

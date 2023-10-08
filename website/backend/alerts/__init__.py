@@ -99,17 +99,17 @@ def get_alert_message_function(redirect_var=None):
     }
   elif redirect_var == 's4':
     alert_message_dict = {
-      'message':'Successfully created role',
+      'message':'Successfully created',
       'type':'success'
     }
   elif redirect_var == 's5':
     alert_message_dict = {
-      'message':'Successfully updated role',
+      'message':'Successfully updated',
       'type':'success'
     }
   elif redirect_var == 's6':
     alert_message_dict = {
-      'message':'Successfully deleted role',
+      'message':'Successfully deleted',
       'type':'success'
     }
   elif redirect_var == 's7':
