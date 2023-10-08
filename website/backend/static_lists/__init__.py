@@ -128,6 +128,15 @@ def dashboard_section_links_dict_notifications_function():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def dashboard_section_links_dict_account_function():
+  output_dict = {
+    'User': '/account/user',
+    'Settings': '/account/settings'
+  }
+  return output_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def role_status_codes_function():
   arr = ['open','filled','archive','all','delete']
   return arr
@@ -166,6 +175,12 @@ def help_status_codes_function():
 # ------------------------ individual function start ------------------------
 def notifications_status_codes_function():
   arr = ['unread','read']
+  return arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def account_status_codes_function():
+  arr = ['user','settings']
   return arr
 # ------------------------ individual function end ------------------------
 

@@ -1,6 +1,6 @@
 # ------------------------ imports start ------------------------
 from website import db
-from website.models import RolesObj, CvObj, GradedObj, NotificationsObj
+from website.models import RolesObj, CvObj, GradedObj, NotificationsObj, UserAttributesObj
 from website.backend.convert import objs_to_arr_of_dicts_function
 # ------------------------ imports end ------------------------
 
@@ -147,5 +147,18 @@ def get_content_split_function(current_user, page_dict, item_type):
   if item_type == 'cv':
     page_dict[f'content_total_rows_arr_of_dicts_{item_type}'] = objs_to_arr_of_dicts_function(db_obj, 'cv')
   # ------------------------ assign variables end ------------------------
+  return page_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_user_content_function(current_user, page_dict, url_status_code, dashboard_type):
+  if url_status_code == 'user':
+    user_info_dict = {
+      'Email': current_user.email,
+      'Name': '',
+      'Company': '',
+      'Photo': ''
+    }
+    page_dict['user_info_dict'] = user_info_dict
   return page_dict
 # ------------------------ individual function end ------------------------
