@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import RolesObj, GradedObj
+from website.models import UserAttributesObj
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
@@ -10,6 +10,7 @@ from website.backend.static_lists import dashboard_section_links_dict_account_fu
 from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
 from website.backend.db_obj_checks import get_user_content_function
 from website.backend.convert import convert_obj_row_to_dict_function
+from website.backend.sanitize import sanitize_fullname_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -73,6 +74,40 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
   if url_status_code == 'settings':
     page_dict['view_reason'] = 'edit_settings'
   # ------------------------ set variables end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    if url_status_code == 'user':
+      # ------------------------ get user inputs start ------------------------
+      ui_full_name = request.form.get('uiFullName')
+      ui_company_name = request.form.get('uiCompanyName')
+      # ------------------------ get user inputs end ------------------------
+      # ------------------------ sanitize user inputs start ------------------------
+      ui_full_name_check = sanitize_fullname_function(ui_full_name)
+      ui_company_name_check = sanitize_fullname_function(ui_company_name)
+      # ------------------------ sanitize user inputs end ------------------------
+      # ------------------------ redirect error start ------------------------
+      if ui_full_name_check == False or ui_company_name_check == False:
+        return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='e8'))
+      # ------------------------ redirect error end ------------------------
+      # ------------------------ update db start ------------------------
+      change_occurred = False
+      # ------------------------ full name start ------------------------
+      db_full_name_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='full_name').first()
+      if db_full_name_obj.attribute_value != ui_full_name:
+        db_full_name_obj.attribute_value = ui_full_name
+        change_occurred = True
+      # ------------------------ full name end ------------------------
+      # ------------------------ company name start ------------------------
+      db_company_name_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='company_name').first()
+      if db_company_name_obj.attribute_value != ui_company_name:
+        db_company_name_obj.attribute_value = ui_company_name
+        change_occurred = True
+      # ------------------------ company name end ------------------------
+      if change_occurred == True:
+        db.session.commit()
+        return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='s5'))
+      # ------------------------ update db end ------------------------
+  # ------------------------ post end ------------------------
   # ------------------------ choose correct template start ------------------------
   correct_template = ''
   if url_status_code == 'user':
