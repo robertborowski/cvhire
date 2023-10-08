@@ -11,7 +11,7 @@ from website.backend.static_lists import cv_status_codes_function, dashboard_sec
 from website.backend.db_obj_checks import get_content_function
 from website.backend.uploads_user import allowed_cv_file_upload_function, get_file_suffix_function
 from website.backend.aws_logic import upload_file_to_aws_s3_function, initial_cv_scrape_function, get_file_static_from_aws_function
-from website.backend.convert import convert_obj_row_to_dict_function
+from website.backend.convert import convert_obj_row_to_dict_function, objs_to_arr_of_dicts_function
 from website.backend.sanitize import sanitize_chars_function_v4
 # ------------------------ imports end ------------------------
 
@@ -255,6 +255,9 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
   if db_obj != None and db_obj != []:
     page_dict['content_total_rows_interior'] = len(db_ask_obj)
   # ------------------------ count content end -----------------------
+  # ------------------------ objs to arr start -----------------------
+  page_dict['db_ask_ai_arr_of_dict'] = objs_to_arr_of_dicts_function(db_ask_obj)
+  # ------------------------ objs to arr end -----------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ user inputs start ------------------------
