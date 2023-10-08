@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserAttributesObj
+from website.models import UserAttributesObj, EmailSentObj
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
@@ -11,6 +11,8 @@ from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_
 from website.backend.db_obj_checks import get_user_content_function
 from website.backend.convert import convert_obj_row_to_dict_function
 from website.backend.sanitize import sanitize_fullname_function
+from website.backend.sendgrid import send_email_template_function
+import os
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -149,7 +151,51 @@ def account_verify_send_function():
   else:
     verification_code = db_verify_obj.attribute_value
   # ------------------------ if verify code does exist end ------------------------
+  # ------------------------ set variables start ------------------------
+  final_link = ''
+  if os.environ.get('TESTING') == 'true':
+    final_link = f'http://127.0.0.1/account/verify/email/receive/{verification_code}'
+  else:
+    final_link = f'https://cvhire.com/account/verify/email/receive/{verification_code}'
+  output_subject = f'Verify email | CVhire'
+  output_body = f'Click to verify email {final_link}'
+  # ------------------------ set variables end ------------------------
   # ------------------------ send email to user start ------------------------
+  try:
+    send_email_template_function(current_user.email, output_subject, output_body)
+  except:
+    pass
   # ------------------------ send email to user end ------------------------
+  # ------------------------ add to email sent table start ------------------------
+  try:
+    new_row = EmailSentObj(
+      id=create_uuid_function('sent_'),
+      created_timestamp=create_timestamp_function(),
+      from_user_id_fk=current_user.id,
+      to_email=current_user.email,
+      subject=output_subject,
+      body=output_body
+    )
+    db.session.add(new_row)
+    db.session.commit()
+  except:
+    pass
+  # ------------------------ add to email sent table end ------------------------
+  # ------------------------ email self notifications start ------------------------
+  try:
+    output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+    send_email_template_function(output_to_email, output_subject, output_body)
+  except:
+    pass
+  # ------------------------ email self notifications end ------------------------
+  # ------------------------ lock account if too many emails start ------------------------
+  db_emails_obj = EmailSentObj.query.filter_by(from_user_id_fk=current_user.id,subject=output_subject).all()
+  try:
+    if len(db_emails_obj) >= 10:
+      current_user.locked = True
+      db.session.commit()
+  except:
+    pass
+  # ------------------------ lock account if too many emails end ------------------------
   return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='s3'))
 # ------------------------ individual route end ------------------------
