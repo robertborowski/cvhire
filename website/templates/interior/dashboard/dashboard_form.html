@@ -450,7 +450,17 @@
                   <input type="text" class="form-control custom-mt-10" id="{{ v['id'] }}" name="{{ v['id'] }}" value="{{ v['value'] }}" required>
                 </div>
               {% else %}
-                <p class="custom-m-0">photo wip</p>
+                <label class="custom-mb-10">Company logo</label>
+                <div>
+                  {% for k_img,v_img in page_dict_html['default_profile_img_dict'].items() %}
+                    {% if v_img['url'] == page_dict_html['profile_img'] %}
+                      <input type="radio" class="btn-check" name="uiRadioProfileImg" id="uiRadioProfileImg_{{ v_img['id'] }}" value="{{ v_img['url'] }}" autocomplete="off" checked>
+                    {% else %}
+                      <input type="radio" class="btn-check" name="uiRadioProfileImg" id="uiRadioProfileImg_{{ v_img['id'] }}" value="{{ v_img['url'] }}" autocomplete="off">
+                    {% endif %}
+                    <label class="btn" for="uiRadioProfileImg_{{ v_img['id'] }}"><img src="{{ v_img['url'] }}" class="custom-img-height-40" alt="CVhire logo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k_img }}"></label>
+                  {% endfor %}
+                </div>
               {% endif %}
             {% endfor %}
             <!-- ------------------------------------- inputs end ------------------------------------- -->

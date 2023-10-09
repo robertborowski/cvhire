@@ -78,3 +78,14 @@ def sanitize_chars_function_v4(user_input):
     return False
   return user_input
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def sanitize_image_option_function(user_submission, allowed_dict):
+  img_found = False
+  for k,v in allowed_dict.items():
+    i_url = v['url']
+    if user_submission == i_url:
+      img_found = True
+      break
+  return img_found
+# ------------------------ individual function end ------------------------

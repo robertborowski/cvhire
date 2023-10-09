@@ -370,3 +370,42 @@ def get_stars_img_function(i_dict):
     i_dict['score_all_stars'] = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_0.png'
   return i_dict
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_default_profile_imgs_function():
+  img_dict = {
+    'Green': {
+      'url':'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png',
+      'id': '1'
+    },
+    'Black': {
+      'url':'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_black.png',
+      'id': '2'
+    },
+    'Blue': {
+      'url':'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_blue.png',
+      'id': '3'
+    },
+    'Orange': {
+      'url':'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_orange.png',
+      'id': '4'
+    },
+    'Purple': {
+      'url':'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_purple.png',
+      'id': '5'
+    },
+    'Red': {
+      'url':'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_red.png',
+      'id': '6'
+    },
+    'White': {
+      'url':'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_white.png',
+      'id': '7'
+    },
+    'Yellow': {
+      'url':'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_yellow.png',
+      'id': '8'
+    }
+  }
+  return img_dict
+# ------------------------ individual function end ------------------------

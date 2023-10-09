@@ -6,8 +6,8 @@ from website.models import UserAttributesObj, EmailSentObj
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
-from website.backend.static_lists import dashboard_section_links_dict_account_function, roles_table_links_function, account_status_codes_function
-from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
+from website.backend.static_lists import dashboard_section_links_dict_account_function, roles_table_links_function, account_status_codes_function, get_default_profile_imgs_function
+from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2, sanitize_image_option_function
 from website.backend.db_obj_checks import get_user_content_function
 from website.backend.convert import convert_obj_row_to_dict_function
 from website.backend.sanitize import sanitize_fullname_function
@@ -77,19 +77,24 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
   if url_status_code == 'settings':
     page_dict['view_reason'] = 'edit_settings'
   # ------------------------ set variables end ------------------------
+  # ------------------------ get stock photos start ------------------------
+  page_dict['default_profile_img_dict'] = get_default_profile_imgs_function()
+  # ------------------------ get stock photos end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     if url_status_code == 'user':
       # ------------------------ get user inputs start ------------------------
       ui_full_name = request.form.get('uiFullName')
       ui_company_name = request.form.get('uiCompanyName')
+      ui_profile_img = request.form.get('uiRadioProfileImg')
       # ------------------------ get user inputs end ------------------------
       # ------------------------ sanitize user inputs start ------------------------
       ui_full_name_check = sanitize_fullname_function(ui_full_name)
       ui_company_name_check = sanitize_fullname_function(ui_company_name)
+      ui_profile_img_check = sanitize_image_option_function(ui_profile_img, page_dict['default_profile_img_dict'])
       # ------------------------ sanitize user inputs end ------------------------
       # ------------------------ redirect error start ------------------------
-      if ui_full_name_check == False or ui_company_name_check == False:
+      if ui_full_name_check == False or ui_company_name_check == False or ui_profile_img_check == False:
         return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='e8'))
       # ------------------------ redirect error end ------------------------
       # ------------------------ update db start ------------------------
@@ -106,6 +111,12 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
         db_company_name_obj.attribute_value = ui_company_name
         change_occurred = True
       # ------------------------ company name end ------------------------
+      # ------------------------ profile pic start ------------------------
+      db_profile_img_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='profile_img').first()
+      if db_profile_img_obj.attribute_value != ui_profile_img:
+        db_profile_img_obj.attribute_value = ui_profile_img
+        change_occurred = True
+      # ------------------------ profile pic end ------------------------
       if change_occurred == True:
         db.session.commit()
         return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='s5'))
