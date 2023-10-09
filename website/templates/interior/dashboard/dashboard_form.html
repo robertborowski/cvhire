@@ -164,18 +164,18 @@
   <!-- ------------------------------------- width change start ------------------------------------- -->
   {% elif page_dict_html['view_reason'] == 'edit_settings' %}
     <div class="custom-width-1100-only mx-auto">
-      <div class="custom-header-15 custom-mt-25">
+      <div class="custom-header-15 custom-mt-25 custom-mb-100">
         <!-- ------------------------------------- view start ------------------------------------- -->
         {% if page_dict_html['view_reason'] == 'edit_settings' %}
           <!-- ------------------------------------- title start ------------------------------------- -->
-          <div class="custom-ptb-50 custom-display-flex">
+          <div class="custom-ptb-50 custom-display-flex custom-jc-between">
             <h2 class="custom-m-0 custom-header-30">Subscription</h2>
             <!-- ------------------------------------- radio start ------------------------------------- -->
             <div class="custom-ml-15">
               <input type="radio" class="btn-check" name="radioSubscriptionOption" id="radioMonthly" value="monthly" autocomplete="off">
               <label class="btn custom-ptb-15" for="radioMonthly">Monthly</label>
               <input type="radio" class="btn-check" name="radioSubscriptionOption" id="radioYearly" value="yearly" autocomplete="off" checked>
-              <label class="btn" for="radioYearly"><div>Yearly</div><div class="custom-header-12">(Save +10%)</div></label>
+              <label class="btn" for="radioYearly"><div>Yearly</div><div class="custom-header-12">(Save +50%)</div></label>
             </div>
             <!-- ------------------------------------- radio end ------------------------------------- -->
           </div>
@@ -183,27 +183,132 @@
           <!-- ------------------------------------- content start ------------------------------------- -->
           <div class="custom-display-grid custom-grid-1row-3col">
             <!-- ------------------------------------- column start ------------------------------------- -->
-            <div class="custom-border-2">
-              <p class="custom-m-0">Item</p>
+            <div>
+              <!-- ------------------------------------- title start ------------------------------------- -->
+              <div class="text-center custom-p-10 border-bottom border-top custom-bg-primary-lighter">
+                <p class="custom-m-0 custom-header-25 custom-mb-5">Features</p>
+                <p class="custom-m-0 custom-header-25">by plan</p>
+              </div>
+              <!-- ------------------------------------- title end ------------------------------------- -->
+              <!-- ------------------------------------- legs start ------------------------------------- -->
+              <div class="border-bottom custom-ptb-25 border-top">
+                <p class="custom-m-0 custom-header-18">Add job descriptions</p>
+              </div>
+              <div class="border-bottom custom-ptb-25">
+                <p class="custom-m-0 custom-header-18">Add candidate CV's</p>
+              </div>
+              <div class="border-bottom custom-ptb-25">
+                <p class="custom-m-0 custom-header-18">AI grading CV's</p>
+              </div>
+              <div class="border-bottom custom-ptb-25">
+                <p class="custom-m-0 custom-header-18">AI ask about CV's</p>
+              </div>
+              <div class="border-bottom custom-ptb-25">
+                <p class="custom-m-0 custom-header-18">AI recommended follow up questions</p>
+              </div>
+              <div class="border-bottom custom-ptb-25">
+                <p class="custom-m-0 custom-header-18">AI insights</p>
+              </div>
+              <div class="border-bottom custom-ptb-25">
+                <p class="custom-m-0 custom-header-18">Custom follow up questions</p>
+              </div>
+              <div class="border-bottom custom-ptb-25">
+                <p class="custom-m-0 custom-header-18">Export results</p>
+              </div>
+              <div class="border-bottom custom-ptb-25">
+                <p class="custom-m-0 custom-header-18">Company branding</p>
+              </div>
+              <!-- ------------------------------------- legs end ------------------------------------- -->
             </div>
             <!-- ------------------------------------- column end ------------------------------------- -->
             <!-- ------------------------------------- column start ------------------------------------- -->
-            <div class="custom-border-2">
-              <p class="custom-m-0">Free</p>
-              <p class="custom-m-0">$0/mo</p>
+            <div>
+              <!-- ------------------------------------- title start ------------------------------------- -->
+              <div class="text-center custom-p-10 border-bottom border-top custom-bg-primary-lighter">
+                <p class="custom-m-0 custom-header-25 custom-mb-5">Free</p>
+                <p class="custom-m-0 custom-header-25">$0 <span class="custom-opacity-50 custom-header-12">/mo</span></p>
+              </div>
+              <!-- ------------------------------------- title end ------------------------------------- -->
+              <!-- ------------------------------------- legs start ------------------------------------- -->
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-opacity-50">5</p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-opacity-50">5</p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-opacity-50">20</p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-opacity-50">5</p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-opacity-50">1</p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-opacity-50"><i class="fa-solid fa-minus"></i></p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-opacity-50"><i class="fa-solid fa-minus"></i></p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-opacity-50"><i class="fa-solid fa-minus"></i></p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-opacity-50"><i class="fa-solid fa-minus"></i></p>
+              </div>
+              <!-- ------------------------------------- legs end ------------------------------------- -->
             </div>
             <!-- ------------------------------------- column end ------------------------------------- -->
             <!-- ------------------------------------- column start ------------------------------------- -->
-            <div class="custom-border-2">
-              <p class="custom-m-0">Premium</p>
-              <p class="custom-m-0 uiSearchItemInvisible" id="id-monthly_price">$19/mo</p>
-              <p class="custom-m-0 uiSearchItemVisible" id="id-yearly_price">$9/mo</p>
+            <div>
+              <!-- ------------------------------------- title start ------------------------------------- -->
+              <div class="text-center custom-p-10 border-bottom border-top custom-bg-primary-lighter">
+                <p class="custom-m-0 custom-header-25 custom-mb-5">Premium</p>
+                <p class="custom-m-0 custom-header-25 uiSearchItemInvisible" id="id-monthly_price">$19 <span class="custom-opacity-50 custom-header-12">/mo</span></p>
+                <p class="custom-m-0 custom-header-25 uiSearchItemVisible" id="id-yearly_price">$9 <span class="custom-opacity-50 custom-header-12">/mo</span></p>
+              </div>
+              <!-- ------------------------------------- title end ------------------------------------- -->
+              <!-- ------------------------------------- legs start ------------------------------------- -->
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-color-success">Unlimited</p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-color-success">Unlimited</p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-color-success">Unlimited</p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-color-success">Unlimited</p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-color-success">Unlimited</p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-color-success"><i class="fa-solid fa-circle-check"></i></p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-color-success"><i class="fa-solid fa-circle-check"></i></p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-color-success"><i class="fa-solid fa-circle-check"></i></p>
+              </div>
+              <div class="border-bottom custom-ptb-25 text-center">
+                <p class="custom-m-0 custom-header-18 custom-color-success"><i class="fa-solid fa-circle-check"></i></p>
+              </div>
+              <!-- ------------------------------------- legs end ------------------------------------- -->
             </div>
             <!-- ------------------------------------- column end ------------------------------------- -->
           </div>
           <!-- ------------------------------------- content end ------------------------------------- -->
           <!-- ------------------------------------- buttons start ------------------------------------- -->
-          <button type="submit" class="btn btn-primary btn-lg custom-width-100 custom-mt-25 custom-mb-100">Continue</button>
+          <div class="text-center custom-mt-25">
+            <button type="submit" class="btn btn-success btn-lg custom-mt-25 custom-plr-35">Continue</button>
+          </div>
+          <div class="text-center custom-mt-15">
+            <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/stripe.png" alt="" class="custom-img-height-40 custom-opacity-50">
+          </div>
           <!-- ------------------------------------- buttons end ------------------------------------- -->
         <!-- ------------------------------------- view end ------------------------------------- -->
         {% endif %}

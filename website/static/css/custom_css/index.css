@@ -331,7 +331,7 @@
   --custom-color-black: rgba(0, 0, 0);
   --custom-color-black-faded: rgba(0, 0, 0, 0.25);
   --custom-color-primary: #ffc107;
-  --custom-color-primary-lighter: rgb(230 217 255);
+  --custom-color-primary-lighter: rgba(210, 244, 234, 0.50);
   --custom-color-primary-darker: rgb(44 26 77);
   --custom-color-secondary: rgb(108 117 125);
   --custom-color-success: rgb(25, 135, 84);
@@ -1609,6 +1609,14 @@
   padding-left: 25px;
   padding-right: 25px;
 }
+.custom-plr-35 {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+.custom-plr-40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
 .custom-plr-50 {
   padding-left: 50px;
   padding-right: 50px;
@@ -1658,8 +1666,17 @@
 .custom-pt-25 {
   padding-top: 25px;
 }
+.custom-pt-30 {
+  padding-top: 30px;
+}
+.custom-pt-40 {
+  padding-top: 40px;
+}
 .custom-pt-50 {
   padding-top: 50px;
+}
+.custom-pt-55 {
+  padding-top: 55px;
 }
 .custom-pt-100 {
   padding-top: 100px;
