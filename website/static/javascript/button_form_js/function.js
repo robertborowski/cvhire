@@ -65,3 +65,31 @@ $(document).ready(function() {
   // ------------------------------------- role end -------------------------------------
 });
 // ------------------------------------- individual function end -------------------------------------
+
+// ------------------------------------- individual function start -------------------------------------
+$(document).ready(function() {
+
+  // Wrap the logic inside a function for reusability
+  function handleRadioChange() {
+    var selectedValue = $('input[name="radioSubscriptionOption"]:checked').val();
+
+    if (selectedValue === "monthly") {
+      $("#id-monthly_price").addClass("uiSearchItemVisible");
+      $("#id-monthly_price").removeClass("uiSearchItemInvisible");
+      $("#id-yearly_price").addClass("uiSearchItemInvisible");
+      $("#id-yearly_price").removeClass("uiSearchItemVisible");
+    } else if (selectedValue === "yearly") {
+      $("#id-monthly_price").addClass("uiSearchItemInvisible");
+      $("#id-monthly_price").removeClass("uiSearchItemVisible");
+      $("#id-yearly_price").addClass("uiSearchItemVisible");
+      $("#id-yearly_price").removeClass("uiSearchItemInvisible");
+    }
+  }
+
+  // Call the function initially to set things up
+  handleRadioChange();
+
+  // Bind the change event to the radio buttons
+  $('input[name="radioSubscriptionOption"]').change(handleRadioChange);
+});
+// ------------------------------------- individual function end -------------------------------------
