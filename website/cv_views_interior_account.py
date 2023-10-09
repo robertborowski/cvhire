@@ -84,6 +84,7 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
   # ------------------------ get stock photos end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
+    # ------------------------ post #1 start ------------------------
     if url_status_code == 'user':
       # ------------------------ get user inputs start ------------------------
       ui_full_name = request.form.get('uiFullName')
@@ -156,6 +157,11 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
       if change_occurred == False:
         return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='i1'))
       # ------------------------ update db end ------------------------
+    # ------------------------ post #1 end ------------------------
+    # ------------------------ post #2 start ------------------------
+    elif url_status_code == 'settings':
+      pass
+    # ------------------------ post #2 end ------------------------
   # ------------------------ post end ------------------------
   # ------------------------ choose correct template start ------------------------
   correct_template = ''

@@ -15,6 +15,8 @@
         <h2 class="custom-header-30 custom-weight-900 custom-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
         {% if page_dict_html['view_reason'] == 'one-role-many-cvs' or page_dict_html['view_reason'] == 'one-cv-many-roles' %}
           <button type="submit" class="btn btn-success custom-br-10" id="id_submit_button" disabled>Screen CV</button>
+        {% elif page_dict_html['view_reason'] == 'edit_settings' %}
+          <button type="submit" class="btn btn-success custom-br-10">Continue</button>
         {% endif %}
       </div>
       <!-- ------------------------------------- title end ------------------------------------- -->
@@ -156,6 +158,25 @@
           {% endif %}
         </div>
         <!-- ------------------------------------- right end ------------------------------------- -->
+      </div>
+    </div>
+  <!-- ------------------------------------- width change end ------------------------------------- -->
+  <!-- ------------------------------------- width change start ------------------------------------- -->
+  {% elif page_dict_html['view_reason'] == 'edit_settings' %}
+    <div class="custom-width-1100-only mx-auto custom-border-2">
+      <div class="custom-header-15 custom-mt-25">
+        <!-- ------------------------------------- view start ------------------------------------- -->
+        {% if page_dict_html['view_reason'] == 'edit_settings' %}
+          <!-- ------------------------------------- title start ------------------------------------- -->
+          <div class="custom-ptb-50">
+            <h2 class="custom-m-0 custom-header-30">Subscription</h2>
+          </div>
+          <!-- ------------------------------------- title end ------------------------------------- -->
+          <!-- ------------------------------------- buttons start ------------------------------------- -->
+          <button type="submit" class="btn btn-primary btn-lg custom-width-100 custom-mt-25 custom-mb-100">Continue</button>
+          <!-- ------------------------------------- buttons end ------------------------------------- -->
+        <!-- ------------------------------------- view end ------------------------------------- -->
+        {% endif %}
       </div>
     </div>
   <!-- ------------------------------------- width change end ------------------------------------- -->
@@ -468,7 +489,7 @@
             {% endfor %}
             <!-- ------------------------------------- inputs end ------------------------------------- -->
             <!-- ------------------------------------- buttons start ------------------------------------- -->
-            <button type="submit" class="btn btn-primary btn-lg custom-width-100 custom-mt-25 custom-mb-100" id="id_submit_button">Update</button>
+            <button type="submit" class="btn btn-primary btn-lg custom-width-100 custom-mt-25 custom-mb-100">Update</button>
             <!-- ------------------------------------- buttons end ------------------------------------- -->
           <!-- ------------------------------------- view end ------------------------------------- -->
           {% endif %}
