@@ -905,6 +905,10 @@
 .custom-img-size-20 {
   max-height: 20px;
 }
+.custom-img-size-20-square {
+  max-height: 20px;
+  max-width: 20px;
+}
 .custom-img-size-25 {
   max-height: 25px;
 }

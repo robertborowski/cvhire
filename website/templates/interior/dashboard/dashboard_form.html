@@ -461,6 +461,9 @@
                     <label class="btn" for="uiRadioProfileImg_{{ v_img['id'] }}"><img src="{{ v_img['url'] }}" class="custom-img-height-40" alt="CVhire logo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k_img }}"></label>
                   {% endfor %}
                 </div>
+                <div class="custom-mt-15 custom-mb-25">
+                  <input class="form-control" type="file" id="uiFormFileSingleUpload" name="uiFormFileSingleUpload" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Accepted formats: .jpg, .jpeg, .png">
+                </div>
               {% endif %}
             {% endfor %}
             <!-- ------------------------------------- inputs end ------------------------------------- -->
