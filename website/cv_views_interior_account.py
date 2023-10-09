@@ -160,7 +160,13 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
     # ------------------------ post #1 end ------------------------
     # ------------------------ post #2 start ------------------------
     elif url_status_code == 'settings':
-      pass
+      # ------------------------ get user inputs start ------------------------
+      ui_subscription_choice = request.form.get('radioSubscriptionOption')
+      # ------------------------ get user inputs end ------------------------
+      # ------------------------ sanitize user inputs start ------------------------
+      if ui_subscription_choice != 'yearly' and ui_subscription_choice != 'monthly':
+        return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='settings', url_redirect_code='e10'))
+      # ------------------------ sanitize user inputs end ------------------------
     # ------------------------ post #2 end ------------------------
   # ------------------------ post end ------------------------
   # ------------------------ choose correct template start ------------------------
