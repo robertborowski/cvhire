@@ -14,7 +14,6 @@ print(' ------------- 100 end ------------- ')
 # ------------------------ pretty print end ------------------------
 
 ========================================================================================================================
-
 -Uploading CV
   -Derive a persons current position title, this helps the recruiter when selecting for role.
 -Screening CV, individual
