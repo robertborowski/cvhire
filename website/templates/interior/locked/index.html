@@ -7,12 +7,7 @@
 {% endblock %}
 
 {% block contentBodyExceptNavbarAndFooter %}
-<!-- ----------------------------------- alert start ----------------------------------- -->
-{% if page_dict_html['alert_message_dict']['message'] != '' %}
-<div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">
-  {{ page_dict_html['alert_message_dict']['message'] }}
+<div class="custom-mt-50">
+  <p class="custom-m-0 custom-header-20 custom-ml-25">Your account is now locked, please contact support@cvhire.com to dispute.</p>
 </div>
-{% endif %}
-<!-- ----------------------------------- alert end ----------------------------------- -->
-Your account is locked
 {% endblock %}
