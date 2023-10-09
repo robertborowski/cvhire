@@ -120,6 +120,15 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
         new_name = create_uuid_function('customLogo_') + file_name_suffix
         upload_public_file_to_aws_s3_function(ui_file_uploaded, new_name)
         ui_profile_img = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/' + new_name
+        # ------------------------ email self start ------------------------
+        try:
+          output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+          output_subject = f'{current_user.email} | uploaded company logo to AWS'
+          output_body = f'{current_user.email} | uploaded company logo to AWS'
+          send_email_template_function(output_to_email, output_subject, output_body)
+        except:
+          pass
+        # ------------------------ email self end ------------------------
       # ------------------------ upload aws img end ------------------------
       # ------------------------ update db start ------------------------
       change_occurred = False
