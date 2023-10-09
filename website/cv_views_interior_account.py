@@ -13,6 +13,8 @@ from website.backend.convert import convert_obj_row_to_dict_function
 from website.backend.sanitize import sanitize_fullname_function
 from website.backend.sendgrid import send_email_template_function
 import os
+from website.backend.uploads_user import allowed_img_file_upload_function, get_file_suffix_function
+from website.backend.aws_logic import upload_public_file_to_aws_s3_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -87,16 +89,38 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
       ui_full_name = request.form.get('uiFullName')
       ui_company_name = request.form.get('uiCompanyName')
       ui_profile_img = request.form.get('uiRadioProfileImg')
+      ui_file_uploaded = request.files.get('uiFormFileSingleUpload')
       # ------------------------ get user inputs end ------------------------
+      # ------------------------ check if img uploaded start ------------------------
+      ui_img_uploaded = False
+      if ui_file_uploaded.filename != '':
+        ui_img_uploaded = True
+      # ------------------------ check if img uploaded end ------------------------
       # ------------------------ sanitize user inputs start ------------------------
       ui_full_name_check = sanitize_fullname_function(ui_full_name)
       ui_company_name_check = sanitize_fullname_function(ui_company_name)
-      ui_profile_img_check = sanitize_image_option_function(ui_profile_img, page_dict['default_profile_img_dict'])
+      ui_profile_img_check = False
+      if ui_img_uploaded == False:
+        ui_profile_img_check = sanitize_image_option_function(ui_profile_img, page_dict['default_profile_img_dict'])
+      ui_file_uploaded_check = False
+      if ui_img_uploaded == True:
+        ui_file_uploaded_check = allowed_img_file_upload_function(ui_file_uploaded.filename)
       # ------------------------ sanitize user inputs end ------------------------
       # ------------------------ redirect error start ------------------------
-      if ui_full_name_check == False or ui_company_name_check == False or ui_profile_img_check == False:
+      if ui_full_name_check == False or ui_company_name_check == False:
         return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='e8'))
+      if ui_img_uploaded == False and ui_profile_img_check == False:
+        return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='e10'))
+      if ui_img_uploaded == True and ui_file_uploaded_check == False:
+        return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='e10'))
       # ------------------------ redirect error end ------------------------
+      # ------------------------ upload aws img start ------------------------
+      if ui_img_uploaded == True and ui_file_uploaded_check == True:
+        file_name_suffix = get_file_suffix_function(ui_file_uploaded.filename)
+        new_name = create_uuid_function('customLogo_') + file_name_suffix
+        upload_public_file_to_aws_s3_function(ui_file_uploaded, new_name)
+        ui_profile_img = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/' + new_name
+      # ------------------------ upload aws img end ------------------------
       # ------------------------ update db start ------------------------
       change_occurred = False
       # ------------------------ full name start ------------------------
