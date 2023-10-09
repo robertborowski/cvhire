@@ -150,6 +150,26 @@ class NotificationsObj(db.Model):
   message = db.Column(db.String(200))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class StripeCheckoutSessionObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  fk_user_id = db.Column(db.String(150))
+  status = db.Column(db.String(50))
+  fk_checkout_session_id = db.Column(db.String(150))
+# ------------------------ individual model end ------------------------
+
+# ------------------------ individual model start ------------------------
+class StripePaymentOptionsObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  name = db.Column(db.String(20))
+  price = db.Column(db.Float)
+  fk_stripe_price_id = db.Column(db.String(150))
+  fk_stripe_price_id_testing = db.Column(db.String(150))
+  status = db.Column(db.String(50))
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):
@@ -174,26 +194,6 @@ class EmailScrapedObj(db.Model):
   unsubscribed = db.Column(db.Boolean, default=False)
 # ------------------------ individual model end ------------------------
 """
-
-# # ------------------------ individual model start ------------------------
-# class StripeCheckoutSessionObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   fk_checkout_session_id = db.Column(db.String(150))
-#   fk_user_id = db.Column(db.String(150))
-#   status = db.Column(db.String(20))
-# # ------------------------ individual model end ------------------------
-
-# # ------------------------ individual model start ------------------------
-# class StripePaymentOptionsObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   candence = db.Column(db.String(10))
-#   price = db.Column(db.Float)
-#   fk_stripe_price_id = db.Column(db.String(150))
-#   name = db.Column(db.String(20))
-#   fk_stripe_price_id_testing = db.Column(db.String(150))
-# # ------------------------ individual model end ------------------------
 
 # # ------------------------ individual model start ------------------------
 # class BlogObj(db.Model):
