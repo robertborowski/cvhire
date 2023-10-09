@@ -163,15 +163,45 @@
   <!-- ------------------------------------- width change end ------------------------------------- -->
   <!-- ------------------------------------- width change start ------------------------------------- -->
   {% elif page_dict_html['view_reason'] == 'edit_settings' %}
-    <div class="custom-width-1100-only mx-auto custom-border-2">
+    <div class="custom-width-1100-only mx-auto">
       <div class="custom-header-15 custom-mt-25">
         <!-- ------------------------------------- view start ------------------------------------- -->
         {% if page_dict_html['view_reason'] == 'edit_settings' %}
           <!-- ------------------------------------- title start ------------------------------------- -->
-          <div class="custom-ptb-50">
+          <div class="custom-ptb-50 custom-display-flex">
             <h2 class="custom-m-0 custom-header-30">Subscription</h2>
+            <!-- ------------------------------------- radio start ------------------------------------- -->
+            <div class="custom-ml-15">
+              <input type="radio" class="btn-check" name="radioSubscriptionOption" id="radioMonthly" value="monthly" autocomplete="off">
+              <label class="btn custom-ptb-15" for="radioMonthly">Monthly</label>
+              <input type="radio" class="btn-check" name="radioSubscriptionOption" id="radioYearly" value="yearly" autocomplete="off" checked>
+              <label class="btn" for="radioYearly"><div>Yearly</div><div class="custom-header-12">(Save +10%)</div></label>
+            </div>
+            <!-- ------------------------------------- radio end ------------------------------------- -->
           </div>
           <!-- ------------------------------------- title end ------------------------------------- -->
+          <!-- ------------------------------------- content start ------------------------------------- -->
+          <div class="custom-display-grid custom-grid-1row-3col">
+            <!-- ------------------------------------- column start ------------------------------------- -->
+            <div class="custom-border-2">
+              <p class="custom-m-0">Item</p>
+            </div>
+            <!-- ------------------------------------- column end ------------------------------------- -->
+            <!-- ------------------------------------- column start ------------------------------------- -->
+            <div class="custom-border-2">
+              <p class="custom-m-0">Free</p>
+              <p class="custom-m-0">$0/mo</p>
+            </div>
+            <!-- ------------------------------------- column end ------------------------------------- -->
+            <!-- ------------------------------------- column start ------------------------------------- -->
+            <div class="custom-border-2">
+              <p class="custom-m-0">Premium</p>
+              <p class="custom-m-0 uiSearchItemInvisible" id="id-monthly_price">$19/mo</p>
+              <p class="custom-m-0 uiSearchItemVisible" id="id-yearly_price">$9/mo</p>
+            </div>
+            <!-- ------------------------------------- column end ------------------------------------- -->
+          </div>
+          <!-- ------------------------------------- content end ------------------------------------- -->
           <!-- ------------------------------------- buttons start ------------------------------------- -->
           <button type="submit" class="btn btn-primary btn-lg custom-width-100 custom-mt-25 custom-mb-100">Continue</button>
           <!-- ------------------------------------- buttons end ------------------------------------- -->

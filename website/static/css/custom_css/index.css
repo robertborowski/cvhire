@@ -525,6 +525,9 @@
 .custom-mobile-display-2 {
   display: none;
 }
+.custom-display-grid {
+  display: grid;
+}
 /* ------------------- display end ------------------- */
 /* ------------------- divider start ------------------- */
 .custom-divider-1 {
@@ -622,6 +625,15 @@
   grid-template-columns: 1fr; /* Creates 2 columns */
   grid-template-rows: repeat(5, 1fr); /* Creates 3 rows */
   grid-gap: 15px; /* Adds a 10px gap between grid items */
+}
+.custom-grid-1row-3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+.custom-grid-gap-10 {
+  gap: 10px;
+}
+.custom-grid-gap-25 {
+  gap: 25px;
 }
 /* ------------------- grid end ------------------- */
 /* ------------------- header start ------------------- */
