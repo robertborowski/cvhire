@@ -52,11 +52,11 @@ def navbar_link_dict_function_v2():
     },
     'Settings': {
       'icon':'fa-solid fa-gear',
-      'url':'/settings'
+      'url':'/account/settings'
     },
     'Account': {
       'icon':'fa-solid fa-user',
-      'url':'/account'
+      'url':'/account/user'
     }
   }
   return output_dict
