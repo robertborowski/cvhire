@@ -80,6 +80,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'You cannot edit a role after it has been graded against at least one CV',
       'type':'danger'
     }
+  elif redirect_var == 'e15':
+    alert_message_dict = {
+      'message':'Your free limit has been reached. Please see account settings for subscription options.',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
