@@ -87,6 +87,11 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
   # ------------------------ check/create stripe rows start ------------------------
   check_create_stripe_attributes_function(current_user.id)
   # ------------------------ check/create stripe rows end ------------------------
+  # ------------------------ paid subscription time start ------------------------
+  if page_dict['subscribe_status'] == 'active':
+    db_sub_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='fk_stripe_subscription_id').first()
+    page_dict['subscriber_since'] = db_sub_obj.created_timestamp
+  # ------------------------ paid subscription time end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ post #1 start ------------------------
