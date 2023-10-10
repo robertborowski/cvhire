@@ -44,7 +44,6 @@ def check_create_stripe_attributes_function(current_user_id):
 def check_stripe_subscription_status_function(current_user_id):
   stripe_subscription_obj = ''
   stripe_status = 'not active'
-  """
   try:
     # ------------------------ from db start ------------------------
     db_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user_id,attribute_key='fk_stripe_subscription_id').first()
@@ -58,6 +57,5 @@ def check_stripe_subscription_status_function(current_user_id):
     # ------------------------ stripe subscription status check end ------------------------
   except:
     pass
-  """
   return stripe_status
 # ------------------------ individual function end ------------------------

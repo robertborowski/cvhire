@@ -184,7 +184,7 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
       # ------------------------ get from db end ------------------------
       # ------------------------ select variable start ------------------------
       price_id = None
-      stripe_env = 'testing'
+      stripe_env = 'production'
       if stripe_env == 'testing':
         price_id = db_stripe_obj.fk_stripe_price_id_testing
       else:
@@ -381,6 +381,7 @@ def subscription_success_function():
   db_customer_obj.attribute_value = stripe_customer_id
   db_subscription_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='fk_stripe_subscription_id').first()
   db_subscription_obj.attribute_value = stripe_subscription_id
+  db_subscription_obj.created_timestamp = create_timestamp_function()
   db_checkout_session_obj.status = 'final'
   db.session.commit()
   # ------------------------ update db end ------------------------
