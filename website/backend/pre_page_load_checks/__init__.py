@@ -4,6 +4,7 @@ from website.models import UserObj, EmailSentObj, UserAttributesObj
 from website.backend.static_lists import navbar_link_dict_function, navbar_link_dict_function_v2
 from website.backend.alerts import get_alert_message_function
 from website.backend.notifications import notifications_unread_function
+from website.backend.stripe import check_stripe_subscription_status_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual route start ------------------------
@@ -60,6 +61,9 @@ def pre_page_load_checks_function(current_user, url_redirect_code=None, url_repl
   if db_attribute_obj.attribute_value == 'yes_verified':
     page_dict['verified_email'] = True
   # ------------------------ verified status end ------------------------
+  # ------------------------ subscription status start ------------------------
+  page_dict['subscribe_status'] = check_stripe_subscription_status_function(current_user.id)
+  # ------------------------ subscription status end ------------------------
   """
   # ------------------------ onboarding checks start ------------------------
   onbaording_status = onboarding_checks_function(current_user)
