@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserAttributesObj, EmailSentObj
+from website.models import UserAttributesObj, EmailSentObj, StripePaymentOptionsObj, StripeCheckoutSessionObj
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
@@ -15,6 +15,8 @@ from website.backend.sendgrid import send_email_template_function
 import os
 from website.backend.uploads_user import allowed_img_file_upload_function, get_file_suffix_function
 from website.backend.aws_logic import upload_public_file_to_aws_s3_function
+import stripe
+from website.backend.stripe import check_create_stripe_attributes_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -82,6 +84,9 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
   # ------------------------ get stock photos start ------------------------
   page_dict['default_profile_img_dict'] = get_default_profile_imgs_function()
   # ------------------------ get stock photos end ------------------------
+  # ------------------------ check/create stripe rows start ------------------------
+  check_create_stripe_attributes_function(current_user.id)
+  # ------------------------ check/create stripe rows end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ post #1 start ------------------------
@@ -160,6 +165,9 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
     # ------------------------ post #1 end ------------------------
     # ------------------------ post #2 start ------------------------
     elif url_status_code == 'settings':
+      # ------------------------ delete all previous checkout drafts start ------------------------
+      StripeCheckoutSessionObj.query.filter_by(fk_user_id=current_user.id,status='draft').delete()
+      # ------------------------ delete all previous checkout drafts end ------------------------
       # ------------------------ get user inputs start ------------------------
       ui_subscription_choice = request.form.get('radioSubscriptionOption')
       # ------------------------ get user inputs end ------------------------
@@ -167,6 +175,51 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
       if ui_subscription_choice != 'yearly' and ui_subscription_choice != 'monthly':
         return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='settings', url_redirect_code='e10'))
       # ------------------------ sanitize user inputs end ------------------------
+      # ------------------------ get from db start ------------------------
+      db_stripe_obj = StripePaymentOptionsObj.query.filter_by(name=ui_subscription_choice).order_by(StripePaymentOptionsObj.created_timestamp.desc()).first()
+      # ------------------------ get from db end ------------------------
+      # ------------------------ select variable start ------------------------
+      price_id = None
+      stripe_env = 'testing'
+      if stripe_env == 'testing':
+        price_id = db_stripe_obj.fk_stripe_price_id_testing
+      else:
+        price_id = db_stripe_obj.fk_stripe_price_id
+      # ------------------------ select variable end ------------------------
+      # ------------------------ stripe checkout start ------------------------
+      try:
+        checkout_session = stripe.checkout.Session.create(
+          line_items=[
+            {
+            'price': price_id,
+            'quantity': 1,
+            },
+          ],
+          mode='subscription',
+          success_url='https://cvhire.com/subscription/success',
+          cancel_url='https://cvhire.com/account/settings',
+          metadata={
+            'fk_user_id': current_user.id
+          }
+        )
+        # ------------------------ create db row start ------------------------
+        # This is so I can easily get the customer id and subscription id in a future lookup
+        new_checkout_session_obj = StripeCheckoutSessionObj(
+          id = create_uuid_function('checkout_'),
+          created_timestamp = create_timestamp_function(),
+          fk_user_id = current_user.id,
+          status = 'draft',
+          fk_checkout_session_id = checkout_session.id
+        )
+        db.session.add(new_checkout_session_obj)
+        db.session.commit()
+        # ------------------------ create db row end ------------------------
+      except Exception as e:
+        return str(e)
+      # ------------------------ this line of code is needed to actually redirec to stripe checkout page start ------------------------
+      return redirect(checkout_session.url, code=303)
+      # ------------------------ this line of code is needed to actually redirec to stripe checkout page end ------------------------
+      # ------------------------ stripe checkout end ------------------------
     # ------------------------ post #2 end ------------------------
   # ------------------------ post end ------------------------
   # ------------------------ choose correct template start ------------------------
@@ -291,4 +344,50 @@ def account_verify_receive_function(url_verify_code=None):
   db.session.commit()
   # ------------------------ delete verify code row end ------------------------
   return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='s10'))
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_account.route('/subscription/success')
+@cv_views_interior_account.route('/subscription/success/')
+@login_required
+def subscription_success_function():
+  # ------------------------ get from db start ------------------------
+  db_checkout_session_obj = StripeCheckoutSessionObj.query.filter_by(fk_user_id=current_user.id,status='draft').order_by(StripeCheckoutSessionObj.created_timestamp.desc()).first()
+  # ------------------------ get from db end ------------------------
+  # ------------------------ if not found start ------------------------
+  if db_checkout_session_obj == None or db_checkout_session_obj == '' or db_checkout_session_obj == False:
+    return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='settings', url_redirect_code='e10'))
+  # ------------------------ if not found end ------------------------
+  # ------------------------ stripe lookup start ------------------------
+  stripe_checkout_session_obj = stripe.checkout.Session.retrieve(db_checkout_session_obj.fk_checkout_session_id)
+  # ------------------------ if not found start ------------------------
+  if stripe_checkout_session_obj == None:
+    return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='settings', url_redirect_code='e10'))
+  # ------------------------ if not found end ------------------------
+  # ------------------------ if not finalized start ------------------------
+  stripe_checkout_session_payment_status = stripe_checkout_session_obj.payment_status
+  if stripe_checkout_session_payment_status != 'paid':
+    return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='settings', url_redirect_code='e10'))
+  # ------------------------ if not finalized end ------------------------
+  stripe_customer_id = stripe_checkout_session_obj.customer
+  stripe_subscription_id = stripe_checkout_session_obj.subscription
+  # ------------------------ stripe lookup end ------------------------
+  # ------------------------ update db start ------------------------
+  db_customer_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='fk_stripe_customer_id').first()
+  db_customer_obj.attribute_value = stripe_customer_id
+  db_subscription_obj = UserAttributesObj.query.filter_by(fk_user_id=current_user.id,attribute_key='fk_stripe_subscription_id').first()
+  db_subscription_obj.attribute_value = stripe_subscription_id
+  db_checkout_session_obj.status = 'final'
+  db.session.commit()
+  # ------------------------ update db end ------------------------
+  # ------------------------ send email to user start ------------------------
+  try:
+    output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+    output_subject = f'NEW SUBSCRIPTION: {current_user.email} | CVhire'
+    output_body = f'NEW SUBSCRIPTION: {current_user.email} | CVhire'
+    send_email_template_function(output_to_email, output_subject, output_body)
+  except:
+    pass
+  # ------------------------ send email to user end ------------------------
+  return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='settings', url_redirect_code='s11'))
 # ------------------------ individual route end ------------------------
