@@ -10,6 +10,7 @@ from website.backend.static_lists import dashboard_section_links_dict_roles_func
 from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
 from website.backend.db_obj_checks import get_content_function
 from website.backend.convert import convert_obj_row_to_dict_function
+from website.backend.non_subscriber_limit_checks import non_subscriber_limit_add_role_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -104,6 +105,12 @@ def cv_roles_add_function(url_redirect_code=None):
   # ------------------------ set variables end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
+    # ------------------------ non subscriber limit check start ------------------------
+    if page_dict['subscribe_status'] != 'active':
+      limit_reached = non_subscriber_limit_add_role_function(current_user)
+      if limit_reached == True:
+        return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='e15'))
+    # ------------------------ non subscriber limit check end ------------------------
     # ------------------------ user inputs start ------------------------
     ui_role_name = request.form.get('uiRoleName')
     ui_about = request.form.get('uiAbout')
