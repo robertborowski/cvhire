@@ -288,6 +288,42 @@
   left: 0;
   right: 0;
 }
+.custom-bg-tilted-2 {
+  z-index: -1;
+  position: absolute;
+  top: -250px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: skewY(-15deg);
+}
+.custom-bg-solid-2 {
+  transform-origin: 0%;
+  height: 1698px;
+  background-color: rgba(249, 248, 244);
+  position: absolute;
+  top: -800px;
+  left: 50%;
+  right: 0;
+}
+.custom-bg-tilted-3 {
+  z-index: -1;
+  position: absolute;
+  top: -250px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: skewY(15deg);
+}
+.custom-bg-solid-3 {
+  transform-origin: 0%;
+  height: 1698px;
+  background-color: rgba(249, 248, 244);
+  position: absolute;
+  top: -800px;
+  left: 0;
+  right: 50%;
+}
 /* ------------------- background end ------------------- */
 /* ------------------- badge start ------------------- */
 .custom-badge-1 {
@@ -1693,6 +1729,9 @@
 .custom-pt-55 {
   padding-top: 55px;
 }
+.custom-pt-75 {
+  padding-top: 75px;
+}
 .custom-pt-100 {
   padding-top: 100px;
 }
@@ -2132,6 +2171,9 @@
 }
 .custom-weight-900 {
   font-weight: 900;
+}
+.custom-weight-bolder {
+  font-weight: bolder;
 }
 /* ------------------- weight end ------------------- */
 /* ------------------- width start ------------------- */

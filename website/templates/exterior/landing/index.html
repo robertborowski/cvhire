@@ -7,14 +7,20 @@
 {% endblock %}
 
 {% block contentBodyExceptNavbarAndFooter %}
-Home
-<!-- ----------------------------------- alert start ----------------------------------- -->
-{% if page_dict_html['alert_message_dict']['message'] != '' %}
-<div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">
-  {{ page_dict_html['alert_message_dict']['message'] }}
+<div class="custom-width-1200 mx-auto">
+  <!-- ------------------------------------- background image start ------------------------------------- -->
+  <div class="custom-bg-tilted-2">
+    <div class="custom-bg-solid-2"></div>
+  </div>
+  <div class="custom-bg-tilted-3">
+    <div class="custom-bg-solid-3"></div>
+  </div>
+  <!-- ------------------------------------- background image end ------------------------------------- -->
+  <!-- ------------------------------------- title start ------------------------------------- -->
+  <div class="custom-pt-75 text-center">
+    <h1 class="custom-header-40-mobile custom-weight-bolder">CV screening with AI. Fast and free.</h1>
+    <h2 class="custom-header-25-mobile custom-mt-25">Save hours sifting through resumes.</h2>
+  </div>
+  <!-- ------------------------------------- title end ------------------------------------- -->
 </div>
-{% endif %}
-<!-- ----------------------------------- alert end ----------------------------------- -->
-<a href="/signup" class="btn btn-primary">Signup</a>
-<a href="/login" class="btn btn-primary">Login</a>
 {% endblock %}
