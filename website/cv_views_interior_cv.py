@@ -13,7 +13,7 @@ from website.backend.uploads_user import allowed_cv_file_upload_function, get_fi
 from website.backend.aws_logic import upload_file_to_aws_s3_function, initial_cv_scrape_function, get_file_static_from_aws_function
 from website.backend.convert import convert_obj_row_to_dict_function, objs_to_arr_of_dicts_function
 from website.backend.sanitize import sanitize_chars_function_v4
-from website.backend.non_subscriber_limit_checks import non_subscriber_limit_add_cv_function
+from website.backend.non_subscriber_limit_checks import non_subscriber_limit_add_cv_function, non_subscriber_limit_ask_ai_cv_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -271,6 +271,12 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
   # ------------------------ objs to arr end -----------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
+    # ------------------------ non subscriber limit check start ------------------------
+    if page_dict['subscribe_status'] != 'active':
+      limit_reached = non_subscriber_limit_ask_ai_cv_function(current_user)
+      if limit_reached == True:
+        return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='e15'))
+    # ------------------------ non subscriber limit check end ------------------------
     # ------------------------ user inputs start ------------------------
     ui_cv_ask_ai = request.form.get('uiCvAskAi')
     # ------------------------ user inputs end ------------------------

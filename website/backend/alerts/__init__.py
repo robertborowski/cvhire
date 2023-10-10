@@ -82,7 +82,7 @@ def get_alert_message_function(redirect_var=None):
     }
   elif redirect_var == 'e15':
     alert_message_dict = {
-      'message':'Your free limit has been reached. Please see account settings for subscription options.',
+      'message':'Your limit has been reached on the free plan. Please see account settings for subscription options.',
       'type':'danger'
     }
   # ------------------------ errors end ------------------------
