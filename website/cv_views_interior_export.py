@@ -79,6 +79,10 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
   # ------------------------ add email end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
+    # ------------------------ non subscriber limit check start ------------------------
+    if page_dict['subscribe_status'] != 'active':
+      return redirect(url_for('cv_views_interior_export.export_dashboard_function', url_status_code='export_results', url_redirect_code='e16'))
+    # ------------------------ non subscriber limit check end ------------------------
     try:
       # ------------------------ open connection start ------------------------
       postgres_connection, postgres_cursor = postgres_connect_open_function()

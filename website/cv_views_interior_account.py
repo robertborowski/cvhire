@@ -102,6 +102,10 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
       if ui_file_uploaded.filename != '':
         ui_img_uploaded = True
       # ------------------------ check if img uploaded end ------------------------
+      # ------------------------ non subscriber limit check start ------------------------
+      if ui_img_uploaded == True and page_dict['subscribe_status'] != 'active':
+        return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='e17'))
+      # ------------------------ non subscriber limit check end ------------------------
       # ------------------------ sanitize user inputs start ------------------------
       ui_full_name_check = sanitize_fullname_function(ui_full_name)
       ui_company_name_check = sanitize_fullname_function(ui_company_name)

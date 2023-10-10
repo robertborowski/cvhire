@@ -85,6 +85,16 @@ def get_alert_message_function(redirect_var=None):
       'message':'Your limit has been reached on the free plan. Please see account settings for subscription options.',
       'type':'danger'
     }
+  elif redirect_var == 'e16':
+    alert_message_dict = {
+      'message':'Free plans cannot export results. Please see account settings for subscription options.',
+      'type':'danger'
+    }
+  elif redirect_var == 'e17':
+    alert_message_dict = {
+      'message':'Free plans cannot upload company branding. Please see account settings for subscription options.',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
