@@ -101,6 +101,10 @@ def cv_add_function(url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = False
+  page_dict['view_reason'] = 'add_cv'
+  # ------------------------ set variables end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ if no files uploaded start ------------------------

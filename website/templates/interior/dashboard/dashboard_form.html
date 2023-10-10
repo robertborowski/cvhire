@@ -377,6 +377,30 @@
             </form>
           <!-- ------------------------------------- view end ------------------------------------- -->
           <!-- ------------------------------------- view start ------------------------------------- -->
+          {% elif page_dict_html['view_reason'] == 'add_cv' %}
+            <!-- ------------------------------------- title start ------------------------------------- -->
+            <div class="custom-ptb-50">
+              <h2 class="custom-m-0 custom-header-30">Add CVs / Resumes</h2>
+            </div>
+            <!-- ------------------------------------- title end ------------------------------------- -->
+            <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+              <!-- ------------------------------------- upload start ------------------------------------- -->
+              <div class="custom-mb-50">
+                <label for="uiFormFileMultipleUpload" class="form-label">Bulk upload <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Accepted formats: .docx, .pdf, .txt"></i></label>
+                <input class="form-control" type="file" id="uiFormFileMultipleUpload" name="uiFormFileMultipleUpload" multiple required>
+              </div>
+              <!-- ------------------------------------- upload end ------------------------------------- -->
+              <!-- ------------------------------------- buttons start ------------------------------------- -->
+              <div class="custom-mb-50">
+                <button type="submit" class="btn btn-primary btn-lg custom-width-100">Upload CVs</button>
+                <div class="text-center custom-mt-25">
+                  <a href="/cv" class="custom-a-black-underline custom-opacity-75">Cancel</a>
+                </div>
+              </div>
+              <!-- ------------------------------------- buttons end ------------------------------------- -->
+            </form>
+          <!-- ------------------------------------- view end ------------------------------------- -->
+          <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'add_role' or page_dict_html['view_reason'] == 'edit_role' %}
             <!-- ------------------------------------- title start ------------------------------------- -->
             <div class="custom-ptb-50">
@@ -417,7 +441,7 @@
               </div>
               <!-- ------------------------------------- buttons end ------------------------------------- -->
             </form>
-          <!-- ------------------------------------- view start ------------------------------------- -->
+          <!-- ------------------------------------- view end ------------------------------------- -->
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'view_role' %}
             <!-- ------------------------------------- title start ------------------------------------- -->
