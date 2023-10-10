@@ -40,6 +40,9 @@ def cv_landing_details_function(url_reference_id=None, url_redirect_code=None):
   if url_reference_id != None:
     return redirect(url_for('cv_auth.cv_signup_function'))
   # ------------------------ ref id hit end ------------------------
+  # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = True
+  # ------------------------ set variables end ------------------------
   return render_template('exterior/landing/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -57,6 +60,9 @@ def cv_forgot_password_function(url_redirect_code=None):
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
+  # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = False
+  # ------------------------ set variables end ------------------------
   if request.method == 'POST':
     # ------------------------ post request sent start ------------------------
     ui_email = request.form.get('uiEmail')
@@ -127,6 +133,9 @@ def cv_reset_forgot_password_function(token, url_redirect_code=None):
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
+  # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = False
+  # ------------------------ set variables end ------------------------
   user_obj_from_token = UserObj.verify_reset_token_function(token)
   if user_obj_from_token is None:
     return redirect(url_for('cv_views_exterior.cv_reset_forgot_password_function', token=token, url_redirect_code='e28'))
@@ -161,5 +170,9 @@ def cv_reset_forgot_password_function(token, url_redirect_code=None):
 @cv_views_exterior.route('/privacy')
 @cv_views_exterior.route('/privacy/')
 def cv_privacy_function():
-  return render_template('exterior/privacy_terms/index.html')
+  page_dict = {}
+  # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = False
+  # ------------------------ set variables end ------------------------
+  return render_template('exterior/privacy_terms/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

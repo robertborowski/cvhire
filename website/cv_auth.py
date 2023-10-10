@@ -50,6 +50,9 @@ def cv_signup_function(url_redirect_code=None):
   if url_redirect_code != None and page_dict['alert_message_dict']['message'] == '':
     page_dict['carry_over_email'] = url_redirect_code
   # ------------------------ carry over values end ------------------------
+  # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = False
+  # ------------------------ set variables end ------------------------
   if request.method == 'POST':
     # ------------------------ post method hit #2 - full sign up start ------------------------
     ui_email = request.form.get('uiEmail')
@@ -190,6 +193,9 @@ def cv_login_function(url_redirect_code=None):
     except:
       pass
   # ------------------------ auto sign in with cookie end ------------------------
+  # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = False
+  # ------------------------ set variables end ------------------------
   if request.method == 'POST':
     # ------------------------ post method hit #1 - regular login start ------------------------
     # ------------------------ post request sent start ------------------------
