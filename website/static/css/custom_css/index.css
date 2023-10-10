@@ -536,6 +536,9 @@
   opacity: 0.10;
   margin: 100px 0 100px 0;
 }
+.custom-divider-exterior-nav {
+  padding-top: 80px;
+}
 /* ------------------- divider end ------------------- */
 /* ------------------- filler start ------------------- */
 .custom-filler-1 {
@@ -703,6 +706,9 @@
 .custom-header-40 {
   font-size: 40px;
 }
+.custom-header-40-mobile {
+  font-size: 40px;
+}
 .custom-header-45 {
   font-size: 45px;
 }
@@ -848,6 +854,9 @@
   max-height: 35px;
 }
 .custom-img-height-40 {
+  max-height: 40px;
+}
+.custom-img-height-40-mobile {
   max-height: 40px;
 }
 .custom-img-height-50 {
@@ -1336,6 +1345,9 @@
 .custom-mr-25 {
   margin-right: 25px;
 }
+.custom-mr-25-mobile {
+  margin-right: 25px;
+}
 .custom-mr-30 {
   margin-right: 30px;
 }
@@ -1370,6 +1382,9 @@
   margin-left: 15px;
 }
 .custom-ml-25 {
+  margin-left: 25px;
+}
+.custom-ml-25-mobile {
   margin-left: 25px;
 }
 .custom-ml-30 {

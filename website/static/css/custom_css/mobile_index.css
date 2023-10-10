@@ -43,6 +43,11 @@
       flex-direction: column-reverse;
     }
     /* ------------------- display end ------------------- */
+    /* ------------------- divider start ------------------- */
+    .custom-divider-exterior-nav {
+      padding-top: 60px;
+    }
+    /* ------------------- divider end ------------------- */
     /* ------------------- filler start ------------------- */
     .custom-filler-1-mobile {
       height: 400px;
@@ -104,6 +109,9 @@
     .custom-header-30-mobile-2 {
       font-size: 20px;
     }
+    .custom-header-40-mobile {
+      font-size: 25px;
+    }
     .custom-header-4-mobile {
       font-size: 10px;
     }
@@ -120,6 +128,9 @@
     /* ------------------- image start ------------------- */
     .custom-img-height-125-mobile {
       max-height: 175px;
+    }
+    .custom-img-height-40-mobile {
+      max-height: 30px;
     }
     /* ------------------- image end ------------------- */
     /* ------------------- justify content start ------------------- */
@@ -158,6 +169,12 @@
     }
     .custom-mb-10-mobile {
       margin-bottom: 10px;
+    }
+    .custom-ml-25-mobile {
+      margin-left: 5px;
+    }
+    .custom-mr-25-mobile {
+      margin-right: 5px;
     }
     /* ------------------- margin end ------------------- */
     /* ------------------- padding start ------------------- */
