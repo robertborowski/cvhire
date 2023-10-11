@@ -922,6 +922,9 @@
 .custom-img-height-200 {
   max-height: 200px;
 }
+.custom-img-height-500 {
+  max-height: 500px;
+}
 .custom-img-size-1 {
   height: 40px;
 }
@@ -2165,6 +2168,14 @@
   text-decoration-thickness: 1px;
 }
 /* ------------------- underline end ------------------- */
+/* ------------------- view start ------------------- */
+.custom-mobile-view-1 {
+  display: block;
+}
+.custom-mobile-view-2 {
+  display: none;
+}
+/* ------------------- view end ------------------- */
 /* ------------------- weight start ------------------- */
 .custom-weight-1 {
   font-weight: 700;

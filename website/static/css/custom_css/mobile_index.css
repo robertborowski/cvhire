@@ -184,6 +184,14 @@
       display:none;
     }
     /* ------------------- visibility end ------------------- */
+    /* ------------------- view start ------------------- */
+    .custom-mobile-view-1 {
+      display: none;
+    }
+    .custom-mobile-view-2 {
+      display: block;
+    }
+    /* ------------------- view end ------------------- */
     /* ------------------- width start ------------------- */
     .custom-width-2-mobile {
       width: 100%;
