@@ -366,12 +366,12 @@
   --custom-color-2-light: rgb(180, 180, 180);
   --custom-color-black: rgba(0, 0, 0);
   --custom-color-black-faded: rgba(0, 0, 0, 0.25);
-  --custom-color-primary: #ffc107;
+  --custom-color-primary: rgb(255, 193, 7);
   --custom-color-primary-lighter: rgba(210, 244, 234, 0.50);
   --custom-color-primary-darker: rgb(44 26 77);
   --custom-color-secondary: rgb(108 117 125);
   --custom-color-success: rgb(25, 135, 84);
-  --custom-color-info: #0dcaf0;
+  --custom-color-info: rgb(13, 202, 240);
   --custom-color-danger: #dc3545;
   --custom-color-warning: rgb(255, 193, 7);
   --custom-color-8: rgb(237, 237, 237);
