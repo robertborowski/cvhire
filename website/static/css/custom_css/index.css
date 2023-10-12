@@ -200,6 +200,12 @@
 .custom-bg-see-through {
   background-color: rgba(255, 255, 255, 0);
 }
+.custom-bg-color-primary {
+  background-color: var(--custom-color-primary);
+}
+.custom-bg-color-success {
+  background-color: var(--custom-color-success);
+}
 .custom-bg-color-1 {
   background-color: rgb(111 66 193 / 10%);
 }
@@ -806,7 +812,7 @@
 .custom-height-6-mobile {
   height: 600px;
 }
-.custom-height-7 {
+.custom-height-25 {
   height: 25px;
 }
 .custom-height-8 {
