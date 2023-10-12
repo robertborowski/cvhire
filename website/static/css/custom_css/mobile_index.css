@@ -40,6 +40,10 @@
     }
     .custom-display-flex-row-to-column-mobile {
       display: flex;
+      flex-direction: column;
+    }
+    .custom-display-flex-row-to-column-reverse-mobile {
+      display: flex;
       flex-direction: column-reverse;
     }
     /* ------------------- display end ------------------- */
@@ -103,8 +107,11 @@
     .custom-header-mobile-1 {
       font-size: 20px;
     }
+    .custom-header-20-mobile {
+      font-size: 15px;
+    }
     .custom-header-30-mobile {
-      font-size: 25px;
+      font-size: 20px;
     }
     .custom-header-30-mobile-2 {
       font-size: 20px;
@@ -178,6 +185,9 @@
     }
     /* ------------------- margin end ------------------- */
     /* ------------------- padding start ------------------- */
+    .custom-p-50-mobile {
+      padding: 0px;
+    }
     /* ------------------- padding end ------------------- */
     /* ------------------- visibility start ------------------- */
     .custom-visible-non-mobile-only {
@@ -211,7 +221,9 @@
       max-width: 90%;
     }
     .custom-width-100-mobile {
-      width: 100%;
+      max-height: 500px;
+      width: auto;
+      max-width: 300px;
     }
     .custom-width-250-mobile {
       width: 90%;
