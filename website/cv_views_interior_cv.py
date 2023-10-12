@@ -43,6 +43,10 @@ def cv_dashboard_general_function(url_status_code='active', url_redirect_code=No
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ check if status code is valid start ------------------------
   status_codes_arr = cv_status_codes_function()
   if url_status_code not in status_codes_arr:
@@ -102,6 +106,10 @@ def cv_add_function(url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ set variables start ------------------------
   page_dict['nav_header'] = False
   page_dict['view_reason'] = 'add_cv'
@@ -235,6 +243,10 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ route incorrect check start ------------------------
   if url_item_id == None:
     return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_redirect_code='e10'))

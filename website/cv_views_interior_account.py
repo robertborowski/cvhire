@@ -54,6 +54,10 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ check if status code is valid start ------------------------
   status_codes_arr = account_status_codes_function()
   if url_status_code not in status_codes_arr:
@@ -379,7 +383,7 @@ def account_verify_receive_function(url_verify_code=None):
   UserAttributesObj.query.filter_by(attribute_value=url_verify_code).delete()
   db.session.commit()
   # ------------------------ delete verify code row end ------------------------
-  return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='s10'))
+  return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='s10'))
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------

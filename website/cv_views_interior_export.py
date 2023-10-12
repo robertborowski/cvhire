@@ -42,6 +42,10 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ check if status code is valid start ------------------------
   status_codes_arr = export_status_codes_function()
   if url_status_code not in status_codes_arr:

@@ -40,6 +40,10 @@ def cv_roles_dashboard_function(url_status_code='open', url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ check if status code is valid start ------------------------
   role_status_codes_arr = role_status_codes_function()
   if url_status_code not in role_status_codes_arr:
@@ -96,6 +100,10 @@ def cv_roles_add_function(url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ for later edits start ------------------------
   page_dict['db_role_dict'] = None
   # ------------------------ for later edits end ------------------------
@@ -166,6 +174,10 @@ def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ if no role id given start ------------------------
   if url_role_id == None:
     return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open'))
@@ -246,6 +258,10 @@ def cv_roles_view_function(url_role_id=None, url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ if no role id given start ------------------------
   if url_role_id == None:
     return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open'))

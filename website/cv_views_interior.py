@@ -44,6 +44,10 @@ def cv_general_status_change_function(url_section_code=None, url_status_code=Non
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ if none start ------------------------
   if url_section_code == None or url_status_code == None or url_db_item_id == None:
     return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_redirect_code='e10'))

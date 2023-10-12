@@ -39,6 +39,10 @@ def results_dashboard_general_function(url_status_code='valid', url_redirect_cod
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ check if status code is valid start ------------------------
   status_codes_arr = results_status_codes_function()
   if url_status_code not in status_codes_arr:
@@ -97,6 +101,10 @@ def results_view_function(url_grade_id=None, url_redirect_code=None):
   if page_dict['current_user_locked'] == True:
     return redirect(url_for('cv_views_interior.cv_locked_function'))
   # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if not verified start ------------------------
+  if page_dict['verified_email'] == False:
+    return redirect(url_for('cv_views_interior_account.force_verify_page_function'))
+  # ------------------------ if not verified end ------------------------
   # ------------------------ if no role id given start ------------------------
   if url_grade_id == None:
     return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid'))
