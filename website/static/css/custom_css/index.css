@@ -120,7 +120,7 @@
   background-color: black;
 }
 .custom-bg-black-2 {
-  background-color: rgb(70, 70, 70);
+  background-color: rgb(32, 32, 32);
 }
 .custom-bg-tan-1 {
   background-color: rgb(255, 237, 217);
@@ -1663,6 +1663,10 @@
 .custom-ptb-100 {
   padding-top: 100px;
   padding-bottom: 100px;
+}
+.custom-ptb-150 {
+  padding-top: 150px;
+  padding-bottom: 150px;
 }
 .custom-plr-10 {
   padding-left: 10px;
