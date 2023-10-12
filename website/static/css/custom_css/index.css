@@ -120,7 +120,7 @@
   background-color: black;
 }
 .custom-bg-black-2 {
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(50, 50, 50);
 }
 .custom-bg-tan-1 {
   background-color: rgb(255, 237, 217);
@@ -205,6 +205,9 @@
 }
 .custom-bg-color-success {
   background-color: var(--custom-color-success);
+}
+.custom-bg-color-danger {
+  background-color: var(--custom-color-danger);
 }
 .custom-bg-color-1 {
   background-color: rgb(111 66 193 / 10%);
