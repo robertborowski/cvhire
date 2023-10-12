@@ -656,6 +656,16 @@
             <button type="submit" class="btn btn-primary btn-lg custom-width-100 custom-mt-25 custom-mb-100">Update</button>
             <!-- ------------------------------------- buttons end ------------------------------------- -->
           <!-- ------------------------------------- view end ------------------------------------- -->
+          <!-- ------------------------------------- view start ------------------------------------- -->
+          {% elif page_dict_html['view_reason'] == 'verify_pending' %}
+            <div class="custom-ptb-50 text-center">
+              <h2 class="custom-m-0 custom-header-30 custom-mb-10">Verify email</h2>
+              <p class="cusotm-m-0 custom-header-20 custom-opacity-50">{{ page_dict_html['current_user_email'] }}</p>
+              <div class="custom-mt-25">
+                <a href="/account/verify/email/send" class="btn btn-primary btn-lg custom-width-100">Resend email</a>
+              </div>
+            </div>
+          <!-- ------------------------------------- view end ------------------------------------- -->
           {% endif %}
         {% endif %}
         <!-- ------------------------------------- yes content end ------------------------------------- -->

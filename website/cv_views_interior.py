@@ -17,15 +17,19 @@ redis_connection = redis_connect_open_function()
 # ------------------------ connect to redis end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_interior.route('/locked', methods=['GET', 'POST'])
-@cv_views_interior.route('/locked/', methods=['GET', 'POST'])
+@cv_views_interior.route('/locked')
+@cv_views_interior.route('/locked/')
 @login_required
 def cv_locked_function():
   # ------------------------ locked status start ------------------------
   if current_user.locked != True:
     return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs'))
   # ------------------------ locked status end ------------------------
-  return render_template('interior/locked/index.html')
+  # ------------------------ get status code start ------------------------
+  page_dict = {}
+  page_dict['nav_header'] = False
+  # ------------------------ get status code end ------------------------
+  return render_template('interior/locked/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------

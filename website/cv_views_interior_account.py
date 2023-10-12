@@ -242,8 +242,35 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_interior_account.route('/account/verify/email/send', methods=['GET', 'POST'])
-@cv_views_interior_account.route('/account/verify/email/send/', methods=['GET', 'POST'])
+@cv_views_interior_account.route('/verify/resend')
+@cv_views_interior_account.route('/verify/resend/')
+@login_required
+def force_verify_page_function():
+  # ------------------------ pre load page checks start ------------------------
+  page_dict = pre_page_load_checks_function(current_user)
+  if page_dict['current_user_locked'] == True:
+    return redirect(url_for('cv_views_interior.cv_locked_function'))
+  # ------------------------ pre load page checks end ------------------------
+  # ------------------------ if already verified start ------------------------
+  if page_dict['verified_email'] == True:
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='s10'))
+  # ------------------------ if already verified end ------------------------
+  # ------------------------ auto send first email start ------------------------
+  db_sent_obj = EmailSentObj.query.filter_by(from_user_id_fk=current_user.id,subject='Verify email | CVhire').order_by(EmailSentObj.created_timestamp.desc()).first()
+  if db_sent_obj == None or db_sent_obj == []:
+    return redirect(url_for('cv_views_interior_account.account_verify_send_function'))
+  # ------------------------ auto send first email end ------------------------
+  # ------------------------ get status code start ------------------------
+  page_dict['nav_header'] = False
+  page_dict['view_reason'] = 'verify_pending'
+  page_dict['current_user_email'] = current_user.email
+  # ------------------------ get status code end ------------------------
+  return render_template('interior/account/settings_acc/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_interior_account.route('/account/verify/email/send')
+@cv_views_interior_account.route('/account/verify/email/send/')
 @login_required
 def account_verify_send_function():
   # ------------------------ set variables start ------------------------
@@ -311,13 +338,13 @@ def account_verify_send_function():
   # ------------------------ lock account if too many emails start ------------------------
   db_emails_obj = EmailSentObj.query.filter_by(from_user_id_fk=current_user.id,subject=output_subject).all()
   try:
-    if len(db_emails_obj) >= 10:
+    if len(db_emails_obj) >= 7:
       current_user.locked = True
       db.session.commit()
   except:
     pass
   # ------------------------ lock account if too many emails end ------------------------
-  return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='user', url_redirect_code='s3'))
+  return redirect(url_for('cv_views_interior_account.force_verify_page_function', url_redirect_code='s3'))
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
