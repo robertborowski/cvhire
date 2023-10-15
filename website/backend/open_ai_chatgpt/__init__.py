@@ -72,7 +72,17 @@ def role_and_cv_grade_v1_function(role_dict, cv_contents):
   result_dict = None
   open_ai_reply = None
   try:
-    message = f"I am providing you with two pieces of content: 1) a job description and 2) a candidate's cv/resume. \nPlease provide me a python dictionary with the following 3 keys ['openai_summary','openai_score','openai_follow_ups'] \nFor the following keys \n1) key 'openai_summary' should be 1 written paragraph on why this candidate is or is not a qualified candidate for this job description, please include any strenghts and weaknesses in the 'openai_summary' key. The length of the 'openai_summary' should not exceed 2,000 characters in length. \n2) key 'openai__score' rate from 0-5 of how qualified this candidate is for this job description [range: from 0='not qualified' to 5='100% qualified based on job description'], \n3) key 'openai_follow_ups' should be one array of five individual follow up questions that the interviewer should ask to the candidate based on this job description and CV content to help identify weaknesses in the candidate. The 'openai_follow_ups' should be returned as one python array containing five individual follow up questions. The length of each individual follow up question should not exceed 2,000 characters in length. \nLike I said in the begining here are two pieces of content: 1) Job description: [about: {role_dict['about']}. Requirements: {role_dict['requirements']}. 2) Nice-to-haves: {role_dict['nice_to_haves']}]. \nCandidate CV/Resume content: [{cv_contents}]. \nYour response should be the python dictionary only, no additional words."
+    message = f"I am providing you with two separate pieces of content: 1) Job description and 2) a candidate's cv/resume. \
+      Variable content_1 = Job description: [about: '{role_dict['about']}', Requirements: '{role_dict['requirements']}', Nice-to-haves: '{role_dict['nice_to_haves']}']. \
+      Variable content_2 = Candidate CV/Resume content: [{cv_contents}]. \
+      OpenAI Step 1: Please analyze and understand the two variable contents provided. Do not return anything, simply understand that these are two separate variables that will be used in the next step. \
+      OpenAI Step 2: Please provide me a python dictionary with the following 3 keys ['openai_summary','openai_score','openai_follow_ups'] \
+      For the following keys \
+      1) key 'openai_summary' should be 1 written paragraph on why this candidate (Variable content_2) is or is not a qualified candidate for the job description provided (Variable content_1), please include any strenghts and weaknesses in the 'openai_summary' key. The length of the 'openai_summary' should not exceed 2,000 characters in length. \
+      2) key 'openai_score' rate from 0-5 of how qualified this candidate (Variable content_2) is for this job description [range: from 0='not qualified' to 5='100% qualified based on the job description provided'] (Variable content_1), \
+      3) key 'openai_follow_ups' should be one array of five individual follow up questions that the interviewer should ask to the candidate based on this job description (Variable content_1) and CV content (Variable content_2) to help identify weaknesses in the candidate. The 'openai_follow_ups' should be returned as one python array containing five individual follow up questions. The length of each individual follow up question should not exceed 2,000 characters in length. \
+      Like I said in the begining here are two pieces of content: \
+      Your response should be the python dictionary only, no additional words."
     open_ai_reply = openai_chat_gpt_prompt_result_function(message)
     result_dict = openai_str_to_dict_v1_function(open_ai_reply)
     if len(open_ai_reply) > 2000:
