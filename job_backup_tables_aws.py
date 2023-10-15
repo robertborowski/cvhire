@@ -8,6 +8,7 @@ import psycopg2
 import pandas as pd
 from website.backend.connection import postgres_connect_open_function, postgres_connect_close_function
 from website.backend.sql_queries import select_query_v7_function
+from website.backend.sendgrid import send_email_template_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -25,6 +26,11 @@ def run_function():
   # Get all table names in the current database
   db_table_names_arr = select_query_v7_function(postgres_cursor)
   # ------------------------ SQL Get DB Table Names END ------------------------
+  # ------------------------ set variables start ------------------------
+  # Get todays date as string
+  todays_date_str = str(datetime.datetime.now().date())
+  todays_date = todays_date_str.replace("-","")
+  # ------------------------ set variables end ------------------------
   # ------------------------ Push Info Into AWS s3 START ------------------------
   for table_name_arr in db_table_names_arr:
     # Get table name
@@ -44,9 +50,6 @@ def run_function():
       # ------------------------ Get Individual Table Headers END ------------------------
       # Create into pandas dataframe
       df = pd.DataFrame(result_list, columns=headers_arr)
-      # Get todays date as string
-      todays_date_str = str(datetime.datetime.now().date())
-      todays_date = todays_date_str.replace("-","")
       # ------------------------ Upload to AWS s3 as csv START ------------------------
       # Upload pandas df into aws s3
       csv_buffer = StringIO()
@@ -63,6 +66,15 @@ def run_function():
   # Close postgres db connection
   postgres_connect_close_function(postgres_connection, postgres_cursor)
   # ------------------------ DB Close Conection END ------------------------
+  # ------------------------ email self notifications start ------------------------
+  try:
+    output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+    output_subject_self = f'job_daily: SQL table backup to AWS successful'
+    output_body = f'job_daily_{todays_date}: SQL table backup to AWS successful'
+    send_email_template_function(output_to_email, output_subject_self, output_body)
+  except:
+    pass
+  # ------------------------ email self notifications end ------------------------
   return True
 # ------------------------ individual function end ------------------------
 
