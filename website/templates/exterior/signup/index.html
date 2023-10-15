@@ -7,6 +7,14 @@
 {% endblock %}
 
 {% block contentBodyExceptNavbarAndFooter %}
+<!-- ------------------------------------- google ads conversion tracking start ------------------------------------- -->
+<!-- Google tag (gtag.js) event -->
+<script>
+  gtag('event', 'manual_conversion_SIGNUP_1', {
+    // <event_parameters>
+  });
+</script>
+<!-- ------------------------------------- google ads conversion tracking end ------------------------------------- -->
 <!-- ----------------------------------- alert start ----------------------------------- -->
 {% if page_dict_html['alert_message_dict']['message'] != '' %}
 <div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">

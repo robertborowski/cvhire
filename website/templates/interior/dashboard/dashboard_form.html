@@ -658,6 +658,14 @@
           <!-- ------------------------------------- view end ------------------------------------- -->
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'verify_pending' %}
+            <!-- ------------------------------------- google ads conversion tracking start ------------------------------------- -->
+            <!-- Google tag (gtag.js) event -->
+            <script>
+              gtag('event', 'manual_conversion_SIGNUP', {
+                // <event_parameters>
+              });
+            </script>
+            <!-- ------------------------------------- google ads conversion tracking end ------------------------------------- -->
             <div class="custom-ptb-50 text-center">
               <h2 class="custom-m-0 custom-header-30 custom-mb-10">Verify email</h2>
               <p class="cusotm-m-0 custom-header-20 custom-opacity-50">{{ page_dict_html['current_user_email'] }}</p>
