@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserAttributesObj, EmailSentObj, StripePaymentOptionsObj, StripeCheckoutSessionObj
+from website.models import UserAttributesObj, EmailSentObj, StripePaymentOptionsObj, StripeCheckoutSessionObj, ConversionTrackingObj
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
@@ -383,6 +383,25 @@ def account_verify_receive_function(url_verify_code=None):
   UserAttributesObj.query.filter_by(attribute_value=url_verify_code).delete()
   db.session.commit()
   # ------------------------ delete verify code row end ------------------------
+  # ------------------------ conversion tracking start ------------------------
+  db_conversion_obj = ConversionTrackingObj.query.filter_by(fk_user_id=db_code_obj.fk_user_id,event='conversion_signup').first()
+  if db_conversion_obj == None or db_conversion_obj == []:
+    # ------------------------ new row start ------------------------
+    try:
+      new_row = ConversionTrackingObj(
+        id=create_uuid_function('conversion_'),
+        created_timestamp=create_timestamp_function(),
+        fk_user_id=db_code_obj.fk_user_id,
+        event='conversion_signup',
+        status='done'
+      )
+      db.session.add(new_row)
+      db.session.commit()
+    except:
+      pass
+    # ------------------------ new row end ------------------------
+    return render_template('interior/conversion_tracking/index.html')
+  # ------------------------ conversion tracking start ------------------------
   return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='s10'))
 # ------------------------ individual route end ------------------------
 

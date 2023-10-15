@@ -182,14 +182,6 @@
           <!-- ------------------------------------- title end ------------------------------------- -->
           <!-- ------------------------------------- subscriber status start ------------------------------------- -->
           {% if page_dict_html['subscribe_status'] == 'active' %}
-          <!-- ------------------------------------- google ads gtag start ------------------------------------- -->
-            <!-- Google tag (gtag.js) event -->
-            <script>
-              gtag('event', 'manual_event_SUBSCRIBE_PAID', {
-                // <event_parameters>
-              });
-            </script>
-            <!-- ------------------------------------- google ads gtag end ------------------------------------- -->
             <p class="custom-m-0 custom-mb-25">Successfully subscribed since: {{ page_dict_html['subscriber_since'] }}</p>
           {% endif %}
           <!-- ------------------------------------- subscriber status end ------------------------------------- -->
