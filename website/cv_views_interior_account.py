@@ -405,9 +405,10 @@ def account_verify_receive_function(url_verify_code=None):
     page_dict['nav_header'] = False
     page_dict['alert_message_dict'] = {}
     page_dict['alert_message_dict']['message'] = ''
+    page_dict['conversion_type'] = 'signup'
     # ------------------------ set variables end ------------------------
     return render_template('interior/conversion_tracking/index.html', page_dict_html=page_dict)
-  # ------------------------ conversion tracking start ------------------------
+  # ------------------------ conversion tracking end ------------------------
   return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='s10'))
 # ------------------------ individual route end ------------------------
 
@@ -455,5 +456,31 @@ def subscription_success_function():
   except:
     pass
   # ------------------------ send email to user end ------------------------
+  # ------------------------ conversion tracking start ------------------------
+  db_conversion_obj = ConversionTrackingObj.query.filter_by(fk_user_id=current_user.id,event='conversion_subscribed').first()
+  if db_conversion_obj == None or db_conversion_obj == []:
+    # ------------------------ new row start ------------------------
+    try:
+      new_row = ConversionTrackingObj(
+        id=create_uuid_function('conversion_'),
+        created_timestamp=create_timestamp_function(),
+        fk_user_id=current_user.id,
+        event='conversion_subscribed',
+        status='done'
+      )
+      db.session.add(new_row)
+      db.session.commit()
+    except:
+      pass
+    # ------------------------ new row end ------------------------
+    # ------------------------ set variables start ------------------------
+    page_dict = {}
+    page_dict['nav_header'] = False
+    page_dict['alert_message_dict'] = {}
+    page_dict['alert_message_dict']['message'] = ''
+    page_dict['conversion_type'] = 'subscription'
+    # ------------------------ set variables end ------------------------
+    return render_template('interior/conversion_tracking/index.html', page_dict_html=page_dict)
+  # ------------------------ conversion tracking end ------------------------
   return redirect(url_for('cv_views_interior_account.cv_account_dashboard_function', url_status_code='settings', url_redirect_code='s11'))
 # ------------------------ individual route end ------------------------
