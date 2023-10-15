@@ -91,9 +91,8 @@ def admin_function(url_redirect_code=None):
       for key in redis_all_keys:
         redis_value = redis_connection.get(key).decode('utf-8')
         if 'bcooke' in key.decode('utf-8'):
-          pass
-          # print(f"key: {key} | redis_value: {redis_value}")
-          # redis_connection.delete(key.decode('utf-8'))
+          print(f"key: {key} | redis_value: {redis_value}")
+          redis_connection.delete(key.decode('utf-8'))
       # ------------------------ loop through keys end ------------------------
     # ------------------------ post #3 end ------------------------
   return render_template('interior/admin_templates/index.html', page_dict_html=page_dict)
