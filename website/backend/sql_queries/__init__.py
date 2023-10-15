@@ -44,6 +44,12 @@ def select_query_v6_function(postgres_cursor, var1=None):
   sql_query = f"SELECT id,created_timestamp,fk_user_id,status,fk_role_id,fk_cv_id,fk_role_name,fk_cv_name,summary,score,follow_ups FROM graded_obj WHERE fk_user_id='{var1}' and status!='delete' ORDER BY created_timestamp;"
   return sql_general_function(postgres_cursor, sql_query)
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def select_query_v7_function(postgres_cursor, var1=None):
+  sql_query = f"SELECT table_name FROM information_schema.tables WHERE table_schema='public' AND table_type='BASE TABLE' ORDER BY table_name;"
+  return sql_general_function(postgres_cursor, sql_query)
+# ------------------------ individual function end ------------------------
 # ================================================ select end ================================================
 
 # ================================================ insert start ================================================
