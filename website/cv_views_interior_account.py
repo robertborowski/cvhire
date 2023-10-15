@@ -384,14 +384,14 @@ def account_verify_receive_function(url_verify_code=None):
   db.session.commit()
   # ------------------------ delete verify code row end ------------------------
   # ------------------------ conversion tracking start ------------------------
-  db_conversion_obj = ConversionTrackingObj.query.filter_by(fk_user_id=db_code_obj.fk_user_id,event='conversion_signup').first()
+  db_conversion_obj = ConversionTrackingObj.query.filter_by(fk_user_id=user_to_verify,event='conversion_signup').first()
   if db_conversion_obj == None or db_conversion_obj == []:
     # ------------------------ new row start ------------------------
     try:
       new_row = ConversionTrackingObj(
         id=create_uuid_function('conversion_'),
         created_timestamp=create_timestamp_function(),
-        fk_user_id=db_code_obj.fk_user_id,
+        fk_user_id=user_to_verify,
         event='conversion_signup',
         status='done'
       )
@@ -400,7 +400,13 @@ def account_verify_receive_function(url_verify_code=None):
     except:
       pass
     # ------------------------ new row end ------------------------
-    return render_template('interior/conversion_tracking/index.html')
+    # ------------------------ set variables start ------------------------
+    page_dict = {}
+    page_dict['nav_header'] = False
+    page_dict['alert_message_dict'] = {}
+    page_dict['alert_message_dict']['message'] = ''
+    # ------------------------ set variables end ------------------------
+    return render_template('interior/conversion_tracking/index.html', page_dict_html=page_dict)
   # ------------------------ conversion tracking start ------------------------
   return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='s10'))
 # ------------------------ individual route end ------------------------
