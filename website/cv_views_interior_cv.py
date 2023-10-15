@@ -14,6 +14,8 @@ from website.backend.aws_logic import upload_file_to_aws_s3_function, initial_cv
 from website.backend.convert import convert_obj_row_to_dict_function, objs_to_arr_of_dicts_function
 from website.backend.sanitize import sanitize_chars_function_v4
 from website.backend.non_subscriber_limit_checks import non_subscriber_limit_add_cv_function, non_subscriber_limit_ask_ai_cv_function
+import os
+from website.backend.sendgrid import send_email_template_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -188,6 +190,15 @@ def cv_add_function(url_redirect_code=None):
       except Exception as e:
         continue
     # ------------------------ loop through each file end ------------------------
+    # ------------------------ email self notifications start ------------------------
+    try:
+      output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      output_subject = f'New CV(s) added'
+      output_body = f'email: {current_user.email}'
+      send_email_template_function(output_to_email, output_subject, output_body)
+    except:
+      pass
+    # ------------------------ email self notifications end ------------------------
     return redirect(url_for('cv_views_interior_cv.cv_dashboard_general_function', url_status_code='active', url_redirect_code='s7'))
   # ------------------------ post end ------------------------
   return render_template('interior/cv/add/index.html', page_dict_html=page_dict)
@@ -310,6 +321,15 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
     db.session.add(new_row)
     db.session.commit()
     # ------------------------ add to queue end ------------------------
+    # ------------------------ email self notifications start ------------------------
+    try:
+      output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      output_subject = f'New CV ask AI request added'
+      output_body = f'email: {current_user.email}'
+      send_email_template_function(output_to_email, output_subject, output_body)
+    except:
+      pass
+    # ------------------------ email self notifications end ------------------------
     # ------------------------ reload page start ------------------------
     return redirect(url_for('cv_views_interior_cv.results_ask_function', url_item_id=url_item_id))
     # ------------------------ reload page end ------------------------

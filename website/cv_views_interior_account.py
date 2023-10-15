@@ -332,13 +332,6 @@ def account_verify_send_function():
   except:
     pass
   # ------------------------ add to email sent table end ------------------------
-  # ------------------------ email self notifications start ------------------------
-  try:
-    output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
-    send_email_template_function(output_to_email, output_subject, output_body)
-  except:
-    pass
-  # ------------------------ email self notifications end ------------------------
   # ------------------------ lock account if too many emails start ------------------------
   db_emails_obj = EmailSentObj.query.filter_by(from_user_id_fk=current_user.id,subject=output_subject).all()
   try:
@@ -407,6 +400,15 @@ def account_verify_receive_function(url_verify_code=None):
     page_dict['alert_message_dict']['message'] = ''
     page_dict['conversion_type'] = 'signup'
     # ------------------------ set variables end ------------------------
+    # ------------------------ email self notifications start ------------------------
+    try:
+      output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      output_subject = f'New user: Email verified successfully'
+      output_body = f'email: {current_user.email}'
+      send_email_template_function(output_to_email, output_subject, output_body)
+    except:
+      pass
+    # ------------------------ email self notifications end ------------------------
     return render_template('interior/conversion_tracking/index.html', page_dict_html=page_dict)
   # ------------------------ conversion tracking end ------------------------
   return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='s10'))

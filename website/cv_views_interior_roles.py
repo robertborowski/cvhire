@@ -11,6 +11,8 @@ from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_
 from website.backend.db_obj_checks import get_content_function
 from website.backend.convert import convert_obj_row_to_dict_function
 from website.backend.non_subscriber_limit_checks import non_subscriber_limit_add_role_function
+import os
+from website.backend.sendgrid import send_email_template_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -152,10 +154,19 @@ def cv_roles_add_function(url_redirect_code=None):
       )
       db.session.add(new_row)
       db.session.commit()
-      return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='s4'))
     except:
       pass
     # ------------------------ new row end ------------------------
+    # ------------------------ email self notifications start ------------------------
+    try:
+      output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      output_subject = f'New role added'
+      output_body = f'email: {current_user.email}'
+      send_email_template_function(output_to_email, output_subject, output_body)
+    except:
+      pass
+    # ------------------------ email self notifications end ------------------------
+    return redirect(url_for('cv_views_interior_roles.cv_roles_dashboard_function', url_status_code='open', url_redirect_code='s4'))
   # ------------------------ post end ------------------------
   return render_template('interior/roles/add/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

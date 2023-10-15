@@ -12,6 +12,7 @@ from website.backend.cookies import redis_check_if_cookie_exists_function, brows
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import ai_status_codes_function, dashboard_section_links_dict_ai_function
 from website.backend.db_obj_checks import get_content_split_function
+from website.backend.sendgrid import send_email_template_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -161,8 +162,15 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
     db.session.add(new_row)
     db.session.commit()
     # ------------------------ add to queue end ------------------------
-    # ------------------------ trigger queue start ------------------------
-    # ------------------------ trigger queue end ------------------------
+    # ------------------------ email self notifications start ------------------------
+    try:
+      output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      output_subject = f'New open ai grading request added'
+      output_body = f'email: {current_user.email}'
+      send_email_template_function(output_to_email, output_subject, output_body)
+    except:
+      pass
+    # ------------------------ email self notifications end ------------------------
     return redirect(url_for('cv_views_interior_results.results_dashboard_general_function', url_status_code='valid'))
   # ------------------------ post end ------------------------
   # ------------------------ auto set cookie start ------------------------

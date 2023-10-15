@@ -140,7 +140,7 @@ def export_dashboard_function(url_status_code='export_results', url_redirect_cod
         # ------------------------ email self notifications start ------------------------
         try:
           output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
-          output_subject_self = f'{current_user.email} | {output_subject}'
+          output_subject_self = f'New export'
           output_body = f'{current_user.email} | {output_subject}'
           send_email_template_function(output_to_email, output_subject_self, output_body)
         except:
