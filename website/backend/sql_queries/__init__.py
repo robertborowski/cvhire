@@ -50,6 +50,12 @@ def select_query_v7_function(postgres_cursor, var1=None):
   sql_query = f"SELECT table_name FROM information_schema.tables WHERE table_schema='public' AND table_type='BASE TABLE' ORDER BY table_name;"
   return sql_general_function(postgres_cursor, sql_query)
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def select_query_v8_function(postgres_cursor, var1=None):
+  sql_query = f"SELECT cv_aws_id FROM cv_obj;"
+  return sql_general_function(postgres_cursor, sql_query)
+# ------------------------ individual function end ------------------------
 # ================================================ select end ================================================
 
 # ================================================ insert start ================================================
