@@ -6,7 +6,7 @@ from website import db
 from website.models import GradedObj, OpenAiQueueObj, CvObj
 from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
-from website.backend.static_lists import results_status_codes_function, dashboard_section_links_dict_results_function, results_table_links_function, get_stars_img_function
+from website.backend.static_lists import results_status_codes_function, dashboard_section_links_dict_results_function, results_table_links_function, get_stars_img_function, get_stars_img_dict_function
 from website.backend.db_obj_checks import get_content_function
 from website.backend.convert import convert_obj_row_to_dict_function, get_follow_ups_function
 from website.backend.db_manipulation import additional_cv_info_from_db_function
@@ -126,6 +126,30 @@ def results_view_function(url_grade_id=None, url_redirect_code=None):
   # ------------------------ get additional CV info end ------------------------
   # ------------------------ set variables start ------------------------
   page_dict['view_reason'] = 'view_result'
+  page_dict['img_stars_dict'], page_dict['star_scores_arr'] = get_stars_img_dict_function()
   # ------------------------ set variables end ------------------------
+  # ------------------------ post method start ------------------------
+  if request.method == 'POST':
+    # ------------------------ non subscriber limit check start ------------------------
+    if page_dict['subscribe_status'] != 'active':
+      return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='e18'))
+    # ------------------------ non subscriber limit check end ------------------------
+    # ------------------------ get user inputs start ------------------------
+    ui_grading_img = request.form.get('uiRadioGradeImg')
+    # ------------------------ get user inputs end ------------------------
+    # ------------------------ sanitize user inputs start ------------------------
+    if ui_grading_img not in page_dict['star_scores_arr']:
+      return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='e10'))
+    # ------------------------ sanitize user inputs end ------------------------
+    # ------------------------ if no change start ------------------------
+    if float(ui_grading_img) == float(db_obj.score):
+      return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='i1'))
+    # ------------------------ if no change end ------------------------
+    # ------------------------ update db start ------------------------
+    db_obj.score = float(ui_grading_img)
+    db.session.commit()
+    return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='s5'))
+    # ------------------------ update db end ------------------------
+  # ------------------------ post method end ------------------------
   return render_template('interior/results/view_results/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

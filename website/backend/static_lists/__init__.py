@@ -372,6 +372,69 @@ def get_stars_img_function(i_dict):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def get_stars_img_dict_function():
+  i_dict = {
+    '0': {
+      'id': '0',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_0.png',
+      'num': '0.0'
+    },
+    '0half': {
+      'id': '0half',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_0_half.png',
+      'num': '0.5'
+    },
+    '1': {
+      'id': '1',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_1.png',
+      'num': '1.0'
+    },
+    '1half': {
+      'id': '1half',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_1_half.png',
+      'num': '1.5'
+    },
+    '2': {
+      'id': '2',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_2.png',
+      'num': '2.0'
+    },
+    '2half': {
+      'id': '2half',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_2_half.png',
+      'num': '2.5'
+    },
+    '3': {
+      'id': '3',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_3.png',
+      'num': '3.0'
+    },
+    '3half': {
+      'id': '3half',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_3_half.png',
+      'num': '3.5'
+    },
+    '4': {
+      'id': '4',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_4.png',
+      'num': '4.0'
+    },
+    '4half': {
+      'id': '4half',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_4_half.png',
+      'num': '4.5'
+    },
+    '5': {
+      'id': '5',
+      'url': 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/all_stars_5.png',
+      'num': '5.0'
+    }
+  }
+  i_arr = ['0.0','0.5','1.0','1.5','2.0','2.5','3.0','3.5','4.0','4.5','5.0']
+  return i_dict, i_arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def get_default_profile_imgs_function():
   img_dict = {
     'Green': {

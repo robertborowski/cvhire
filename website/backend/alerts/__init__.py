@@ -95,6 +95,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Free plans cannot upload company branding. Please see account settings for subscription options.',
       'type':'danger'
     }
+  elif redirect_var == 'e18':
+    alert_message_dict = {
+      'message':'Free plans cannot update grades. Please see account settings for subscription options.',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':

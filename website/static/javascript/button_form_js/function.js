@@ -93,3 +93,36 @@ $(document).ready(function() {
   $('input[name="radioSubscriptionOption"]').change(handleRadioChange);
 });
 // ------------------------------------- individual function end -------------------------------------
+
+// ------------------------------------- individual function start -------------------------------------
+$(document).ready(function() {
+  // ------------------------------------- edit button start -------------------------------------
+  // Attach a click event handler to the div with id="id-edit_grade_btn"
+  $('#id-edit_grade_btn').on('click', function() {
+      // Add class 'class_a' to the div with id="id-edit_grade_section"
+      $('#id-edit_grade_section').addClass('uiSearchItemVisible');
+      $('#id-edit_grade_section').removeClass('uiSearchItemInvisible');
+      $('#id-hide_grade_btn').addClass('uiSearchItemVisible');
+      $('#id-hide_grade_btn').removeClass('uiSearchItemInvisible');
+
+      // Remove class 'class_b' from the div with id="id-edit_grade_btn"
+      $(this).addClass('uiSearchItemInvisible');
+      $(this).removeClass('uiSearchItemVisible');
+  });
+  // ------------------------------------- edit button end -------------------------------------
+  // ------------------------------------- hide button start -------------------------------------
+  // Attach a click event handler to the div with id="id-edit_grade_btn"
+  $('#id-hide_grade_btn').on('click', function() {
+    // Add class 'class_a' to the div with id="id-edit_grade_section"
+    $('#id-edit_grade_section').addClass('uiSearchItemInvisible');
+    $('#id-edit_grade_section').removeClass('uiSearchItemVisible');
+    $('#id-edit_grade_btn').addClass('uiSearchItemVisible');
+    $('#id-edit_grade_btn').removeClass('uiSearchItemInvisible');
+
+    // Remove class 'class_b' from the div with id="id-edit_grade_btn"
+    $(this).addClass('uiSearchItemInvisible');
+    $(this).removeClass('uiSearchItemVisible');
+});
+// ------------------------------------- hide button end -------------------------------------
+});
+// ------------------------------------- individual function end -------------------------------------
