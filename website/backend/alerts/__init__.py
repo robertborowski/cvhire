@@ -97,7 +97,7 @@ def get_alert_message_function(redirect_var=None):
     }
   elif redirect_var == 'e18':
     alert_message_dict = {
-      'message':'Free plans cannot update grades. Please see account settings for subscription options.',
+      'message':'Free plans cannot edit results. Please see account settings for subscription options.',
       'type':'danger'
     }
   # ------------------------ errors end ------------------------
