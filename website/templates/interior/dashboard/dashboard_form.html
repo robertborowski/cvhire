@@ -515,7 +515,10 @@
               {% if page_dict_html['db_grade_dict']['candidate_phone'] != '' %}
                 <h3 class="custom-m-0 custom-header-15 custom-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_phone'] }}</h3>
               {% endif %}
-              <h3 class="custom-m-0 custom-header-20 custom-mt-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-height-25 custom-mr-5"> {{ page_dict_html['db_grade_dict']['score'] }} <span id="id-edit_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemVisible">Edit</span><span id="id-hide_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemInvisible">Hide</span></h3>
+              <h3 class="custom-m-0 custom-header-20 custom-mt-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-height-25 custom-mr-5"> {{ page_dict_html['db_grade_dict']['score'] }} 
+                <span id="id-edit_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemVisible">Edit</span>
+                <span id="id-hide_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemInvisible">Hide</span>
+              </h3>
               <!-- ------------------------------------- change grade start ------------------------------------- -->
               <div class="border shadow custom-br-15 uiSearchItemInvisible custom-p-25 custom-mt-25" id="id-edit_grade_section">
                 <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">

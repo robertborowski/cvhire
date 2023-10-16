@@ -134,22 +134,27 @@ def results_view_function(url_grade_id=None, url_redirect_code=None):
     if page_dict['subscribe_status'] != 'active':
       return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='e18'))
     # ------------------------ non subscriber limit check end ------------------------
+    # ------------------------ post #1 start ------------------------
     # ------------------------ get user inputs start ------------------------
     ui_grading_img = request.form.get('uiRadioGradeImg')
     # ------------------------ get user inputs end ------------------------
-    # ------------------------ sanitize user inputs start ------------------------
-    if ui_grading_img not in page_dict['star_scores_arr']:
-      return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='e10'))
-    # ------------------------ sanitize user inputs end ------------------------
-    # ------------------------ if no change start ------------------------
-    if float(ui_grading_img) == float(db_obj.score):
-      return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='i1'))
-    # ------------------------ if no change end ------------------------
-    # ------------------------ update db start ------------------------
-    db_obj.score = float(ui_grading_img)
-    db.session.commit()
-    return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='s5'))
-    # ------------------------ update db end ------------------------
+    if ui_grading_img != None:
+      # ------------------------ sanitize user inputs start ------------------------
+      if ui_grading_img not in page_dict['star_scores_arr']:
+        return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='e10'))
+      # ------------------------ sanitize user inputs end ------------------------
+      # ------------------------ if no change start ------------------------
+      if float(ui_grading_img) == float(db_obj.score):
+        return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='i1'))
+      # ------------------------ if no change end ------------------------
+      # ------------------------ update db start ------------------------
+      db_obj.score = float(ui_grading_img)
+      db.session.commit()
+      return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='s5'))
+      # ------------------------ update db end ------------------------
+    # ------------------------ post #1 end ------------------------
+    # ------------------------ post #2 start ------------------------
+    # ------------------------ post #2 end ------------------------
   # ------------------------ post method end ------------------------
   return render_template('interior/results/view_results/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
