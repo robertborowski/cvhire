@@ -77,18 +77,20 @@
             <!-- ------------------------------------- radio end ------------------------------------- -->
             <!-- ------------------------------------- checkbox start ------------------------------------- -->
             {% elif 'one-cv-many-roles' in page_dict_html['navbar_link_current'] %}
-            <div class="custom-mt-25">
-              <div class="custom-display-block custom-width-100 uiSearchItem border-bottom">
-                <input type="checkbox" class="btn-check" name="checkbox-many-roles" id="id_role_select_all" value="select_all_ids" autocomplete="off">
-                <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="id_role_select_all">Select all</label>
+              <div class="custom-mt-25">
+                {% if page_dict_html['content_total_rows_roles'] != 1 %}
+                  <div class="custom-display-block custom-width-100 uiSearchItem border-bottom">
+                    <input type="checkbox" class="btn-check" name="checkbox-many-roles" id="id_role_select_all" value="select_all_ids" autocomplete="off">
+                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="id_role_select_all">Select all</label>
+                  </div>
+                {% endif %}
+                {% for i in page_dict_html['content_total_rows_arr_of_dicts_roles'] %}
+                  <div class="custom-display-block custom-width-100 uiSearchItem border-bottom">
+                    <input type="checkbox" class="btn-check" name="checkbox-many-roles" id="{{ i['roles_count_id'] }}" value="{{ i['id'] }}" autocomplete="off">
+                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['roles_count_id'] }}">{{ i['name_display'] }}</label>
+                  </div>
+                {% endfor %}
               </div>
-              {% for i in page_dict_html['content_total_rows_arr_of_dicts_roles'] %}
-                <div class="custom-display-block custom-width-100 uiSearchItem border-bottom">
-                  <input type="checkbox" class="btn-check" name="checkbox-many-roles" id="{{ i['roles_count_id'] }}" value="{{ i['id'] }}" autocomplete="off">
-                  <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['roles_count_id'] }}">{{ i['name_display'] }}</label>
-                </div>
-              {% endfor %}
-            </div>
             {% endif %}
             <!-- ------------------------------------- checkbox end ------------------------------------- -->
           {% endif %}
@@ -119,10 +121,12 @@
             <!-- ------------------------------------- checkbox start ------------------------------------- -->
             {% if 'one-role-many-cvs' in page_dict_html['navbar_link_current'] %}
               <div class="custom-mt-25">
-                <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
-                  <input type="checkbox" class="btn-check" name="checkbox-many-cvs" id="id_cv_select_all" value="select_all_ids" autocomplete="off">
-                  <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="id_cv_select_all">Select all</label>
-                </div>
+                {% if page_dict_html['content_total_rows_cv'] != 1 %}
+                  <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
+                    <input type="checkbox" class="btn-check" name="checkbox-many-cvs" id="id_cv_select_all" value="select_all_ids" autocomplete="off">
+                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="id_cv_select_all">Select all</label>
+                  </div>
+                {% endif %}
                 {% for i in page_dict_html['content_total_rows_arr_of_dicts_cv'] %}
                   <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
                     <input type="checkbox" class="btn-check" name="checkbox-many-cvs" id="{{ i['cv_count_id'] }}" value="{{ i['id'] }}" autocomplete="off">
