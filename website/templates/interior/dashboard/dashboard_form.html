@@ -549,12 +549,23 @@
             <!-- ------------------------------------- section start ------------------------------------- -->
             <div class="custom-pb-50">
               <div class="custom-display-flex custom-mb-15">
-                <h3 class="custom-header-20 custom-opacity-75">Follow ups</h3>
-                <!-- <a href="#" class="custom-a-black-underline custom-header-12 custom-opacity-75">Change/Edit/Add</a> -->
+                <h3 class="custom-header-20 custom-opacity-75">Follow ups
+                  <span id="id-edit_followups_btn" class="custom-header-15 custom-opacity-75 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemVisible">Edit</span>
+                  <span id="id-hide_followups_btn" class="custom-header-15 custom-opacity-75 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemInvisible">Hide</span>
+                </h3>
               </div>
-              {% for i_str in page_dict_html['db_grade_dict']['follow_ups_arr'] %}
-                <p class="custom-m-0 custom-mb-15 custom-header-15">{{ i_str }}</p>
-              {% endfor %}
+              <!-- ------------------------------------- follow ups string start ------------------------------------- -->
+              <div id="id-followups_str_section" class="uiSearchItemVisible">
+                {% for i_str in page_dict_html['db_grade_dict']['follow_ups_arr'] %}
+                  <p class="custom-m-0 custom-mb-15 custom-header-15">{{ i_str }}</p>
+                {% endfor %}
+              </div>
+              <!-- ------------------------------------- follow ups string end ------------------------------------- -->
+              <!-- ------------------------------------- follow ups input start ------------------------------------- -->
+              <div id="id-followups_input_section" class="uiSearchItemInvisible">
+                <p>hello</p>
+              </div>
+              <!-- ------------------------------------- follow ups input end ------------------------------------- -->
             </div>
             <!-- ------------------------------------- section end ------------------------------------- -->
             <!-- ------------------------------------- buttons start ------------------------------------- -->

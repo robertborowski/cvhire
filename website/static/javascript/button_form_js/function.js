@@ -126,3 +126,40 @@ $(document).ready(function() {
 // ------------------------------------- hide button end -------------------------------------
 });
 // ------------------------------------- individual function end -------------------------------------
+
+// ------------------------------------- individual function start -------------------------------------
+$(document).ready(function() {
+  // ------------------------------------- edit button start -------------------------------------
+  // Attach a click event handler to the div with id="id-edit_grade_btn"
+  $('#id-edit_followups_btn').on('click', function() {
+      // Add class 'class_a' to the div with id="id-edit_grade_section"
+      $('#id-followups_str_section').addClass('uiSearchItemInvisible');
+      $('#id-followups_str_section').removeClass('uiSearchItemVisible');
+      $('#id-followups_input_section').addClass('uiSearchItemVisible');
+      $('#id-followups_input_section').removeClass('uiSearchItemInvisible');
+      $('#id-hide_followups_btn').addClass('uiSearchItemVisible');
+      $('#id-hide_followups_btn').removeClass('uiSearchItemInvisible');
+
+      // Remove class 'class_b' from the div with id="id-edit_grade_btn"
+      $(this).addClass('uiSearchItemInvisible');
+      $(this).removeClass('uiSearchItemVisible');
+  });
+  // ------------------------------------- edit button end -------------------------------------
+  // ------------------------------------- hide button start -------------------------------------
+  // Attach a click event handler to the div with id="id-edit_grade_btn"
+  $('#id-hide_followups_btn').on('click', function() {
+    // Add class 'class_a' to the div with id="id-edit_grade_section"
+    $('#id-followups_str_section').addClass('uiSearchItemVisible');
+    $('#id-followups_str_section').removeClass('uiSearchItemInvisible');
+    $('#id-followups_input_section').addClass('uiSearchItemInvisible');
+    $('#id-followups_input_section').removeClass('uiSearchItemVisible');
+    $('#id-edit_followups_btn').addClass('uiSearchItemVisible');
+    $('#id-edit_followups_btn').removeClass('uiSearchItemInvisible');
+
+    // Remove class 'class_b' from the div with id="id-edit_grade_btn"
+    $(this).addClass('uiSearchItemInvisible');
+    $(this).removeClass('uiSearchItemVisible');
+});
+// ------------------------------------- hide button end -------------------------------------
+});
+// ------------------------------------- individual function end -------------------------------------
