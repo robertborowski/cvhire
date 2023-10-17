@@ -507,20 +507,27 @@
             <!-- ------------------------------------- title end ------------------------------------- -->
             <!-- ------------------------------------- name start ------------------------------------- -->
             <div class="custom-pb-50">
-              <h3 class="custom-m-0 custom-header-25 custom-mb-25">{{ page_dict_html['db_grade_dict']['fk_role_name'] }} <a href="/roles/view/{{ page_dict_html['db_grade_dict']['fk_role_id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10">View role</a></h3>
-              <h3 class="custom-m-0 custom-header-25 custom-mb-5">{{ page_dict_html['db_grade_dict']['fk_cv_name'] }} <a href="/cv/view/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10">View CV</a></h3>
+              <div class="custom-display-flex custom-jc-between">
+                <h3 class="custom-m-0 custom-header-25 custom-mb-25">{{ page_dict_html['db_grade_dict']['fk_role_name'] }}</h3>
+                <a href="/roles/view/{{ page_dict_html['db_grade_dict']['fk_role_id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline">View role</a>
+              </div>
+              <div class="custom-display-flex custom-jc-between">
+                <h3 class="custom-m-0 custom-header-25 custom-mb-5">{{ page_dict_html['db_grade_dict']['fk_cv_name'] }}</h3>
+                <a href="/cv/view/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline">View CV</a>
+              </div>
               {% if page_dict_html['db_grade_dict']['candidate_email'] != '' %}
                 <h3 class="custom-m-0 custom-header-15 custom-mb-5 custom-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_email'] }}</h3>
               {% endif %}
               {% if page_dict_html['db_grade_dict']['candidate_phone'] != '' %}
                 <h3 class="custom-m-0 custom-header-15 custom-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_phone'] }}</h3>
               {% endif %}
-              <h3 class="custom-m-0 custom-header-20 custom-mt-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-height-25 custom-mr-5"> {{ page_dict_html['db_grade_dict']['score'] }} 
-                <span id="id-edit_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemVisible">Edit</span>
-                <span id="id-hide_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemInvisible">Cancel</span>
-              </h3>
+              <div class="custom-display-flex custom-jc-between">
+                <h3 class="custom-m-0 custom-header-20 custom-mt-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-height-25 custom-mr-5"> {{ page_dict_html['db_grade_dict']['score'] }}</h3>
+                <span id="id-edit_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemVisible custom-mt-15">Edit</span>
+                <span id="id-hide_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemInvisible custom-mt-15">Cancel</span>
+              </div>
               <!-- ------------------------------------- change grade start ------------------------------------- -->
-              <div class="border shadow custom-br-15 uiSearchItemInvisible custom-p-25 custom-mt-25" id="id-edit_grade_section">
+              <div class="border shadow custom-br-15 uiSearchItemInvisible custom-p-25 custom-mt-25 custom-width-100 text-center" id="id-edit_grade_section">
                 <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
                   {% for k_img,v_img in page_dict_html['img_stars_dict'].items() %}
                     <div>
@@ -533,7 +540,7 @@
                     </div>
                   {% endfor %}
                   <!-- ------------------------------------- submit start ------------------------------------- -->
-                  <button type="submit" class="btn btn-success btn-sm custom-width-100 custom-mt-10">Update grade</button>
+                  <button type="submit" class="btn btn-success btn custom-mt-15">Update grade</button>
                   <!-- ------------------------------------- submit end ------------------------------------- -->
                 </form>
               </div>
@@ -548,11 +555,10 @@
             <!-- ------------------------------------- section end ------------------------------------- -->
             <!-- ------------------------------------- section start ------------------------------------- -->
             <div class="custom-pb-50">
-              <div class="custom-display-flex custom-mb-15">
-                <h3 class="custom-header-20 custom-opacity-75">Follow ups
-                  <span id="id-edit_followups_btn" class="custom-header-15 custom-opacity-75 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemVisible">Edit</span>
-                  <span id="id-hide_followups_btn" class="custom-header-15 custom-opacity-75 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemInvisible">Cancel</span>
-                </h3>
+              <div class="custom-display-flex custom-mb-15 custom-jc-between">
+                <h3 class="custom-header-20 custom-opacity-75">Follow ups</h3>
+                <span id="id-edit_followups_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemVisible">Edit</span>
+                <span id="id-hide_followups_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemInvisible">Cancel</span>
               </div>
               <!-- ------------------------------------- follow ups string start ------------------------------------- -->
               <div id="id-followups_str_section" class="uiSearchItemVisible">
