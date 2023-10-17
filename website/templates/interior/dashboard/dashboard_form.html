@@ -625,13 +625,19 @@
             <!-- ------------------------------------- top start ------------------------------------- -->  
             <!-- ------------------------------------- title start ------------------------------------- -->
             <div class="custom-ptb-50">
-              <h2 class="custom-m-0 custom-header-30">CV ask AI <a href="/cv/active" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
+              <div class="custom-display-flex custom-jc-between">
+                <h2 class="custom-m-0 custom-header-30">CV ask AI</h2>
+                <a href="/cv/active" class="btn btn-primary">Back</a>
+              </div>
             </div>
             <!-- ------------------------------------- title end ------------------------------------- -->
             <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
               <!-- ------------------------------------- name start ------------------------------------- -->
               <div class="custom-pb-50">
-                <h3 class="custom-m-0 custom-header-25 custom-mb-5">{{ page_dict_html['db_cv_dict']['candidate_name'] }} <a href="/cv/view/{{ page_dict_html['db_cv_dict']['id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10">View CV</a></h3>
+                <div class="custom-display-flex custom-jc-between">
+                  <h3 class="custom-m-0 custom-header-25 custom-mb-5">{{ page_dict_html['db_cv_dict']['candidate_name'] }}</h3>
+                  <a href="/cv/view/{{ page_dict_html['db_cv_dict']['id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline">View CV</a>
+                </div>
                 {% if page_dict_html['db_cv_dict']['candidate_email'] != '' %}
                   <h3 class="custom-m-0 custom-header-15 custom-mb-5 custom-opacity-75">{{ page_dict_html['db_cv_dict']['candidate_email'] }}</h3>
                 {% endif %}
@@ -679,23 +685,20 @@
             <!-- ------------------------------------- all submissions start ------------------------------------- -->
             {% else %}
               {% for i in page_dict_html['db_ask_ai_arr_of_dict'] %}
-                <div class="border custom-br-15 shadow custom-p-25 custom-mb-25">
+                <div class="border custom-br-15 shadow custom-p-25 custom-mb-50">
                   <div class="custom-mb-25 custom-opacity-60">
                     <div class="custom-display-flex custom-jc-between">
                       <p class="custom-m-0 custom-header-12">Question</p>
                       <a href="/cv/ask_ai/status_change/{{ i['id'] }}/delete" class="custom-a-black-none" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete question"><i class="fa-solid fa-x"></i></a>
                     </div>
-                    <p class="custom-m-0 custom-header-20 fst-italic">{{ i['question'] }}</p>
+                    <p class="custom-m-0 custom-header-18 fst-italic">{{ i['question'] }}</p>
                   </div>
                   <div>
                     <p class="custom-m-0 custom-header-12">AI</p>
-                    <p class="custom-m-0 custom-header-20">{{ i['answer'] }}</p>
+                    <p class="custom-m-0 custom-header-15">{{ i['answer'] }}</p>
                   </div>
                 </div>
               {% endfor %}
-              <div class="custom-mb-100 custom-mt-50">
-                <a href="/cv/active" class="btn btn-primary custom-width-100">Back</a>
-              </div>
             {% endif %}
             <!-- ------------------------------------- all submissions end ------------------------------------- -->
             <!-- ------------------------------------- bottom end ------------------------------------- -->
