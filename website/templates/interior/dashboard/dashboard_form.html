@@ -550,8 +550,29 @@
             <!-- ------------------------------------- name end ------------------------------------- -->
             <!-- ------------------------------------- section start ------------------------------------- -->
             <div class="custom-pb-50">
-              <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Summary</h3>
-              <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_grade_dict']['summary'] }}</p>
+              <div class="custom-display-flex custom-jc-between">
+                <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Summary</h3>
+                <span id="id-edit_summary_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemVisible">Edit</span>
+                <span id="id-hide_summary_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemInvisible">Cancel</span>
+              </div>
+              <!-- ------------------------------------- follow ups string start ------------------------------------- -->
+              <div id="id-summary_str_section" class="uiSearchItemVisible">
+                <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_grade_dict']['summary'] }}</p>
+              </div>
+              <!-- ------------------------------------- follow ups string start ------------------------------------- -->
+              <!-- ------------------------------------- follow ups input start ------------------------------------- -->
+              <div id="id-summary_input_section" class="uiSearchItemInvisible custom-width-100 custom-p-25 border shadow custom-br-15">
+                <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+                  <div class="custom-pb-25">
+                    <label for="uiSummary" class="form-label">Edit <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 2,000 characters."></i></label>
+                    <textarea class="form-control" id="uiSummary" name="uiSummary" rows="12" required>{{ page_dict_html['db_grade_dict']['summary'] }}</textarea>
+                  </div>
+                  <!-- ------------------------------------- submit start ------------------------------------- -->
+                  <button type="submit" class="btn btn-success btn custom-width-100">Update summary</button>
+                  <!-- ------------------------------------- submit end ------------------------------------- -->
+                </form>
+              </div>
+              <!-- ------------------------------------- follow ups input end ------------------------------------- -->
             </div>
             <!-- ------------------------------------- section end ------------------------------------- -->
             <!-- ------------------------------------- section start ------------------------------------- -->
@@ -575,7 +596,7 @@
                 <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
                   {% for k,v in page_dict_html['db_grade_dict']['follow_ups_dict'].items() %}
                     <div class="form-group custom-mb-25">
-                      <label for="uiFollowUp{{ v['num'] }}">Follow up #{{ v['num'] }}</label>
+                      <label for="uiFollowUp{{ v['num'] }}">Follow up #{{ v['num'] }} <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 300 characters."></i></label>
                       <input type="text" class="form-control custom-mt-10" id="uiFollowUp{{ v['num'] }}" name="uiFollowUp{{ v['num'] }}" value="{{ v['ui'] }}">
                     </div>
                   {% endfor %}

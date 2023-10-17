@@ -8,9 +8,9 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import results_status_codes_function, dashboard_section_links_dict_results_function, results_table_links_function, get_stars_img_function, get_stars_img_dict_function
 from website.backend.db_obj_checks import get_content_function
-from website.backend.convert import convert_obj_row_to_dict_function, get_follow_ups_function, get_follow_ups_dict_function
+from website.backend.convert import convert_obj_row_to_dict_function, get_follow_ups_dict_function
 from website.backend.db_manipulation import additional_cv_info_from_db_function
-from website.backend.sanitize import sanitize_chars_function_v5
+from website.backend.sanitize import sanitize_chars_function_v5, sanitize_chars_function_v6
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -224,6 +224,26 @@ def results_view_function(url_grade_id=None, url_redirect_code=None):
       return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='s5'))
       # ------------------------ update db end ------------------------
     # ------------------------ post #2 end ------------------------
+    # ------------------------ post #3 start ------------------------
+    # ------------------------ get user inputs start ------------------------
+    ui_summary = request.form.get('uiSummary')
+    # ------------------------ get user inputs end ------------------------
+    if ui_summary != None:
+      # ------------------------ sanitize user inputs start ------------------------
+      ui_summary_check = sanitize_chars_function_v6(ui_summary)
+      if ui_summary_check == False:
+        return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='e10'))
+      # ------------------------ sanitize user inputs end ------------------------
+      # ------------------------ if no change start ------------------------
+      if db_obj.summary == ui_summary:
+        return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='i1'))
+      # ------------------------ if no change end ------------------------
+      # ------------------------ update db start ------------------------
+      db_obj.summary = ui_summary
+      db.session.commit()
+      return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='s5'))
+      # ------------------------ update db end ------------------------
+    # ------------------------ post #3 end ------------------------
   # ------------------------ post method end ------------------------
   return render_template('interior/results/view_results/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
