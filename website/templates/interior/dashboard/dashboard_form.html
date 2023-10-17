@@ -564,12 +564,12 @@
               </div>
               <!-- ------------------------------------- follow ups string end ------------------------------------- -->
               <!-- ------------------------------------- follow ups input start ------------------------------------- -->
-              <div id="id-followups_input_section" class="uiSearchItemInvisible custom-width-100">
+              <div id="id-followups_input_section" class="uiSearchItemInvisible custom-width-100 custom-p-25 border shadow custom-br-15">
                 <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
                   {% for k,v in page_dict_html['db_grade_dict']['follow_ups_dict'].items() %}
                     <div class="form-group custom-mb-25">
                       <label for="uiFollowUp{{ v['num'] }}">Follow up #{{ v['num'] }}</label>
-                      <input type="text" class="form-control custom-mt-10" id="uiFollowUp{{ v['num'] }}" name="uiFollowUp{{ v['num'] }}" value="{{ v['ui'] }}" required>
+                      <input type="text" class="form-control custom-mt-10" id="uiFollowUp{{ v['num'] }}" name="uiFollowUp{{ v['num'] }}" value="{{ v['ui'] }}">
                     </div>
                   {% endfor %}
                   <!-- ------------------------------------- submit start ------------------------------------- -->

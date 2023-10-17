@@ -80,6 +80,17 @@ def sanitize_chars_function_v4(user_input):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def sanitize_chars_function_v5(user_input):
+  if len(user_input) > 300:
+    return False
+  try:
+    user_input = user_input.replace("~", "")
+  except:
+    pass
+  return user_input
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def sanitize_image_option_function(user_submission, allowed_dict):
   img_found = False
   for k,v in allowed_dict.items():

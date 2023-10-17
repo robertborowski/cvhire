@@ -10,6 +10,7 @@ from website.backend.static_lists import results_status_codes_function, dashboar
 from website.backend.db_obj_checks import get_content_function
 from website.backend.convert import convert_obj_row_to_dict_function, get_follow_ups_function, get_follow_ups_dict_function
 from website.backend.db_manipulation import additional_cv_info_from_db_function
+from website.backend.sanitize import sanitize_chars_function_v5
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -154,6 +155,74 @@ def results_view_function(url_grade_id=None, url_redirect_code=None):
       # ------------------------ update db end ------------------------
     # ------------------------ post #1 end ------------------------
     # ------------------------ post #2 start ------------------------
+    # ------------------------ get user inputs start ------------------------
+    ui_follow_up_1 = request.form.get('uiFollowUp1')
+    ui_follow_up_2 = request.form.get('uiFollowUp2')
+    ui_follow_up_3 = request.form.get('uiFollowUp3')
+    ui_follow_up_4 = request.form.get('uiFollowUp4')
+    ui_follow_up_5 = request.form.get('uiFollowUp5')
+    ui_follow_up_6 = request.form.get('uiFollowUp6')
+    ui_follow_up_7 = request.form.get('uiFollowUp7')
+    ui_follow_up_8 = request.form.get('uiFollowUp8')
+    ui_follow_up_9 = request.form.get('uiFollowUp9')
+    ui_follow_up_10 = request.form.get('uiFollowUp10')
+    # ------------------------ get user inputs end ------------------------
+    if ui_follow_up_1 != None or ui_follow_up_2 != None or ui_follow_up_3 != None or ui_follow_up_4 != None or ui_follow_up_5 != None or ui_follow_up_6 != None or ui_follow_up_7 != None or ui_follow_up_8 != None or ui_follow_up_9 != None or ui_follow_up_10 != None:
+      # ------------------------ sanitize user inputs start ------------------------
+      ui_follow_up_1_check = sanitize_chars_function_v5(ui_follow_up_1)
+      ui_follow_up_2_check = sanitize_chars_function_v5(ui_follow_up_2)
+      ui_follow_up_3_check = sanitize_chars_function_v5(ui_follow_up_3)
+      ui_follow_up_4_check = sanitize_chars_function_v5(ui_follow_up_4)
+      ui_follow_up_5_check = sanitize_chars_function_v5(ui_follow_up_5)
+      ui_follow_up_6_check = sanitize_chars_function_v5(ui_follow_up_6)
+      ui_follow_up_7_check = sanitize_chars_function_v5(ui_follow_up_7)
+      ui_follow_up_8_check = sanitize_chars_function_v5(ui_follow_up_8)
+      ui_follow_up_9_check = sanitize_chars_function_v5(ui_follow_up_9)
+      ui_follow_up_10_check = sanitize_chars_function_v5(ui_follow_up_10)
+      if ui_follow_up_1_check == False or ui_follow_up_2_check == False or ui_follow_up_3_check == False or ui_follow_up_4_check == False or ui_follow_up_5_check == False or ui_follow_up_6_check == False or ui_follow_up_7_check == False or ui_follow_up_8_check == False or ui_follow_up_9_check == False or ui_follow_up_10_check == False:
+        return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='e19'))
+      # ------------------------ sanitize user inputs end ------------------------
+      # ------------------------ consolidate inputs start ------------------------
+      inputs_arr = []
+      if ui_follow_up_1 != None and ui_follow_up_1 != '':
+        inputs_arr.append(ui_follow_up_1)
+      if ui_follow_up_2 != None and ui_follow_up_2 != '':
+        inputs_arr.append(ui_follow_up_2)
+      if ui_follow_up_3 != None and ui_follow_up_3 != '':
+        inputs_arr.append(ui_follow_up_3)
+      if ui_follow_up_4 != None and ui_follow_up_4 != '':
+        inputs_arr.append(ui_follow_up_4)
+      if ui_follow_up_5 != None and ui_follow_up_5 != '':
+        inputs_arr.append(ui_follow_up_5)
+      if ui_follow_up_6 != None and ui_follow_up_6 != '':
+        inputs_arr.append(ui_follow_up_6)
+      if ui_follow_up_7 != None and ui_follow_up_7 != '':
+        inputs_arr.append(ui_follow_up_7)
+      if ui_follow_up_8 != None and ui_follow_up_8 != '':
+        inputs_arr.append(ui_follow_up_8)
+      if ui_follow_up_9 != None and ui_follow_up_9 != '':
+        inputs_arr.append(ui_follow_up_9)
+      if ui_follow_up_10 != None and ui_follow_up_10 != '':
+        inputs_arr.append(ui_follow_up_10)
+      inputs_str = '~'.join(inputs_arr)
+      # ------------------------ consolidate inputs end ------------------------
+      # ------------------------ if inputs too long start ------------------------
+      if len(inputs_str) > 2000:
+        return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='e20'))
+      # ------------------------ if inputs too long end ------------------------
+      # ------------------------ if inputs none start ------------------------
+      if len(inputs_str) == 0:
+        return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='e21'))
+      # ------------------------ if inputs none end ------------------------
+      # ------------------------ if no change start ------------------------
+      if inputs_str == db_obj.follow_ups:
+        return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='i1'))
+      # ------------------------ if no change end ------------------------
+      # ------------------------ update db start ------------------------
+      db_obj.follow_ups = inputs_str
+      db.session.commit()
+      return redirect(url_for('cv_views_interior_results.results_view_function', url_grade_id=url_grade_id, url_redirect_code='s5'))
+      # ------------------------ update db end ------------------------
     # ------------------------ post #2 end ------------------------
   # ------------------------ post method end ------------------------
   return render_template('interior/results/view_results/index.html', page_dict_html=page_dict)

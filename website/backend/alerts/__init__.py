@@ -100,6 +100,21 @@ def get_alert_message_function(redirect_var=None):
       'message':'Free plans cannot edit results. Please see account settings for subscription options.',
       'type':'danger'
     }
+  elif redirect_var == 'e19':
+    alert_message_dict = {
+      'message':'Individual input too long',
+      'type':'danger'
+    }
+  elif redirect_var == 'e20':
+    alert_message_dict = {
+      'message':'Collective input too long',
+      'type':'danger'
+    }
+  elif redirect_var == 'e21':
+    alert_message_dict = {
+      'message':'At least 1 follow up required',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
