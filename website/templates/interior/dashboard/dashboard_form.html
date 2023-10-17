@@ -517,7 +517,7 @@
               {% endif %}
               <h3 class="custom-m-0 custom-header-20 custom-mt-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-height-25 custom-mr-5"> {{ page_dict_html['db_grade_dict']['score'] }} 
                 <span id="id-edit_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemVisible">Edit</span>
-                <span id="id-hide_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemInvisible">Hide</span>
+                <span id="id-hide_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemInvisible">Cancel</span>
               </h3>
               <!-- ------------------------------------- change grade start ------------------------------------- -->
               <div class="border shadow custom-br-15 uiSearchItemInvisible custom-p-25 custom-mt-25" id="id-edit_grade_section">
@@ -551,19 +551,31 @@
               <div class="custom-display-flex custom-mb-15">
                 <h3 class="custom-header-20 custom-opacity-75">Follow ups
                   <span id="id-edit_followups_btn" class="custom-header-15 custom-opacity-75 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemVisible">Edit</span>
-                  <span id="id-hide_followups_btn" class="custom-header-15 custom-opacity-75 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemInvisible">Hide</span>
+                  <span id="id-hide_followups_btn" class="custom-header-15 custom-opacity-75 custom-a-black-underline custom-ml-10 custom-hover-1 uiSearchItemInvisible">Cancel</span>
                 </h3>
               </div>
               <!-- ------------------------------------- follow ups string start ------------------------------------- -->
               <div id="id-followups_str_section" class="uiSearchItemVisible">
-                {% for i_str in page_dict_html['db_grade_dict']['follow_ups_arr'] %}
-                  <p class="custom-m-0 custom-mb-15 custom-header-15">{{ i_str }}</p>
+                {% for k,v in page_dict_html['db_grade_dict']['follow_ups_dict'].items() %}
+                  {% if v['ui'] != '' %}
+                    <p class="custom-m-0 custom-mb-15 custom-header-15">{{ v['num'] }}. {{ v['ui'] }}</p>
+                  {% endif %}
                 {% endfor %}
               </div>
               <!-- ------------------------------------- follow ups string end ------------------------------------- -->
               <!-- ------------------------------------- follow ups input start ------------------------------------- -->
-              <div id="id-followups_input_section" class="uiSearchItemInvisible">
-                <p>hello</p>
+              <div id="id-followups_input_section" class="uiSearchItemInvisible custom-width-100">
+                <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+                  {% for k,v in page_dict_html['db_grade_dict']['follow_ups_dict'].items() %}
+                    <div class="form-group custom-mb-25">
+                      <label for="uiFollowUp{{ v['num'] }}">Follow up #{{ v['num'] }}</label>
+                      <input type="text" class="form-control custom-mt-10" id="uiFollowUp{{ v['num'] }}" name="uiFollowUp{{ v['num'] }}" value="{{ v['ui'] }}" required>
+                    </div>
+                  {% endfor %}
+                  <!-- ------------------------------------- submit start ------------------------------------- -->
+                  <button type="submit" class="btn btn-success btn custom-width-100 custom-mt-10">Update follow ups</button>
+                  <!-- ------------------------------------- submit end ------------------------------------- -->
+                </form>
               </div>
               <!-- ------------------------------------- follow ups input end ------------------------------------- -->
             </div>

@@ -78,3 +78,23 @@ def get_follow_ups_function(db_dict):
     pass
   return arr
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_follow_ups_dict_function(db_dict):
+  i_dict = {}
+  try:
+    arr = db_dict['follow_ups'].split('~')
+    # ------------------------ loop create dict start ------------------------
+    for i in range(0, 10):
+      i_dict[str(i+1)] = {}
+      i_dict[str(i+1)]['num'] = str(i+1)
+      i_dict[str(i+1)]['ui'] = ''
+      try:
+        i_dict[str(i+1)]['ui'] = arr[i]
+      except:
+        pass
+    # ------------------------ loop create dict end ------------------------
+  except Exception as e:
+    pass
+  return i_dict
+# ------------------------ individual function end ------------------------

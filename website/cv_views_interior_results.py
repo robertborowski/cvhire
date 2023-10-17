@@ -8,7 +8,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import results_status_codes_function, dashboard_section_links_dict_results_function, results_table_links_function, get_stars_img_function, get_stars_img_dict_function
 from website.backend.db_obj_checks import get_content_function
-from website.backend.convert import convert_obj_row_to_dict_function, get_follow_ups_function
+from website.backend.convert import convert_obj_row_to_dict_function, get_follow_ups_function, get_follow_ups_dict_function
 from website.backend.db_manipulation import additional_cv_info_from_db_function
 # ------------------------ imports end ------------------------
 
@@ -119,7 +119,7 @@ def results_view_function(url_grade_id=None, url_redirect_code=None):
   page_dict['db_grade_dict'] = get_stars_img_function(page_dict['db_grade_dict'])
   # ------------------------ star images end ------------------------
   # ------------------------ follow ups start ------------------------
-  page_dict['db_grade_dict']['follow_ups_arr'] = get_follow_ups_function(page_dict['db_grade_dict'])
+  page_dict['db_grade_dict']['follow_ups_dict'] = get_follow_ups_dict_function(page_dict['db_grade_dict'])
   # ------------------------ follow ups end ------------------------
   # ------------------------ get additional CV info start ------------------------
   page_dict['db_grade_dict'] = additional_cv_info_from_db_function(current_user.id, page_dict['db_grade_dict'])
