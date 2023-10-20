@@ -12,7 +12,7 @@ def get_alert_message_function(redirect_var=None):
   # ------------------------ errors start ------------------------
   elif redirect_var == 'e1':
     alert_message_dict = {
-      'message':'Please enter a valid work email. No @gmail, @yahoo, etc.',
+      'message':'Please enter a valid work email. No @gmail, @yahoo, .edu, etc.',
       'type':'danger'
     }
   elif redirect_var == 'e2':
