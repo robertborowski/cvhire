@@ -179,6 +179,17 @@ class ConversionTrackingObj(db.Model):
   status = db.Column(db.String(50))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class BlogObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  title = db.Column(db.String(150))
+  details = db.Column(db.String(150))
+  keywords = db.Column(db.String(150))
+  image_url = db.Column(db.String(150))
+  status = db.Column(db.Boolean, default=False)
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):
@@ -203,13 +214,3 @@ class EmailScrapedObj(db.Model):
   unsubscribed = db.Column(db.Boolean, default=False)
 # ------------------------ individual model end ------------------------
 """
-
-# # ------------------------ individual model start ------------------------
-# class BlogObj(db.Model):
-#   id = db.Column(db.String(150), primary_key=True)
-#   created_timestamp = db.Column(db.DateTime(timezone=True))
-#   title = db.Column(db.String(150))
-#   details = db.Column(db.String(150))
-#   aws_image_url = db.Column(db.String(150))
-#   status = db.Column(db.Boolean, default=False)
-# # ------------------------ individual model end ------------------------
