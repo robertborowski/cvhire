@@ -15,12 +15,42 @@
 {% endif %}
 <!-- ----------------------------------- alert end ----------------------------------- -->
 <!-- ----------------------------------- content start ----------------------------------- -->
-<div class="custom-width-900 mx-auto custom-border-2">
+<div class="custom-width-1100 mx-auto">
   <!-- ----------------------------------- title start ----------------------------------- -->
-  <div class="custom-mt-50">
-    <h2>Blog</h2>
+  <div class="custom-mt-50 custom-mb-25">
+    <h2 class="custom-header-30">Blog</h2>
   </div>
   <!-- ----------------------------------- title end ----------------------------------- -->
+  <!-- ----------------------------------- all posts start ----------------------------------- -->
+  <div class="custom-mb-100">
+    {% for i_post in page_dict_html['db_arr_dicts'] %}
+      <div class="custom-width-300 border shadow">
+        <!-- ----------------------------------- img start ----------------------------------- -->
+        <div>
+          <img src="{{ i_post['image_url'] }}" alt="blog photo" class="custom-img-height-200 custom-width-100">
+        </div>
+        <!-- ----------------------------------- img end ----------------------------------- -->
+        <!-- ----------------------------------- words start ----------------------------------- -->
+        <div class="custom-p-10">
+          <!-- ----------------------------------- keywords start ----------------------------------- -->
+          <div class="custom-display-flex">
+            {% for i_keyword in i_post['keywords_read'] %}
+              <p class="custom-m-0 custom-header-10">{{ i_keyword }}</p>
+            {% endfor %}
+          </div>
+          <!-- ----------------------------------- keywords end ----------------------------------- -->
+          <!-- ----------------------------------- title and details start ----------------------------------- -->
+          <p class="custom-m-0 custom-header-20 custom-mt-15">{{ i_post['title_read'] }}</p>
+          <p class="custom-m-0 custom-header-12 custom-opacity-50 custom-mt-15">{{ i_post['details'] }}</p>
+          <!-- ----------------------------------- title and details end ----------------------------------- -->
+          <!-- ----------------------------------- authored start ----------------------------------- -->
+          <!-- ----------------------------------- authored end ----------------------------------- -->
+        </div>
+      </div>
+      <!-- ----------------------------------- words end ----------------------------------- -->
+    {% endfor %}
+  </div>
+  <!-- ----------------------------------- all posts end ----------------------------------- -->
 </div>
 <!-- ----------------------------------- content end ----------------------------------- -->
 {% endblock %}

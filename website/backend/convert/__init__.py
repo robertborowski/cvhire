@@ -55,6 +55,11 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
       i_dict = get_stars_img_function(i_dict)
       # ------------------------ star images end ------------------------
     # ------------------------ additional details end ------------------------
+    # ------------------------ additional details start ------------------------
+    if identifier == 'blog':
+      i_dict['title_read'] = i_dict['title'].replace("-", " ")
+      i_dict['keywords_read'] = keywords_present_function(i_dict['keywords'])
+    # ------------------------ additional details end ------------------------
     arr.append(i_dict)
   return arr
 # ------------------------ individual function end ------------------------
@@ -97,4 +102,16 @@ def get_follow_ups_dict_function(db_dict):
   except Exception as e:
     pass
   return i_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def keywords_present_function(input_str):
+  arr_upper = []
+  try:
+    arr = input_str.split('~')
+    for i in arr:
+      arr_upper.append(i.upper())
+  except Exception as e:
+    pass
+  return arr_upper
 # ------------------------ individual function end ------------------------

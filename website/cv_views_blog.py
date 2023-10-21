@@ -5,6 +5,7 @@ from website.backend.connection import redis_connect_open_function
 from website.models import BlogObj
 from website import db
 from website.backend.alerts import get_alert_message_function
+from website.backend.convert import objs_to_arr_of_dicts_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -36,5 +37,8 @@ def blog_function(url_redirect_code=None):
   # ------------------------ get all blog posts from db start ------------------------
   db_objs = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).all()
   # ------------------------ get all blog posts from db end ------------------------
+  # ------------------------ convert objs to dict start ------------------------
+  page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_objs, 'blog')
+  # ------------------------ convert objs to dict end ------------------------
   return render_template('exterior/blog/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

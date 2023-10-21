@@ -188,6 +188,7 @@ class BlogObj(db.Model):
   keywords = db.Column(db.String(150))
   image_url = db.Column(db.String(150))
   status = db.Column(db.Boolean, default=False)
+  author_img_url = db.Column(db.String(150))
 # ------------------------ individual model end ------------------------
 
 """

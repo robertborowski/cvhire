@@ -2345,8 +2345,17 @@
   width: 200px;
   max-width: 90%;
 }
+.custom-width-250 {
+  width: 250px;
+}
+.custom-width-275 {
+  width: 275px;
+}
 .custom-width-250-mobile {
   width: 250px;
+}
+.custom-width-300 {
+  width: 300px;
 }
 .custom-width-400 {
   width: 400px;
