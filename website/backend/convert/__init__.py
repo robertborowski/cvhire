@@ -115,6 +115,7 @@ def keywords_present_function(input_str):
     for i in arr:
       keywords_dict[i.upper()] = {}
       keywords_dict[i.upper()]['html-bg-color'], keywords_dict[i.upper()]['html-text-color'] = get_keyword_colors_function(i)
+      keywords_dict[i.upper()]['url'] = i.replace(" ","-").lower()
   except Exception as e:
     pass
   return keywords_dict
