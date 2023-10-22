@@ -33,9 +33,9 @@
         <!-- ----------------------------------- words start ----------------------------------- -->
         <div class="custom-p-10">
           <!-- ----------------------------------- keywords start ----------------------------------- -->
-          <div class="custom-display-flex">
+          <div class="custom-display-flex custom-f-wrap">
             {% for k_keyword, v_keyword in i_post['keywords_read_dict'].items() %}
-              <a href="/blog/category/{{ v_keyword['url'] }}" class="custom-underline-none"><span class="custom-m-0 custom-header-8 custom-br-15 custom-mr-5 custom-mt-5 custom-plr-10 custom-ptb-5 {{ v_keyword['html-bg-color'] }} {{ v_keyword['html-text-color'] }}">{{ k_keyword }}</span></a>
+              <a href="/blog/category/{{ v_keyword['url'] }}" class="custom-underline-none"><p class="custom-f-nowrap-important custom-m-0 custom-header-8 custom-br-15 custom-mr-5 custom-mt-5 custom-plr-10 custom-ptb-5 {{ v_keyword['html-bg-color'] }} {{ v_keyword['html-text-color'] }}">{{ k_keyword }}</p></a>
             {% endfor %}
           </div>
           <!-- ----------------------------------- keywords end ----------------------------------- -->

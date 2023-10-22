@@ -639,6 +639,9 @@
 .custom-f-nowrap {
   flex-wrap: nowrap;
 }
+.custom-f-nowrap-important {
+  flex-wrap: nowrap !important;
+}
 .custom-f-align-1 {
   align-items: center;
 }
