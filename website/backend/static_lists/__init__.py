@@ -472,3 +472,18 @@ def get_default_profile_imgs_function():
   }
   return img_dict
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_keyword_colors_function(i_keyword):
+  html_bg_color = 'custom-bg-secondary'
+  html_text_color = 'custom-color-black'
+  if i_keyword.lower() == 'hiring success':
+    html_bg_color = 'custom-bg-success'
+    html_text_color = 'custom-color-white'
+  if i_keyword.lower() == 'resume parsing':
+    html_bg_color = 'custom-bg-primary'
+    html_text_color = 'custom-color-black'
+  else:
+    pass
+  return html_bg_color, html_text_color
+# ------------------------ individual function end ------------------------

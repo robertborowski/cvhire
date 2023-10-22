@@ -426,6 +426,9 @@
 .custom-color-danger-important {
   color: var(--custom-color-danger) !important;
 }
+.custom-color-black {
+  color: black;
+}
 .custom-color-white {
   color: white;
 }
@@ -2196,6 +2199,9 @@
   text-decoration: underline;
   text-underline-offset: 0.25em;
   text-decoration-thickness: 1px;
+}
+.custom-underline-none {
+  text-decoration: none;
 }
 /* ------------------- underline end ------------------- */
 /* ------------------- view start ------------------- */

@@ -1,6 +1,7 @@
 # ------------------------ imports start ------------------------
 from website.backend.static_lists import get_stars_img_function
 import datetime
+from website.backend.static_lists import get_keyword_colors_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -59,7 +60,7 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
     # ------------------------ additional details start ------------------------
     if identifier == 'blog':
       i_dict['title_read'] = present_title_function(i_dict['title'])
-      i_dict['keywords_read'] = keywords_present_function(i_dict['keywords'])
+      i_dict['keywords_read_dict'] = keywords_present_function(i_dict['keywords'])
       i_dict['created_timestamp_read'] = timestamp_to_date_function(i_dict['created_timestamp'])
     # ------------------------ additional details end ------------------------
     arr.append(i_dict)
@@ -108,14 +109,15 @@ def get_follow_ups_dict_function(db_dict):
 
 # ------------------------ individual function start ------------------------
 def keywords_present_function(input_str):
-  arr_upper = []
+  keywords_dict = {}
   try:
     arr = input_str.split('~')
     for i in arr:
-      arr_upper.append(i.upper())
+      keywords_dict[i.upper()] = {}
+      keywords_dict[i.upper()]['html-bg-color'], keywords_dict[i.upper()]['html-text-color'] = get_keyword_colors_function(i)
   except Exception as e:
     pass
-  return arr_upper
+  return keywords_dict
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
