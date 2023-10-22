@@ -68,11 +68,17 @@ def blog_category_function(url_category_code=None, url_redirect_code=None):
     except:
       pass
   # ------------------------ page dict end ------------------------
+  # ------------------------ fix variable start ------------------------
+  try:
+    url_category_code = url_category_code.replace('-',' ')
+  except:
+    pass
+  # ------------------------ fix variable end ------------------------
   # ------------------------ set variables start ------------------------
   page_dict['nav_header'] = True
   # ------------------------ set variables end ------------------------
   # ------------------------ get all blog posts from db start ------------------------
-  db_objs = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).all()
+  db_objs = BlogObj.query.filter_by(status=True).filter(BlogObj.keywords.like(f'%{url_category_code}%')).order_by(BlogObj.created_timestamp.desc()).all()
   # ------------------------ get all blog posts from db end ------------------------
   # ------------------------ convert objs to dict start ------------------------
   page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_objs, 'blog')
