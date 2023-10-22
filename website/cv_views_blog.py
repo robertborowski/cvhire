@@ -6,6 +6,7 @@ from website.models import BlogObj
 from website import db
 from website.backend.alerts import get_alert_message_function
 from website.backend.convert import objs_to_arr_of_dicts_function
+from website.backend.convert import present_title_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -33,6 +34,7 @@ def blog_function(url_redirect_code=None):
   # ------------------------ page dict end ------------------------
   # ------------------------ set variables start ------------------------
   page_dict['nav_header'] = True
+  page_dict['category_specific'] = False
   # ------------------------ set variables end ------------------------
   # ------------------------ get all blog posts from db start ------------------------
   db_objs = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).all()
@@ -76,6 +78,8 @@ def blog_category_function(url_category_code=None, url_redirect_code=None):
   # ------------------------ fix variable end ------------------------
   # ------------------------ set variables start ------------------------
   page_dict['nav_header'] = True
+  page_dict['category_specific'] = True
+  page_dict['category_title'] = present_title_function(url_category_code)
   # ------------------------ set variables end ------------------------
   # ------------------------ get all blog posts from db start ------------------------
   db_objs = BlogObj.query.filter_by(status=True).filter(BlogObj.keywords.like(f'%{url_category_code}%')).order_by(BlogObj.created_timestamp.desc()).all()
