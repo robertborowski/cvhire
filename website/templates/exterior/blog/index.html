@@ -41,17 +41,17 @@
           <!-- ----------------------------------- keywords end ----------------------------------- -->
           <!-- ----------------------------------- title and details start ----------------------------------- -->
           <div class="custom-mb-15">
-            <h2 class="custom-m-0 custom-header-20 custom-mt-15">{{ i_post['title_read'] }}</h2>
-            <h3 class="custom-m-0 custom-header-12 custom-opacity-50 custom-mt-15">{{ i_post['details'] }}</h3>
+            <h2 class="custom-m-0 custom-header-20 custom-mt-15"><a href="/blog/{{ i_post['title'] }}" class="custom-a-black-underline">{{ i_post['title_read'] }}</a></h2>
+            <p class="custom-m-0 custom-header-12 custom-opacity-50 custom-mt-15">{{ i_post['details'] }}</p>
           </div>
           <!-- ----------------------------------- title and details end ----------------------------------- -->
           <!-- ----------------------------------- authored start ----------------------------------- -->
           <div class="custom-display-flex">
             <div>
-              <img src="{{ i_post['author_img_url'] }}" alt="author profile img" class="custom-img-height-20 custom-mr-5 custom-mt-negative-5">
+              <a href="/blog/{{ i_post['title'] }}"><img src="{{ i_post['author_img_url'] }}" alt="author profile img" class="custom-img-height-20 custom-mr-5 custom-mt-negative-5"></a>
             </div>
-            <p class="custom-m-0 custom-header-15 custom-opacity-50 custom-mr-15">{{ i_post['author'] }}</p>
-            <p class="custom-m-0 custom-header-15 custom-opacity-50"><i class="fa-regular fa-calendar custom-mr-5"></i> {{ i_post['created_timestamp_read'] }}</p>
+            <a href="/blog/{{ i_post['title'] }}" class="custom-a-black-underline custom-m-0 custom-header-15 custom-opacity-50 custom-mr-15">{{ i_post['author'] }}</a>
+            <a href="/blog/{{ i_post['title'] }}" class="custom-a-black-underline custom-m-0 custom-header-15 custom-opacity-50"><i class="fa-regular fa-calendar custom-mr-5"></i> {{ i_post['created_timestamp_read'] }}</a>
           </div>
           <!-- ----------------------------------- authored end ----------------------------------- -->
         </div>

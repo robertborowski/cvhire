@@ -58,7 +58,7 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
     # ------------------------ additional details end ------------------------
     # ------------------------ additional details start ------------------------
     if identifier == 'blog':
-      i_dict['title_read'] = i_dict['title'].replace("-", " ")
+      i_dict['title_read'] = present_title_function(i_dict['title'])
       i_dict['keywords_read'] = keywords_present_function(i_dict['keywords'])
       i_dict['created_timestamp_read'] = timestamp_to_date_function(i_dict['created_timestamp'])
     # ------------------------ additional details end ------------------------
@@ -126,4 +126,26 @@ def timestamp_to_date_function(input_datetime):
   except Exception as e:
     pass
   return formatted_date
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def present_title_function(input_str):
+  result_title = ''
+  try:
+    # Split the string at dashes
+    words_arr = input_str.split('-')
+    
+    # Capitalize each word, but check for "ai" special case
+    transformed_words = []
+    for i_word in words_arr:
+      if i_word == "ai":
+        transformed_words.append("AI")
+      else:
+        transformed_words.append(i_word.capitalize())
+    
+    # Join the words back together
+    result_title = ' '.join(transformed_words)
+  except Exception as e:
+    pass
+  return result_title
 # ------------------------ individual function end ------------------------
