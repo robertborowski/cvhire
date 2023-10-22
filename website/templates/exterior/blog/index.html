@@ -18,11 +18,11 @@
 <div class="custom-width-1100 mx-auto">
   <!-- ----------------------------------- title start ----------------------------------- -->
   <div class="custom-mt-50 custom-mb-25">
-    <h2 class="custom-header-30">Blog</h2>
+    <h1 class="custom-header-30">Blog</h1>
   </div>
   <!-- ----------------------------------- title end ----------------------------------- -->
   <!-- ----------------------------------- all posts start ----------------------------------- -->
-  <div class="custom-mb-100">
+  <div class="custom-mb-100 custom-display-flex custom-jc-between custom-f-wrap custom-gap-25">
     {% for i_post in page_dict_html['db_arr_dicts'] %}
       <div class="custom-width-300 border shadow">
         <!-- ----------------------------------- img start ----------------------------------- -->
@@ -35,15 +35,24 @@
           <!-- ----------------------------------- keywords start ----------------------------------- -->
           <div class="custom-display-flex">
             {% for i_keyword in i_post['keywords_read'] %}
-              <p class="custom-m-0 custom-header-10">{{ i_keyword }}</p>
+              <span class="custom-m-0 custom-header-10">{{ i_keyword }}</span>
             {% endfor %}
           </div>
           <!-- ----------------------------------- keywords end ----------------------------------- -->
           <!-- ----------------------------------- title and details start ----------------------------------- -->
-          <p class="custom-m-0 custom-header-20 custom-mt-15">{{ i_post['title_read'] }}</p>
-          <p class="custom-m-0 custom-header-12 custom-opacity-50 custom-mt-15">{{ i_post['details'] }}</p>
+          <div class="custom-mb-15">
+            <h2 class="custom-m-0 custom-header-20 custom-mt-15">{{ i_post['title_read'] }}</h2>
+            <h3 class="custom-m-0 custom-header-12 custom-opacity-50 custom-mt-15">{{ i_post['details'] }}</h3>
+          </div>
           <!-- ----------------------------------- title and details end ----------------------------------- -->
           <!-- ----------------------------------- authored start ----------------------------------- -->
+          <div class="custom-display-flex">
+            <div>
+              <img src="{{ i_post['author_img_url'] }}" alt="author profile img" class="custom-img-height-20 custom-mr-5 custom-mt-negative-5">
+            </div>
+            <p class="custom-m-0 custom-header-15 custom-opacity-50 custom-mr-15">{{ i_post['author'] }}</p>
+            <p class="custom-m-0 custom-header-15 custom-opacity-50"><i class="fa-regular fa-calendar custom-mr-5"></i> {{ i_post['created_timestamp_read'] }}</p>
+          </div>
           <!-- ----------------------------------- authored end ----------------------------------- -->
         </div>
       </div>

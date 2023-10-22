@@ -1,5 +1,6 @@
 # ------------------------ imports start ------------------------
 from website.backend.static_lists import get_stars_img_function
+import datetime
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -59,6 +60,7 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
     if identifier == 'blog':
       i_dict['title_read'] = i_dict['title'].replace("-", " ")
       i_dict['keywords_read'] = keywords_present_function(i_dict['keywords'])
+      i_dict['created_timestamp_read'] = timestamp_to_date_function(i_dict['created_timestamp'])
     # ------------------------ additional details end ------------------------
     arr.append(i_dict)
   return arr
@@ -114,4 +116,14 @@ def keywords_present_function(input_str):
   except Exception as e:
     pass
   return arr_upper
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def timestamp_to_date_function(input_datetime):
+  formatted_date = None
+  try:
+    formatted_date = input_datetime.strftime('%Y-%m-%d')
+  except Exception as e:
+    pass
+  return formatted_date
 # ------------------------ individual function end ------------------------

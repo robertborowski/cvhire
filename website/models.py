@@ -189,6 +189,8 @@ class BlogObj(db.Model):
   image_url = db.Column(db.String(150))
   status = db.Column(db.Boolean, default=False)
   author_img_url = db.Column(db.String(150))
+  author = db.Column(db.String(150))
+  author_social_url = db.Column(db.String(150))
 # ------------------------ individual model end ------------------------
 
 """

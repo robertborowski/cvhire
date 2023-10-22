@@ -650,7 +650,7 @@
   flex: none;
   width: 25px;
 }
-.custom-flex-gap-25 {
+.custom-flex-gap-50 {
   content: '';
   flex: none;
   width: 50px;
@@ -896,6 +896,9 @@
 /* ------------------- img start ------------------- */
 .custom-img-height-15 {
   max-height: 15px;
+}
+.custom-img-height-18 {
+  max-height: 18px;
 }
 .custom-img-height-20 {
   max-height: 20px;
