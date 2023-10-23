@@ -1,122 +1,77 @@
-{% extends "navbar/exterior.html" %}
+{% extends "exterior/blog/i_blog/post_general.html" %}
 
 {% block title %}
-  <title>Login | CVhire</title>
+  <title>Blog post | CVhire</title>
   <meta name="description" content="CVhire is an automated CV screening and resume parser for recruiters and HR teams. AI recruiting made simple.">
   <meta name="og:description" content="CVhire is an automated CV screening and resume parser for recruiters and HR teams. AI recruiting made simple.">
 {% endblock %}
 
-{% block contentBodyExceptNavbarAndFooter %}
-<!-- ----------------------------------- alert start ----------------------------------- -->
-{% if page_dict_html['alert_message_dict']['message'] != '' %}
-<div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">
-  {{ page_dict_html['alert_message_dict']['message'] }}
-</div>
-{% endif %}
-<!-- ----------------------------------- alert end ----------------------------------- -->
+{% block contentBlogPost %}
 <!-- ----------------------------------- content start ----------------------------------- -->
-<div class="custom-width-900 mx-auto">
-  <!-- ----------------------------------- img start ----------------------------------- -->
-  <div class="text-center custom-mt-50">
-    <img src="{{ page_dict_html['blog_dict']['image_url'] }}" alt="" class="custom-width-100 custom-br-25">
-  </div>
-  <!-- ----------------------------------- img end ----------------------------------- -->
-  <!-- ----------------------------------- keywords start ----------------------------------- -->
-  <div class="custom-mt-50 custom-mb-25 custom-display-flex custom-f-wrap">
-    {% for k_keyword, v_keyword in page_dict_html['blog_dict']['keywords_read_dict'].items() %}
-      <a href="/blog/category/{{ v_keyword['url'] }}" class="custom-underline-none"><p class="custom-f-nowrap-important custom-m-0 custom-header-8 custom-br-15 custom-mr-5 custom-mt-5 custom-plr-10 custom-ptb-5 {{ v_keyword['html-bg-color'] }} {{ v_keyword['html-text-color'] }}">{{ k_keyword }}</p></a>
-    {% endfor %}
-  </div>
-  <!-- ----------------------------------- keywords end ----------------------------------- -->
-  <!-- ----------------------------------- title start ----------------------------------- -->
+<div class="custom-header-15 custom-line-30">
   <div class="custom-mb-50">
-    <h1 class="custom-header-30">{{ page_dict_html['blog_dict']['title_read'] }}</h1>
-    <!-- ----------------------------------- author start ----------------------------------- -->
-    <div class="custom-display-flex custom-mt-25">
-      <div>
-        <a href="{{ page_dict_html['blog_dict']['author_social_url'] }}" target="_blank"><img src="{{ page_dict_html['blog_dict']['author_img_url'] }}" alt="author profile img" class="custom-img-height-20 custom-mr-5 custom-mt-negative-5"></a>
-      </div>
-      <a href="{{ page_dict_html['blog_dict']['author_social_url'] }}" target="_blank" class="custom-a-black-underline custom-m-0 custom-header-15 custom-opacity-50 custom-mr-15">{{ page_dict_html['blog_dict']['author'] }}</a>
-      <span class="custom-m-0 custom-header-15 custom-opacity-50"><i class="fa-regular fa-calendar custom-mr-5"></i> {{ page_dict_html['blog_dict']['created_timestamp_read'] }}</span>
-    </div>
-    <!-- ----------------------------------- author end ----------------------------------- -->
+    <p>The hiring landscape is evolving, and recruiters are in constant pursuit of innovative strategies to streamline their processes and find the right talent efficiently. Enter AI resume parsing - a revolutionary tool changing the game for recruitment professionals worldwide. CVhire.com, our robust applicant tracking system (ATS), integrates advanced AI-powered resume parsing to redefine CV screening, saving time and ensuring you pinpoint the best candidates with ease.</p>
   </div>
-  <!-- ----------------------------------- title end ----------------------------------- -->
-  <!-- ----------------------------------- content start ----------------------------------- -->
-  <div class="custom-header-15 custom-line-30">
-    <div class="custom-mb-50">
-      <p>The hiring landscape is evolving, and recruiters are in constant pursuit of innovative strategies to streamline their processes and find the right talent efficiently. Enter AI resume parsing - a revolutionary tool changing the game for recruitment professionals worldwide. CVhire.com, our robust applicant tracking system (ATS), integrates advanced AI-powered resume parsing to redefine CV screening, saving time and ensuring you pinpoint the best candidates with ease.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h2 class="custom-header-25 custom-weight-bolder custom-mb-25">What is AI Resume Parsing?</h2>
-      <p>AI resume parsing is a technology that employs artificial intelligence to extract and analyze data from resumes, converting unstructured information into a structured format. This process plays a crucial role in cv screening, helping recruiters filter through piles of applications to find the most relevant candidates. By embracing this technology, companies can significantly enhance their recruitment efficiency, making the entire process smoother and faster.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h2 class="custom-header-25 custom-weight-bolder custom-mb-25">The Role of Applicant Tracking Systems in Recruitment</h2>
-      <p>An Applicant Tracking System (ATS) is a software application that assists in managing the recruitment process. It acts as a database for job applicants, streamlining the application and selection phases. CVhire.com stands out in this domain, providing a state-of-the-art ATS with an integrated AI-powered resume parsing feature. This integration ensures that CV screening becomes an automated and error-free process, allowing recruiters to focus on evaluating candidates based on their skills and experience rather than spending hours on manual resume reviews.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h2 class="custom-header-25 custom-weight-bolder custom-mb-25">How CVhire.com Transforms Your Hiring Process</h2>
-      <p>CVhire.com is not just an applicant tracking system; it’s a recruitment companion designed to make your job easier and more efficient. Here’s how our AI resume parsing feature transforms your hiring process:</p>
-    </div>
-    <div class="custom-mb-50">
-      <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">1. Speed and Efficiency:</h3>
-      <p><span class="custom-underline-1">Time-Saving:</span> Manual CV screening can be time-consuming. With AI resume parsing, CVhire.com reduces this time significantly, allowing you to sift through hundreds of resumes in minutes.</p>
-      <p><span class="custom-underline-1">Quick Shortlisting:</span> The system instantly identifies the most relevant resumes based on the job description, making the shortlisting process quicker and more accurate.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">2. Accuracy and Consistency:</h3>
-      <p><span class="custom-underline-1">Eliminate Human Error:</span> Manual resume screening is prone to errors. CVhire.com ensures consistency and accuracy in parsing and analyzing resumes, reducing the chances of missing out on potential candidates.</p>
-      <p><span class="custom-underline-1">Standardization:</span> Our ATS standardizes the information extracted from resumes, ensuring a uniform evaluation process for all applicants.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">3. Enhanced Candidate Experience:</h3>
-      <p><span class="custom-underline-1">Smooth Application Process:</span> Candidates appreciate a smooth and straightforward application process. CVhire.com ensures that the application phase is seamless, enhancing the overall candidate experience.</p>
-      <p><span class="custom-underline-1">Quick Response Time:</span> With faster resume parsing and screening, recruiters can respond to candidates more promptly, improving communication and leaving a positive impression.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">4. Data-Driven Decisions:</h3>
-      <p><span class="custom-underline-1">Insights and Analytics:</span> CVhire.com provides valuable insights and analytics based on the data extracted from resumes, aiding recruiters in making informed decisions.</p>
-      <p><span class="custom-underline-1">Identify Trends:</span> Understanding trends in the talent pool can be crucial. Our ATS helps you identify these trends, ensuring that you stay ahead in the recruitment game.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h2 class="custom-header-25 custom-weight-bolder custom-mb-25">Best Practices for Using AI Resume Parsing in Recruitment</h2>
-      <p>To reap the maximum benefits from AI resume parsing and cv screening, here are some best practices to follow:</p>
-    </div>
-    <div class="custom-mb-50">
-      <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">1. Clear Job Descriptions:</h3>
-      <p>Ensure that your job descriptions are clear and detailed. The AI system relies on the information provided in the job description to parse and match resumes accurately.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">2. Continuous Learning and Adaptation:</h3>
-      <p>AI systems learn and adapt over time. Regularly update and train your ATS to ensure that it stays current and continues to provide accurate results.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">3. Feedback Loop:</h3>
-      <p>Establish a feedback loop with the AI system. Regularly assess the resumes shortlisted by the system and provide feedback to improve its accuracy and efficiency over time.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">4. Diversity and Inclusion:</h3>
-      <p>Ensure that your AI resume parsing tool is programmed to prevent bias, promoting diversity and inclusion in your recruitment process.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">5. Regular System Updates:</h3>
-      <p>Stay updated with the latest advancements in AI and resume parsing technology. Ensure that your ATS is regularly updated to take advantage of new features and improvements.</p>
-    </div>
-    <div class="custom-mb-50">
-      <h2 class="custom-header-25 custom-weight-bolder custom-mb-25">Conclusion</h2>
-      <p>AI resume parsing is not just a trend; it's a transformative tool that is redefining the recruitment landscape. CVhire.com stands at the forefront of this revolution, providing recruiters with a powerful applicant tracking system integrated with advanced AI-powered resume parsing capabilities. By automating the CV screening process, we not only save you time but also ensure accuracy, consistency, and a seamless experience for both recruiters and candidates. Embrace the future of recruitment with CVhire.com, and discover a world where finding the perfect candidate is just a click away.</p>
-    </div>
+  <div class="custom-mb-50">
+    <h2 class="custom-header-25 custom-weight-bolder custom-mb-25">What is AI Resume Parsing?</h2>
+    <p>AI resume parsing is a technology that employs artificial intelligence to extract and analyze data from resumes, converting unstructured information into a structured format. This process plays a crucial role in cv screening, helping recruiters filter through piles of applications to find the most relevant candidates. By embracing this technology, companies can significantly enhance their recruitment efficiency, making the entire process smoother and faster.</p>
   </div>
-  <!-- ----------------------------------- content end ----------------------------------- -->
-  <!-- ----------------------------------- back start ----------------------------------- -->
-  <div class="text-center">
-    <a href="/signup" class="btn btn-primary custom-width-100">Get started</a>
-    <div class="custom-mt-25">
-      <a href="/blog" class="custom-a-black-underline">Back</a>
-    </div>
+  <div class="custom-mb-50">
+    <h2 class="custom-header-25 custom-weight-bolder custom-mb-25">The Role of Applicant Tracking Systems in Recruitment</h2>
+    <p>An Applicant Tracking System (ATS) is a software application that assists in managing the recruitment process. It acts as a database for job applicants, streamlining the application and selection phases. CVhire.com stands out in this domain, providing a state-of-the-art ATS with an integrated AI-powered resume parsing feature. This integration ensures that CV screening becomes an automated and error-free process, allowing recruiters to focus on evaluating candidates based on their skills and experience rather than spending hours on manual resume reviews.</p>
   </div>
-  <!-- ----------------------------------- back end ----------------------------------- -->
+  <div class="custom-mb-50">
+    <h2 class="custom-header-25 custom-weight-bolder custom-mb-25">How CVhire.com Transforms Your Hiring Process</h2>
+    <p>CVhire.com is not just an applicant tracking system; it’s a recruitment companion designed to make your job easier and more efficient. Here’s how our AI resume parsing feature transforms your hiring process:</p>
+  </div>
+  <div class="custom-mb-50">
+    <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">1. Speed and Efficiency:</h3>
+    <p><span class="custom-underline-1">Time-Saving:</span> Manual CV screening can be time-consuming. With AI resume parsing, CVhire.com reduces this time significantly, allowing you to sift through hundreds of resumes in minutes.</p>
+    <p><span class="custom-underline-1">Quick Shortlisting:</span> The system instantly identifies the most relevant resumes based on the job description, making the shortlisting process quicker and more accurate.</p>
+  </div>
+  <div class="custom-mb-50">
+    <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">2. Accuracy and Consistency:</h3>
+    <p><span class="custom-underline-1">Eliminate Human Error:</span> Manual resume screening is prone to errors. CVhire.com ensures consistency and accuracy in parsing and analyzing resumes, reducing the chances of missing out on potential candidates.</p>
+    <p><span class="custom-underline-1">Standardization:</span> Our ATS standardizes the information extracted from resumes, ensuring a uniform evaluation process for all applicants.</p>
+  </div>
+  <div class="custom-mb-50">
+    <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">3. Enhanced Candidate Experience:</h3>
+    <p><span class="custom-underline-1">Smooth Application Process:</span> Candidates appreciate a smooth and straightforward application process. CVhire.com ensures that the application phase is seamless, enhancing the overall candidate experience.</p>
+    <p><span class="custom-underline-1">Quick Response Time:</span> With faster resume parsing and screening, recruiters can respond to candidates more promptly, improving communication and leaving a positive impression.</p>
+  </div>
+  <div class="custom-mb-50">
+    <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">4. Data-Driven Decisions:</h3>
+    <p><span class="custom-underline-1">Insights and Analytics:</span> CVhire.com provides valuable insights and analytics based on the data extracted from resumes, aiding recruiters in making informed decisions.</p>
+    <p><span class="custom-underline-1">Identify Trends:</span> Understanding trends in the talent pool can be crucial. Our ATS helps you identify these trends, ensuring that you stay ahead in the recruitment game.</p>
+  </div>
+  <div class="custom-mb-50">
+    <h2 class="custom-header-25 custom-weight-bolder custom-mb-25">Best Practices for Using AI Resume Parsing in Recruitment</h2>
+    <p>To reap the maximum benefits from AI resume parsing and cv screening, here are some best practices to follow:</p>
+  </div>
+  <div class="custom-mb-50">
+    <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">1. Clear Job Descriptions:</h3>
+    <p>Ensure that your job descriptions are clear and detailed. The AI system relies on the information provided in the job description to parse and match resumes accurately.</p>
+  </div>
+  <div class="custom-mb-50">
+    <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">2. Continuous Learning and Adaptation:</h3>
+    <p>AI systems learn and adapt over time. Regularly update and train your ATS to ensure that it stays current and continues to provide accurate results.</p>
+  </div>
+  <div class="custom-mb-50">
+    <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">3. Feedback Loop:</h3>
+    <p>Establish a feedback loop with the AI system. Regularly assess the resumes shortlisted by the system and provide feedback to improve its accuracy and efficiency over time.</p>
+  </div>
+  <div class="custom-mb-50">
+    <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">4. Diversity and Inclusion:</h3>
+    <p>Ensure that your AI resume parsing tool is programmed to prevent bias, promoting diversity and inclusion in your recruitment process.</p>
+  </div>
+  <div class="custom-mb-50">
+    <h3 class="custom-header-20 custom-weight-bolder custom-mb-25">5. Regular System Updates:</h3>
+    <p>Stay updated with the latest advancements in AI and resume parsing technology. Ensure that your ATS is regularly updated to take advantage of new features and improvements.</p>
+  </div>
+  <div class="custom-mb-50">
+    <h2 class="custom-header-25 custom-weight-bolder custom-mb-25">Conclusion</h2>
+    <p>AI resume parsing is not just a trend; it's a transformative tool that is redefining the recruitment landscape. CVhire.com stands at the forefront of this revolution, providing recruiters with a powerful applicant tracking system integrated with advanced AI-powered resume parsing capabilities. By automating the CV screening process, we not only save you time but also ensure accuracy, consistency, and a seamless experience for both recruiters and candidates. Embrace the future of recruitment with CVhire.com, and discover a world where finding the perfect candidate is just a click away.</p>
+  </div>
 </div>
 <!-- ----------------------------------- content end ----------------------------------- -->
 {% endblock %}
