@@ -1,0 +1,55 @@
+{% extends "navbar/exterior.html" %}
+
+{% block title %}
+  <title>Login | CVhire</title>
+  <meta name="description" content="CVhire is an automated CV screening and resume parser for recruiters and HR teams. AI recruiting made simple.">
+  <meta name="og:description" content="CVhire is an automated CV screening and resume parser for recruiters and HR teams. AI recruiting made simple.">
+{% endblock %}
+
+{% block contentBodyExceptNavbarAndFooter %}
+<!-- ----------------------------------- alert start ----------------------------------- -->
+{% if page_dict_html['alert_message_dict']['message'] != '' %}
+<div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">
+  {{ page_dict_html['alert_message_dict']['message'] }}
+</div>
+{% endif %}
+<!-- ----------------------------------- alert end ----------------------------------- -->
+<!-- ----------------------------------- content start ----------------------------------- -->
+<div class="custom-width-900 mx-auto">
+  <!-- ----------------------------------- img start ----------------------------------- -->
+  <div class="text-center custom-mt-50">
+    <img src="{{ page_dict_html['blog_dict']['image_url'] }}" alt="" class="custom-max-height-400 custom-max-width-90 custom-br-25">
+  </div>
+  <!-- ----------------------------------- img end ----------------------------------- -->
+  <!-- ----------------------------------- keywords start ----------------------------------- -->
+  <div class="custom-mt-50 custom-mb-25 custom-display-flex custom-f-wrap">
+    {% for k_keyword, v_keyword in page_dict_html['blog_dict']['keywords_read_dict'].items() %}
+      <a href="/blog/category/{{ v_keyword['url'] }}" class="custom-underline-none"><p class="custom-f-nowrap-important custom-m-0 custom-header-8 custom-br-15 custom-mr-5 custom-mt-5 custom-plr-10 custom-ptb-5 {{ v_keyword['html-bg-color'] }} {{ v_keyword['html-text-color'] }}">{{ k_keyword }}</p></a>
+    {% endfor %}
+  </div>
+  <!-- ----------------------------------- keywords end ----------------------------------- -->
+  <!-- ----------------------------------- title start ----------------------------------- -->
+  <div class="custom-mb-25">
+    <h1 class="custom-header-30">{{ page_dict_html['blog_dict']['title_read'] }}</h1>
+    <!-- ----------------------------------- author start ----------------------------------- -->
+    <div class="custom-display-flex custom-mt-25">
+      <div>
+        <a href="{{ page_dict_html['blog_dict']['author_social_url'] }}" target="_blank"><img src="{{ page_dict_html['blog_dict']['author_img_url'] }}" alt="author profile img" class="custom-img-height-20 custom-mr-5 custom-mt-negative-5"></a>
+      </div>
+      <a href="{{ page_dict_html['blog_dict']['author_social_url'] }}" target="_blank" class="custom-a-black-underline custom-m-0 custom-header-15 custom-opacity-50 custom-mr-15">{{ page_dict_html['blog_dict']['author'] }}</a>
+      <span class="custom-m-0 custom-header-15 custom-opacity-50"><i class="fa-regular fa-calendar custom-mr-5"></i> {{ page_dict_html['blog_dict']['created_timestamp_read'] }}</span>
+    </div>
+    <!-- ----------------------------------- author end ----------------------------------- -->
+  </div>
+  <!-- ----------------------------------- title end ----------------------------------- -->
+  <!-- ----------------------------------- content start ----------------------------------- -->
+  
+  <!-- ----------------------------------- content end ----------------------------------- -->
+  <!-- ----------------------------------- back start ----------------------------------- -->
+  <div class="text-center">
+    <a href="/blog" class="btn btn-primary custom-plr-25">Back</a>
+  </div>
+  <!-- ----------------------------------- back end ----------------------------------- -->
+</div>
+<!-- ----------------------------------- content end ----------------------------------- -->
+{% endblock %}

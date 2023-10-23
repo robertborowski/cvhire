@@ -6,7 +6,7 @@ from website.models import BlogObj
 from website import db
 from website.backend.alerts import get_alert_message_function
 from website.backend.convert import objs_to_arr_of_dicts_function, convert_obj_row_to_dict_function
-from website.backend.convert import present_title_function
+from website.backend.convert import present_title_function, keywords_present_function, timestamp_to_date_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -122,7 +122,15 @@ def blog_post_function(url_blog_code=None, url_redirect_code=None):
     return redirect(url_for('cv_views_blog.blog_function', url_redirect_code='e10'))
   # ------------------------ not found redirect end ------------------------
   # ------------------------ convert objs to dict start ------------------------
-  page_dict['db_arr_dicts'] = convert_obj_row_to_dict_function(db_obj)
+  page_dict['blog_dict'] = convert_obj_row_to_dict_function(db_obj)
+  page_dict['blog_dict']['title_read'] = present_title_function(page_dict['blog_dict']['title'])
+  page_dict['blog_dict']['keywords_read_dict'] = keywords_present_function(page_dict['blog_dict']['keywords'])
+  page_dict['blog_dict']['created_timestamp_read'] = timestamp_to_date_function(page_dict['blog_dict']['created_timestamp'])
   # ------------------------ convert objs to dict end ------------------------
-  return render_template('exterior/blog/i_blog/index.html', page_dict_html=page_dict)
+  # ------------------------ get html start ------------------------
+  html_template = ''
+  if db_obj.id == 'blog_post_1':
+    html_template = 'exterior/blog/i_blog/post1.html'
+  # ------------------------ get html end ------------------------
+  return render_template(html_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
