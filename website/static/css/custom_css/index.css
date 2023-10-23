@@ -1520,6 +1520,30 @@
   margin-bottom: 100px;
 }
 /* ------------------- margin end ------------------- */
+/* ------------------- navbar start ------------------- */
+.custom-nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  margin: 0;
+}
+.custom-nav-list a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+.custom-menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+.custom-menu-toggle .custom-bar {
+  background-color: rgb(0, 0, 0);
+  height: 2px;
+  width: 25px;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+/* ------------------- navbar end ------------------- */
 /* ------------------- overflow start ------------------- */
 .custom-overflow-1 {
   overflow: scroll;
