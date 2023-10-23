@@ -44,46 +44,6 @@ def blog_function(url_redirect_code=None):
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_blog.route('/blog/<url_blog_code>')
-@cv_views_blog.route('/blog/<url_blog_code>/')
-@cv_views_blog.route('/blog/<url_blog_code>/<url_redirect_code>')
-@cv_views_blog.route('/blog/<url_blog_code>/<url_redirect_code>/')
-def blog_post_function(url_blog_code=None, url_redirect_code=None):
-  # ------------------------ page dict start ------------------------
-  if url_redirect_code == None:
-    try:
-      url_redirect_code = request.args.get('url_redirect_code')
-    except:
-      pass
-  alert_message_dict = get_alert_message_function(url_redirect_code)
-  page_dict = {}
-  page_dict['alert_message_dict'] = alert_message_dict
-  # ------------------------ page dict end ------------------------
-  # ------------------------ page dict start ------------------------
-  if url_blog_code == None:
-    try:
-      url_blog_code = request.args.get('url_blog_code')
-    except:
-      pass
-  # ------------------------ page dict end ------------------------
-  # ------------------------ set variables start ------------------------
-  page_dict['nav_header'] = True
-  # ------------------------ set variables end ------------------------
-  # ------------------------ get all blog posts from db start ------------------------
-  db_obj = BlogObj.query.filter_by(status=True,title=url_blog_code).order_by(BlogObj.created_timestamp.desc()).first()
-  # ------------------------ get all blog posts from db end ------------------------
-  # ------------------------ not found redirect start ------------------------
-  if db_obj == None or db_obj == []:
-    return redirect(url_for('cv_views_blog.blog_function', url_redirect_code='e10'))
-  # ------------------------ not found redirect end ------------------------
-  # ------------------------ convert objs to dict start ------------------------
-  page_dict['db_arr_dicts'] = convert_obj_row_to_dict_function(db_obj)
-  # ------------------------ convert objs to dict end ------------------------
-  return render_template('exterior/blog/i_blog/index.html', page_dict_html=page_dict)
-# ------------------------ individual route end ------------------------
-
-
-# ------------------------ individual route start ------------------------
 @cv_views_blog.route('/blog/category')
 @cv_views_blog.route('/blog/category/')
 @cv_views_blog.route('/blog/category/<url_category_code>')
@@ -126,4 +86,43 @@ def blog_category_function(url_category_code=None, url_redirect_code=None):
   page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_objs, 'blog')
   # ------------------------ convert objs to dict end ------------------------
   return render_template('exterior/blog/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_blog.route('/blog/<url_blog_code>')
+@cv_views_blog.route('/blog/<url_blog_code>/')
+@cv_views_blog.route('/blog/<url_blog_code>/<url_redirect_code>')
+@cv_views_blog.route('/blog/<url_blog_code>/<url_redirect_code>/')
+def blog_post_function(url_blog_code=None, url_redirect_code=None):
+  # ------------------------ page dict start ------------------------
+  if url_redirect_code == None:
+    try:
+      url_redirect_code = request.args.get('url_redirect_code')
+    except:
+      pass
+  alert_message_dict = get_alert_message_function(url_redirect_code)
+  page_dict = {}
+  page_dict['alert_message_dict'] = alert_message_dict
+  # ------------------------ page dict end ------------------------
+  # ------------------------ page dict start ------------------------
+  if url_blog_code == None:
+    try:
+      url_blog_code = request.args.get('url_blog_code')
+    except:
+      pass
+  # ------------------------ page dict end ------------------------
+  # ------------------------ set variables start ------------------------
+  page_dict['nav_header'] = True
+  # ------------------------ set variables end ------------------------
+  # ------------------------ get all blog posts from db start ------------------------
+  db_obj = BlogObj.query.filter_by(status=True,title=url_blog_code).order_by(BlogObj.created_timestamp.desc()).first()
+  # ------------------------ get all blog posts from db end ------------------------
+  # ------------------------ not found redirect start ------------------------
+  if db_obj == None or db_obj == []:
+    return redirect(url_for('cv_views_blog.blog_function', url_redirect_code='e10'))
+  # ------------------------ not found redirect end ------------------------
+  # ------------------------ convert objs to dict start ------------------------
+  page_dict['db_arr_dicts'] = convert_obj_row_to_dict_function(db_obj)
+  # ------------------------ convert objs to dict end ------------------------
+  return render_template('exterior/blog/i_blog/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
