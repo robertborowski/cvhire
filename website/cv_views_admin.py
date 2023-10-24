@@ -130,7 +130,9 @@ def admin_function(url_redirect_code=None):
     # ------------------------ post #5 start ------------------------
     ui_run_script_call = request.form.get('uiRunScriptLinkedIn')
     if ui_run_script_call != None:
+      # ------------------------ selenium script start ------------------------
       linkedin_scraper_function('normal')
+      # ------------------------ selenium script end ------------------------
       return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s13'))
     # ------------------------ post #5 end ------------------------
   return render_template('interior/admin_templates/index.html', page_dict_html=page_dict)

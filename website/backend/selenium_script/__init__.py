@@ -1,9 +1,16 @@
 # ------------------------ imports start ------------------------
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import random
 import time
 from website import db
+import os
 # ------------------------ imports end ------------------------
+
+# ------------------------ scroll to bottom of the page start ------------------------
+# driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+# ------------------------ scroll to bottom of the page end ------------------------
 
 # ------------------------ individual function start ------------------------
 def linkedin_scraper_function(input1=None):
@@ -16,66 +23,89 @@ def linkedin_scraper_function(input1=None):
     options.add_argument("start-maximized")
     # ------------------------ incognito end ------------------------
     driver = webdriver.Chrome(options=options)
-    driver.get('https://www.reddit.com/user/smile-thank-you/submitted/')
+    driver.get('https://www.linkedin.com/')
     # ------------------------ webdriver open end ------------------------
-    """
     # ------------------------ set variables start ------------------------
     data_captured_dict = {}
     running_check = True
     run_count = -1
+    company_names_arr = ['hellofresh']
+    role_names_arr = ['recruiter']
     # ------------------------ set variables end ------------------------
     # ------------------------ recurring start ------------------------
     while running_check == True:
       run_count += 1
-      # ------------------------ scroll to bottom of the page start ------------------------
-      driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-      # ------------------------ scroll to bottom of the page end ------------------------
-      # ------------------------ get lists/variables start ------------------------
-      element_all_posts_arr = driver.find_elements(By.CSS_SELECTOR,'[view-type="cardView"]') # type: list
-      # ------------------------ get lists/variables end ------------------------
-      for i_post in range(len(element_all_posts_arr)): # type: <class 'selenium.webdriver.remote.webelement.WebElement'>
-        # ------------------------ check in/add to dict start ------------------------
-        if element_all_posts_arr[i_post] in data_captured_dict:
-          continue
-        if i_post not in data_captured_dict:
-          data_captured_dict[element_all_posts_arr[i_post]] = {}
-        # ------------------------ check in/add to dict end ------------------------
-        # ------------------------ pull/assign variables start ------------------------
-        data_captured_dict[element_all_posts_arr[i_post]]['reddit_community'], data_captured_dict[element_all_posts_arr[i_post]]['reddit_posted_time_ago'], data_captured_dict[element_all_posts_arr[i_post]]['reddit_title'], data_captured_dict[element_all_posts_arr[i_post]]['reddit_total_votes'], data_captured_dict[element_all_posts_arr[i_post]]['reddit_total_comments'], data_captured_dict[element_all_posts_arr[i_post]]['reddit_post_url'] = get_general_info_function(element_all_posts_arr, i_post)
-        # ------------------------ pull/assign variables end ------------------------
-        # ------------------------ cutooff check start ------------------------
-        if 'days ago' in data_captured_dict[element_all_posts_arr[i_post]]['reddit_posted_time_ago']:
-          num_days = int(data_captured_dict[element_all_posts_arr[i_post]]['reddit_posted_time_ago'].replace(' days ago', ''))
-          if num_days >= 20:
-            running_check = False
-            break
-        # ------------------------ cutooff check end ------------------------
-        # ------------------------ pull/create reddit post from db start ------------------------
-        db_reddit_post_obj = pull_create_update_reddit_post_function(data_captured_dict, element_all_posts_arr, i_post)
-        # ------------------------ pull/create reddit post from db end ------------------------
-        # ------------------------ new commentary check start ------------------------
-        new_commentary_db_check = False
-        db_comments_obj = RedditCommentsObj.query.filter_by(fk_reddit_post_id=db_reddit_post_obj.id).all()
-        if len(db_comments_obj) < (int(db_reddit_post_obj.total_comments) - int(db_reddit_post_obj.total_replies)):
-          new_commentary_db_check = True
-        # ------------------------ new commentary check end ------------------------
-        # ------------------------ get new comments start ------------------------
-        if new_commentary_db_check == True:
-          driver.get(data_captured_dict[element_all_posts_arr[i_post]]['reddit_post_url'])
-          data_captured_dict = get_all_comments_from_post_function(data_captured_dict, element_all_posts_arr, i_post, driver)
-          # ------------------------ collect all comments from post end ------------------------
-          # ------------------------ add to db start ------------------------
-          add_commentary_to_db_function(data_captured_dict, element_all_posts_arr, i_post, db_reddit_post_obj)
-          # ------------------------ add to db end ------------------------
-          driver.get('https://www.reddit.com/user/smile-thank-you/submitted/')
-          time.sleep(3)
-          break
-        # ------------------------ get new comments end ------------------------
-    # ------------------------ recurring end ------------------------
-    """
-    # ------------------------ webdriver close start ------------------------
-    driver.close()
-    # ------------------------ webdriver close end ------------------------
+      # ------------------------ login start ------------------------
+      login_function(driver)
+      # ------------------------ login end ------------------------
+      # ------------------------ search start ------------------------
+      search_function(driver, company_names_arr[0], role_names_arr[0])
+      # ------------------------ search end ------------------------
+      # ------------------------ webdriver close start ------------------------
+      driver.close()
+      # ------------------------ webdriver close end ------------------------
+      print(' ------------- 100 start ------------- ')
+      data_captured_dict = dict(sorted(data_captured_dict.items(),key=lambda x:x[0]))
+      for k,v in data_captured_dict.items():
+        print(f"k: {k} | v: {v}")
+        pass
+      print(' ------------- 100 end ------------- ')
+      return True
   # ------------------------ scraper #1 end ------------------------
+  return True
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def random_int_function():
+  return random.randint(2, 4)
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def login_function(driver):
+  # username
+  element = driver.find_element(By.ID, 'session_key')
+  element.click()
+  element.send_keys(os.environ.get('LINKEDIN_USERNAME'))
+  time.sleep(random_int_function())
+
+  # password
+  element = driver.find_element(By.ID, 'session_password')
+  element.click()
+  element.send_keys(os.environ.get('LINKEDIN_PASSWORD'))
+  time.sleep(random_int_function())
+
+  # sign in button
+  element = driver.find_element(By.CSS_SELECTOR, '.sign-in-form__submit-btn--full-width')
+  element.click()
+  time.sleep(random_int_function())
+
+  try:
+    # email code
+    element = driver.find_element(By.ID, 'input__email_verification_pin') 
+    element.click()
+    time.sleep(15)
+
+    # submit button
+    element = driver.find_element(By.ID, 'email-pin-submit-button')
+    element.click()
+    time.sleep(random_int_function())
+  except:
+    pass
+  return True
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def search_function(driver, input_company_name, input_role_name):
+  # search bar
+  element = driver.find_element(By.CSS_SELECTOR, '.search-global-typeahead__input')
+  element.click()
+  element.send_keys(input_company_name + ' ' + input_role_name)
+  element.send_keys(Keys.ENTER)
+  time.sleep(random_int_function())
+
+  # click "People" category of search
+  element = driver.find_element(By.CSS_SELECTOR, '.search-reusables__filter-pill-button')
+  element.click()
+  time.sleep(random_int_function())
   return True
 # ------------------------ individual function end ------------------------
