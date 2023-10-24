@@ -3,7 +3,7 @@ from website.backend.uuid_timestamp import create_uuid_function, create_timestam
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailBlockObj
+from website.models import UserObj, EmailBlockObj, EmailScrapedObj
 import os
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
@@ -95,5 +95,36 @@ def admin_function(url_redirect_code=None):
           redis_connection.delete(key.decode('utf-8'))
       # ------------------------ loop through keys end ------------------------
     # ------------------------ post #3 end ------------------------
+    # ------------------------ post #4 start ------------------------
+    ui_scrape_email = request.form.get('uiScrapeEmail')
+    if ui_scrape_email != None:
+      # ------------------------ sanitize/check user input email start ------------------------
+      ui_scrape_email_cleaned = sanitize_email_function(ui_scrape_email)
+      if ui_scrape_email_cleaned == False:
+        pass
+      # ------------------------ sanitize/check user input email end ------------------------
+      # ------------------------ check if user email exists in db start ------------------------
+      user_exists = UserObj.query.filter_by(email=ui_scrape_email).first()
+      if user_exists != None and user_exists != []:
+        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='e22'))
+      user_exists = EmailScrapedObj.query.filter_by(email=ui_scrape_email).first()
+      if user_exists != None and user_exists != []:
+        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='e23'))
+      # ------------------------ check if user email exists in db end ------------------------
+      # ------------------------ add to db start ------------------------
+      try:
+        new_row = EmailScrapedObj(
+          id=create_uuid_function('scrape_'),
+          created_timestamp=create_timestamp_function(),
+          email=ui_scrape_email,
+          unsubscribed=False
+        )
+        db.session.add(new_row)
+        db.session.commit()
+      except:
+        pass
+      return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s12'))
+      # ------------------------ add to db end ------------------------
+    # ------------------------ post #4 end ------------------------
   return render_template('interior/admin_templates/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

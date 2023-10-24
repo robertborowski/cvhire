@@ -115,6 +115,16 @@ def get_alert_message_function(redirect_var=None):
       'message':'At least 1 follow up required',
       'type':'danger'
     }
+  elif redirect_var == 'e22':
+    alert_message_dict = {
+      'message':'Email is already a user',
+      'type':'danger'
+    }
+  elif redirect_var == 'e23':
+    alert_message_dict = {
+      'message':'Email is already scraped',
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':
@@ -170,6 +180,11 @@ def get_alert_message_function(redirect_var=None):
   elif redirect_var == 's11':
     alert_message_dict = {
       'message':'Successfully subscribed',
+      'type':'success'
+    }
+  elif redirect_var == 's12':
+    alert_message_dict = {
+      'message':'Successfully added',
       'type':'success'
     }
   # ------------------------ success end ------------------------
