@@ -9,6 +9,7 @@ from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.sanitize import sanitize_email_function
 from website.backend.static_lists import get_list_function, redis_all_keys_function
+from website.backend.selenium_script import linkedin_scraper_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -126,5 +127,11 @@ def admin_function(url_redirect_code=None):
       return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s12'))
       # ------------------------ add to db end ------------------------
     # ------------------------ post #4 end ------------------------
+    # ------------------------ post #5 start ------------------------
+    ui_run_script_call = request.form.get('uiRunScriptLinkedIn')
+    if ui_run_script_call != None:
+      linkedin_scraper_function('normal')
+      return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s13'))
+    # ------------------------ post #5 end ------------------------
   return render_template('interior/admin_templates/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
