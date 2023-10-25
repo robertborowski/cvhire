@@ -8,10 +8,6 @@ from website import db
 import os
 # ------------------------ imports end ------------------------
 
-# ------------------------ scroll to bottom of the page start ------------------------
-# driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-# ------------------------ scroll to bottom of the page end ------------------------
-
 # ------------------------ individual function start ------------------------
 def linkedin_scraper_function(input1=None):
   # ------------------------ scraper #1 start ------------------------
@@ -41,6 +37,11 @@ def linkedin_scraper_function(input1=None):
       # ------------------------ search start ------------------------
       search_function(driver, company_names_arr[0], role_names_arr[0])
       # ------------------------ search end ------------------------
+      # ------------------------ scrape info multiple pages start ------------------------
+      data_captured_dict = multiple_pages_function(driver, data_captured_dict)
+      # ------------------------ scrape info multiple pages end ------------------------
+      # ------------------------ scraped info to db start ------------------------
+      # ------------------------ scraped info to db end ------------------------
       # ------------------------ webdriver close start ------------------------
       driver.close()
       # ------------------------ webdriver close end ------------------------
@@ -108,4 +109,51 @@ def search_function(driver, input_company_name, input_role_name):
   element.click()
   time.sleep(random_int_function())
   return True
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def collect_function(driver, data_captured_dict):
+  # ------------------------ all employee rows on page start ------------------------
+  elements = driver.find_elements(By.CSS_SELECTOR, '.reusable-search__result-container')
+  for i_element in elements:
+    # ------------------------ employee name start ------------------------
+    name_element = i_element.find_element(By.XPATH, ".//span[@dir='ltr']/span[1]")
+    employee_display_name = name_element.text
+    # ------------------------ employee name end ------------------------
+    # ------------------------ employee company start ------------------------
+    subtitle_element = i_element.find_element(By.CSS_SELECTOR, ".entity-result__primary-subtitle")
+    employee_display_subtitle = subtitle_element.text
+    # ------------------------ employee company end ------------------------
+    if employee_display_name not in data_captured_dict:
+      data_captured_dict[employee_display_name] = employee_display_subtitle
+  # ------------------------ all employee rows on page end ------------------------
+  return data_captured_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def multiple_pages_function(driver, data_captured_dict):
+  search_pages_max = 5
+  current_page = 1
+  while current_page < search_pages_max:
+    try:
+      # ------------------------ collect info start ------------------------
+      data_captured_dict = collect_function(driver, data_captured_dict)
+      # ------------------------ collect info end ------------------------
+      # ------------------------ scroll to bottom of the page start ------------------------
+      driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+      time.sleep(random_int_function())
+      # ------------------------ scroll to bottom of the page end ------------------------
+      # ------------------------ click next page start ------------------------
+      element = driver.find_element(By.XPATH, "//span[@class='artdeco-button__text' and text()='Next']")
+      element.click()
+      time.sleep(random_int_function())
+      # ------------------------ click next page end ------------------------
+      # ------------------------ increase page counter start ------------------------
+      current_page += 1
+      # ------------------------ increase page counter end ------------------------
+    except:
+      # ------------------------ increase page counter start ------------------------
+      current_page += 1
+      # ------------------------ increase page counter end ------------------------
+  return data_captured_dict
 # ------------------------ individual function end ------------------------
