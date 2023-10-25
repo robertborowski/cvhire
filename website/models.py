@@ -206,9 +206,10 @@ class LinkedinScrapeObj(db.Model):
   id = db.Column(db.String(150), primary_key=True)
   created_timestamp = db.Column(db.DateTime(timezone=True))
   company = db.Column(db.String(150))
+  role = db.Column(db.String(150))
   name = db.Column(db.String(150))
   subtitle = db.Column(db.String(150))
-  url = db.Column(db.String(150))
+  url = db.Column(db.String(300))
 # ------------------------ individual model end ------------------------
 
 """

@@ -6,7 +6,9 @@ from selenium.webdriver.common.action_chains import ActionChains
 import random
 import time
 from website import db
+from website.models import LinkedinScrapeObj
 import os
+from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -24,7 +26,7 @@ def linkedin_scraper_function():
   login_function(driver)
   # ------------------------ login end ------------------------
   # ------------------------ set variables start ------------------------
-  company_names_arr = ['hellofresh']
+  company_names_arr = ['hellofresh','datadog']
   role_names_arr = ['recruiter','talent acquisition']
   # ------------------------ set variables end ------------------------
   # ------------------------ recurring start ------------------------
@@ -99,9 +101,11 @@ def search_function(driver, input_company_name, input_role_name):
   actions.key_down(Keys.COMMAND).send_keys('a').perform()
   actions.key_up(Keys.COMMAND).perform()
   element.send_keys(Keys.DELETE)
+  time.sleep(random_int_function())
   
   # search typing
   element.send_keys(input_company_name + ' ' + input_role_name)
+  time.sleep(random_int_function())
   element.send_keys(Keys.ENTER)
   time.sleep(random_int_function())
 
@@ -171,13 +175,30 @@ def multiple_pages_function(driver, data_captured_dict):
 
 # ------------------------ individual function start ------------------------
 def upload_to_db_function(data_captured_dict, searched_company_name, searched_role_name):
-  print(' ------------- 100 start ------------- ')
-  data_captured_dict = dict(sorted(data_captured_dict.items(),key=lambda x:x[0]))
   for k,v in data_captured_dict.items():
-    print(f"k: {k} | v: {v}")
-    pass
-  print(' ------------- 100 end ------------- ')
-  for k,v in data_captured_dict.items():
-    pass
+    db_obj = LinkedinScrapeObj.query.filter_by(name=k,company=searched_company_name).first()
+    if db_obj == None or db_obj == []:
+      # ------------------------ force cutoff start ------------------------
+      if len(k) > 150:
+        k = k[0:149]
+      if len(v['subtitle']) > 150:
+        v['subtitle'] = v['subtitle'][0:149]
+      # ------------------------ force cutoff end ------------------------
+      # ------------------------ new row start ------------------------
+      try:
+        new_row = LinkedinScrapeObj(
+          id=create_uuid_function('role_'),
+          created_timestamp=create_timestamp_function(),
+          company=searched_company_name,
+          role=searched_role_name,
+          name=k,
+          subtitle=v['subtitle'],
+          url=v['url']
+        )
+        db.session.add(new_row)
+        db.session.commit()
+      except:
+        pass
+      # ------------------------ new row end ------------------------
   return True
 # ------------------------ individual function end ------------------------
