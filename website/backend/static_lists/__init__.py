@@ -486,6 +486,9 @@ def get_keyword_colors_function(i_keyword):
   if i_keyword.lower() == 'ai':
     html_bg_color = 'custom-bg-info'
     html_text_color = 'custom-color-black'
+  if i_keyword.lower() == 'applicant tracking system' or i_keyword.lower() == 'ats':
+    html_bg_color = 'custom-bg-danger'
+    html_text_color = 'custom-color-white'
   else:
     pass
   return html_bg_color, html_text_color
