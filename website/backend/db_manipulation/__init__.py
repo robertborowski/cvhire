@@ -2,6 +2,7 @@
 from website.models import CvObj, LinkedinScrapeObj
 from website.backend.static_lists import get_linkedin_identifiers_function, get_special_chars_function
 import re
+from website import db
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -57,9 +58,17 @@ def form_scraped_emails_function():
       display_name = display_name.strip()
       # ------------------------ clean display name end ------------------------
       print(f"display_name | type: {type(display_name)} | {display_name}")
-      # ------------------------ form emails start ------------------------
+      # ------------------------ get first name and potential last names arr start ------------------------
       first_name, potential_last_names_arr = derive_names_function(display_name)
-      # ------------------------ form emails end ------------------------
+      # ------------------------ get first name and potential last names arr end ------------------------
+      # ------------------------ if skip start ------------------------
+      if first_name == 'skip':
+        i_obj.completed = True
+        db.session.commit()
+        continue
+      # ------------------------ if skip end ------------------------
+      # ------------------------ form potential emails start ------------------------
+      # ------------------------ form potential emails end ------------------------
     print(' ------------- 0 ------------- ')
     # ------------------------ loop end ------------------------
   except Exception as e:
