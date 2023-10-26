@@ -1,5 +1,6 @@
 # ------------------------ imports start ------------------------
 from website.models import CvObj, LinkedinScrapeObj
+from website.backend.static_lists import get_linkedin_identifiers_function, get_special_chars_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -41,14 +42,15 @@ def form_scraped_emails_function():
     # ------------------------ loop start ------------------------
     print(' ------------- 0 ------------- ')
     for i_obj in db_objs:
-      # ------------------------ testing start ------------------------
-      counter += 1
-      if counter >= 100:
-        break
-      # ------------------------ testing end ------------------------
+      # # ------------------------ testing start ------------------------
+      # counter += 1
+      # if counter >= 100:
+      #   break
+      # # ------------------------ testing end ------------------------
       # ------------------------ clean display name start ------------------------
-      display_name = replace_chars_function(i_obj)
+      display_name = i_obj.name.lower()
       display_name = remove_chars_after_first_comma_function(display_name)
+      display_name = replace_chars_function(display_name)
       display_name = remove_identifiers_function(display_name)
       # ------------------------ clean display name end ------------------------
       print(f"display_name | type: {type(display_name)} | {display_name}")
@@ -61,13 +63,16 @@ def form_scraped_emails_function():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def replace_chars_function(i_obj):
+def replace_chars_function(display_name):
   try:
-    display_name = i_obj.name.lower()
-    display_name = display_name.replace("'","")
-    display_name = display_name.replace('.','')
-    display_name = display_name.replace('ë','e')
-    display_name = display_name.replace('ć','c')
+    chars_dict = get_special_chars_function()
+    # ------------------------ replace chars start ------------------------
+    for k,v in chars_dict.items():
+      try:
+        display_name = display_name.replace(k,v)
+      except:
+        pass
+    # ------------------------ replace chars end ------------------------
   except Exception as e:
     print(f'Error replace_chars_function: {e}')
   return display_name
@@ -88,8 +93,15 @@ def remove_chars_after_first_comma_function(display_name):
 def remove_identifiers_function(display_name):
   try:
     # ------------------------ get arr of identifiers start ------------------------
-    pass
+    arr = get_linkedin_identifiers_function()
     # ------------------------ get arr of identifiers end ------------------------
+    # ------------------------ replace occurences start ------------------------
+    for i in arr:
+      try:
+        display_name = display_name.replace(i,'').strip()
+      except:
+        pass
+    # ------------------------ replace occurences end ------------------------
   except Exception as e:
     print(f'Error remove_identifiers_function: {e}')
   return display_name

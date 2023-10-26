@@ -502,3 +502,30 @@ def get_all_companies_function():
     arr.append(i_obj.name)
   return arr
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_special_chars_function():
+  chars_dict = {
+    "'": "",
+    '.': '',
+    'ë': 'e',
+    'ć': 'c',
+    'ü': 'u',
+    "’": '',
+    '(': '',
+    ')': ''
+  }
+  return chars_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_linkedin_identifiers_function():
+  arr = [
+    'she/her/hers',
+    'she/her',
+    'shrm-cp',
+    'she/her/ella',
+    'they/he'
+  ]
+  return arr
+# ------------------------ individual function end ------------------------
