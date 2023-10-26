@@ -68,7 +68,14 @@ def form_scraped_emails_function():
         continue
       # ------------------------ if skip end ------------------------
       # ------------------------ form potential emails start ------------------------
+      emails_str = form_potential_emails_function(first_name, potential_last_names_arr)
       # ------------------------ form potential emails end ------------------------
+      # ------------------------ if blank start ------------------------
+      if emails_str == '':
+        i_obj.completed = True
+        db.session.commit()
+        continue
+      # ------------------------ if blank end ------------------------
     print(' ------------- 0 ------------- ')
     # ------------------------ loop end ------------------------
   except Exception as e:
@@ -189,4 +196,14 @@ def derive_names_function(display_name):
   except Exception as e:
     print(f'Error derive_names_function: {e}')
   return first_name, potential_last_names_arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def form_potential_emails_function(first_name, potential_last_names_arr):
+  emails_str = None
+  try:
+    pass
+  except Exception as e:
+    print(f'Error form_potential_emails_function: {e}')
+  return emails_str
 # ------------------------ individual function end ------------------------
