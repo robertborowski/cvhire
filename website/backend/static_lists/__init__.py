@@ -497,7 +497,7 @@ def get_keyword_colors_function(i_keyword):
 # ------------------------ individual function start ------------------------
 def get_all_companies_function():
   arr = []
-  db_objs = CompanyInfoObj.query.filter(active=True).all()
+  db_objs = CompanyInfoObj.query.filter_by(active=True).all()
   for i_obj in db_objs:
     arr.append(i_obj.name)
   return arr

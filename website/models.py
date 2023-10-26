@@ -59,7 +59,9 @@ class EmailBlockObj(db.Model):
 class EmailScrapedObj(db.Model):
   id = db.Column(db.String(150), primary_key=True)
   created_timestamp = db.Column(db.DateTime(timezone=True))
-  email = db.Column(db.String(150), unique=True)
+  all_formats = db.Column(db.String(300))
+  correct_format = db.Column(db.Integer)
+  website_address = db.Column(db.String(150))
   unsubscribed = db.Column(db.Boolean, default=False)
 # ------------------------ individual model end ------------------------
 
