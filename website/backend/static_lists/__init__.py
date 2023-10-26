@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from website.models import EmailBlockObj
+from website.models import EmailBlockObj, CompanyInfoObj
 from website import db
 from website.backend.connection import redis_connect_open_function
 # ------------------------ imports end ------------------------
@@ -492,4 +492,13 @@ def get_keyword_colors_function(i_keyword):
   else:
     pass
   return html_bg_color, html_text_color
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_all_companies_function():
+  arr = []
+  db_objs = CompanyInfoObj.query.filter(active=True).all()
+  for i_obj in db_objs:
+    arr.append(i_obj.name)
+  return arr
 # ------------------------ individual function end ------------------------

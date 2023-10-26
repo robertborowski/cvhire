@@ -9,6 +9,7 @@ from website import db
 from website.models import LinkedinScrapeObj
 import os
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
+from website.backend.static_lists import get_all_companies_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -26,7 +27,7 @@ def linkedin_scraper_function():
   login_function(driver)
   # ------------------------ login end ------------------------
   # ------------------------ set variables start ------------------------
-  company_names_arr = ['hellofresh','datadog']
+  company_names_arr = get_all_companies_function()
   role_names_arr = ['recruiter','talent acquisition']
   # ------------------------ set variables end ------------------------
   # ------------------------ recurring start ------------------------
@@ -147,7 +148,7 @@ def collect_function(driver, data_captured_dict):
 
 # ------------------------ individual function start ------------------------
 def multiple_pages_function(driver, data_captured_dict):
-  search_pages_max = 2
+  search_pages_max = 10
   current_page = 1
   while current_page < search_pages_max:
     try:
