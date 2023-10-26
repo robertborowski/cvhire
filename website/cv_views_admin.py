@@ -152,7 +152,7 @@ def admin_scrape_function(url_redirect_code=None):
       # ------------------------ selenium script start ------------------------
       linkedin_scraper_function()
       # ------------------------ selenium script end ------------------------
-      return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s13'))
+      return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s13'))
     # ------------------------ post #5 end ------------------------
     # ------------------------ post #6 start ------------------------
     ui_company_name = request.form.get('uiCompanyName')
@@ -173,15 +173,16 @@ def admin_scrape_function(url_redirect_code=None):
           db.session.commit()
         except:
           pass
-        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s12'))
+        return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s12'))
         # ------------------------ add to db end ------------------------
       else:
-        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='e10'))
+        return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='e10'))
     # ------------------------ post #6 end ------------------------
     # ------------------------ post #7 start ------------------------
     ui_form_scraped_emails = request.form.get('uiFormScrapedEmails')
     if ui_form_scraped_emails != None:
       form_scraped_emails_function()
+      return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s12'))
     # ------------------------ post #7 end ------------------------
   return render_template('interior/admin_templates/scrape/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

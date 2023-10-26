@@ -51,7 +51,6 @@ def form_scraped_emails_function():
       display_name = remove_emojis_function(display_name)
       display_name = display_name.strip()
       # ------------------------ clean display name end ------------------------
-      print(f"display_name | type: {type(display_name)} | {display_name}")
       # ------------------------ get first name and potential last names arr start ------------------------
       first_name, potential_last_names_arr = derive_names_function(display_name)
       # ------------------------ get first name and potential last names arr end ------------------------
@@ -62,7 +61,7 @@ def form_scraped_emails_function():
         continue
       # ------------------------ if skip end ------------------------
       # ------------------------ form potential emails start ------------------------
-      form_potential_emails_function(first_name, potential_last_names_arr, i_obj.company)
+      form_potential_emails_function(first_name, potential_last_names_arr, i_obj)
       # ------------------------ form potential emails end ------------------------
     # ------------------------ loop end ------------------------
   except Exception as e:
@@ -186,9 +185,9 @@ def derive_names_function(display_name):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def form_potential_emails_function(first_name, potential_last_names_arr, company_name):
+def form_potential_emails_function(first_name, potential_last_names_arr, i_linkedin_obj):
   # ------------------------ get company url start ------------------------
-  db_company_obj = CompanyInfoObj.query.filter_by(name=company_name).first()
+  db_company_obj = CompanyInfoObj.query.filter_by(name=i_linkedin_obj.company).first()
   # ------------------------ get company url end ------------------------
   try:
     for i_last_name in potential_last_names_arr:
@@ -222,6 +221,7 @@ def form_potential_emails_function(first_name, potential_last_names_arr, company
             unsubscribed=False
           )
           db.session.add(new_row)
+          i_linkedin_obj.completed = True
           db.session.commit()
         except:
           pass
