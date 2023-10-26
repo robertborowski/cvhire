@@ -41,6 +41,68 @@ def admin_function(url_redirect_code=None):
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
   if request.method == 'POST':
+    # ------------------------ post #5 start ------------------------
+    ui_run_script_call = request.form.get('uiRunScriptLinkedIn')
+    if ui_run_script_call != None:
+      # ------------------------ selenium script start ------------------------
+      linkedin_scraper_function()
+      # ------------------------ selenium script end ------------------------
+      return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s13'))
+    # ------------------------ post #5 end ------------------------
+    # ------------------------ post #6 start ------------------------
+    ui_company_name = request.form.get('uiCompanyName')
+    ui_company_url = request.form.get('uiCompanyUrl')
+    if ui_company_name != None and ui_company_url != None:
+      db_obj = CompanyInfoObj.query.filter_by(name=ui_company_name.lower()).first()
+      if db_obj == None or db_obj == []:
+        # ------------------------ add to db start ------------------------
+        try:
+          new_row = CompanyInfoObj(
+            id=create_uuid_function('company_'),
+            created_timestamp=create_timestamp_function(),
+            name=ui_company_name.lower(),
+            url=ui_company_url.lower(),
+            active=True
+          )
+          db.session.add(new_row)
+          db.session.commit()
+        except:
+          pass
+        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s12'))
+        # ------------------------ add to db end ------------------------
+      else:
+        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='e10'))
+    # ------------------------ post #6 end ------------------------
+    # ------------------------ post #7 start ------------------------
+    ui_form_scraped_emails = request.form.get('uiFormScrapedEmails')
+    if ui_form_scraped_emails != None:
+      form_scraped_emails_function()
+    # ------------------------ post #7 end ------------------------
+  return render_template('interior/admin_templates/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_admin.route('/admin/control', methods=['GET', 'POST'])
+@cv_views_admin.route('/admin/control/', methods=['GET', 'POST'])
+@cv_views_admin.route('/admin/control/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_admin.route('/admin/control/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def admin_control_function(url_redirect_code=None):
+  # ------------------------ check admin status start ------------------------
+  if current_user.email != os.environ.get('RUN_TEST_EMAIL'):
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_redirect_code='e5'))
+  # ------------------------ check admin status end ------------------------
+  # ------------------------ page dict start ------------------------
+  if url_redirect_code == None:
+    try:
+      url_redirect_code = request.args.get('url_redirect_code')
+    except:
+      pass
+  alert_message_dict = get_alert_message_function(url_redirect_code)
+  page_dict = {}
+  page_dict['alert_message_dict'] = alert_message_dict
+  # ------------------------ page dict end ------------------------
+  if request.method == 'POST':
     # ------------------------ post #1 start ------------------------
     ui_email = request.form.get('uiEmail')
     if ui_email != None:
@@ -97,73 +159,5 @@ def admin_function(url_redirect_code=None):
           redis_connection.delete(key.decode('utf-8'))
       # ------------------------ loop through keys end ------------------------
     # ------------------------ post #3 end ------------------------
-    # ------------------------ post #4 start ------------------------
-    ui_scrape_email = request.form.get('uiScrapeEmail')
-    if ui_scrape_email != None:
-      # ------------------------ sanitize/check user input email start ------------------------
-      ui_scrape_email_cleaned = sanitize_email_function(ui_scrape_email)
-      if ui_scrape_email_cleaned == False:
-        pass
-      # ------------------------ sanitize/check user input email end ------------------------
-      # ------------------------ check if user email exists in db start ------------------------
-      user_exists = UserObj.query.filter_by(email=ui_scrape_email).first()
-      if user_exists != None and user_exists != []:
-        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='e22'))
-      user_exists = EmailScrapedObj.query.filter_by(email=ui_scrape_email).first()
-      if user_exists != None and user_exists != []:
-        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='e23'))
-      # ------------------------ check if user email exists in db end ------------------------
-      # ------------------------ add to db start ------------------------
-      try:
-        new_row = EmailScrapedObj(
-          id=create_uuid_function('scrape_'),
-          created_timestamp=create_timestamp_function(),
-          email=ui_scrape_email,
-          unsubscribed=False
-        )
-        db.session.add(new_row)
-        db.session.commit()
-      except:
-        pass
-      return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s12'))
-      # ------------------------ add to db end ------------------------
-    # ------------------------ post #4 end ------------------------
-    # ------------------------ post #5 start ------------------------
-    ui_run_script_call = request.form.get('uiRunScriptLinkedIn')
-    if ui_run_script_call != None:
-      # ------------------------ selenium script start ------------------------
-      linkedin_scraper_function()
-      # ------------------------ selenium script end ------------------------
-      return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s13'))
-    # ------------------------ post #5 end ------------------------
-    # ------------------------ post #6 start ------------------------
-    ui_company_name = request.form.get('uiCompanyName')
-    ui_company_url = request.form.get('uiCompanyUrl')
-    if ui_company_name != None and ui_company_url != None:
-      db_obj = CompanyInfoObj.query.filter_by(name=ui_company_name.lower()).first()
-      if db_obj == None or db_obj == []:
-        # ------------------------ add to db start ------------------------
-        try:
-          new_row = CompanyInfoObj(
-            id=create_uuid_function('company_'),
-            created_timestamp=create_timestamp_function(),
-            name=ui_company_name.lower(),
-            url=ui_company_url.lower(),
-            active=True
-          )
-          db.session.add(new_row)
-          db.session.commit()
-        except:
-          pass
-        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s12'))
-        # ------------------------ add to db end ------------------------
-      else:
-        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='e10'))
-    # ------------------------ post #6 end ------------------------
-    # ------------------------ post #7 start ------------------------
-    ui_form_scraped_emails = request.form.get('uiFormScrapedEmails')
-    if ui_form_scraped_emails != None:
-      form_scraped_emails_function()
-    # ------------------------ post #7 end ------------------------
-  return render_template('interior/admin_templates/index.html', page_dict_html=page_dict)
+  return render_template('interior/admin_templates/control/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

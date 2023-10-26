@@ -1,0 +1,55 @@
+{% extends "navbar/exterior.html" %}
+
+{% block title %}
+  <title>Admin | CVhire</title>
+  <meta name="description" content="CVhire">
+  <meta name="og:description" content="CVhire">
+{% endblock %}
+
+{% block contentBodyExceptNavbarAndFooter %}
+<!-- ----------------------------------- alert start ----------------------------------- -->
+{% if page_dict_html['alert_message_dict']['message'] != '' %}
+<div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid" role="alert">
+  {{ page_dict_html['alert_message_dict']['message'] }}
+</div>
+{% endif %}
+<!-- ----------------------------------- alert end ----------------------------------- -->
+<div class="container">
+  <div class="custom-pt-25 custom-display-flex custom-jc-between">
+    <h2>Admin Control</h2>
+    <div>
+      <a href="/ai/one-role-many-cvs" class="btn btn-outline-success btn-lg">Dashboard</a>
+    </div>
+  </div>
+  <div>
+    <a href="/admin" class="btn btn-secondary custom-m-25">Back</a>
+  </div>
+  <!-- ----------------------------------- form lock email start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="custom-border-1 custom-p-50 custom-br-15 custom-m-50">
+    <div class="form-group">
+      <label for="uiEmail">Lock Account | Email</label>
+      <input type="email" class="form-control" id="uiEmail" name="uiEmail" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Lock</button>
+  </form>
+  <!-- ----------------------------------- form lock email end ----------------------------------- -->
+  <!-- ----------------------------------- form block email like start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="custom-border-1 custom-p-50 custom-br-15 custom-m-50">
+    <div class="form-group">
+      <label for="uiBlockEmailLike">Block email str's like</label>
+      <input type="text" class="form-control" id="uiBlockEmailLike" name="uiBlockEmailLike" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Add to block list</button>
+  </form>
+  <!-- ----------------------------------- form block email like end ----------------------------------- -->
+  <!-- ----------------------------------- form block email like start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="custom-border-1 custom-p-50 custom-br-15 custom-m-50">
+    <div class="form-group">
+      <label for="uiRedisClearAll">Redis clear all</label>
+      <input type="text" class="form-control" id="uiRedisClearAll" name="uiRedisClearAll" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Clear</button>
+  </form>
+  <!-- ----------------------------------- form block email like end ----------------------------------- -->
+</div>
+{% endblock %}
