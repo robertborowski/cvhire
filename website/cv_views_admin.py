@@ -3,7 +3,7 @@ from website.backend.uuid_timestamp import create_uuid_function, create_timestam
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailBlockObj, EmailScrapedObj
+from website.models import UserObj, EmailBlockObj, EmailScrapedObj, CompanyInfoObj
 import os
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
@@ -135,5 +135,29 @@ def admin_function(url_redirect_code=None):
       # ------------------------ selenium script end ------------------------
       return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s13'))
     # ------------------------ post #5 end ------------------------
+    # ------------------------ post #6 start ------------------------
+    ui_company_name = request.form.get('uiCompanyName')
+    ui_company_url = request.form.get('uiCompanyUrl')
+    if ui_company_name != None and ui_company_url != None:
+      db_obj = CompanyInfoObj.query.filter_by(name=ui_company_name.lower()).first()
+      if db_obj == None or db_obj == []:
+        # ------------------------ add to db start ------------------------
+        try:
+          new_row = CompanyInfoObj(
+            id=create_uuid_function('company_'),
+            created_timestamp=create_timestamp_function(),
+            name=ui_company_name.lower(),
+            url=ui_company_url.lower(),
+            active=True
+          )
+          db.session.add(new_row)
+          db.session.commit()
+        except:
+          pass
+        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='s12'))
+        # ------------------------ add to db end ------------------------
+      else:
+        return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='e10'))
+    # ------------------------ post #6 end ------------------------
   return render_template('interior/admin_templates/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

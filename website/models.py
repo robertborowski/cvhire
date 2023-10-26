@@ -212,6 +212,15 @@ class LinkedinScrapeObj(db.Model):
   url = db.Column(db.String(300))
 # ------------------------ individual model end ------------------------
 
+# ------------------------ individual model start ------------------------
+class CompanyInfoObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  name = db.Column(db.String(150))
+  url = db.Column(db.String(150))
+  active = db.Column(db.Boolean, default=True)
+# ------------------------ individual model end ------------------------
+
 """
 # ------------------------ individual model start ------------------------
 class EmailCollectObj(db.Model):
