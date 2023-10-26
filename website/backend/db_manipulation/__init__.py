@@ -1,6 +1,7 @@
 # ------------------------ imports start ------------------------
 from website.models import CvObj, LinkedinScrapeObj
 from website.backend.static_lists import get_linkedin_identifiers_function, get_special_chars_function
+import re
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -52,6 +53,7 @@ def form_scraped_emails_function():
       display_name = remove_chars_after_first_comma_function(display_name)
       display_name = replace_chars_function(display_name)
       display_name = remove_identifiers_function(display_name)
+      display_name = remove_emojis_function(display_name)
       # ------------------------ clean display name end ------------------------
       print(f"display_name | type: {type(display_name)} | {display_name}")
     print(' ------------- 0 ------------- ')
@@ -102,6 +104,29 @@ def remove_identifiers_function(display_name):
       except:
         pass
     # ------------------------ replace occurences end ------------------------
+  except Exception as e:
+    print(f'Error remove_identifiers_function: {e}')
+  return display_name
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def remove_emojis_function(display_name):
+  try:
+    # Unicode ranges for emojis
+    emoji_pattern = re.compile("["
+      u"\U0001F600-\U0001F64F"  # emoticons
+      u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+      u"\U0001F680-\U0001F6FF"  # transport & map symbols
+      u"\U0001F700-\U0001F77F"  # alchemical symbols
+      u"\U0001F780-\U0001F7FF"  # Geometric Shapes Extended
+      u"\U0001F800-\U0001F8FF"  # Supplemental Arrows-C
+      u"\U0001F900-\U0001F9FF"  # Supplemental Symbols and Pictographs
+      u"\U0001FA00-\U0001FA6F"  # Chess Symbols
+      u"\U0001FA70-\U0001FAFF"  # Symbols and Pictographs Extended-A
+      u"\U00002702-\U000027B0"  # Dingbats
+      u"\U000024C2-\U0001F251"  # Enclosed Characters
+      "]+", flags=re.UNICODE)
+    return emoji_pattern.sub(r'', display_name)
   except Exception as e:
     print(f'Error remove_identifiers_function: {e}')
   return display_name
