@@ -58,8 +58,7 @@ def form_scraped_emails_function():
       # ------------------------ clean display name end ------------------------
       print(f"display_name | type: {type(display_name)} | {display_name}")
       # ------------------------ form emails start ------------------------
-      email_formats_str = form_email_types_function(display_name)
-      print(' ')
+      first_name, potential_last_names_arr = derive_names_function(display_name)
       # ------------------------ form emails end ------------------------
     print(' ------------- 0 ------------- ')
     # ------------------------ loop end ------------------------
@@ -138,13 +137,12 @@ def remove_emojis_function(display_name):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def form_email_types_function(display_name):
+def derive_names_function(display_name):
   try:
     arr = display_name.split(' ')
     # ------------------------ skip check start ------------------------
     if len(arr) == 1:
-      print('skip')
-      return 'skip'
+      return 'skip', 'skip'
     # ------------------------ skip check end ------------------------
     # ------------------------ set first name and potential last name arr start ------------------------
     first_name = arr[0]
@@ -152,8 +150,7 @@ def form_email_types_function(display_name):
     # ------------------------ set first name and potential last name arr end ------------------------
     # ------------------------ last name arr is only len 1 and 1 letter check start ------------------------
     if len(potential_last_names_arr) == 1 and len(potential_last_names_arr[0]) == 1:
-      print('skip')
-      return 'skip'
+      return 'skip', 'skip'
     # ------------------------ last name arr is only len 1 and 1 letter check end ------------------------
     # ------------------------ remove any 1 letter potential last names/middle initials start ------------------------
     for i in range(len(potential_last_names_arr) - 1, -1, -1):
@@ -178,12 +175,9 @@ def form_email_types_function(display_name):
     # ------------------------ special case, combine two part last names like LaTorres, DelVecchio, etc end ------------------------
     # ------------------------ last name arr is only len 1 and 1 letter check start ------------------------
     if potential_last_names_arr == []:
-      print('skip')
-      return 'skip'
+      return 'skip', 'skip'
     # ------------------------ last name arr is only len 1 and 1 letter check end ------------------------
-    print(f"first_name | type: {type(first_name)} | {first_name}")
-    print(f"potential_last_names_arr | type: {type(potential_last_names_arr)} | {potential_last_names_arr}")
   except Exception as e:
-    print(f'Error form_email_types_function: {e}')
-  return display_name
+    print(f'Error derive_names_function: {e}')
+  return first_name, potential_last_names_arr
 # ------------------------ individual function end ------------------------
