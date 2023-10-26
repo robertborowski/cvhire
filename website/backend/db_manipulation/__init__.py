@@ -54,6 +54,7 @@ def form_scraped_emails_function():
       display_name = replace_chars_function(display_name)
       display_name = remove_identifiers_function(display_name)
       display_name = remove_emojis_function(display_name)
+      display_name = display_name.strip()
       # ------------------------ clean display name end ------------------------
       print(f"display_name | type: {type(display_name)} | {display_name}")
     print(' ------------- 0 ------------- ')

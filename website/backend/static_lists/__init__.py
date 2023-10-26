@@ -508,6 +508,7 @@ def get_special_chars_function():
   chars_dict = {
     "'": "",
     '.': '',
+    'á': 'a',
     'ë': 'e',
     'ć': 'c',
     'ü': 'u',
@@ -516,7 +517,8 @@ def get_special_chars_function():
     ')': '',
     '[': '',
     ']': '',
-    '"': ''
+    '"': '',
+    '-': ' '
   }
   return chars_dict
 # ------------------------ individual function end ------------------------
@@ -529,7 +531,7 @@ def get_linkedin_identifiers_function():
     'she/her',
     'they/he',
     'he/him',
-    'shrm-cp'
+    'shrm cp'
   ]
   return arr
 # ------------------------ individual function end ------------------------
