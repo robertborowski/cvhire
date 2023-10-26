@@ -43,11 +43,11 @@ def form_scraped_emails_function():
     # ------------------------ loop start ------------------------
     print(' ------------- 0 ------------- ')
     for i_obj in db_objs:
-      # # ------------------------ testing start ------------------------
+      # ------------------------ testing start ------------------------
       # counter += 1
       # if counter >= 100:
       #   break
-      # # ------------------------ testing end ------------------------
+      # ------------------------ testing end ------------------------
       # ------------------------ clean display name start ------------------------
       display_name = i_obj.name.lower()
       display_name = remove_chars_after_first_comma_function(display_name)
@@ -57,6 +57,10 @@ def form_scraped_emails_function():
       display_name = display_name.strip()
       # ------------------------ clean display name end ------------------------
       print(f"display_name | type: {type(display_name)} | {display_name}")
+      # ------------------------ form emails start ------------------------
+      email_formats_str = form_email_types_function(display_name)
+      print(' ')
+      # ------------------------ form emails end ------------------------
     print(' ------------- 0 ------------- ')
     # ------------------------ loop end ------------------------
   except Exception as e:
@@ -129,6 +133,57 @@ def remove_emojis_function(display_name):
       "]+", flags=re.UNICODE)
     return emoji_pattern.sub(r'', display_name)
   except Exception as e:
-    print(f'Error remove_identifiers_function: {e}')
+    print(f'Error remove_emojis_function: {e}')
+  return display_name
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def form_email_types_function(display_name):
+  try:
+    arr = display_name.split(' ')
+    # ------------------------ skip check start ------------------------
+    if len(arr) == 1:
+      print('skip')
+      return 'skip'
+    # ------------------------ skip check end ------------------------
+    # ------------------------ set first name and potential last name arr start ------------------------
+    first_name = arr[0]
+    potential_last_names_arr = arr[1:]
+    # ------------------------ set first name and potential last name arr end ------------------------
+    # ------------------------ last name arr is only len 1 and 1 letter check start ------------------------
+    if len(potential_last_names_arr) == 1 and len(potential_last_names_arr[0]) == 1:
+      print('skip')
+      return 'skip'
+    # ------------------------ last name arr is only len 1 and 1 letter check end ------------------------
+    # ------------------------ remove any 1 letter potential last names/middle initials start ------------------------
+    for i in range(len(potential_last_names_arr) - 1, -1, -1):
+      if len(potential_last_names_arr[i]) == 1:
+        del potential_last_names_arr[i]
+    # ------------------------ remove any 1 letter potential last names/middle initials end ------------------------
+    # ------------------------ remove any obvious not last names start ------------------------
+    exceptions_arr = ['jr','dj','cj','mo','ii','iii','iv','robert','pc']
+    for i in range(len(potential_last_names_arr) - 1, -1, -1):
+      if potential_last_names_arr[i] in exceptions_arr:
+        del potential_last_names_arr[i]
+    # ------------------------ remove any obvious not last names end ------------------------
+    # ------------------------ special case, combine two part last names like LaTorres, DelVecchio, etc start ------------------------
+    exceptions_arr = ['la','de','el']
+    i = 0
+    while i < len(potential_last_names_arr) - 1:
+      if potential_last_names_arr[i] in exceptions_arr:
+        potential_last_names_arr[i] = potential_last_names_arr[i] + potential_last_names_arr[i+1]
+        del potential_last_names_arr[i+1]
+      else:
+        i += 1
+    # ------------------------ special case, combine two part last names like LaTorres, DelVecchio, etc end ------------------------
+    # ------------------------ last name arr is only len 1 and 1 letter check start ------------------------
+    if potential_last_names_arr == []:
+      print('skip')
+      return 'skip'
+    # ------------------------ last name arr is only len 1 and 1 letter check end ------------------------
+    print(f"first_name | type: {type(first_name)} | {first_name}")
+    print(f"potential_last_names_arr | type: {type(potential_last_names_arr)} | {potential_last_names_arr}")
+  except Exception as e:
+    print(f'Error form_email_types_function: {e}')
   return display_name
 # ------------------------ individual function end ------------------------
