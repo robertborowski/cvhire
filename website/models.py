@@ -212,6 +212,7 @@ class LinkedinScrapeObj(db.Model):
   name = db.Column(db.String(150))
   subtitle = db.Column(db.String(150))
   url = db.Column(db.String(300))
+  completed = db.Column(db.Boolean, default=False)
 # ------------------------ individual model end ------------------------
 
 # ------------------------ individual model start ------------------------

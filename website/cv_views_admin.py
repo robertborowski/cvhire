@@ -3,13 +3,14 @@ from website.backend.uuid_timestamp import create_uuid_function, create_timestam
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailBlockObj, EmailScrapedObj, CompanyInfoObj
+from website.models import UserObj, EmailBlockObj, EmailScrapedObj, CompanyInfoObj, LinkedinScrapeObj
 import os
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
 from website.backend.sanitize import sanitize_email_function
 from website.backend.static_lists import get_list_function, redis_all_keys_function
 from website.backend.selenium_script import linkedin_scraper_function
+from website.backend.db_manipulation import form_scraped_emails_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -159,5 +160,10 @@ def admin_function(url_redirect_code=None):
       else:
         return redirect(url_for('cv_views_admin.admin_function', url_redirect_code='e10'))
     # ------------------------ post #6 end ------------------------
+    # ------------------------ post #7 start ------------------------
+    ui_form_scraped_emails = request.form.get('uiFormScrapedEmails')
+    if ui_form_scraped_emails != None:
+      form_scraped_emails_function()
+    # ------------------------ post #7 end ------------------------
   return render_template('interior/admin_templates/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

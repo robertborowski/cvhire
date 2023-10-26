@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from website.models import CvObj
+from website.models import CvObj, LinkedinScrapeObj
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -29,4 +29,40 @@ def additional_cv_info_from_db_function(current_user_id, input_dict):
     input_dict['candidate_phone'] = db_cv_obj.candidate_phone
   # ------------------------ pull data end ------------------------
   return input_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def form_scraped_emails_function():
+  try:
+    # ------------------------ pull from db start ------------------------
+    db_objs = LinkedinScrapeObj.query.filter_by(completed=False).all()
+    # ------------------------ pull from db end ------------------------
+    counter = 0
+    # ------------------------ loop start ------------------------
+    print(' ------------- 0 ------------- ')
+    for i_obj in db_objs:
+      # ------------------------ testing start ------------------------
+      counter += 1
+      if counter >= 100:
+        break
+      # ------------------------ testing end ------------------------
+      # ------------------------ clean display name start ------------------------
+      display_name = i_obj.name.lower()
+      display_name = display_name.replace("'","")
+      display_name = display_name.replace('.','')
+      display_name = display_name.replace('ë','e')
+      display_name = display_name.replace('ć','c')
+      # ------------------------ remove everything after the first comma start ------------------------
+      comma_index = display_name.find(',')
+      if comma_index != -1:
+        display_name = display_name[:comma_index]
+      # ------------------------ remove everything after the first comma end ------------------------
+      # ------------------------ clean display name end ------------------------
+      print(f"display_name | type: {type(display_name)} | {display_name}")
+    print(' ------------- 0 ------------- ')
+    # ------------------------ loop end ------------------------
+  except Exception as e:
+    print(f'Error during form_scraped_emails_function: {e}')
+    pass
+  return True
 # ------------------------ individual function end ------------------------
