@@ -47,22 +47,50 @@ def form_scraped_emails_function():
         break
       # ------------------------ testing end ------------------------
       # ------------------------ clean display name start ------------------------
-      display_name = i_obj.name.lower()
-      display_name = display_name.replace("'","")
-      display_name = display_name.replace('.','')
-      display_name = display_name.replace('ë','e')
-      display_name = display_name.replace('ć','c')
-      # ------------------------ remove everything after the first comma start ------------------------
-      comma_index = display_name.find(',')
-      if comma_index != -1:
-        display_name = display_name[:comma_index]
-      # ------------------------ remove everything after the first comma end ------------------------
+      display_name = replace_chars_function(i_obj)
+      display_name = remove_chars_after_first_comma_function(display_name)
+      display_name = remove_identifiers_function(display_name)
       # ------------------------ clean display name end ------------------------
       print(f"display_name | type: {type(display_name)} | {display_name}")
     print(' ------------- 0 ------------- ')
     # ------------------------ loop end ------------------------
   except Exception as e:
-    print(f'Error during form_scraped_emails_function: {e}')
+    print(f'Error form_scraped_emails_function: {e}')
     pass
   return True
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def replace_chars_function(i_obj):
+  try:
+    display_name = i_obj.name.lower()
+    display_name = display_name.replace("'","")
+    display_name = display_name.replace('.','')
+    display_name = display_name.replace('ë','e')
+    display_name = display_name.replace('ć','c')
+  except Exception as e:
+    print(f'Error replace_chars_function: {e}')
+  return display_name
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def remove_chars_after_first_comma_function(display_name):
+  try:
+    comma_index = display_name.find(',')
+    if comma_index != -1:
+      display_name = display_name[:comma_index]
+  except Exception as e:
+    print(f'Error remove_chars_after_first_comma_function: {e}')
+  return display_name
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def remove_identifiers_function(display_name):
+  try:
+    # ------------------------ get arr of identifiers start ------------------------
+    pass
+    # ------------------------ get arr of identifiers end ------------------------
+  except Exception as e:
+    print(f'Error remove_identifiers_function: {e}')
+  return display_name
 # ------------------------ individual function end ------------------------
