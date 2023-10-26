@@ -1,8 +1,9 @@
 # ------------------------ imports start ------------------------
-from website.models import CvObj, LinkedinScrapeObj
+from website.models import CvObj, LinkedinScrapeObj, CompanyInfoObj, EmailScrapedObj
 from website.backend.static_lists import get_linkedin_identifiers_function, get_special_chars_function
 import re
 from website import db
+from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -40,15 +41,8 @@ def form_scraped_emails_function():
     # ------------------------ pull from db start ------------------------
     db_objs = LinkedinScrapeObj.query.filter_by(completed=False).all()
     # ------------------------ pull from db end ------------------------
-    counter = 0
     # ------------------------ loop start ------------------------
-    print(' ------------- 0 ------------- ')
     for i_obj in db_objs:
-      # ------------------------ testing start ------------------------
-      # counter += 1
-      # if counter >= 100:
-      #   break
-      # ------------------------ testing end ------------------------
       # ------------------------ clean display name start ------------------------
       display_name = i_obj.name.lower()
       display_name = remove_chars_after_first_comma_function(display_name)
@@ -68,15 +62,8 @@ def form_scraped_emails_function():
         continue
       # ------------------------ if skip end ------------------------
       # ------------------------ form potential emails start ------------------------
-      emails_str = form_potential_emails_function(first_name, potential_last_names_arr)
+      form_potential_emails_function(first_name, potential_last_names_arr, i_obj.company)
       # ------------------------ form potential emails end ------------------------
-      # ------------------------ if blank start ------------------------
-      if emails_str == '':
-        i_obj.completed = True
-        db.session.commit()
-        continue
-      # ------------------------ if blank end ------------------------
-    print(' ------------- 0 ------------- ')
     # ------------------------ loop end ------------------------
   except Exception as e:
     print(f'Error form_scraped_emails_function: {e}')
@@ -199,11 +186,47 @@ def derive_names_function(display_name):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
-def form_potential_emails_function(first_name, potential_last_names_arr):
-  emails_str = None
+def form_potential_emails_function(first_name, potential_last_names_arr, company_name):
+  # ------------------------ get company url start ------------------------
+  db_company_obj = CompanyInfoObj.query.filter_by(name=company_name).first()
+  # ------------------------ get company url end ------------------------
   try:
-    pass
+    for i_last_name in potential_last_names_arr:
+      emails_arr = []
+      # ------------------------ email formats start ------------------------
+      emails_arr.append(first_name + '.' + i_last_name) # First.Last
+      emails_arr.append(first_name + i_last_name) # FirstLast
+      emails_arr.append(first_name[0] + i_last_name) # FLast
+      emails_arr.append(first_name[0] + '.' + i_last_name) # F.Last
+      emails_arr.append(first_name) # First
+      emails_arr.append(first_name + i_last_name[0]) # FirstL
+      emails_arr.append(first_name + '_' + i_last_name) # First_Last
+      # ------------------------ email formats end ------------------------
+      # ------------------------ arr to str start ------------------------
+      emails_str = '~'.join(emails_arr)
+      # ------------------------ arr to str end ------------------------
+      # ------------------------ check if emails exist start ------------------------
+      db_email_obj = EmailScrapedObj.query.filter_by(all_formats=emails_str).first()
+      if db_email_obj != None and db_email_obj != []:
+        pass
+      # ------------------------ check if emails exist end ------------------------
+      else:
+        # ------------------------ add to db start ------------------------
+        try:
+          new_row = EmailScrapedObj(
+            id=create_uuid_function('scrape_'),
+            created_timestamp=create_timestamp_function(),
+            all_formats=emails_str,
+            correct_format=None,
+            website_address=db_company_obj.url,
+            unsubscribed=False
+          )
+          db.session.add(new_row)
+          db.session.commit()
+        except:
+          pass
+        # ------------------------ add to db end ------------------------
   except Exception as e:
     print(f'Error form_potential_emails_function: {e}')
-  return emails_str
+  return True
 # ------------------------ individual function end ------------------------

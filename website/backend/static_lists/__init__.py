@@ -519,7 +519,8 @@ def get_special_chars_function():
     '[': '',
     ']': '',
     '"': '',
-    '-': ' '
+    '-': ' ',
+    '~': ''
   }
   return chars_dict
 # ------------------------ individual function end ------------------------
