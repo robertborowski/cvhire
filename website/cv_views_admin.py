@@ -186,3 +186,32 @@ def admin_scrape_function(url_redirect_code=None):
     # ------------------------ post #7 end ------------------------
   return render_template('interior/admin_templates/scrape/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_admin.route('/admin/email', methods=['GET', 'POST'])
+@cv_views_admin.route('/admin/email/', methods=['GET', 'POST'])
+@cv_views_admin.route('/admin/email/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_admin.route('/admin/email/<url_redirect_code>/', methods=['GET', 'POST'])
+@login_required
+def admin_email_function(url_redirect_code=None):
+  # ------------------------ check admin status start ------------------------
+  if current_user.email != os.environ.get('RUN_TEST_EMAIL'):
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_redirect_code='e5'))
+  # ------------------------ check admin status end ------------------------
+  # ------------------------ page dict start ------------------------
+  if url_redirect_code == None:
+    try:
+      url_redirect_code = request.args.get('url_redirect_code')
+    except:
+      pass
+  alert_message_dict = get_alert_message_function(url_redirect_code)
+  page_dict = {}
+  page_dict['alert_message_dict'] = alert_message_dict
+  # ------------------------ page dict end ------------------------
+  if request.method == 'POST':
+    # ------------------------ post #5 start ------------------------
+    ui_send_marketing_email = request.form.get('uiSendMarketingEmail')
+    if ui_send_marketing_email != None:
+      pass
+  return render_template('interior/admin_templates/email_template/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------

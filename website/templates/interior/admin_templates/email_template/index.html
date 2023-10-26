@@ -16,15 +16,22 @@
 <!-- ----------------------------------- alert end ----------------------------------- -->
 <div class="container">
   <div class="custom-pt-25 custom-display-flex custom-jc-between">
-    <h2>Admin</h2>
+    <h2>Admin | Email</h2>
     <div>
       <a href="/ai/one-role-many-cvs" class="btn btn-outline-success btn-lg">Dashboard</a>
     </div>
   </div>
   <div>
-    <a href="/admin/control" class="btn btn-danger custom-m-25">Control</a>
-    <a href="/admin/scrape" class="btn btn-primary custom-m-25">Scrape</a>
-    <a href="/admin/email" class="btn btn-success custom-m-25">Email</a>
+    <a href="/admin" class="btn btn-secondary custom-m-25">Back</a>
   </div>
+  <!-- ----------------------------------- form run script start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="custom-border-1 custom-p-50 custom-br-15 custom-m-50">
+    <div class="form-group">
+      <label for="uiSendMarketingEmail">Send marketing email</label>
+      <input type="text" class="form-control" id="uiSendMarketingEmail" name="uiSendMarketingEmail" required>
+    </div>
+    <button type="submit" class="btn btn-success">Send marketing emails</button>
+  </form>
+  <!-- ----------------------------------- form run script end ----------------------------------- -->
 </div>
 {% endblock %}
