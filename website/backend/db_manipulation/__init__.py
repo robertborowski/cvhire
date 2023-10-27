@@ -1,4 +1,5 @@
 # ------------------------ imports start ------------------------
+from sqlalchemy import and_
 from website.models import CvObj, LinkedinScrapeObj, CompanyInfoObj, EmailScrapedObj
 from website.backend.static_lists import get_linkedin_identifiers_function, get_special_chars_function
 import re
@@ -237,11 +238,25 @@ def delete_from_scraped_emails_function():
   # ------------------------ get set start ------------------------
   email_set = get_emails_to_delete_function()
   # ------------------------ get set end ------------------------
-  counter = 0
+  # ------------------------ set variables start ------------------------
+  change_occurred = False
+  # ------------------------ set variables end ------------------------
   for i_email in email_set:
-    counter += 1
-  print(' ------------- 0 ------------- ')
-  print(f"counter | type: {type(counter)} | {counter}")
-  print(' ------------- 0 ------------- ')
+    email_arr = i_email.split('@')
+    # ------------------------ search db start ------------------------
+    db_scrape_obj = EmailScrapedObj.query.filter(and_(EmailScrapedObj.all_formats.like(f'%{email_arr[0]}%'), EmailScrapedObj.website_address == email_arr[1])).first()
+    # ------------------------ search db end ------------------------
+    # ------------------------ check for change start ------------------------
+    if db_scrape_obj != None and db_scrape_obj != []:
+      # ------------------------ delete row from db start ------------------------
+      EmailScrapedObj.query.filter_by(id=db_scrape_obj.id).delete()
+      # ------------------------ delete row from db end ------------------------
+      if change_occurred == False:
+        change_occurred = True
+    # ------------------------ check for change end ------------------------
+    # ------------------------ if change occurred, save start ------------------------
+    if change_occurred == True:
+      db.session.commit()
+    # ------------------------ if change occurred, save end ------------------------
   return True
 # ------------------------ individual function end ------------------------
