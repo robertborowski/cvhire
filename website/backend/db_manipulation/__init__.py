@@ -205,7 +205,7 @@ def form_potential_emails_function(first_name, potential_last_names_arr, i_linke
       emails_str = '~'.join(emails_arr)
       # ------------------------ arr to str end ------------------------
       # ------------------------ check if emails exist start ------------------------
-      db_email_obj = EmailScrapedObj.query.filter_by(all_formats=emails_str).first()
+      db_email_obj = EmailScrapedObj.query.filter_by(all_formats=emails_str,website_address=db_company_obj.url).first()
       if db_email_obj != None and db_email_obj != []:
         pass
       # ------------------------ check if emails exist end ------------------------
