@@ -1,6 +1,6 @@
 # ------------------------ imports start ------------------------
 from sqlalchemy import and_
-from website.models import CvObj, LinkedinScrapeObj, CompanyInfoObj, EmailScrapedObj
+from website.models import CvObj, LinkedinScrapeObj, CompanyInfoObj, EmailScrapedObj, EmailSentObj
 from website.backend.static_lists import get_linkedin_identifiers_function, get_special_chars_function
 import re
 from website import db
@@ -242,6 +242,9 @@ def delete_from_scraped_emails_function():
   change_occurred = False
   # ------------------------ set variables end ------------------------
   for i_email in email_set:
+    # # ------------------------ delete from emails sent table start ------------------------
+    # EmailSentObj.query.filter_by(to_email=i_email).delete()
+    # # ------------------------ delete from emails sent table end ------------------------
     email_arr = i_email.split('@')
     # ------------------------ search db start ------------------------
     db_scrape_obj = EmailScrapedObj.query.filter(and_(EmailScrapedObj.all_formats.like(f'%{email_arr[0]}%'), EmailScrapedObj.website_address == email_arr[1])).first()
@@ -254,9 +257,9 @@ def delete_from_scraped_emails_function():
       if change_occurred == False:
         change_occurred = True
     # ------------------------ check for change end ------------------------
-    # ------------------------ if change occurred, save start ------------------------
-    if change_occurred == True:
-      db.session.commit()
-    # ------------------------ if change occurred, save end ------------------------
+  # ------------------------ if change occurred, save start ------------------------
+  if change_occurred == True:
+    db.session.commit()
+  # ------------------------ if change occurred, save end ------------------------
   return True
 # ------------------------ individual function end ------------------------
