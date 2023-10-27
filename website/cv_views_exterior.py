@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user
 from website.backend.connection import redis_connect_open_function
-from website.models import UserObj, EmailSentObj
+from website.models import UserObj, EmailSentObj, EmailScrapedObj
 from website import db
 from werkzeug.security import generate_password_hash
 from website.backend.alerts import get_alert_message_function
@@ -175,4 +175,25 @@ def cv_privacy_function():
   page_dict['nav_header'] = False
   # ------------------------ set variables end ------------------------
   return render_template('exterior/privacy_terms/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_exterior.route('/email/unsubscribe/<url_id_code>')
+@cv_views_exterior.route('/email/unsubscribe/<url_id_code>/')
+def email_unsubscribe_function(url_id_code=None):
+  # ------------------------ if url code is none start ------------------------
+  if url_id_code == None:
+    return redirect(url_for('cv_views_exterior.cv_landing_details_function'))
+  # ------------------------ if url code is none end ------------------------
+  # ------------------------ check if url id exists start ------------------------
+  db_email_obj = EmailScrapedObj.query.filter_by(id=url_id_code).first()
+  if db_email_obj == None or db_email_obj == []:
+    return redirect(url_for('cv_views_exterior.cv_landing_details_function'))
+  # ------------------------ check if url id exists end ------------------------
+  # ------------------------ update db start ------------------------
+  if db_email_obj.unsubscribed == False:
+    db_email_obj.unsubscribed = True
+    db.session.commit()
+  # ------------------------ update db end ------------------------
+  return render_template('exterior/unsubscribed/index.html')
 # ------------------------ individual route end ------------------------
