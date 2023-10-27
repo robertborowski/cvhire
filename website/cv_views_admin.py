@@ -3,7 +3,7 @@ from website.backend.uuid_timestamp import create_uuid_function, create_timestam
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailBlockObj, EmailScrapedObj, CompanyInfoObj, LinkedinScrapeObj
+from website.models import UserObj, EmailBlockObj, EmailScrapedObj, CompanyInfoObj, EmailSentObj
 import os
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
@@ -11,6 +11,7 @@ from website.backend.sanitize import sanitize_email_function
 from website.backend.static_lists import get_list_function, redis_all_keys_function
 from website.backend.selenium_script import linkedin_scraper_function
 from website.backend.db_manipulation import form_scraped_emails_function
+from datetime import datetime
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -209,9 +210,29 @@ def admin_email_function(url_redirect_code=None):
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
   if request.method == 'POST':
-    # ------------------------ post #5 start ------------------------
     ui_send_marketing_email = request.form.get('uiSendMarketingEmail')
     if ui_send_marketing_email != None:
-      pass
+      # ------------------------ get all emails start ------------------------
+      db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None).all()
+      # ------------------------ get all emails end ------------------------
+      # ------------------------ set variables start ------------------------
+      today = datetime.today()
+      today_format = today.strftime('%m/%d/%Y')
+      output_subject = f'Resume Parsing with AI - {today_format}'
+      # ------------------------ set variables end ------------------------
+      # ------------------------ loop emails start ------------------------
+      for i_email_obj in db_email_objs:
+        # ------------------------ get to email start ------------------------
+        email_formats_arr = i_email_obj.all_formats.split('~')
+        output_to_email = email_formats_arr[i_email_obj.correct_format] + '@' + i_email_obj.website_address
+        # ------------------------ get to email end ------------------------
+        # ------------------------ check if email already sent start ------------------------
+        db_sent_email_obj = EmailSentObj.query.filter_by(subject=output_subject,to_email=output_to_email).first()
+        if db_sent_email_obj != None and db_sent_email_obj != []:
+          continue
+        # ------------------------ check if email already sent end ------------------------
+        # ------------------------ send email start ------------------------
+        # ------------------------ send email end ------------------------
+      # ------------------------ loop emails end ------------------------
   return render_template('interior/admin_templates/email_template/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
