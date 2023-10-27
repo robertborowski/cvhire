@@ -183,6 +183,8 @@ def cv_privacy_function():
 @cv_views_exterior.route('/email/unsubscribe/<url_id_code>')
 @cv_views_exterior.route('/email/unsubscribe/<url_id_code>/')
 def email_unsubscribe_function(url_id_code=None):
+  page_dict = {}
+  page_dict['nav_header'] = False
   # ------------------------ if url code is none start ------------------------
   if url_id_code == None:
     return redirect(url_for('cv_views_exterior.cv_landing_details_function'))
@@ -197,5 +199,5 @@ def email_unsubscribe_function(url_id_code=None):
     db_email_obj.unsubscribed = True
     db.session.commit()
   # ------------------------ update db end ------------------------
-  return render_template('exterior/unsubscribed/index.html')
+  return render_template('exterior/unsubscribed/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
