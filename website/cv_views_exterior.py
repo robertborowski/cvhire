@@ -178,6 +178,8 @@ def cv_privacy_function():
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
+@cv_views_exterior.route('/email/unsubscribe')
+@cv_views_exterior.route('/email/unsubscribe/')
 @cv_views_exterior.route('/email/unsubscribe/<url_id_code>')
 @cv_views_exterior.route('/email/unsubscribe/<url_id_code>/')
 def email_unsubscribe_function(url_id_code=None):
