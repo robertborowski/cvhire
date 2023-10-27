@@ -544,6 +544,7 @@ def get_linkedin_identifiers_function():
   arr = [
     'she/her/hers',
     'she/her/ella',
+    'ella/she',
     'she/her',
     'they/he',
     'he/him',
