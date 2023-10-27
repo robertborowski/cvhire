@@ -1172,6 +1172,9 @@
 .custom-jc-start {
   justify-content: flex-start;
 }
+.custom-jc-end {
+  justify-content: flex-end;
+}
 /* ------------------- justify end ------------------- */
 /* ------------------- jQuery start ------------------- */
 .uiSearchItemVisible {

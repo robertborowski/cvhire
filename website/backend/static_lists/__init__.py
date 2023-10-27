@@ -475,20 +475,34 @@ def get_default_profile_imgs_function():
 
 # ------------------------ individual function start ------------------------
 def get_keyword_colors_function(i_keyword):
+  keywords_primary_arr = ['resume parsing']
+  keywords_success_arr = ['hiring success','hiring with ai']
+  keywords_info_arr = ['ai','ai recruiting']
+  keywords_danger_arr = ['applicant tracking system','ats']
+  # ------------------------ defaults / primary (warning) start ------------------------
   html_bg_color = 'custom-bg-primary'
   html_text_color = 'custom-color-black'
-  if i_keyword.lower() == 'hiring success':
-    html_bg_color = 'custom-bg-success'
-    html_text_color = 'custom-color-white'
-  if i_keyword.lower() == 'resume parsing':
+  # ------------------------ defaults / primary (warning) end ------------------------
+  # ------------------------ primary (warning) start ------------------------
+  if i_keyword.lower() in keywords_primary_arr:
     html_bg_color = 'custom-bg-primary'
     html_text_color = 'custom-color-black'
-  if i_keyword.lower() == 'ai':
+  # ------------------------ primary (warning) start ------------------------
+  # ------------------------ success start ------------------------
+  if i_keyword.lower() in keywords_success_arr:
+    html_bg_color = 'custom-bg-success'
+    html_text_color = 'custom-color-white'
+  # ------------------------ success end ------------------------
+  # ------------------------ info start ------------------------
+  if i_keyword.lower() in keywords_info_arr:
     html_bg_color = 'custom-bg-info'
     html_text_color = 'custom-color-black'
-  if i_keyword.lower() == 'applicant tracking system' or i_keyword.lower() == 'ats':
+  # ------------------------ info end ------------------------
+  # ------------------------ danger start ------------------------
+  if i_keyword.lower() in keywords_danger_arr:
     html_bg_color = 'custom-bg-danger'
     html_text_color = 'custom-color-white'
+  # ------------------------ danger end ------------------------
   else:
     pass
   return html_bg_color, html_text_color
