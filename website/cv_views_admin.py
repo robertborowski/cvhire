@@ -222,17 +222,19 @@ def admin_email_function(url_redirect_code=None):
       today = datetime.today()
       today_format = today.strftime('%m/%d/%Y')
       output_subject = f'Hiring Smarter with AI - {today_format}'
-      output_body = f"<p>Hi there,</p>\
-                      <p>words1</p>\
-                      <p>words2</p>\
-                      <p style='margin:0;'>Best,</p>\
-                      <p style='margin:0;'>CVhire Support Team</p>"
       # ------------------------ set variables end ------------------------
       # ------------------------ get all emails start ------------------------
       db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None).all()
       # ------------------------ get all emails end ------------------------
       # ------------------------ loop emails start ------------------------
       for i_email_obj in db_email_objs:
+        # ------------------------ set variables start ------------------------
+        output_body = f"""<p>Hi there,</p>\
+                          <p>For all things hiring + AI checkout our latest blog post <a href="https://cvhire.com/blog/{db_blog_obj.title}">{title_capitalized}</a></p>\
+                          <p style='margin:0;'>Best,</p>\
+                          <p style='margin:0;'>CVhire Support Team</p>\
+                          <p style='margin:0;font-size:10px;margin-top:5px;'><a href="https://cvhire.com/email/unsubscribe/{i_email_obj.id}">unsubscribe</a></p>"""
+        # ------------------------ set variables end ------------------------
         # ------------------------ get to email start ------------------------
         email_formats_arr = i_email_obj.all_formats.split('~')
         output_to_email = email_formats_arr[i_email_obj.correct_format] + '@' + i_email_obj.website_address
@@ -243,8 +245,23 @@ def admin_email_function(url_redirect_code=None):
           continue
         # ------------------------ check if email already sent end ------------------------
         # ------------------------ send email start ------------------------
-        # send_email_template_function()
+        send_email_template_function(output_to_email, output_subject, output_body)
         # ------------------------ send email end ------------------------
+        # ------------------------ add to email sent table start ------------------------
+        try:
+          new_row = EmailSentObj(
+            id=create_uuid_function('sent_'),
+            created_timestamp=create_timestamp_function(),
+            from_user_id_fk='marketing',
+            to_email=output_to_email,
+            subject=output_subject,
+            body=output_body
+          )
+          db.session.add(new_row)
+          db.session.commit()
+        except:
+          pass
+        # ------------------------ add to email sent table end ------------------------
       # ------------------------ loop emails end ------------------------
   return render_template('interior/admin_templates/email_template/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
