@@ -4,6 +4,7 @@ from website.backend.static_lists import get_linkedin_identifiers_function, get_
 import re
 from website import db
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
+from website.backend.static_lists import get_emails_to_delete_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ individual function start ------------------------
@@ -228,5 +229,19 @@ def form_potential_emails_function(first_name, potential_last_names_arr, i_linke
         # ------------------------ add to db end ------------------------
   except Exception as e:
     print(f'Error form_potential_emails_function: {e}')
+  return True
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def delete_from_scraped_emails_function():
+  # ------------------------ get set start ------------------------
+  email_set = get_emails_to_delete_function()
+  # ------------------------ get set end ------------------------
+  counter = 0
+  for i_email in email_set:
+    counter += 1
+  print(' ------------- 0 ------------- ')
+  print(f"counter | type: {type(counter)} | {counter}")
+  print(' ------------- 0 ------------- ')
   return True
 # ------------------------ individual function end ------------------------

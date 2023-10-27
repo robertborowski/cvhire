@@ -57,5 +57,14 @@
     <button type="submit" class="btn btn-primary">Add company</button>
   </form>
   <!-- ----------------------------------- add company name end ----------------------------------- -->
+  <!-- ----------------------------------- delete wrong scraped emails start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="custom-border-1 custom-p-50 custom-br-15 custom-m-50">
+    <div class="form-group">
+      <label for="uiDeleteIncorrectScrapedEmails">Delete scraped emails</label>
+      <input type="text" class="form-control" id="uiDeleteIncorrectScrapedEmails" name="uiDeleteIncorrectScrapedEmails" required>
+    </div>
+    <button type="submit" class="btn btn-danger">Run function</button>
+  </form>
+  <!-- ----------------------------------- delete wrong scraped emails end ----------------------------------- -->
 </div>
 {% endblock %}

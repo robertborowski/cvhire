@@ -10,7 +10,7 @@ from website.backend.alerts import get_alert_message_function
 from website.backend.sanitize import sanitize_email_function
 from website.backend.static_lists import get_list_function, redis_all_keys_function
 from website.backend.selenium_script import linkedin_scraper_function
-from website.backend.db_manipulation import form_scraped_emails_function
+from website.backend.db_manipulation import form_scraped_emails_function, delete_from_scraped_emails_function
 from datetime import datetime
 from website.backend.sendgrid import send_email_template_function
 from website.backend.convert import present_title_function
@@ -187,6 +187,12 @@ def admin_scrape_function(url_redirect_code=None):
       form_scraped_emails_function()
       return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s12'))
     # ------------------------ post #7 end ------------------------
+    # ------------------------ post #8 start ------------------------
+    ui_delete_incorrect_scraped_emails = request.form.get('uiDeleteIncorrectScrapedEmails')
+    if ui_delete_incorrect_scraped_emails != None:
+      delete_from_scraped_emails_function()
+      return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s12'))
+    # ------------------------ post #8 end ------------------------
   return render_template('interior/admin_templates/scrape/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
