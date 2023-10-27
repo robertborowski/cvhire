@@ -125,7 +125,7 @@ def keywords_present_function(input_str):
 def timestamp_to_date_function(input_datetime):
   formatted_date = None
   try:
-    formatted_date = input_datetime.strftime('%Y-%m-%d')
+    formatted_date = input_datetime.strftime('%m/%d/%Y')
   except Exception as e:
     pass
   return formatted_date
