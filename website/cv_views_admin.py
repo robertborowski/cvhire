@@ -263,5 +263,6 @@ def admin_email_function(url_redirect_code=None):
           pass
         # ------------------------ add to email sent table end ------------------------
       # ------------------------ loop emails end ------------------------
+      return redirect(url_for('cv_views_admin.admin_email_function', url_redirect_code='s12'))
   return render_template('interior/admin_templates/email_template/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
