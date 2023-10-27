@@ -3,7 +3,7 @@ from website.backend.uuid_timestamp import create_uuid_function, create_timestam
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from website import db
-from website.models import UserObj, EmailBlockObj, EmailScrapedObj, CompanyInfoObj, EmailSentObj
+from website.models import UserObj, EmailBlockObj, EmailScrapedObj, CompanyInfoObj, EmailSentObj, BlogObj
 import os
 from website.backend.connection import redis_connect_open_function
 from website.backend.alerts import get_alert_message_function
@@ -12,6 +12,8 @@ from website.backend.static_lists import get_list_function, redis_all_keys_funct
 from website.backend.selenium_script import linkedin_scraper_function
 from website.backend.db_manipulation import form_scraped_emails_function
 from datetime import datetime
+from website.backend.sendgrid import send_email_template_function
+from website.backend.convert import present_title_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -212,14 +214,23 @@ def admin_email_function(url_redirect_code=None):
   if request.method == 'POST':
     ui_send_marketing_email = request.form.get('uiSendMarketingEmail')
     if ui_send_marketing_email != None:
-      # ------------------------ get all emails start ------------------------
-      db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None).all()
-      # ------------------------ get all emails end ------------------------
+      # ------------------------ get latest blog post info start ------------------------
+      db_blog_obj = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).first()
+      title_capitalized = present_title_function(db_blog_obj.title)
+      # ------------------------ get latest blog post info end ------------------------
       # ------------------------ set variables start ------------------------
       today = datetime.today()
       today_format = today.strftime('%m/%d/%Y')
-      output_subject = f'Resume Parsing with AI - {today_format}'
+      output_subject = f'Hiring Smarter with AI - {today_format}'
+      output_body = f"<p>Hi there,</p>\
+                      <p>words1</p>\
+                      <p>words2</p>\
+                      <p style='margin:0;'>Best,</p>\
+                      <p style='margin:0;'>CVhire Support Team</p>"
       # ------------------------ set variables end ------------------------
+      # ------------------------ get all emails start ------------------------
+      db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None).all()
+      # ------------------------ get all emails end ------------------------
       # ------------------------ loop emails start ------------------------
       for i_email_obj in db_email_objs:
         # ------------------------ get to email start ------------------------
@@ -232,6 +243,7 @@ def admin_email_function(url_redirect_code=None):
           continue
         # ------------------------ check if email already sent end ------------------------
         # ------------------------ send email start ------------------------
+        # send_email_template_function()
         # ------------------------ send email end ------------------------
       # ------------------------ loop emails end ------------------------
   return render_template('interior/admin_templates/email_template/index.html', page_dict_html=page_dict)
