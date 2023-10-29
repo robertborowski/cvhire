@@ -475,10 +475,10 @@ def get_default_profile_imgs_function():
 
 # ------------------------ individual function start ------------------------
 def get_keyword_colors_function(i_keyword):
-  keywords_primary_arr = ['resume parsing']
-  keywords_success_arr = ['hiring success','hiring with ai']
+  keywords_primary_arr = ['resume parsing','automated resume screening']
+  keywords_success_arr = ['hiring success','hiring with ai','candidate matching']
   keywords_info_arr = ['ai','ai recruiting']
-  keywords_danger_arr = ['applicant tracking system','ats']
+  keywords_danger_arr = ['applicant tracking system','ats','time to hire']
   # ------------------------ defaults / primary (warning) start ------------------------
   html_bg_color = 'custom-bg-primary'
   html_text_color = 'custom-color-black'
