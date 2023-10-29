@@ -220,7 +220,8 @@ def form_potential_emails_function(first_name, potential_last_names_arr, i_linke
             all_formats=emails_str,
             correct_format=None,
             website_address=db_company_obj.url,
-            unsubscribed=False
+            unsubscribed=False,
+            verified=False
           )
           db.session.add(new_row)
           i_linkedin_obj.completed = True

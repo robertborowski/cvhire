@@ -148,7 +148,7 @@ def collect_function(driver, data_captured_dict):
 
 # ------------------------ individual function start ------------------------
 def multiple_pages_function(driver, data_captured_dict):
-  search_pages_max = 10
+  search_pages_max = 5
   current_page = 1
   while current_page < search_pages_max:
     try:

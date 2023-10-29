@@ -229,7 +229,7 @@ def admin_email_function(url_redirect_code=None):
       output_subject = f'Hiring Smarter with AI - {today_format}'
       # ------------------------ set variables end ------------------------
       # ------------------------ get all emails start ------------------------
-      db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None).all()
+      db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None,EmailScrapedObj.verified == True).all()
       # ------------------------ get all emails end ------------------------
       # ------------------------ loop emails start ------------------------
       for i_email_obj in db_email_objs:
