@@ -1174,7 +1174,8 @@ def get_emails_to_delete_function():
     'zac.demarco@salesforce.com',
     'marcos.palacios@salesforce.com',
     'caitlin.bourn@salesforce.com',
-    'laura.golubic@salesforce.com'
+    'laura.golubic@salesforce.com',
+    'ariadna.diaz@salesforce.com'
   }
   return custom_set
 # ------------------------ individual function end ------------------------
