@@ -221,8 +221,7 @@ def admin_email_function(url_redirect_code=None):
     ui_send_marketing_email = request.form.get('uiSendMarketingEmail')
     if ui_send_marketing_email != None:
       # ------------------------ get latest blog post info start ------------------------
-      db_blog_obj = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).first()
-      title_capitalized = present_title_function(db_blog_obj.title)
+      db_blog_objs = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).limit(3).all()
       # ------------------------ get latest blog post info end ------------------------
       # ------------------------ set variables start ------------------------
       today = datetime.today()
@@ -236,7 +235,11 @@ def admin_email_function(url_redirect_code=None):
       for i_email_obj in db_email_objs:
         # ------------------------ set variables start ------------------------
         output_body = f"""<p>Hi there,</p>\
-                          <p>For all things hiring + AI checkout our latest blog post <a href="https://cvhire.com/blog/{db_blog_obj.title}">{title_capitalized}</a></p>\
+                          <p>Transform your talent acquisition process with the power of AI - discover invaluable insights and tips by reading our latest blog posts!</p>\
+                          <p><a href="https://cvhire.com/blog/{db_blog_objs[0].title}">{present_title_function(db_blog_objs[0].title)}</a></p>\
+                          <p><a href="https://cvhire.com/blog/{db_blog_objs[1].title}">{present_title_function(db_blog_objs[1].title)}</a></p>\
+                          <p><a href="https://cvhire.com/blog/{db_blog_objs[2].title}">{present_title_function(db_blog_objs[2].title)}</a></p>\
+                          <p>Read about the benefits of AI-powered hiring, how to use AI to find the best candidates, and how to implement AI into your hiring process.</p>\
                           <p style='margin:0;'>Best,</p>\
                           <p style='margin:0;'>CVhire Support Team</p>\
                           <p style='margin:0;font-size:10px;margin-top:5px;'><a href="https://cvhire.com/email/unsubscribe/{i_email_obj.id}">unsubscribe</a></p>"""
