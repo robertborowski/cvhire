@@ -63,6 +63,7 @@ class EmailScrapedObj(db.Model):
   correct_format = db.Column(db.Integer)
   website_address = db.Column(db.String(150))
   unsubscribed = db.Column(db.Boolean, default=False)
+  verified = db.Column(db.Boolean, default=False)
 # ------------------------ individual model end ------------------------
 
 # ------------------------ individual model start ------------------------
