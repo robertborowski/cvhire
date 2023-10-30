@@ -116,6 +116,33 @@ def search_function(driver, input_company_name, input_role_name):
     element = driver.find_element(By.CSS_SELECTOR, '.search-reusables__filter-pill-button')
     element.click()
     time.sleep(random_int_function())
+
+  # click and fill out "Current company" filter
+  if 'currentCompany' not in current_url:
+    # Click filter
+    element = driver.find_element(By.ID, 'searchFilter_currentCompany') 
+    element.click()
+    time.sleep(random_int_function())
+    # Click search bar
+    element = driver.find_element(By.XPATH, "//input[@aria-label='Add a company']")
+    element.click()
+    time.sleep(random_int_function())
+    # Search
+    element.send_keys(input_company_name)
+    time.sleep(random_int_function())
+    # Arrow keys to select first option
+    element.send_keys(Keys.DOWN)
+    time.sleep(random_int_function())
+    element.send_keys(Keys.ENTER)
+    time.sleep(random_int_function())
+    # Submit filter search
+    elements = driver.find_elements(By.CSS_SELECTOR, 'button[data-test-reusables-filter-apply-button="true"]')
+    for i_element in elements:
+      span = i_element.find_element(By.CLASS_NAME, "artdeco-button__text")
+      if span.text.lower() == 'show results':
+        span.click()
+        time.sleep(random_int_function())
+
   return True
 # ------------------------ individual function end ------------------------
 
