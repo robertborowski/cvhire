@@ -1215,7 +1215,13 @@ def get_emails_to_delete_function():
     'nicolas.sar@loreal.com',
     'wendy.reyes@loreal.com',
     'marilyn.eber@loreal.com',
-    'michael.wehbe@loreal.com'
+    'michael.wehbe@loreal.com',
+    'yfarfan@figma.com',
+    'pmangione@figma.com',
+    'calfieri@figma.com',
+    'kjordan@figma.com',
+    'avyas@figma.com',
+    'jyoo@figma.com'
   }
   return custom_set
 # ------------------------ individual function end ------------------------
