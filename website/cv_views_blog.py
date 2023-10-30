@@ -137,6 +137,8 @@ def blog_post_function(url_blog_code=None, url_redirect_code=None):
     html_template = 'exterior/blog/i_blog/post3.html'
   if db_obj.id == 'blog_post_4':
     html_template = 'exterior/blog/i_blog/post4.html'
+  if db_obj.id == 'blog_post_5':
+    html_template = 'exterior/blog/i_blog/post5.html'
   # ------------------------ get html end ------------------------
   return render_template(html_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
