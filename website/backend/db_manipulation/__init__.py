@@ -55,6 +55,8 @@ def form_scraped_emails_function():
       # ------------------------ clean display name end ------------------------
       # ------------------------ get first name and potential last names arr start ------------------------
       first_name, potential_last_names_arr = derive_names_function(display_name)
+      print(f'display_name: {display_name} | first_name: {first_name} | potential_last_names_arr: {potential_last_names_arr}')
+      print(' ')
       # ------------------------ get first name and potential last names arr end ------------------------
       # ------------------------ if skip start ------------------------
       if first_name == 'skip':
