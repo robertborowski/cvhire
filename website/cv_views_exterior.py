@@ -2,7 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user
 from website.backend.connection import redis_connect_open_function
-from website.models import UserObj, EmailSentObj, EmailScrapedObj
+from website.models import UserObj, EmailSentObj, EmailScrapedObj, BlogObj
 from website import db
 from werkzeug.security import generate_password_hash
 from website.backend.alerts import get_alert_message_function
@@ -10,6 +10,7 @@ from website.backend.sanitize import sanitize_email_function, sanitize_password_
 from website.backend.sendgrid import send_email_template_function
 import os
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
+from website.backend.convert import objs_to_arr_of_dicts_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -43,6 +44,12 @@ def cv_landing_details_function(url_reference_id=None, url_redirect_code=None):
   # ------------------------ set variables start ------------------------
   page_dict['nav_header'] = True
   # ------------------------ set variables end ------------------------
+  # ------------------------ get latest blog post start ------------------------
+  db_blog_objs = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).limit(3).all()
+  # ------------------------ get latest blog post end ------------------------
+  # ------------------------ convert objs to dict start ------------------------
+  page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_blog_objs, 'blog')
+  # ------------------------ convert objs to dict end ------------------------
   return render_template('exterior/landing/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 

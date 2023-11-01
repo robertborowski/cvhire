@@ -124,4 +124,50 @@
   </div>
 </div>
 <!-- ------------------------------------- content end ------------------------------------- -->
+<!-- ------------------------------------- latest blog post start ------------------------------------- -->
+<div class="custom-width-1200 mx-auto">
+  <div class="text-center">
+    <h2 class="custom-header-30-mobile custom-weight-bolder custom-mb-50 custom-mt-50">Checkout our latest blog posts</h2>
+  </div>
+  <!-- ----------------------------------- all posts start ----------------------------------- -->
+  <div class="custom-mb-100 custom-display-flex custom-jc-between-mobile-center custom-f-wrap custom-gap-50">
+    {% for i_post in page_dict_html['db_arr_dicts'] %}
+      <div class="custom-width-300 border shadow">
+        <!-- ----------------------------------- img start ----------------------------------- -->
+        <div>
+          <a href="/blog/{{ i_post['title'] }}"><img src="{{ i_post['image_url'] }}" alt="blog photo" class="custom-img-height-200 custom-width-100"></a>
+        </div>
+        <!-- ----------------------------------- img end ----------------------------------- -->
+        <!-- ----------------------------------- words start ----------------------------------- -->
+        <div class="custom-p-10">
+          <!-- ----------------------------------- keywords start ----------------------------------- -->
+          <div class="custom-display-flex custom-f-wrap">
+            {% for k_keyword, v_keyword in i_post['keywords_read_dict'].items() %}
+              <a href="/blog/category/{{ v_keyword['url'] }}" class="custom-underline-none"><p class="custom-f-nowrap-important custom-m-0 custom-header-8 custom-br-15 custom-mr-5 custom-mt-5 custom-plr-10 custom-ptb-5 {{ v_keyword['html-bg-color'] }} {{ v_keyword['html-text-color'] }}">{{ k_keyword }}</p></a>
+            {% endfor %}
+          </div>
+          <!-- ----------------------------------- keywords end ----------------------------------- -->
+          <!-- ----------------------------------- title and details start ----------------------------------- -->
+          <div class="custom-mb-15">
+            <h2 class="custom-m-0 custom-header-20 custom-mt-15"><a href="/blog/{{ i_post['title'] }}" class="custom-a-black-underline">{{ i_post['title_read'] }}</a></h2>
+            <p class="custom-m-0 custom-header-12 custom-opacity-50 custom-mt-15">{{ i_post['details'] }}</p>
+          </div>
+          <!-- ----------------------------------- title and details end ----------------------------------- -->
+          <!-- ----------------------------------- authored start ----------------------------------- -->
+          <div class="custom-display-flex">
+            <div>
+              <a href="{{ i_post['author_social_url'] }}" target="_blank"><img src="{{ i_post['author_img_url'] }}" alt="author profile img" class="custom-img-height-20 custom-mr-5 custom-mt-negative-5"></a>
+            </div>
+            <a href="{{ i_post['author_social_url'] }}" target="_blank" class="custom-a-black-underline custom-m-0 custom-header-15 custom-opacity-50 custom-mr-15">{{ i_post['author'] }}</a>
+            <a href="/blog/{{ i_post['title'] }}" class="custom-a-black-underline custom-m-0 custom-header-15 custom-opacity-50"><i class="fa-regular fa-calendar custom-mr-5"></i> {{ i_post['created_timestamp_read'] }}</a>
+          </div>
+          <!-- ----------------------------------- authored end ----------------------------------- -->
+        </div>
+      </div>
+      <!-- ----------------------------------- words end ----------------------------------- -->
+    {% endfor %}
+  </div>
+  <!-- ----------------------------------- all posts end ----------------------------------- -->
+</div>
+<!-- ------------------------------------- latest blog post end ------------------------------------- -->
 {% endblock %}
