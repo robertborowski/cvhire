@@ -475,34 +475,46 @@ def get_default_profile_imgs_function():
 
 # ------------------------ individual function start ------------------------
 def get_keyword_colors_function(i_keyword):
-  keywords_primary_arr = ['resume parsing','automated resume screening','resume parser online']
-  keywords_success_arr = ['hiring success','hiring with ai','candidate matching']
+  keywords_primary_arr = ['resume parsing','automated resume screening','resume parser online','resume screening software']
+  keywords_success_arr = ['hiring success','hiring with ai','candidate matching','recruitment service']
   keywords_info_arr = ['ai','ai recruiting']
-  keywords_danger_arr = ['applicant tracking system','ats','time to hire','applicant tracking software']
+  keywords_danger_arr = ['applicant tracking system','ats','time to hire','applicant tracking software','ats tracking']
+  keywords_orange_arr = ['recruiting services']
+  keywords_purple_arr = ['tech recruiters','recruitment system']
   # ------------------------ defaults / primary (warning) start ------------------------
   html_bg_color = 'custom-bg-primary'
   html_text_color = 'custom-color-black'
   # ------------------------ defaults / primary (warning) end ------------------------
-  # ------------------------ primary (warning) start ------------------------
+  # ------------------------ color arr start ------------------------
   if i_keyword.lower() in keywords_primary_arr:
     html_bg_color = 'custom-bg-primary'
     html_text_color = 'custom-color-black'
-  # ------------------------ primary (warning) start ------------------------
-  # ------------------------ success start ------------------------
+  # ------------------------ color arr end ------------------------
+  # ------------------------ color arr start ------------------------
   if i_keyword.lower() in keywords_success_arr:
     html_bg_color = 'custom-bg-success'
     html_text_color = 'custom-color-white'
-  # ------------------------ success end ------------------------
-  # ------------------------ info start ------------------------
+  # ------------------------ color arr end ------------------------
+  # ------------------------ color arr start ------------------------
   if i_keyword.lower() in keywords_info_arr:
     html_bg_color = 'custom-bg-info'
     html_text_color = 'custom-color-black'
-  # ------------------------ info end ------------------------
-  # ------------------------ danger start ------------------------
+  # ------------------------ color arr end ------------------------
+  # ------------------------ color arr start ------------------------
   if i_keyword.lower() in keywords_danger_arr:
     html_bg_color = 'custom-bg-danger'
     html_text_color = 'custom-color-white'
-  # ------------------------ danger end ------------------------
+  # ------------------------ color arr end ------------------------
+  # ------------------------ color arr start ------------------------
+  if i_keyword.lower() in keywords_orange_arr:
+    html_bg_color = 'custom-bg-orange'
+    html_text_color = 'custom-color-black'
+  # ------------------------ color arr end ------------------------
+  # ------------------------ color arr start ------------------------
+  if i_keyword.lower() in keywords_purple_arr:
+    html_bg_color = 'custom-bg-purple'
+    html_text_color = 'custom-color-white'
+  # ------------------------ color arr end ------------------------
   else:
     pass
   return html_bg_color, html_text_color
