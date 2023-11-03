@@ -140,13 +140,6 @@
         <!-- ----------------------------------- img end ----------------------------------- -->
         <!-- ----------------------------------- words start ----------------------------------- -->
         <div class="css-p-10">
-          <!-- ----------------------------------- keywords start ----------------------------------- -->
-          <div class="css-display-flex css-f-wrap">
-            {% for k_keyword, v_keyword in i_post['keywords_read_dict'].items() %}
-              <a href="/blog/category/{{ v_keyword['url'] }}" class="css-underline-none"><p class="css-f-nowrap-important css-m-0 css-header-8 css-br-15 css-mr-5 css-mt-5 css-plr-10 css-ptb-5 {{ v_keyword['html-bg-color'] }} {{ v_keyword['html-text-color'] }}">{{ k_keyword }}</p></a>
-            {% endfor %}
-          </div>
-          <!-- ----------------------------------- keywords end ----------------------------------- -->
           <!-- ----------------------------------- title and details start ----------------------------------- -->
           <div class="css-mb-15">
             <h2 class="css-m-0 css-header-20 css-mt-15"><a href="/blog/{{ i_post['title'] }}" class="css-a-black-underline">{{ i_post['title_read'] }}</a></h2>
@@ -162,6 +155,13 @@
             <a href="/blog/{{ i_post['title'] }}" class="css-a-black-underline css-m-0 css-header-15 css-opacity-50"><i class="fa-regular fa-calendar css-mr-5"></i> {{ i_post['created_timestamp_read'] }}</a>
           </div>
           <!-- ----------------------------------- authored end ----------------------------------- -->
+          <!-- ----------------------------------- keywords start ----------------------------------- -->
+          <div class="css-display-flex css-f-wrap css-mt-10 css-mb-10">
+            {% for k_keyword, v_keyword in i_post['keywords_read_dict'].items() %}
+              <a href="/blog/category/{{ v_keyword['url'] }}" class="css-underline-none"><p class="css-f-nowrap-important css-m-0 css-header-8 css-br-15 css-mr-5 css-mt-5 css-plr-10 css-ptb-5 {{ v_keyword['html-bg-color'] }} {{ v_keyword['html-text-color'] }}">{{ k_keyword }}</p></a>
+            {% endfor %}
+          </div>
+          <!-- ----------------------------------- keywords end ----------------------------------- -->
         </div>
       </div>
       <!-- ----------------------------------- words end ----------------------------------- -->
