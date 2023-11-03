@@ -534,6 +534,7 @@ def get_special_chars_function():
   chars_dict = {
     "'": "",
     '.': '',
+    'ã': 'a',
     'á': 'a',
     'ć': 'c',
     'ë': 'e',
