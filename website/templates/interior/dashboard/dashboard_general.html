@@ -7,23 +7,23 @@
 {% endblock %}
 
 {% block contentBodyExceptNavbarAndFooter %}
-<div class="custom-width-interior-1100 mx-auto custom-plr-50">
+<div class="css-width-interior-1100 mx-auto css-plr-50">
   <!-- ------------------------------------- title start ------------------------------------- -->
-  <div class="custom-pt-25 custom-display-flex custom-jc-between custom-mb-10">
-    <h2 class="custom-header-30 custom-weight-900 custom-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
+  <div class="css-pt-25 css-display-flex css-jc-between css-mb-10">
+    <h2 class="css-header-30 css-weight-900 css-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
     {% if page_dict_html['dashboard_action'] != 'no action' %}
-      <a href="{{ page_dict_html['dashboard_action_link'] }}" class="btn btn-primary custom-br-10"><i class="fa-solid fa-plus"></i> {{ page_dict_html['dashboard_action'] }}</a>
+      <a href="{{ page_dict_html['dashboard_action_link'] }}" class="btn btn-primary css-br-10"><i class="fa-solid fa-plus"></i> {{ page_dict_html['dashboard_action'] }}</a>
     {% endif %}
   </div>
   <!-- ------------------------------------- title end ------------------------------------- -->
   <!-- ------------------------------------- options start ------------------------------------- -->
-  <div class="custom-header-15 custom-ptb-10 border-bottom">
-      <ul class="custom-m-0 custom-p-0 custom-display-flex custom-no-decoration custom-jc-start">
+  <div class="css-header-15 css-ptb-10 border-bottom">
+      <ul class="css-m-0 css-p-0 css-display-flex css-no-decoration css-jc-start">
         {% for k,v in page_dict_html['dashboard_section_links_dict'].items() %}
           {% if v in page_dict_html['navbar_link_current'] %}
-            <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-primary">{{ k }}</a></li>
+            <li><a href="{{ v }}" class="css-mr-30 css-plr-15 css-br-50 css-a-black-none css-ptb-5 css-bg-primary">{{ k }}</a></li>
           {% else %}
-            <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-hover-1">{{ k }}</a></li>
+            <li><a href="{{ v }}" class="css-mr-30 css-plr-15 css-br-50 css-a-black-none css-ptb-5 css-bg-hover-1">{{ k }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
@@ -36,13 +36,13 @@
 {% endblock %}
 <!-- ------------------------------------- different dashboard subpages end ------------------------------------- -->
 <!-- ------------------------------------- content start ------------------------------------- -->
-<div class="custom-width-interior-1100 mx-auto custom-plr-50">
-  <div class="custom-header-15 custom-mt-25">
+<div class="css-width-interior-1100 mx-auto css-plr-50">
+  <div class="css-header-15 css-mt-25">
     <!-- ------------------------------------- results message and refresh start ------------------------------------- -->
     {% if page_dict_html['queue_status'] == true %}
-      <div class="custom-width-900 mx-auto custom-mt-50 custom-mb-50 border shadow-lg custom-p-75 custom-br-15">
+      <div class="css-width-900 mx-auto css-mt-50 css-mb-50 border shadow-lg css-p-75 css-br-15">
         <div class="alert alert-success" role="alert">Automated screening can take 1-2 minutes, please click below to load results when ready.</div>
-        <a href="/results/valid" class="btn btn-success btn-lg custom-width-100">Refresh</a>
+        <a href="/results/valid" class="btn btn-success btn-lg css-width-100">Refresh</a>
       </div>
     {% endif %}
     <!-- ------------------------------------- results message and refresh end ------------------------------------- -->
@@ -50,42 +50,42 @@
     {% if page_dict_html['content_total_rows'] == 0 %}
       {% if page_dict_html['starting_route'] == 'roles' %}
         {% if page_dict_html['url_status_code'] == 'open' or page_dict_html['url_status_code'] == 'all' %}
-          <div class="custom-width-600 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-            <a href="/roles/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add your first open role</a>
+          <div class="css-width-600 mx-auto css-bg-grey-1 css-p-50 css-br-10 text-center border shadow">
+            <a href="/roles/add" class="css-opacity-60 css-a-black-underline"><i class="fa-solid fa-plus"></i> Add your first open role</a>
           </div>
         {% elif page_dict_html['url_status_code'] == 'filled' %}
-          <div class="custom-width-600 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-            <a href="/roles/open" class="custom-opacity-60 custom-a-black-underline">No filled roles</a>
+          <div class="css-width-600 mx-auto css-bg-grey-1 css-p-50 css-br-10 text-center border shadow">
+            <a href="/roles/open" class="css-opacity-60 css-a-black-underline">No filled roles</a>
           </div>
         {% elif page_dict_html['url_status_code'] == 'archive' %}
-          <div class="custom-width-600 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-            <a href="/roles/open" class="custom-opacity-60 custom-a-black-underline">No archived roles</a>
+          <div class="css-width-600 mx-auto css-bg-grey-1 css-p-50 css-br-10 text-center border shadow">
+            <a href="/roles/open" class="css-opacity-60 css-a-black-underline">No archived roles</a>
           </div>
         {% endif %}
       {% elif page_dict_html['starting_route'] == 'cv' %}
         {% if page_dict_html['url_status_code'] == 'active' or page_dict_html['url_status_code'] == 'all' %}
-          <div class="custom-width-600 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-            <a href="/cv/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add candidate CVs</a>
+          <div class="css-width-600 mx-auto css-bg-grey-1 css-p-50 css-br-10 text-center border shadow">
+            <a href="/cv/add" class="css-opacity-60 css-a-black-underline"><i class="fa-solid fa-plus"></i> Add candidate CVs</a>
           </div>
         {% elif page_dict_html['url_status_code'] == 'archive' %}
-          <div class="custom-width-600 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-            <a href="/cv/active" class="custom-opacity-60 custom-a-black-underline">No archived CVs</a>
+          <div class="css-width-600 mx-auto css-bg-grey-1 css-p-50 css-br-10 text-center border shadow">
+            <a href="/cv/active" class="css-opacity-60 css-a-black-underline">No archived CVs</a>
           </div>
         {% endif %}
       {% elif page_dict_html['starting_route'] == 'results' %}
         {% if page_dict_html['url_status_code'] == 'valid' and page_dict_html['queue_status'] == false %}
-          <div class="custom-width-600 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-            <a href="/ai/one-role-many-cvs" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Screen CVs</a>
+          <div class="css-width-600 mx-auto css-bg-grey-1 css-p-50 css-br-10 text-center border shadow">
+            <a href="/ai/one-role-many-cvs" class="css-opacity-60 css-a-black-underline"><i class="fa-solid fa-plus"></i> Screen CVs</a>
           </div>
         {% elif page_dict_html['url_status_code'] == 'archive' %}
-          <div class="custom-width-600 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-            <a href="/results/all" class="custom-opacity-60 custom-a-black-underline">No archived results</a>
+          <div class="css-width-600 mx-auto css-bg-grey-1 css-p-50 css-br-10 text-center border shadow">
+            <a href="/results/all" class="css-opacity-60 css-a-black-underline">No archived results</a>
           </div>
         {% endif %}
       {% elif page_dict_html['starting_route'] == 'notifications' %}
         {% if page_dict_html['url_status_code'] == 'unread' or page_dict_html['url_status_code'] == 'read' %}
-          <div class="custom-width-600 mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-            <p class="custom-m-0 custom-opacity-60">No notifications</p>
+          <div class="css-width-600 mx-auto css-bg-grey-1 css-p-50 css-br-10 text-center border shadow">
+            <p class="css-m-0 css-opacity-60">No notifications</p>
           </div>
         {% endif %}
       {% endif %}
@@ -97,72 +97,72 @@
       <!-- ------------------------------------- search bar end ------------------------------------- -->
       <!-- ------------------------------------- filtering start ------------------------------------- -->
       {% if page_dict_html['starting_route'] != 'notifications' %}
-        <div class="custom-display-flex custom-jc-between custom-mt-25">
-          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_a" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mr-10">Name <i class="fa-solid fa-caret-down"></i></a>
-          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_z" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mlr-10">Name <i class="fa-solid fa-caret-up"></i></a>
-          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_a" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-mlr-10">Upload <i class="fa-solid fa-caret-down"></i></a>
-          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_z" class="custom-opacity-35 custom-width-100 custom-border-1 text-center custom-a-black-none custom-br-10 custom-ptb-5 custom-hover-pointer-opacity-1 custom-ml-10">Upload <i class="fa-solid fa-caret-up"></i></a>
+        <div class="css-display-flex css-jc-between css-mt-25">
+          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_a" class="css-opacity-35 css-width-100 css-border-1 text-center css-a-black-none css-br-10 css-ptb-5 css-hover-pointer-opacity-1 css-mr-10">Name <i class="fa-solid fa-caret-down"></i></a>
+          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_name_z" class="css-opacity-35 css-width-100 css-border-1 text-center css-a-black-none css-br-10 css-ptb-5 css-hover-pointer-opacity-1 css-mlr-10">Name <i class="fa-solid fa-caret-up"></i></a>
+          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_a" class="css-opacity-35 css-width-100 css-border-1 text-center css-a-black-none css-br-10 css-ptb-5 css-hover-pointer-opacity-1 css-mlr-10">Upload <i class="fa-solid fa-caret-down"></i></a>
+          <a href="/{{ page_dict_html['starting_route'] }}/{{ page_dict_html['url_status_code'] }}/sort_time_z" class="css-opacity-35 css-width-100 css-border-1 text-center css-a-black-none css-br-10 css-ptb-5 css-hover-pointer-opacity-1 css-ml-10">Upload <i class="fa-solid fa-caret-up"></i></a>
         </div>
       {% endif %}
       <!-- ------------------------------------- filtering end ------------------------------------- -->
       <!-- ------------------------------------- divider start ------------------------------------- -->
-      <div class="custom-display-flex custom-jc-between border-bottom custom-mt-25">
-        <p class="custom-m-0 custom-opacity-50 custom-header-12">Item</p>
-        <p class="custom-m-0 custom-opacity-50 custom-header-12">Actions</p>
+      <div class="css-display-flex css-jc-between border-bottom css-mt-25">
+        <p class="css-m-0 css-opacity-50 css-header-12">Item</p>
+        <p class="css-m-0 css-opacity-50 css-header-12">Actions</p>
       </div>
       <!-- ------------------------------------- divider end ------------------------------------- -->
       <!-- ------------------------------------- rows content start ------------------------------------- -->
       {% for i in page_dict_html['content_total_rows_arr_of_dicts'] %}
-        <div class="custom-ptb-25 border-bottom uiSearchItem">
-          <div class="custom-display-flex custom-jc-between">
+        <div class="css-ptb-25 border-bottom uiSearchItem">
+          <div class="css-display-flex css-jc-between">
             <div>
               {% if page_dict_html['starting_route'] == 'roles' %}
-                <div class="custom-display-flex custom-f-direction-col">
-                  <a href="/roles/view/{{ i['id'] }}" class="custom-a-black-underline custom-header-20">{{ i['name_display'] }}</a>
-                  <a href="/roles/view/{{ i['id'] }}" class="custom-a-black-underline custom-mt-5 custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
+                <div class="css-display-flex css-f-direction-col">
+                  <a href="/roles/view/{{ i['id'] }}" class="css-a-black-underline css-header-20">{{ i['name_display'] }}</a>
+                  <a href="/roles/view/{{ i['id'] }}" class="css-a-black-underline css-mt-5 css-opacity-50 css-header-12">{{ i['created_timestamp'] }}</a>
                 </div>
               {% elif page_dict_html['starting_route'] == 'cv' %}
-                <div class="custom-display-flex custom-f-direction-col">
-                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline custom-header-20">{{ i['candidate_name_display'] }}</a>
-                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline">{{ i['candidate_email_display'] }}</a>
-                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline">{{ i['candidate_phone_display'] }}</a>
-                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline custom-header-12 custom-mt-5">{{ i['cv_upload_name_display'] }}</a>
-                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="custom-a-black-underline custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
+                <div class="css-display-flex css-f-direction-col">
+                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="css-a-black-underline css-header-20">{{ i['candidate_name_display'] }}</a>
+                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="css-a-black-underline">{{ i['candidate_email_display'] }}</a>
+                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="css-a-black-underline">{{ i['candidate_phone_display'] }}</a>
+                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="css-a-black-underline css-header-12 css-mt-5">{{ i['cv_upload_name_display'] }}</a>
+                  <a href="/cv/view/{{ i['id'] }}" target="_blank" class="css-a-black-underline css-opacity-50 css-header-12">{{ i['created_timestamp'] }}</a>
                 </div>
               {% elif page_dict_html['starting_route'] == 'results' %}
-                <div class="custom-display-flex custom-f-direction-col">
-                  <a href="/results/view/{{ i['id'] }}" class="custom-a-black-underline custom-header-20">{{ i['fk_role_name_display'] }}</a>
-                  <a href="/results/view/{{ i['id'] }}" class="custom-a-black-underline custom-mt-5 custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
+                <div class="css-display-flex css-f-direction-col">
+                  <a href="/results/view/{{ i['id'] }}" class="css-a-black-underline css-header-20">{{ i['fk_role_name_display'] }}</a>
+                  <a href="/results/view/{{ i['id'] }}" class="css-a-black-underline css-mt-5 css-opacity-50 css-header-12">{{ i['created_timestamp'] }}</a>
                 </div>
               {% elif page_dict_html['starting_route'] == 'notifications' %}
-                <div class="custom-display-flex custom-f-direction-col">
-                  <p class="custom-m-0 custom-opacity-50 custom-header-12">{{ i['created_timestamp'] }}</a>
-                  <p class="custom-m-0 custom-mt-5 custom-header-15">{{ i['message'] }}</a>
+                <div class="css-display-flex css-f-direction-col">
+                  <p class="css-m-0 css-opacity-50 css-header-12">{{ i['created_timestamp'] }}</a>
+                  <p class="css-m-0 css-mt-5 css-header-15">{{ i['message'] }}</a>
                 </div>
               {% endif %}
             </div>
-            <div class="custom-header-20 my-auto">
-              <ul class="custom-m-0 custom-display-flex custom-no-decoration">
+            <div class="css-header-20 my-auto">
+              <ul class="css-m-0 css-display-flex css-no-decoration">
                 {% if page_dict_html['starting_route'] == 'roles' %}
                   {% if page_dict_html['url_status_code'] == 'open' %}
-                    <li><a href="/ai/one-role-many-cvs" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20 custom-ptb-10">Screen CVs</a></li>
+                    <li><a href="/ai/one-role-many-cvs" class="css-ml-10 btn btn-outline-success btn-sm css-br-10 css-plr-20 css-ptb-10">Screen CVs</a></li>
                   {% elif page_dict_html['url_status_code'] == 'all' %}
                     <li>{{ i['status'] }}</li>
                   {% endif %}
                 {% elif page_dict_html['starting_route'] == 'cv' %}
                   {% if page_dict_html['url_status_code'] == 'active' %}
-                    <li><a href="/ai/one-role-many-cvs" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20 custom-ptb-10">Screen CV</a></li>
-                    <li><a href="/cv/ask_ai/{{ i['id'] }}" class="custom-ml-10 btn btn-success btn-sm custom-br-10 custom-plr-20 custom-ptb-10">Ask AI</a></li>
+                    <li><a href="/ai/one-role-many-cvs" class="css-ml-10 btn btn-outline-success btn-sm css-br-10 css-plr-20 css-ptb-10">Screen CV</a></li>
+                    <li><a href="/cv/ask_ai/{{ i['id'] }}" class="css-ml-10 btn btn-success btn-sm css-br-10 css-plr-20 css-ptb-10">Ask AI</a></li>
                   {% elif page_dict_html['url_status_code'] == 'all' %}
                     <li>{{ i['status'] }}</li>
                   {% endif %}
                 {% elif page_dict_html['starting_route'] == 'results' %}
-                  <li><a href="/results/view/{{ i['id'] }}" class="custom-header-15 custom-a-black-underline">{{ i['fk_cv_name_display'] }} <img src="{{ i['score_all_stars'] }}" alt="" class="custom-img-size-20 custom-mlr-15"> {{ i['score'] }}</a></li>
-                  <li><a href="/results/view/{{ i['id'] }}" class="custom-ml-10 btn btn-outline-success btn-sm custom-br-10 custom-plr-20">View results</a></li>
+                  <li><a href="/results/view/{{ i['id'] }}" class="css-header-15 css-a-black-underline">{{ i['fk_cv_name_display'] }} <img src="{{ i['score_all_stars'] }}" alt="" class="css-img-size-20 css-mlr-15"> {{ i['score'] }}</a></li>
+                  <li><a href="/results/view/{{ i['id'] }}" class="css-ml-10 btn btn-outline-success btn-sm css-br-10 css-plr-20">View results</a></li>
                   {% endif %}
                 {% for k,v in page_dict_html['sub_table_links_dict'].items() %}
                   <div class="my-auto">
-                    <li><a href="{{ v['url'] }}/{{ i['id'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-ml-30" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
+                    <li><a href="{{ v['url'] }}/{{ i['id'] }}" class="css-a-black-none css-opacity-50 css-hover-pointer-opacity-1 css-ml-30" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
                   </div>
                 {% endfor %}
               </ul>

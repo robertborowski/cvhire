@@ -1,73 +1,73 @@
 @media (max-width: 1200px) {
     /* ------------------- background start ------------------- */
-    .custom-bg-obj-1-mobile {
+    .css-bg-obj-1-mobile {
       height: 40px;
       top: 425px;
       left: calc(0% - 100px);
       right: calc(50% + 200px);
       position: absolute;
-      background: var(--custom-color-black-faded);
+      background: var(--css-color-black-faded);
     }
-    .custom-bg-obj-2-mobile {
+    .css-bg-obj-2-mobile {
       height: 40px;
       top: 450px;
       left: -10px;
       right: calc(50% + 200px);
       position: absolute;
-      background: var(--custom-color-primary);
+      background: var(--css-color-primary);
     }
-    .custom-bg-obj-3-mobile {
+    .css-bg-obj-3-mobile {
       height: 40px;
       top: 700px;
       left: calc(50% + 170px);
       right: -10px;
       position: absolute;
-      background: var(--custom-color-primary);
+      background: var(--css-color-primary);
       z-index: -10;
     }
     /* ------------------- background end ------------------- */
     /* ------------------- border start ------------------- */
-    .custom-br-2-mobile {
+    .css-br-2-mobile {
       border-radius: 15px;
     }
     /* ------------------- border end ------------------- */
     /* ------------------- display start ------------------- */
-    .custom-mobile-display-1 {
+    .css-mobile-display-1 {
       display: none;
     }
-    .custom-mobile-display-2 {
+    .css-mobile-display-2 {
       display: block;
     }
-    .custom-display-flex-row-to-column-mobile {
+    .css-display-flex-row-to-column-mobile {
       display: flex;
       flex-direction: column;
     }
-    .custom-display-flex-row-to-column-reverse-mobile {
+    .css-display-flex-row-to-column-reverse-mobile {
       display: flex;
       flex-direction: column-reverse;
     }
     /* ------------------- display end ------------------- */
     /* ------------------- divider start ------------------- */
-    .custom-divider-exterior-nav {
+    .css-divider-exterior-nav {
       padding-top: 60px;
     }
     /* ------------------- divider end ------------------- */
     /* ------------------- filler start ------------------- */
-    .custom-filler-1-mobile {
+    .css-filler-1-mobile {
       height: 400px;
     }
     /* ------------------- filler end ------------------- */
     /* ------------------- flex start ------------------- */
-    .custom-footer-mobile-1 {
+    .css-footer-mobile-1 {
       flex-direction: column;
       text-align: center;
     }
-    .custom-fw-2-mobile {
+    .css-fw-2-mobile {
       flex-wrap: wrap;
     }
     /* ------------------- flex end ------------------- */
     /* ------------------- grid start ------------------- */
-    .custom-grid-container-3x2-mobile {
+    .css-grid-container-3x2-mobile {
       display: grid;
       grid-template-columns: 1fr; /* Creates 2 columns */
       grid-template-rows: repeat(5, 1fr); /* Creates 3 rows */
@@ -75,183 +75,183 @@
     }
     /* ------------------- grid end ------------------- */
     /* ------------------- height start ------------------- */
-    .custom-height-1-mobile {
+    .css-height-1-mobile {
       height: 1300px;
     }
-    .custom-height-2-mobile {
+    .css-height-2-mobile {
       height: 625px;
     }
-    .custom-height-3-mobile {
+    .css-height-3-mobile {
       height: 1100px;
     }
-    .custom-height-4-mobile {
+    .css-height-4-mobile {
       height: 1000px;
     }
-    .custom-height-5-mobile {
+    .css-height-5-mobile {
       height: 350px;
     }
-    .custom-height-6-mobile {
+    .css-height-6-mobile {
       height: 1000px;
     }
-    .custom-img-size-7-mobile {
+    .css-img-size-7-mobile {
       max-height: 200px;
     }
-    .custom-height-8-mobile {
+    .css-height-8-mobile {
       height: 800px;
     }
-    .custom-min-height-1-mobile {
+    .css-min-height-1-mobile {
       min-height: 550px;
     }
     /* ------------------- height end ------------------- */
     /* ------------------- header start ------------------- */
-    .custom-header-mobile-1 {
+    .css-header-mobile-1 {
       font-size: 20px;
     }
-    .custom-header-20-mobile {
+    .css-header-20-mobile {
       font-size: 15px;
     }
-    .custom-header-30-mobile {
+    .css-header-30-mobile {
       font-size: 20px;
     }
-    .custom-header-30-mobile-2 {
+    .css-header-30-mobile-2 {
       font-size: 20px;
     }
-    .custom-header-40-mobile {
+    .css-header-40-mobile {
       font-size: 25px;
     }
-    .custom-header-4-mobile {
+    .css-header-4-mobile {
       font-size: 10px;
     }
-    .custom-header-5-mobile {
+    .css-header-5-mobile {
       font-size: 10px;
     }
-    .custom-header-25-mobile {
+    .css-header-25-mobile {
       font-size: 20px;
     }
-    .custom-header-80-mobile {
+    .css-header-80-mobile {
       font-size: 45px;
     }
     /* ------------------- header end ------------------- */
     /* ------------------- image start ------------------- */
-    .custom-img-height-125-mobile {
+    .css-img-height-125-mobile {
       max-height: 175px;
     }
-    .custom-img-height-40-mobile {
+    .css-img-height-40-mobile {
       max-height: 30px;
     }
     /* ------------------- image end ------------------- */
     /* ------------------- justify content start ------------------- */
-    .custom-jc-between-mobile-center {
+    .css-jc-between-mobile-center {
       justify-content: center;
     }
     /* ------------------- justify content end ------------------- */
     /* ------------------- margin start ------------------- */
-    .custom-m-1-mobile {
+    .css-m-1-mobile {
       margin: 5px;
     }
-    .custom-mtb-20-mobile {
+    .css-mtb-20-mobile {
       margin-top: 20px;
       margin-bottom: 20px;
     }
-    .custom-mt-negative-4-mobile {
+    .css-mt-negative-4-mobile {
       margin-top: -100px;
     }
-    .custom-mt-25-mobile {
+    .css-mt-25-mobile {
       margin-top: 25px;
     }
-    .custom-mt-100-mobile {
+    .css-mt-100-mobile {
       margin-top: 100px;
     }
-    .custom-mb-1-mobile {
+    .css-mb-1-mobile {
       margin-bottom: 10px;
     }
-    .custom-mtb-2-mobile {
+    .css-mtb-2-mobile {
       margin: 50px 0px;
     }
-    .custom-mb-negative-15-mobile {
+    .css-mb-negative-15-mobile {
       margin-bottom: 25px;
     }
-    .custom-mb-5-mobile {
+    .css-mb-5-mobile {
       margin-bottom: 5px;
     }
-    .custom-mb-10-mobile {
+    .css-mb-10-mobile {
       margin-bottom: 10px;
     }
-    .custom-ml-25-mobile {
+    .css-ml-25-mobile {
       margin-left: 5px;
     }
-    .custom-mr-25-mobile {
+    .css-mr-25-mobile {
       margin-right: 5px;
     }
     /* ------------------- margin end ------------------- */
     /* ------------------- navbar start ------------------- */
-    .custom-nav-list {
+    .css-nav-list {
       display: none;
       width: 100%;
       text-align: center;
     }
-    .custom-nav-list li {
+    .css-nav-list li {
       margin: 50px 0 !important;
       display: block;
     }
-    .custom-nav-list.custom-show {
+    .css-nav-list.css-show {
       display: block;
     }
-    .custom-menu-toggle {
+    .css-menu-toggle {
       display: flex;
     }
-    .custom-menu-toggle.custom-show .custom-bar:nth-child(1) {
+    .css-menu-toggle.css-show .css-bar:nth-child(1) {
       transform: rotate(-45deg) translate(-5px, 6px);
     }
-    .custom-menu-toggle.custom-show .custom-bar:nth-child(2) {
+    .css-menu-toggle.css-show .css-bar:nth-child(2) {
       opacity: 0;
     }
-    .custom-menu-toggle.custom-show .custom-bar:nth-child(3) {
+    .css-menu-toggle.css-show .css-bar:nth-child(3) {
       transform: rotate(45deg) translate(-5px, -6px);
     }
     /* ------------------- navbar end ------------------- */
     /* ------------------- padding start ------------------- */
-    .custom-p-50-mobile {
+    .css-p-50-mobile {
       padding: 0px;
     }
     /* ------------------- padding end ------------------- */
     /* ------------------- visibility start ------------------- */
-    .custom-visible-non-mobile-only {
+    .css-visible-non-mobile-only {
       display:none;
     }
     /* ------------------- visibility end ------------------- */
     /* ------------------- view start ------------------- */
-    .custom-mobile-view-1 {
+    .css-mobile-view-1 {
       display: none;
     }
-    .custom-mobile-view-2 {
+    .css-mobile-view-2 {
       display: block;
     }
     /* ------------------- view end ------------------- */
     /* ------------------- width start ------------------- */
-    .custom-width-2-mobile {
+    .css-width-2-mobile {
       width: 100%;
     }
-    .custom-width-11-mobile {
-      width: 100%;
-      max-width: 100%;
-    }
-    .custom-width-12-mobile {
+    .css-width-11-mobile {
       width: 100%;
       max-width: 100%;
     }
-    .custom-width-16-mobile {
+    .css-width-12-mobile {
+      width: 100%;
+      max-width: 100%;
+    }
+    .css-width-16-mobile {
       width: 100%;
     }
-    .custom-width-18-mobile {
+    .css-width-18-mobile {
       max-width: 90%;
     }
-    .custom-width-100-mobile {
+    .css-width-100-mobile {
       max-height: 500px;
       width: auto;
       max-width: 300px;
     }
-    .custom-width-250-mobile {
+    .css-width-250-mobile {
       width: 90%;
     }
     /* ------------------- width end ------------------- */

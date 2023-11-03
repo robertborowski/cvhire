@@ -15,50 +15,50 @@
 {% endif %}
 <!-- ----------------------------------- alert end ----------------------------------- -->
 <!-- ----------------------------------- content start ----------------------------------- -->
-<div class="custom-width-1100 mx-auto">
+<div class="css-width-1100 mx-auto">
   <!-- ----------------------------------- title start ----------------------------------- -->
-  <div class="custom-mt-50 custom-mb-25">
+  <div class="css-mt-50 css-mb-25">
     {% if page_dict_html['category_specific'] == True %}
-      <div class="custom-display-flex custom-jc-between">
-        <h1 class="custom-header-30">Blog | {{ page_dict_html['category_title'] }}</h1>
+      <div class="css-display-flex css-jc-between">
+        <h1 class="css-header-30">Blog | {{ page_dict_html['category_title'] }}</h1>
         <a href="/blog" class="btn btn-outline-secondary my-auto">Back</a>
       </div>
     {% else %}
-      <h1 class="custom-header-30">Blog</h1>
+      <h1 class="css-header-30">Blog</h1>
     {% endif %}
   </div>
   <!-- ----------------------------------- title end ----------------------------------- -->
   <!-- ----------------------------------- all posts start ----------------------------------- -->
-  <div class="custom-mb-100 custom-display-flex custom-jc-between-mobile-center custom-f-wrap custom-gap-50">
+  <div class="css-mb-100 css-display-flex css-jc-between-mobile-center css-f-wrap css-gap-50">
     {% for i_post in page_dict_html['db_arr_dicts'] %}
-      <div class="custom-width-300 border shadow">
+      <div class="css-width-300 border shadow">
         <!-- ----------------------------------- img start ----------------------------------- -->
         <div>
-          <a href="/blog/{{ i_post['title'] }}"><img src="{{ i_post['image_url'] }}" alt="blog photo" class="custom-img-height-200 custom-width-100"></a>
+          <a href="/blog/{{ i_post['title'] }}"><img src="{{ i_post['image_url'] }}" alt="blog photo" class="css-img-height-200 css-width-100"></a>
         </div>
         <!-- ----------------------------------- img end ----------------------------------- -->
         <!-- ----------------------------------- words start ----------------------------------- -->
-        <div class="custom-p-10">
+        <div class="css-p-10">
           <!-- ----------------------------------- keywords start ----------------------------------- -->
-          <div class="custom-display-flex custom-f-wrap">
+          <div class="css-display-flex css-f-wrap">
             {% for k_keyword, v_keyword in i_post['keywords_read_dict'].items() %}
-              <a href="/blog/category/{{ v_keyword['url'] }}" class="custom-underline-none"><p class="custom-f-nowrap-important custom-m-0 custom-header-8 custom-br-15 custom-mr-5 custom-mt-5 custom-plr-10 custom-ptb-5 {{ v_keyword['html-bg-color'] }} {{ v_keyword['html-text-color'] }}">{{ k_keyword }}</p></a>
+              <a href="/blog/category/{{ v_keyword['url'] }}" class="css-underline-none"><p class="css-f-nowrap-important css-m-0 css-header-8 css-br-15 css-mr-5 css-mt-5 css-plr-10 css-ptb-5 {{ v_keyword['html-bg-color'] }} {{ v_keyword['html-text-color'] }}">{{ k_keyword }}</p></a>
             {% endfor %}
           </div>
           <!-- ----------------------------------- keywords end ----------------------------------- -->
           <!-- ----------------------------------- title and details start ----------------------------------- -->
-          <div class="custom-mb-15">
-            <h2 class="custom-m-0 custom-header-20 custom-mt-15"><a href="/blog/{{ i_post['title'] }}" class="custom-a-black-underline">{{ i_post['title_read'] }}</a></h2>
-            <p class="custom-m-0 custom-header-12 custom-opacity-50 custom-mt-15">{{ i_post['details'] }}</p>
+          <div class="css-mb-15">
+            <h2 class="css-m-0 css-header-20 css-mt-15"><a href="/blog/{{ i_post['title'] }}" class="css-a-black-underline">{{ i_post['title_read'] }}</a></h2>
+            <p class="css-m-0 css-header-12 css-opacity-50 css-mt-15">{{ i_post['details'] }}</p>
           </div>
           <!-- ----------------------------------- title and details end ----------------------------------- -->
           <!-- ----------------------------------- authored start ----------------------------------- -->
-          <div class="custom-display-flex">
+          <div class="css-display-flex">
             <div>
-              <a href="{{ i_post['author_social_url'] }}" target="_blank"><img src="{{ i_post['author_img_url'] }}" alt="author profile img" class="custom-img-height-20 custom-mr-5 custom-mt-negative-5"></a>
+              <a href="{{ i_post['author_social_url'] }}" target="_blank"><img src="{{ i_post['author_img_url'] }}" alt="author profile img" class="css-img-height-20 css-mr-5 css-mt-negative-5"></a>
             </div>
-            <a href="{{ i_post['author_social_url'] }}" target="_blank" class="custom-a-black-underline custom-m-0 custom-header-15 custom-opacity-50 custom-mr-15">{{ i_post['author'] }}</a>
-            <a href="/blog/{{ i_post['title'] }}" class="custom-a-black-underline custom-m-0 custom-header-15 custom-opacity-50"><i class="fa-regular fa-calendar custom-mr-5"></i> {{ i_post['created_timestamp_read'] }}</a>
+            <a href="{{ i_post['author_social_url'] }}" target="_blank" class="css-a-black-underline css-m-0 css-header-15 css-opacity-50 css-mr-15">{{ i_post['author'] }}</a>
+            <a href="/blog/{{ i_post['title'] }}" class="css-a-black-underline css-m-0 css-header-15 css-opacity-50"><i class="fa-regular fa-calendar css-mr-5"></i> {{ i_post['created_timestamp_read'] }}</a>
           </div>
           <!-- ----------------------------------- authored end ----------------------------------- -->
         </div>

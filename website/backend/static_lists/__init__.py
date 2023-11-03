@@ -482,38 +482,38 @@ def get_keyword_colors_function(i_keyword):
   keywords_orange_arr = ['recruiting services']
   keywords_purple_arr = ['tech recruiters','recruitment system']
   # ------------------------ defaults / primary (warning) start ------------------------
-  html_bg_color = 'custom-bg-primary'
-  html_text_color = 'custom-color-black'
+  html_bg_color = 'css-bg-primary'
+  html_text_color = 'css-color-black'
   # ------------------------ defaults / primary (warning) end ------------------------
   # ------------------------ color arr start ------------------------
   if i_keyword.lower() in keywords_primary_arr:
-    html_bg_color = 'custom-bg-primary'
-    html_text_color = 'custom-color-black'
+    html_bg_color = 'css-bg-primary'
+    html_text_color = 'css-color-black'
   # ------------------------ color arr end ------------------------
   # ------------------------ color arr start ------------------------
   if i_keyword.lower() in keywords_success_arr:
-    html_bg_color = 'custom-bg-success'
-    html_text_color = 'custom-color-white'
+    html_bg_color = 'css-bg-success'
+    html_text_color = 'css-color-white'
   # ------------------------ color arr end ------------------------
   # ------------------------ color arr start ------------------------
   if i_keyword.lower() in keywords_info_arr:
-    html_bg_color = 'custom-bg-info'
-    html_text_color = 'custom-color-black'
+    html_bg_color = 'css-bg-info'
+    html_text_color = 'css-color-black'
   # ------------------------ color arr end ------------------------
   # ------------------------ color arr start ------------------------
   if i_keyword.lower() in keywords_danger_arr:
-    html_bg_color = 'custom-bg-danger'
-    html_text_color = 'custom-color-white'
+    html_bg_color = 'css-bg-danger'
+    html_text_color = 'css-color-white'
   # ------------------------ color arr end ------------------------
   # ------------------------ color arr start ------------------------
   if i_keyword.lower() in keywords_orange_arr:
-    html_bg_color = 'custom-bg-orange'
-    html_text_color = 'custom-color-black'
+    html_bg_color = 'css-bg-orange'
+    html_text_color = 'css-color-black'
   # ------------------------ color arr end ------------------------
   # ------------------------ color arr start ------------------------
   if i_keyword.lower() in keywords_purple_arr:
-    html_bg_color = 'custom-bg-purple'
-    html_text_color = 'custom-color-white'
+    html_bg_color = 'css-bg-purple'
+    html_text_color = 'css-color-white'
   # ------------------------ color arr end ------------------------
   else:
     pass

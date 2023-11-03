@@ -9,25 +9,25 @@
 {% block contentBodyExceptNavbarAndFooter %}
 <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
   {% if page_dict_html['nav_header'] == true %}
-    <div class="custom-width-interior-1100 mx-auto custom-plr-50">
+    <div class="css-width-interior-1100 mx-auto css-plr-50">
       <!-- ------------------------------------- title start ------------------------------------- -->
-      <div class="custom-pt-25 custom-display-flex custom-jc-between custom-mb-10">
-        <h2 class="custom-header-30 custom-weight-900 custom-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
+      <div class="css-pt-25 css-display-flex css-jc-between css-mb-10">
+        <h2 class="css-header-30 css-weight-900 css-m-0">{{ page_dict_html['dashboard_name'] }}</h2>
         {% if page_dict_html['view_reason'] == 'one-role-many-cvs' or page_dict_html['view_reason'] == 'one-cv-many-roles' %}
-          <button type="submit" class="btn btn-success custom-br-10" id="id_submit_button" disabled>Screen CV</button>
+          <button type="submit" class="btn btn-success css-br-10" id="id_submit_button" disabled>Screen CV</button>
         {% elif page_dict_html['view_reason'] == 'edit_settings' %}
-          <button type="submit" class="btn btn-success custom-br-10">Continue</button>
+          <button type="submit" class="btn btn-success css-br-10">Continue</button>
         {% endif %}
       </div>
       <!-- ------------------------------------- title end ------------------------------------- -->
       <!-- ------------------------------------- options start ------------------------------------- -->
-      <div class="custom-header-15 custom-ptb-10 border-bottom">
-          <ul class="custom-m-0 custom-p-0 custom-display-flex custom-no-decoration custom-jc-start">
+      <div class="css-header-15 css-ptb-10 border-bottom">
+          <ul class="css-m-0 css-p-0 css-display-flex css-no-decoration css-jc-start">
             {% for k,v in page_dict_html['dashboard_section_links_dict'].items() %}
               {% if v in page_dict_html['navbar_link_current'] %}
-                <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-primary">{{ k }}</a></li>
+                <li><a href="{{ v }}" class="css-mr-30 css-plr-15 css-br-50 css-a-black-none css-ptb-5 css-bg-primary">{{ k }}</a></li>
               {% else %}
-                <li><a href="{{ v }}" class="custom-mr-30 custom-plr-15 custom-br-50 custom-a-black-none custom-ptb-5 custom-bg-hover-1">{{ k }}</a></li>
+                <li><a href="{{ v }}" class="css-mr-30 css-plr-15 css-br-50 css-a-black-none css-ptb-5 css-bg-hover-1">{{ k }}</a></li>
               {% endif %}
             {% endfor %}
           </ul>
@@ -42,21 +42,21 @@
   <!-- ------------------------------------- different dashboard subpages end ------------------------------------- -->
   <!-- ------------------------------------- width change start ------------------------------------- -->
   {% if page_dict_html['view_reason'] == 'one-role-many-cvs' or page_dict_html['view_reason'] == 'one-cv-many-roles' %}
-    <div class="custom-width-interior-1100 mx-auto custom-plr-50">
-      <div class="custom-header-15 custom-mt-25 custom-display-flex">
+    <div class="css-width-interior-1100 mx-auto css-plr-50">
+      <div class="css-header-15 css-mt-25 css-display-flex">
         <!-- ------------------------------------- left start ------------------------------------- -->
-        <div class="custom-display-block custom-width-100">
+        <div class="css-display-block css-width-100">
           <!-- ------------------------------------- subtitle start ------------------------------------- -->
           {% if 'one-role-many-cvs' in page_dict_html['navbar_link_current'] %}
-            <p class="custom-m-0 custom-header-20 custom-mb-10">Select one role</p>
+            <p class="css-m-0 css-header-20 css-mb-10">Select one role</p>
           {% elif 'one-cv-many-roles' in page_dict_html['navbar_link_current'] %}
-            <p class="custom-m-0 custom-header-20 custom-mb-10">Select many roles</p>
+            <p class="css-m-0 css-header-20 css-mb-10">Select many roles</p>
           {% endif %}
           <!-- ------------------------------------- subtitle end ------------------------------------- -->
           <!-- ------------------------------------- no content start ------------------------------------- -->
           {% if page_dict_html['content_total_rows_roles'] == 0 %}
-            <div class="custom-width-100 custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow-sm">
-              <a href="/roles/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add your first open role</a>
+            <div class="css-width-100 css-bg-grey-1 css-p-50 css-br-10 text-center border shadow-sm">
+              <a href="/roles/add" class="css-opacity-60 css-a-black-underline"><i class="fa-solid fa-plus"></i> Add your first open role</a>
             </div>
           <!-- ------------------------------------- no content end ------------------------------------- -->
           <!-- ------------------------------------- yes content start ------------------------------------- -->
@@ -66,28 +66,28 @@
             <!-- ------------------------------------- search bar end ------------------------------------- -->
             <!-- ------------------------------------- radio start ------------------------------------- -->
             {% if 'one-role-many-cvs' in page_dict_html['navbar_link_current'] %}
-              <div class="custom-mt-25">
+              <div class="css-mt-25">
                 {% for i in page_dict_html['content_total_rows_arr_of_dicts_roles'] %}
-                  <div class="custom-display-block custom-width-100 uiSearchItem border-bottom">
+                  <div class="css-display-block css-width-100 uiSearchItem border-bottom">
                     <input type="radio" class="btn-check" name="radio-one-role" id="{{ i['roles_count_id'] }}" value="{{ i['id'] }}" autocomplete="off" required>
-                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['roles_count_id'] }}">{{ i['name_display'] }}</label>
+                    <label class="btn css-ptb-25 css-width-100 css-tal" for="{{ i['roles_count_id'] }}">{{ i['name_display'] }}</label>
                   </div>
                 {% endfor %}
               </div>
             <!-- ------------------------------------- radio end ------------------------------------- -->
             <!-- ------------------------------------- checkbox start ------------------------------------- -->
             {% elif 'one-cv-many-roles' in page_dict_html['navbar_link_current'] %}
-              <div class="custom-mt-25">
+              <div class="css-mt-25">
                 {% if page_dict_html['content_total_rows_roles'] != 1 %}
-                  <div class="custom-display-block custom-width-100 uiSearchItem border-bottom">
+                  <div class="css-display-block css-width-100 uiSearchItem border-bottom">
                     <input type="checkbox" class="btn-check" name="checkbox-many-roles" id="id_role_select_all" value="select_all_ids" autocomplete="off">
-                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="id_role_select_all">Select all</label>
+                    <label class="btn css-ptb-25 css-width-100 css-tal" for="id_role_select_all">Select all</label>
                   </div>
                 {% endif %}
                 {% for i in page_dict_html['content_total_rows_arr_of_dicts_roles'] %}
-                  <div class="custom-display-block custom-width-100 uiSearchItem border-bottom">
+                  <div class="css-display-block css-width-100 uiSearchItem border-bottom">
                     <input type="checkbox" class="btn-check" name="checkbox-many-roles" id="{{ i['roles_count_id'] }}" value="{{ i['id'] }}" autocomplete="off">
-                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['roles_count_id'] }}">{{ i['name_display'] }}</label>
+                    <label class="btn css-ptb-25 css-width-100 css-tal" for="{{ i['roles_count_id'] }}">{{ i['name_display'] }}</label>
                   </div>
                 {% endfor %}
               </div>
@@ -97,20 +97,20 @@
           <!-- ------------------------------------- yes content end ------------------------------------- -->
         </div>
         <!-- ------------------------------------- left end ------------------------------------- -->
-        <div class="custom-flex-gap-25"></div>
+        <div class="css-flex-gap-25"></div>
         <!-- ------------------------------------- right start ------------------------------------- -->
-        <div class="custom-display-block custom-width-100">
+        <div class="css-display-block css-width-100">
           <!-- ------------------------------------- subtitle start ------------------------------------- -->
           {% if 'one-role-many-cvs' in page_dict_html['navbar_link_current'] %}
-            <p class="custom-m-0 custom-header-20 custom-mb-10">Select many CVs</p>
+            <p class="css-m-0 css-header-20 css-mb-10">Select many CVs</p>
           {% elif 'one-cv-many-roles' in page_dict_html['navbar_link_current'] %}
-            <p class="custom-m-0 custom-header-20 custom-mb-10">Select one CV</p>
+            <p class="css-m-0 css-header-20 css-mb-10">Select one CV</p>
           {% endif %}
           <!-- ------------------------------------- subtitle end ------------------------------------- -->
           <!-- ------------------------------------- no content start ------------------------------------- -->
           {% if page_dict_html['content_total_rows_cv'] == 0 %}
-            <div class="custom-width-100 custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow-sm">
-              <a href="/cv/add" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Add candidate CVs</a>
+            <div class="css-width-100 css-bg-grey-1 css-p-50 css-br-10 text-center border shadow-sm">
+              <a href="/cv/add" class="css-opacity-60 css-a-black-underline"><i class="fa-solid fa-plus"></i> Add candidate CVs</a>
             </div>
           <!-- ------------------------------------- no content end ------------------------------------- -->
           <!-- ------------------------------------- yes content start ------------------------------------- -->
@@ -120,21 +120,21 @@
             <!-- ------------------------------------- search bar end ------------------------------------- -->
             <!-- ------------------------------------- checkbox start ------------------------------------- -->
             {% if 'one-role-many-cvs' in page_dict_html['navbar_link_current'] %}
-              <div class="custom-mt-25">
+              <div class="css-mt-25">
                 {% if page_dict_html['content_total_rows_cv'] != 1 %}
-                  <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
+                  <div class="css-display-block css-width-100 uiSearchItem_v2 border-bottom">
                     <input type="checkbox" class="btn-check" name="checkbox-many-cvs" id="id_cv_select_all" value="select_all_ids" autocomplete="off">
-                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="id_cv_select_all">Select all</label>
+                    <label class="btn css-ptb-25 css-width-100 css-tal" for="id_cv_select_all">Select all</label>
                   </div>
                 {% endif %}
                 {% for i in page_dict_html['content_total_rows_arr_of_dicts_cv'] %}
-                  <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
+                  <div class="css-display-block css-width-100 uiSearchItem_v2 border-bottom">
                     <input type="checkbox" class="btn-check" name="checkbox-many-cvs" id="{{ i['cv_count_id'] }}" value="{{ i['id'] }}" autocomplete="off">
-                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['cv_count_id'] }}">
+                    <label class="btn css-ptb-25 css-width-100 css-tal" for="{{ i['cv_count_id'] }}">
                       <div>
-                        <p class="custom-m-0">{{ i['candidate_name'] }}</p>
-                        <p class="custom-m-0">{{ i['candidate_email'] }}</p>
-                        <p class="custom-m-0">{{ i['candidate_phone'] }}</p>
+                        <p class="css-m-0">{{ i['candidate_name'] }}</p>
+                        <p class="css-m-0">{{ i['candidate_email'] }}</p>
+                        <p class="css-m-0">{{ i['candidate_phone'] }}</p>
                       </div>
                     </label>
                   </div>
@@ -143,15 +143,15 @@
             <!-- ------------------------------------- checkbox end ------------------------------------- -->
             <!-- ------------------------------------- radio start ------------------------------------- -->
             {% elif 'one-cv-many-roles' in page_dict_html['navbar_link_current'] %}
-              <div class="custom-mt-25">
+              <div class="css-mt-25">
                 {% for i in page_dict_html['content_total_rows_arr_of_dicts_cv'] %}
-                  <div class="custom-display-block custom-width-100 uiSearchItem_v2 border-bottom">
+                  <div class="css-display-block css-width-100 uiSearchItem_v2 border-bottom">
                     <input type="radio" class="btn-check" name="radio-one-cv" id="{{ i['cv_count_id'] }}" value="{{ i['id'] }}" autocomplete="off" required>
-                    <label class="btn custom-ptb-25 custom-width-100 custom-tal" for="{{ i['cv_count_id'] }}">
+                    <label class="btn css-ptb-25 css-width-100 css-tal" for="{{ i['cv_count_id'] }}">
                       <div>
-                        <p class="custom-m-0">{{ i['candidate_name'] }}</p>
-                        <p class="custom-m-0">{{ i['candidate_email'] }}</p>
-                        <p class="custom-m-0">{{ i['candidate_phone'] }}</p>
+                        <p class="css-m-0">{{ i['candidate_name'] }}</p>
+                        <p class="css-m-0">{{ i['candidate_email'] }}</p>
+                        <p class="css-m-0">{{ i['candidate_phone'] }}</p>
                       </div>
                     </label>
                   </div>
@@ -167,74 +167,74 @@
   <!-- ------------------------------------- width change end ------------------------------------- -->
   <!-- ------------------------------------- width change start ------------------------------------- -->
   {% elif page_dict_html['view_reason'] == 'edit_settings' %}
-    <div class="custom-width-1100-only mx-auto">
-      <div class="custom-header-15 custom-mt-25 custom-mb-100">
+    <div class="css-width-1100-only mx-auto">
+      <div class="css-header-15 css-mt-25 css-mb-100">
         <!-- ------------------------------------- view start ------------------------------------- -->
         {% if page_dict_html['view_reason'] == 'edit_settings' %}
           <!-- ------------------------------------- title start ------------------------------------- -->
-          <div class="custom-ptb-50 custom-display-flex custom-jc-between">
+          <div class="css-ptb-50 css-display-flex css-jc-between">
             <div>
-              <h2 class="custom-m-0 custom-header-30">Subscription</h2>
-              <p class="custom-m-0 fst-italic custom-mt-10 custom-opacity-75 custom-header-12">99% of companies offer reimbursement for work productivity tools.</p>
+              <h2 class="css-m-0 css-header-30">Subscription</h2>
+              <p class="css-m-0 fst-italic css-mt-10 css-opacity-75 css-header-12">99% of companies offer reimbursement for work productivity tools.</p>
             </div>
             <!-- ------------------------------------- radio start ------------------------------------- -->
-            <div class="custom-ml-15">
+            <div class="css-ml-15">
               <input type="radio" class="btn-check" name="radioSubscriptionOption" id="radioMonthly" value="monthly" autocomplete="off">
-              <label class="btn custom-ptb-15" for="radioMonthly">Monthly</label>
+              <label class="btn css-ptb-15" for="radioMonthly">Monthly</label>
               <input type="radio" class="btn-check" name="radioSubscriptionOption" id="radioYearly" value="yearly" autocomplete="off" checked>
-              <label class="btn" for="radioYearly"><div>Yearly</div><div class="custom-header-12">(Save +50%)</div></label>
+              <label class="btn" for="radioYearly"><div>Yearly</div><div class="css-header-12">(Save +50%)</div></label>
             </div>
             <!-- ------------------------------------- radio end ------------------------------------- -->
           </div>
           <!-- ------------------------------------- title end ------------------------------------- -->
           <!-- ------------------------------------- subscriber status start ------------------------------------- -->
           {% if page_dict_html['subscribe_status'] == 'active' %}
-            <p class="custom-m-0 custom-mb-25">Successfully subscribed since: {{ page_dict_html['subscriber_since'] }}</p>
+            <p class="css-m-0 css-mb-25">Successfully subscribed since: {{ page_dict_html['subscriber_since'] }}</p>
           {% endif %}
           <!-- ------------------------------------- subscriber status end ------------------------------------- -->
           <!-- ------------------------------------- content start ------------------------------------- -->
-          <div class="custom-display-grid custom-grid-1row-3col">
+          <div class="css-display-grid css-grid-1row-3col">
             <!-- ------------------------------------- column start ------------------------------------- -->
             <div>
               <!-- ------------------------------------- title start ------------------------------------- -->
-              <div class="text-center custom-p-10 border-bottom border-top custom-bg-primary-lighter">
-                <p class="custom-m-0 custom-header-25 custom-mb-5">Features</p>
-                <p class="custom-m-0 custom-header-25">by plan</p>
+              <div class="text-center css-p-10 border-bottom border-top css-bg-primary-lighter">
+                <p class="css-m-0 css-header-25 css-mb-5">Features</p>
+                <p class="css-m-0 css-header-25">by plan</p>
               </div>
               <!-- ------------------------------------- title end ------------------------------------- -->
               <!-- ------------------------------------- legs start ------------------------------------- -->
-              <div class="border-bottom custom-ptb-25 border-top">
-                <p class="custom-m-0 custom-header-18">Add job descriptions</p>
+              <div class="border-bottom css-ptb-25 border-top">
+                <p class="css-m-0 css-header-18">Add job descriptions</p>
               </div>
-              <div class="border-bottom custom-ptb-25">
-                <p class="custom-m-0 custom-header-18">Add candidate CV's</p>
+              <div class="border-bottom css-ptb-25">
+                <p class="css-m-0 css-header-18">Add candidate CV's</p>
               </div>
-              <div class="border-bottom custom-ptb-25">
-                <p class="custom-m-0 custom-header-18">AI grading CV's</p>
+              <div class="border-bottom css-ptb-25">
+                <p class="css-m-0 css-header-18">AI grading CV's</p>
               </div>
-              <div class="border-bottom custom-ptb-25">
-                <p class="custom-m-0 custom-header-18">AI ask about CV's</p>
+              <div class="border-bottom css-ptb-25">
+                <p class="css-m-0 css-header-18">AI ask about CV's</p>
               </div>
-              <div class="border-bottom custom-ptb-25">
-                <p class="custom-m-0 custom-header-18">AI recommended follow up questions</p>
+              <div class="border-bottom css-ptb-25">
+                <p class="css-m-0 css-header-18">AI recommended follow up questions</p>
               </div>
-              <div class="border-bottom custom-ptb-25">
-                <p class="custom-m-0 custom-header-18">AI insights</p>
+              <div class="border-bottom css-ptb-25">
+                <p class="css-m-0 css-header-18">AI insights</p>
               </div>
-              <div class="border-bottom custom-ptb-25">
-                <p class="custom-m-0 custom-header-18">Change grading</p>
+              <div class="border-bottom css-ptb-25">
+                <p class="css-m-0 css-header-18">Change grading</p>
               </div>
-              <div class="border-bottom custom-ptb-25">
-                <p class="custom-m-0 custom-header-18">Custom summary</p>
+              <div class="border-bottom css-ptb-25">
+                <p class="css-m-0 css-header-18">Custom summary</p>
               </div>
-              <div class="border-bottom custom-ptb-25">
-                <p class="custom-m-0 custom-header-18">Custom follow up questions</p>
+              <div class="border-bottom css-ptb-25">
+                <p class="css-m-0 css-header-18">Custom follow up questions</p>
               </div>
-              <div class="border-bottom custom-ptb-25">
-                <p class="custom-m-0 custom-header-18">Export results</p>
+              <div class="border-bottom css-ptb-25">
+                <p class="css-m-0 css-header-18">Export results</p>
               </div>
-              <div class="border-bottom custom-ptb-25">
-                <p class="custom-m-0 custom-header-18">Company branding</p>
+              <div class="border-bottom css-ptb-25">
+                <p class="css-m-0 css-header-18">Company branding</p>
               </div>
               <!-- ------------------------------------- legs end ------------------------------------- -->
             </div>
@@ -242,44 +242,44 @@
             <!-- ------------------------------------- column start ------------------------------------- -->
             <div>
               <!-- ------------------------------------- title start ------------------------------------- -->
-              <div class="text-center custom-p-10 border-bottom border-top custom-bg-primary-lighter">
-                <p class="custom-m-0 custom-header-25 custom-mb-5">Free</p>
-                <p class="custom-m-0 custom-header-25">$0 <span class="custom-opacity-50 custom-header-12">/mo</span></p>
+              <div class="text-center css-p-10 border-bottom border-top css-bg-primary-lighter">
+                <p class="css-m-0 css-header-25 css-mb-5">Free</p>
+                <p class="css-m-0 css-header-25">$0 <span class="css-opacity-50 css-header-12">/mo</span></p>
               </div>
               <!-- ------------------------------------- title end ------------------------------------- -->
               <!-- ------------------------------------- legs start ------------------------------------- -->
-              <div class="border-bottom custom-ptb-25 text-center border-top">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50">5</p>
+              <div class="border-bottom css-ptb-25 text-center border-top">
+                <p class="css-m-0 css-header-18 css-opacity-50">5</p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50">5</p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-opacity-50">5</p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50">25</p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-opacity-50">25</p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50">5</p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-opacity-50">5</p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50">1</p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-opacity-50">1</p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50"><i class="fa-solid fa-minus"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-opacity-50"><i class="fa-solid fa-minus"></i></p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50"><i class="fa-solid fa-minus"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-opacity-50"><i class="fa-solid fa-minus"></i></p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50"><i class="fa-solid fa-minus"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-opacity-50"><i class="fa-solid fa-minus"></i></p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50"><i class="fa-solid fa-minus"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-opacity-50"><i class="fa-solid fa-minus"></i></p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50"><i class="fa-solid fa-minus"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-opacity-50"><i class="fa-solid fa-minus"></i></p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-opacity-50"><i class="fa-solid fa-minus"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-opacity-50"><i class="fa-solid fa-minus"></i></p>
               </div>
               <!-- ------------------------------------- legs end ------------------------------------- -->
             </div>
@@ -287,45 +287,45 @@
             <!-- ------------------------------------- column start ------------------------------------- -->
             <div>
               <!-- ------------------------------------- title start ------------------------------------- -->
-              <div class="text-center custom-p-10 border-bottom border-top custom-bg-primary-lighter">
-                <p class="custom-m-0 custom-header-25 custom-mb-5">Premium</p>
-                <p class="custom-m-0 custom-header-25 uiSearchItemInvisible" id="id-monthly_price">$19 <span class="custom-opacity-50 custom-header-12">/mo</span></p>
-                <p class="custom-m-0 custom-header-25 uiSearchItemVisible" id="id-yearly_price">$9 <span class="custom-opacity-50 custom-header-12">/mo</span></p>
+              <div class="text-center css-p-10 border-bottom border-top css-bg-primary-lighter">
+                <p class="css-m-0 css-header-25 css-mb-5">Premium</p>
+                <p class="css-m-0 css-header-25 uiSearchItemInvisible" id="id-monthly_price">$19 <span class="css-opacity-50 css-header-12">/mo</span></p>
+                <p class="css-m-0 css-header-25 uiSearchItemVisible" id="id-yearly_price">$9 <span class="css-opacity-50 css-header-12">/mo</span></p>
               </div>
               <!-- ------------------------------------- title end ------------------------------------- -->
               <!-- ------------------------------------- legs start ------------------------------------- -->
-              <div class="border-bottom custom-ptb-25 text-center border-top">
-                <p class="custom-m-0 custom-header-18 custom-color-success">Unlimited</p>
+              <div class="border-bottom css-ptb-25 text-center border-top">
+                <p class="css-m-0 css-header-18 css-color-success">Unlimited</p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-color-success">Unlimited</p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-color-success">Unlimited</p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-color-success">Unlimited</p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-color-success">Unlimited</p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-color-success">Unlimited</p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-color-success">Unlimited</p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-color-success">Unlimited</p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-color-success">Unlimited</p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-color-success"><i class="fa-solid fa-circle-check"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-color-success"><i class="fa-solid fa-circle-check"></i></p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-color-success"><i class="fa-solid fa-circle-check"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-color-success"><i class="fa-solid fa-circle-check"></i></p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-color-success"><i class="fa-solid fa-circle-check"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-color-success"><i class="fa-solid fa-circle-check"></i></p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-color-success"><i class="fa-solid fa-circle-check"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-color-success"><i class="fa-solid fa-circle-check"></i></p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-color-success"><i class="fa-solid fa-circle-check"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-color-success"><i class="fa-solid fa-circle-check"></i></p>
               </div>
-              <div class="border-bottom custom-ptb-25 text-center">
-                <p class="custom-m-0 custom-header-18 custom-color-success"><i class="fa-solid fa-circle-check"></i></p>
+              <div class="border-bottom css-ptb-25 text-center">
+                <p class="css-m-0 css-header-18 css-color-success"><i class="fa-solid fa-circle-check"></i></p>
               </div>
               <!-- ------------------------------------- legs end ------------------------------------- -->
             </div>
@@ -333,12 +333,12 @@
           </div>
           <!-- ------------------------------------- content end ------------------------------------- -->
           <!-- ------------------------------------- buttons start ------------------------------------- -->
-          <div class="text-center custom-mt-25">
-            <button type="submit" class="btn btn-success btn-lg custom-mt-25 custom-plr-35">Continue</button>
+          <div class="text-center css-mt-25">
+            <button type="submit" class="btn btn-success btn-lg css-mt-25 css-plr-35">Continue</button>
           </div>
-          <div class="text-center custom-mt-15">
-            <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/stripe.png" alt="" class="custom-img-height-40 custom-opacity-50">
-            <p class="custom-m-0 fst-italic custom-mt-25 custom-opacity-50 custom-header-15">99% of companies offer reimbursement for work productivity tools.</p>
+          <div class="text-center css-mt-15">
+            <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/stripe.png" alt="" class="css-img-height-40 css-opacity-50">
+            <p class="css-m-0 fst-italic css-mt-25 css-opacity-50 css-header-15">99% of companies offer reimbursement for work productivity tools.</p>
           </div>
           <!-- ------------------------------------- buttons end ------------------------------------- -->
         <!-- ------------------------------------- view end ------------------------------------- -->
@@ -348,14 +348,14 @@
   <!-- ------------------------------------- width change end ------------------------------------- -->
   <!-- ------------------------------------- width change start ------------------------------------- -->
   {% else %}
-    <div class="custom-width-600 mx-auto">
-      <div class="custom-header-15 custom-mt-25">
+    <div class="css-width-600 mx-auto">
+      <div class="css-header-15 css-mt-25">
         <!-- ------------------------------------- no content start ------------------------------------- -->
         {% if page_dict_html['content_total_rows'] == 0 %}
           {% if page_dict_html['view_reason'] == 'export' %}
             {% if page_dict_html['url_status_code'] == 'export_results' %}
-              <div class="custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow">
-                <a href="/ai/one-role-many-cvs" class="custom-opacity-60 custom-a-black-underline"><i class="fa-solid fa-plus"></i> Screen CVs</a>
+              <div class="css-bg-grey-1 css-p-50 css-br-10 text-center border shadow">
+                <a href="/ai/one-role-many-cvs" class="css-opacity-60 css-a-black-underline"><i class="fa-solid fa-plus"></i> Screen CVs</a>
               </div>
             {% endif %}
           {% endif %}
@@ -365,19 +365,19 @@
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% if page_dict_html['view_reason'] == 'export' %}
             <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
-              <div class="custom-mt-50 border custom-p-50 custom-br-15 shadow">
+              <div class="css-mt-50 border css-p-50 css-br-15 shadow">
                 <!-- ------------------------------------- title and subtitle start ------------------------------------- -->
-                <h1 class="custom-header-30"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="" class="custom-img-height-35"> CVhire <span class="custom-header-20">| Simple export</span></h1>
-                <div class="custom-mtb-25 custom-opacity-50">
-                  <p class="custom-m-0 custom-mb-5 custom-header-15"><i class="fa-regular fa-envelope"></i> {{ page_dict_html['current_user_email'] }}</p>
-                  <p class="custom-m-0 custom-header-12">Please check your spam folder as well.</p>
+                <h1 class="css-header-30"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="" class="css-img-height-35"> CVhire <span class="css-header-20">| Simple export</span></h1>
+                <div class="css-mtb-25 css-opacity-50">
+                  <p class="css-m-0 css-mb-5 css-header-15"><i class="fa-regular fa-envelope"></i> {{ page_dict_html['current_user_email'] }}</p>
+                  <p class="css-m-0 css-header-12">Please check your spam folder as well.</p>
                 </div>
                 <!-- ------------------------------------- title and subtitle end ------------------------------------- -->
                 <!-- ------------------------------------- submit start ------------------------------------- -->
-                <button type="submit" class="btn btn-primary btn-lg custom-br-10 custom-width-100">Export</button>
+                <button type="submit" class="btn btn-primary btn-lg css-br-10 css-width-100">Export</button>
                 <!-- ------------------------------------- submit end ------------------------------------- -->
-                <div class="text-center custom-mt-15">
-                  <a href="/ai/one-role-many-cvs" class="custom-a-black-underline custom-opacity-50">Home</a>
+                <div class="text-center css-mt-15">
+                  <a href="/ai/one-role-many-cvs" class="css-a-black-underline css-opacity-50">Home</a>
                 </div>
               </div>
             </form>
@@ -385,24 +385,24 @@
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'help' %}
             <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
-              <div class="custom-mt-50 border custom-p-50 custom-br-15 shadow">
+              <div class="css-mt-50 border css-p-50 css-br-15 shadow">
                 <!-- ------------------------------------- title and subtitle start ------------------------------------- -->
-                <h1 class="custom-header-30"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="" class="custom-img-height-35"> CVhire <span class="custom-header-20">| Help center</span></h1>
-                <div class="custom-mtb-25 custom-opacity-50">
-                  <a href="mailto:support@cvhire.com" class="custom-header-15 custom-a-black-underline">Support@CVhire.com</a>
+                <h1 class="css-header-30"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="" class="css-img-height-35"> CVhire <span class="css-header-20">| Help center</span></h1>
+                <div class="css-mtb-25 css-opacity-50">
+                  <a href="mailto:support@cvhire.com" class="css-header-15 css-a-black-underline">Support@CVhire.com</a>
                 </div>
                 <!-- ------------------------------------- title and subtitle end ------------------------------------- -->
                 <!-- ------------------------------------- requirements start ------------------------------------- -->
-                <div class="custom-pb-50">
-                  <label for="uiFeedback" class="form-label">Ticket <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters."></i></label>
+                <div class="css-pb-50">
+                  <label for="uiFeedback" class="form-label">Ticket <i class="fa-solid fa-circle-info css-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters."></i></label>
                   <textarea class="form-control" id="uiFeedback" name="uiFeedback" rows="7" required></textarea>
                 </div>
                 <!-- ------------------------------------- requirements end ------------------------------------- -->
                 <!-- ------------------------------------- submit start ------------------------------------- -->
-                <button type="submit" class="btn btn-primary btn-lg custom-br-10 custom-width-100">Submit</button>
+                <button type="submit" class="btn btn-primary btn-lg css-br-10 css-width-100">Submit</button>
                 <!-- ------------------------------------- submit end ------------------------------------- -->
-                <div class="text-center custom-mt-15">
-                  <a href="/ai/one-role-many-cvs" class="custom-a-black-underline custom-opacity-50">Home</a>
+                <div class="text-center css-mt-15">
+                  <a href="/ai/one-role-many-cvs" class="css-a-black-underline css-opacity-50">Home</a>
                 </div>
               </div>
             </form>
@@ -410,22 +410,22 @@
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'add_cv' %}
             <!-- ------------------------------------- title start ------------------------------------- -->
-            <div class="custom-ptb-50">
-              <h2 class="custom-m-0 custom-header-30">Add CVs / Resumes</h2>
+            <div class="css-ptb-50">
+              <h2 class="css-m-0 css-header-30">Add CVs / Resumes</h2>
             </div>
             <!-- ------------------------------------- title end ------------------------------------- -->
             <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
               <!-- ------------------------------------- upload start ------------------------------------- -->
-              <div class="custom-mb-50">
-                <label for="uiFormFileMultipleUpload" class="form-label">Bulk upload <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Accepted formats: .docx, .pdf, .txt"></i></label>
+              <div class="css-mb-50">
+                <label for="uiFormFileMultipleUpload" class="form-label">Bulk upload <i class="fa-solid fa-circle-info css-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Accepted formats: .docx, .pdf, .txt"></i></label>
                 <input class="form-control" type="file" id="uiFormFileMultipleUpload" name="uiFormFileMultipleUpload" multiple required>
               </div>
               <!-- ------------------------------------- upload end ------------------------------------- -->
               <!-- ------------------------------------- buttons start ------------------------------------- -->
-              <div class="custom-mb-50">
-                <button type="submit" class="btn btn-primary btn-lg custom-width-100">Upload CVs</button>
-                <div class="text-center custom-mt-25">
-                  <a href="/cv" class="custom-a-black-underline custom-opacity-75">Cancel</a>
+              <div class="css-mb-50">
+                <button type="submit" class="btn btn-primary btn-lg css-width-100">Upload CVs</button>
+                <div class="text-center css-mt-25">
+                  <a href="/cv" class="css-a-black-underline css-opacity-75">Cancel</a>
                 </div>
               </div>
               <!-- ------------------------------------- buttons end ------------------------------------- -->
@@ -434,40 +434,40 @@
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'add_role' or page_dict_html['view_reason'] == 'edit_role' %}
             <!-- ------------------------------------- title start ------------------------------------- -->
-            <div class="custom-ptb-50">
-              <h2 class="custom-m-0 custom-header-30">Role information</h2>
+            <div class="css-ptb-50">
+              <h2 class="css-m-0 css-header-30">Role information</h2>
             </div>
             <!-- ------------------------------------- title end ------------------------------------- -->
             <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
               <!-- ------------------------------------- name start ------------------------------------- -->
-              <div class="form-group custom-pb-50">
-                <label for="uiRoleName" class="form-label">Name of role <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 150 characters. Unique name."></i></label>
+              <div class="form-group css-pb-50">
+                <label for="uiRoleName" class="form-label">Name of role <i class="fa-solid fa-circle-info css-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 150 characters. Unique name."></i></label>
                 <input class="form-control" type="text" id="uiRoleName" name="uiRoleName" value="{{ page_dict_html['db_role_dict']['name'] }}" required>
               </div>
               <!-- ------------------------------------- name end ------------------------------------- -->
               <!-- ------------------------------------- about start ------------------------------------- -->
-              <div class="custom-pb-50">
-                <label for="uiAbout" class="form-label">In this role, you will have the opportunity to <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
+              <div class="css-pb-50">
+                <label for="uiAbout" class="form-label">In this role, you will have the opportunity to <i class="fa-solid fa-circle-info css-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
                 <textarea class="form-control" id="uiAbout" name="uiAbout" rows="5" required>{{ page_dict_html['db_role_dict']['about'] }}</textarea>
               </div>
               <!-- ------------------------------------- about end ------------------------------------- -->
               <!-- ------------------------------------- requirements start ------------------------------------- -->
-              <div class="custom-pb-50">
-                <label for="uiRequirements" class="form-label">Role requirements <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
+              <div class="css-pb-50">
+                <label for="uiRequirements" class="form-label">Role requirements <i class="fa-solid fa-circle-info css-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
                 <textarea class="form-control" id="uiRequirements" name="uiRequirements" rows="10" required>{{ page_dict_html['db_role_dict']['requirements'] }}</textarea>
               </div>
               <!-- ------------------------------------- requirements end ------------------------------------- -->
               <!-- ------------------------------------- requirements start ------------------------------------- -->
-              <div class="custom-pb-50">
-                <label for="uiNiceToHaves" class="form-label">Role nice to haves <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
+              <div class="css-pb-50">
+                <label for="uiNiceToHaves" class="form-label">Role nice to haves <i class="fa-solid fa-circle-info css-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 1,000 characters. Format is not important."></i></label>
                 <textarea class="form-control" id="uiNiceToHaves" name="uiNiceToHaves" rows="5" required>{{ page_dict_html['db_role_dict']['nice_to_haves'] }}</textarea>
               </div>
               <!-- ------------------------------------- requirements end ------------------------------------- -->
               <!-- ------------------------------------- buttons start ------------------------------------- -->
-              <div class="custom-mb-50">
-                <button type="submit" class="btn btn-primary btn-lg custom-width-100">Confirm role</button>
-                <div class="text-center custom-mt-25">
-                  <a href="/roles" class="custom-a-black-underline custom-opacity-75">Cancel</a>
+              <div class="css-mb-50">
+                <button type="submit" class="btn btn-primary btn-lg css-width-100">Confirm role</button>
+                <div class="text-center css-mt-25">
+                  <a href="/roles" class="css-a-black-underline css-opacity-75">Cancel</a>
                 </div>
               </div>
               <!-- ------------------------------------- buttons end ------------------------------------- -->
@@ -476,37 +476,37 @@
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'view_role' %}
             <!-- ------------------------------------- title start ------------------------------------- -->
-            <div class="custom-ptb-50">
-              <h2 class="custom-m-0 custom-header-30">Role information {% if page_dict_html['at_least_one_graded'] == false %}<a href="/roles/edit/{{ page_dict_html['db_role_dict']['id'] }}" class="custom-a-black-none custom-ml-10 custom-header-20 custom-opacity-50 custom-hover-pointer-opacity-1"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %} <a href="/roles" class="btn btn-primary btn-sm custom-ml-10">Back</a></h2>
+            <div class="css-ptb-50">
+              <h2 class="css-m-0 css-header-30">Role information {% if page_dict_html['at_least_one_graded'] == false %}<a href="/roles/edit/{{ page_dict_html['db_role_dict']['id'] }}" class="css-a-black-none css-ml-10 css-header-20 css-opacity-50 css-hover-pointer-opacity-1"><i class="fa-solid fa-pen-to-square"></i></a>{% endif %} <a href="/roles" class="btn btn-primary btn-sm css-ml-10">Back</a></h2>
             </div>
             <!-- ------------------------------------- title end ------------------------------------- -->
             <!-- ------------------------------------- name start ------------------------------------- -->
-            <div class="custom-pb-50">
-              <h3 class="custom-m-0 custom-header-25">{{ page_dict_html['db_role_dict']['name'] }}</h3>
+            <div class="css-pb-50">
+              <h3 class="css-m-0 css-header-25">{{ page_dict_html['db_role_dict']['name'] }}</h3>
             </div>
             <!-- ------------------------------------- name end ------------------------------------- -->
             <!-- ------------------------------------- about start ------------------------------------- -->
-            <div class="custom-pb-50">
-              <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">In this role, you will have the opportunity to </h3>
-              <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_role_dict']['about'] }}</p>
+            <div class="css-pb-50">
+              <h3 class="css-mb-15 css-header-20 css-opacity-75">In this role, you will have the opportunity to </h3>
+              <p class="css-m-0 css-header-15">{{ page_dict_html['db_role_dict']['about'] }}</p>
             </div>
             <!-- ------------------------------------- about end ------------------------------------- -->
             <!-- ------------------------------------- requirements start ------------------------------------- -->
-            <div class="custom-pb-50">
-              <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Role requirements</h3>
-              <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_role_dict']['requirements'] }}</p>
+            <div class="css-pb-50">
+              <h3 class="css-mb-15 css-header-20 css-opacity-75">Role requirements</h3>
+              <p class="css-m-0 css-header-15">{{ page_dict_html['db_role_dict']['requirements'] }}</p>
             </div>
             <!-- ------------------------------------- requirements end ------------------------------------- -->
             <!-- ------------------------------------- nice to haves start ------------------------------------- -->
-            <div class="custom-pb-50">
-              <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Role nice to haves</h3>
-              <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_role_dict']['nice_to_haves'] }}</p>
+            <div class="css-pb-50">
+              <h3 class="css-mb-15 css-header-20 css-opacity-75">Role nice to haves</h3>
+              <p class="css-m-0 css-header-15">{{ page_dict_html['db_role_dict']['nice_to_haves'] }}</p>
             </div>
             <!-- ------------------------------------- nice to haves end ------------------------------------- -->
             <!-- ------------------------------------- buttons start ------------------------------------- -->
-            <div class="custom-mb-50">
-              <div class="text-center custom-mt-25">
-                <a href="/roles" class="btn btn-primary btn-lg custom-width-100">Back</a>
+            <div class="css-mb-50">
+              <div class="text-center css-mt-25">
+                <a href="/roles" class="btn btn-primary btn-lg css-width-100">Back</a>
               </div>
             </div>
             <!-- ------------------------------------- buttons end ------------------------------------- -->
@@ -514,34 +514,34 @@
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'view_result' %}
             <!-- ------------------------------------- title start ------------------------------------- -->
-            <div class="custom-ptb-50 custom-display-flex custom-jc-between">
-              <h2 class="custom-m-0 custom-header-30">Result</h2>
+            <div class="css-ptb-50 css-display-flex css-jc-between">
+              <h2 class="css-m-0 css-header-30">Result</h2>
               <a href="/results" class="btn btn-primary btn">Back</a>
             </div>
             <!-- ------------------------------------- title end ------------------------------------- -->
             <!-- ------------------------------------- name start ------------------------------------- -->
-            <div class="custom-pb-50">
-              <div class="custom-display-flex custom-jc-between">
-                <h3 class="custom-m-0 custom-header-25 custom-mb-25">{{ page_dict_html['db_grade_dict']['fk_role_name'] }}</h3>
-                <a href="/roles/view/{{ page_dict_html['db_grade_dict']['fk_role_id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline">View role</a>
+            <div class="css-pb-50">
+              <div class="css-display-flex css-jc-between">
+                <h3 class="css-m-0 css-header-25 css-mb-25">{{ page_dict_html['db_grade_dict']['fk_role_name'] }}</h3>
+                <a href="/roles/view/{{ page_dict_html['db_grade_dict']['fk_role_id'] }}" target="_blank" class="css-header-15 css-opacity-50 css-a-black-underline">View role</a>
               </div>
-              <div class="custom-display-flex custom-jc-between">
-                <h3 class="custom-m-0 custom-header-25 custom-mb-5">{{ page_dict_html['db_grade_dict']['fk_cv_name'] }}</h3>
-                <a href="/cv/view/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline">View CV</a>
+              <div class="css-display-flex css-jc-between">
+                <h3 class="css-m-0 css-header-25 css-mb-5">{{ page_dict_html['db_grade_dict']['fk_cv_name'] }}</h3>
+                <a href="/cv/view/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}" target="_blank" class="css-header-15 css-opacity-50 css-a-black-underline">View CV</a>
               </div>
               {% if page_dict_html['db_grade_dict']['candidate_email'] != '' %}
-                <h3 class="custom-m-0 custom-header-15 custom-mb-5 custom-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_email'] }}</h3>
+                <h3 class="css-m-0 css-header-15 css-mb-5 css-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_email'] }}</h3>
               {% endif %}
               {% if page_dict_html['db_grade_dict']['candidate_phone'] != '' %}
-                <h3 class="custom-m-0 custom-header-15 custom-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_phone'] }}</h3>
+                <h3 class="css-m-0 css-header-15 css-opacity-75">{{ page_dict_html['db_grade_dict']['candidate_phone'] }}</h3>
               {% endif %}
-              <div class="custom-display-flex custom-jc-between">
-                <h3 class="custom-m-0 custom-header-20 custom-mt-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="custom-img-height-25 custom-mr-5"> {{ page_dict_html['db_grade_dict']['score'] }}</h3>
-                <span id="id-edit_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemVisible custom-mt-15">Edit</span>
-                <span id="id-hide_grade_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemInvisible custom-mt-15">Cancel</span>
+              <div class="css-display-flex css-jc-between">
+                <h3 class="css-m-0 css-header-20 css-mt-25"><img src="{{ page_dict_html['db_grade_dict']['score_all_stars'] }}" alt="" class="css-img-height-25 css-mr-5"> {{ page_dict_html['db_grade_dict']['score'] }}</h3>
+                <span id="id-edit_grade_btn" class="css-header-15 css-opacity-50 css-a-black-underline css-hover-1 uiSearchItemVisible css-mt-15">Edit</span>
+                <span id="id-hide_grade_btn" class="css-header-15 css-opacity-50 css-a-black-underline css-hover-1 uiSearchItemInvisible css-mt-15">Cancel</span>
               </div>
               <!-- ------------------------------------- change grade start ------------------------------------- -->
-              <div class="border shadow custom-br-15 uiSearchItemInvisible custom-p-25 custom-mt-25 custom-width-100 text-center" id="id-edit_grade_section">
+              <div class="border shadow css-br-15 uiSearchItemInvisible css-p-25 css-mt-25 css-width-100 text-center" id="id-edit_grade_section">
                 <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
                   {% for k_img,v_img in page_dict_html['img_stars_dict'].items() %}
                     <div>
@@ -550,11 +550,11 @@
                       {% else %}
                         <input type="radio" class="btn-check" name="uiRadioGradeImg" id="uiRadioGradeImg_{{ v_img['id'] }}" value="{{ v_img['num'] }}" autocomplete="off">{{ v_img['num'] }}
                       {% endif %}
-                      <label class="btn" for="uiRadioGradeImg_{{ v_img['id'] }}"><img src="{{ v_img['url'] }}" class="custom-img-height-20" alt="CVhire grading"></label>
+                      <label class="btn" for="uiRadioGradeImg_{{ v_img['id'] }}"><img src="{{ v_img['url'] }}" class="css-img-height-20" alt="CVhire grading"></label>
                     </div>
                   {% endfor %}
                   <!-- ------------------------------------- submit start ------------------------------------- -->
-                  <button type="submit" class="btn btn-success btn custom-mt-15">Update grade</button>
+                  <button type="submit" class="btn btn-success btn css-mt-15">Update grade</button>
                   <!-- ------------------------------------- submit end ------------------------------------- -->
                 </form>
               </div>
@@ -562,26 +562,26 @@
             </div>
             <!-- ------------------------------------- name end ------------------------------------- -->
             <!-- ------------------------------------- section start ------------------------------------- -->
-            <div class="custom-pb-50">
-              <div class="custom-display-flex custom-jc-between">
-                <h3 class="custom-mb-15 custom-header-20 custom-opacity-75">Summary</h3>
-                <span id="id-edit_summary_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemVisible">Edit</span>
-                <span id="id-hide_summary_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemInvisible">Cancel</span>
+            <div class="css-pb-50">
+              <div class="css-display-flex css-jc-between">
+                <h3 class="css-mb-15 css-header-20 css-opacity-75">Summary</h3>
+                <span id="id-edit_summary_btn" class="css-header-15 css-opacity-50 css-a-black-underline css-hover-1 uiSearchItemVisible">Edit</span>
+                <span id="id-hide_summary_btn" class="css-header-15 css-opacity-50 css-a-black-underline css-hover-1 uiSearchItemInvisible">Cancel</span>
               </div>
               <!-- ------------------------------------- follow ups string start ------------------------------------- -->
               <div id="id-summary_str_section" class="uiSearchItemVisible">
-                <p class="custom-m-0 custom-header-15">{{ page_dict_html['db_grade_dict']['summary'] }}</p>
+                <p class="css-m-0 css-header-15">{{ page_dict_html['db_grade_dict']['summary'] }}</p>
               </div>
               <!-- ------------------------------------- follow ups string start ------------------------------------- -->
               <!-- ------------------------------------- follow ups input start ------------------------------------- -->
-              <div id="id-summary_input_section" class="uiSearchItemInvisible custom-width-100 custom-p-25 border shadow custom-br-15">
+              <div id="id-summary_input_section" class="uiSearchItemInvisible css-width-100 css-p-25 border shadow css-br-15">
                 <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
-                  <div class="custom-pb-25">
-                    <label for="uiSummary" class="form-label">Edit <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 2,000 characters."></i></label>
+                  <div class="css-pb-25">
+                    <label for="uiSummary" class="form-label">Edit <i class="fa-solid fa-circle-info css-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 2,000 characters."></i></label>
                     <textarea class="form-control" id="uiSummary" name="uiSummary" rows="12" required>{{ page_dict_html['db_grade_dict']['summary'] }}</textarea>
                   </div>
                   <!-- ------------------------------------- submit start ------------------------------------- -->
-                  <button type="submit" class="btn btn-success btn custom-width-100">Update summary</button>
+                  <button type="submit" class="btn btn-success btn css-width-100">Update summary</button>
                   <!-- ------------------------------------- submit end ------------------------------------- -->
                 </form>
               </div>
@@ -589,32 +589,32 @@
             </div>
             <!-- ------------------------------------- section end ------------------------------------- -->
             <!-- ------------------------------------- section start ------------------------------------- -->
-            <div class="custom-pb-50">
-              <div class="custom-display-flex custom-mb-15 custom-jc-between">
-                <h3 class="custom-header-20 custom-opacity-75">Follow ups</h3>
-                <span id="id-edit_followups_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemVisible">Edit</span>
-                <span id="id-hide_followups_btn" class="custom-header-15 custom-opacity-50 custom-a-black-underline custom-hover-1 uiSearchItemInvisible">Cancel</span>
+            <div class="css-pb-50">
+              <div class="css-display-flex css-mb-15 css-jc-between">
+                <h3 class="css-header-20 css-opacity-75">Follow ups</h3>
+                <span id="id-edit_followups_btn" class="css-header-15 css-opacity-50 css-a-black-underline css-hover-1 uiSearchItemVisible">Edit</span>
+                <span id="id-hide_followups_btn" class="css-header-15 css-opacity-50 css-a-black-underline css-hover-1 uiSearchItemInvisible">Cancel</span>
               </div>
               <!-- ------------------------------------- follow ups string start ------------------------------------- -->
               <div id="id-followups_str_section" class="uiSearchItemVisible">
                 {% for k,v in page_dict_html['db_grade_dict']['follow_ups_dict'].items() %}
                   {% if v['ui'] != '' %}
-                    <p class="custom-m-0 custom-mb-15 custom-header-15">{{ v['num'] }}. {{ v['ui'] }}</p>
+                    <p class="css-m-0 css-mb-15 css-header-15">{{ v['num'] }}. {{ v['ui'] }}</p>
                   {% endif %}
                 {% endfor %}
               </div>
               <!-- ------------------------------------- follow ups string end ------------------------------------- -->
               <!-- ------------------------------------- follow ups input start ------------------------------------- -->
-              <div id="id-followups_input_section" class="uiSearchItemInvisible custom-width-100 custom-p-25 border shadow custom-br-15">
+              <div id="id-followups_input_section" class="uiSearchItemInvisible css-width-100 css-p-25 border shadow css-br-15">
                 <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
                   {% for k,v in page_dict_html['db_grade_dict']['follow_ups_dict'].items() %}
-                    <div class="form-group custom-mb-25">
-                      <label for="uiFollowUp{{ v['num'] }}">Follow up #{{ v['num'] }} <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 300 characters."></i></label>
-                      <input type="text" class="form-control custom-mt-10" id="uiFollowUp{{ v['num'] }}" name="uiFollowUp{{ v['num'] }}" value="{{ v['ui'] }}">
+                    <div class="form-group css-mb-25">
+                      <label for="uiFollowUp{{ v['num'] }}">Follow up #{{ v['num'] }} <i class="fa-solid fa-circle-info css-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 300 characters."></i></label>
+                      <input type="text" class="form-control css-mt-10" id="uiFollowUp{{ v['num'] }}" name="uiFollowUp{{ v['num'] }}" value="{{ v['ui'] }}">
                     </div>
                   {% endfor %}
                   <!-- ------------------------------------- submit start ------------------------------------- -->
-                  <button type="submit" class="btn btn-success btn custom-width-100 custom-mt-10">Update follow ups</button>
+                  <button type="submit" class="btn btn-success btn css-width-100 css-mt-10">Update follow ups</button>
                   <!-- ------------------------------------- submit end ------------------------------------- -->
                 </form>
               </div>
@@ -622,13 +622,13 @@
             </div>
             <!-- ------------------------------------- section end ------------------------------------- -->
             <!-- ------------------------------------- buttons start ------------------------------------- -->
-            <div class="custom-mb-50">
-              <div class="text-center custom-mt-25">
-                <div class="custom-display-flex custom-mb-50">
-                  <a href="/cv/ask_ai/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}" class="btn btn-success btn-lg custom-ptb-25 custom-width-100 custom-header-40">More insights</a>
-                  <a href="/cv/ask_ai/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_black_no_bg.png" alt="" class="custom-img-height-125-mobile"></a>
+            <div class="css-mb-50">
+              <div class="text-center css-mt-25">
+                <div class="css-display-flex css-mb-50">
+                  <a href="/cv/ask_ai/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}" class="btn btn-success btn-lg css-ptb-25 css-width-100 css-header-40">More insights</a>
+                  <a href="/cv/ask_ai/{{ page_dict_html['db_grade_dict']['fk_cv_id'] }}"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_black_no_bg.png" alt="" class="css-img-height-125-mobile"></a>
                 </div>
-                <a href="/results" class="btn btn-primary btn-lg custom-width-100">Back</a>
+                <a href="/results" class="btn btn-primary btn-lg css-width-100">Back</a>
               </div>
             </div>
             <!-- ------------------------------------- buttons end ------------------------------------- -->
@@ -637,78 +637,78 @@
           {% elif page_dict_html['view_reason'] == 'ask_cv' %}
             <!-- ------------------------------------- top start ------------------------------------- -->  
             <!-- ------------------------------------- title start ------------------------------------- -->
-            <div class="custom-ptb-50">
-              <div class="custom-display-flex custom-jc-between">
-                <h2 class="custom-m-0 custom-header-30">CV ask AI</h2>
+            <div class="css-ptb-50">
+              <div class="css-display-flex css-jc-between">
+                <h2 class="css-m-0 css-header-30">CV ask AI</h2>
                 <a href="/cv/active" class="btn btn-primary">Back</a>
               </div>
             </div>
             <!-- ------------------------------------- title end ------------------------------------- -->
             <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
               <!-- ------------------------------------- name start ------------------------------------- -->
-              <div class="custom-pb-50">
-                <div class="custom-display-flex custom-jc-between">
-                  <h3 class="custom-m-0 custom-header-25 custom-mb-5">{{ page_dict_html['db_cv_dict']['candidate_name'] }}</h3>
-                  <a href="/cv/view/{{ page_dict_html['db_cv_dict']['id'] }}" target="_blank" class="custom-header-15 custom-opacity-50 custom-a-black-underline">View CV</a>
+              <div class="css-pb-50">
+                <div class="css-display-flex css-jc-between">
+                  <h3 class="css-m-0 css-header-25 css-mb-5">{{ page_dict_html['db_cv_dict']['candidate_name'] }}</h3>
+                  <a href="/cv/view/{{ page_dict_html['db_cv_dict']['id'] }}" target="_blank" class="css-header-15 css-opacity-50 css-a-black-underline">View CV</a>
                 </div>
                 {% if page_dict_html['db_cv_dict']['candidate_email'] != '' %}
-                  <h3 class="custom-m-0 custom-header-15 custom-mb-5 custom-opacity-75">{{ page_dict_html['db_cv_dict']['candidate_email'] }}</h3>
+                  <h3 class="css-m-0 css-header-15 css-mb-5 css-opacity-75">{{ page_dict_html['db_cv_dict']['candidate_email'] }}</h3>
                 {% endif %}
                 {% if page_dict_html['db_cv_dict']['candidate_phone'] != '' %}
-                  <h3 class="custom-m-0 custom-header-15 custom-opacity-75">{{ page_dict_html['db_cv_dict']['candidate_phone'] }}</h3>
+                  <h3 class="css-m-0 css-header-15 css-opacity-75">{{ page_dict_html['db_cv_dict']['candidate_phone'] }}</h3>
                 {% endif %}
               </div>
               <!-- ------------------------------------- name end ------------------------------------- -->
               <!-- ------------------------------------- requirements start ------------------------------------- -->
-              <div class="custom-pb-50">
-                <label for="uiCvAskAi" class="form-label">Ask AI about this CV <i class="fa-solid fa-circle-info custom-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 200 characters. Example: What is this CV's biggest strength?"></i></label>
+              <div class="css-pb-50">
+                <label for="uiCvAskAi" class="form-label">Ask AI about this CV <i class="fa-solid fa-circle-info css-opacity-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Less than 200 characters. Example: What is this CV's biggest strength?"></i></label>
                 <textarea class="form-control" id="uiCvAskAi" name="uiCvAskAi" rows="3" required>What is this candidate's biggest strength?</textarea>
               </div>
               <!-- ------------------------------------- requirements end ------------------------------------- -->
               <!-- ------------------------------------- buttons start ------------------------------------- -->
-              <div class="custom-mb-50">
-                <button type="submit" class="btn btn-primary btn-lg custom-width-100">Ask AI</button>
+              <div class="css-mb-50">
+                <button type="submit" class="btn btn-primary btn-lg css-width-100">Ask AI</button>
               </div>
               <!-- ------------------------------------- buttons end ------------------------------------- -->
             </form>
             <!-- ------------------------------------- top end ------------------------------------- -->
             <!-- ------------------------------------- divider start ------------------------------------- -->
-            <div class="custom-divider-1"></div>
+            <div class="css-divider-1"></div>
             <!-- ------------------------------------- divider end ------------------------------------- -->
             <!-- ------------------------------------- bottom start ------------------------------------- -->
             <!-- ------------------------------------- responses start ------------------------------------- -->
-            <div class="custom-mb-50">
+            <div class="css-mb-50">
               <h2>AI responses</h2>
             </div>
             <!-- ------------------------------------- responses end ------------------------------------- -->
             <!-- ------------------------------------- results message and refresh start ------------------------------------- -->
             {% if page_dict_html['queue_status'] == true %}
-              <div class="custom-mt-50 custom-mb-50 border shadow-lg custom-p-75 custom-br-15">
+              <div class="css-mt-50 css-mb-50 border shadow-lg css-p-75 css-br-15">
                 <div class="alert alert-success" role="alert">Asking AI can take 1-2 minutes, please click below to load results when ready.</div>
-                <a href="/cv/ask_ai/{{ page_dict_html['db_cv_dict']['id'] }}" class="btn btn-success btn-lg custom-width-100">Refresh</a>
+                <a href="/cv/ask_ai/{{ page_dict_html['db_cv_dict']['id'] }}" class="btn btn-success btn-lg css-width-100">Refresh</a>
               </div>
             {% endif %}
             <!-- ------------------------------------- results message and refresh end ------------------------------------- -->
             <!-- ------------------------------------- no submissions yet start ------------------------------------- -->
             {% if page_dict_html['content_total_rows_interior'] == 0 and page_dict_html['queue_status'] == false %}
-              <div class="mx-auto custom-bg-grey-1 custom-p-50 custom-br-10 text-center border shadow custom-mb-50">
-                <a href="/ai/one-role-many-cvs" class="custom-opacity-60 custom-a-black-underline">No questions asked yet.</a>
+              <div class="mx-auto css-bg-grey-1 css-p-50 css-br-10 text-center border shadow css-mb-50">
+                <a href="/ai/one-role-many-cvs" class="css-opacity-60 css-a-black-underline">No questions asked yet.</a>
               </div>
             <!-- ------------------------------------- no submissions yet end ------------------------------------- -->
             <!-- ------------------------------------- all submissions start ------------------------------------- -->
             {% else %}
               {% for i in page_dict_html['db_ask_ai_arr_of_dict'] %}
-                <div class="border custom-br-15 shadow custom-p-25 custom-mb-50">
-                  <div class="custom-mb-25 custom-opacity-60">
-                    <div class="custom-display-flex custom-jc-between">
-                      <p class="custom-m-0 custom-header-12">Question</p>
-                      <a href="/cv/ask_ai/status_change/{{ i['id'] }}/delete" class="custom-a-black-none" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete question"><i class="fa-solid fa-x"></i></a>
+                <div class="border css-br-15 shadow css-p-25 css-mb-50">
+                  <div class="css-mb-25 css-opacity-60">
+                    <div class="css-display-flex css-jc-between">
+                      <p class="css-m-0 css-header-12">Question</p>
+                      <a href="/cv/ask_ai/status_change/{{ i['id'] }}/delete" class="css-a-black-none" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete question"><i class="fa-solid fa-x"></i></a>
                     </div>
-                    <p class="custom-m-0 custom-header-18 fst-italic">{{ i['question'] }}</p>
+                    <p class="css-m-0 css-header-18 fst-italic">{{ i['question'] }}</p>
                   </div>
                   <div>
-                    <p class="custom-m-0 custom-header-12">AI</p>
-                    <p class="custom-m-0 custom-header-15">{{ i['answer'] }}</p>
+                    <p class="css-m-0 css-header-12">AI</p>
+                    <p class="css-m-0 css-header-15">{{ i['answer'] }}</p>
                   </div>
                 </div>
               {% endfor %}
@@ -719,25 +719,25 @@
           <!-- ------------------------------------- view start ------------------------------------- -->
           {% elif page_dict_html['view_reason'] == 'edit_account' %}
             <!-- ------------------------------------- title start ------------------------------------- -->
-            <div class="custom-ptb-50">
-              <h2 class="custom-m-0 custom-header-30">Information</h2>
+            <div class="css-ptb-50">
+              <h2 class="css-m-0 css-header-30">Information</h2>
             </div>
             <!-- ------------------------------------- title end ------------------------------------- -->
             <!-- ------------------------------------- email verification start ------------------------------------- -->
-            <div class="form-group custom-mb-50">
+            <div class="form-group css-mb-50">
               <label>Email</label>
-              <p class="custom-m-0 custom-mt-10">{{ page_dict_html['current_user_email'] }} {% if page_dict_html['verified_email'] == false %}<a href="/account/verify/email/send" class="custom-ml-5 custom-a-danger-underline" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Send verification email">(not verified)</a>{% else %}<span class="custom-ml-5 custom-color-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Verified"><i class="fa-solid fa-circle-check"></i></span>{% endif %}</p>
+              <p class="css-m-0 css-mt-10">{{ page_dict_html['current_user_email'] }} {% if page_dict_html['verified_email'] == false %}<a href="/account/verify/email/send" class="css-ml-5 css-a-danger-underline" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Send verification email">(not verified)</a>{% else %}<span class="css-ml-5 css-color-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Verified"><i class="fa-solid fa-circle-check"></i></span>{% endif %}</p>
             </div>
             <!-- ------------------------------------- email verification end ------------------------------------- -->
             <!-- ------------------------------------- inputs start ------------------------------------- -->
             {% for k,v in page_dict_html['info_dict'].items() %}
               {% if k != 'Photo' %}
-                <div class="form-group custom-mb-50">
+                <div class="form-group css-mb-50">
                   <label for="{{ v['id'] }}">{{ k }}</label>
-                  <input type="text" class="form-control custom-mt-10" id="{{ v['id'] }}" name="{{ v['id'] }}" value="{{ v['value'] }}" required>
+                  <input type="text" class="form-control css-mt-10" id="{{ v['id'] }}" name="{{ v['id'] }}" value="{{ v['value'] }}" required>
                 </div>
               {% else %}
-                <label class="custom-mb-10">Company logo</label>
+                <label class="css-mb-10">Company logo</label>
                 <div>
                   {% for k_img,v_img in page_dict_html['default_profile_img_dict'].items() %}
                     {% if v_img['url'] == page_dict_html['profile_img'] %}
@@ -745,17 +745,17 @@
                     {% else %}
                       <input type="radio" class="btn-check" name="uiRadioProfileImg" id="uiRadioProfileImg_{{ v_img['id'] }}" value="{{ v_img['url'] }}" autocomplete="off">
                     {% endif %}
-                    <label class="btn" for="uiRadioProfileImg_{{ v_img['id'] }}"><img src="{{ v_img['url'] }}" class="custom-img-height-40" alt="CVhire logo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k_img }}"></label>
+                    <label class="btn" for="uiRadioProfileImg_{{ v_img['id'] }}"><img src="{{ v_img['url'] }}" class="css-img-height-40" alt="CVhire logo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ k_img }}"></label>
                   {% endfor %}
                 </div>
-                <div class="custom-mt-15 custom-mb-25">
+                <div class="css-mt-15 css-mb-25">
                   <input class="form-control" type="file" id="uiFormFileSingleUpload" name="uiFormFileSingleUpload" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Accepted formats: .jpg, .jpeg, .png">
                 </div>
               {% endif %}
             {% endfor %}
             <!-- ------------------------------------- inputs end ------------------------------------- -->
             <!-- ------------------------------------- buttons start ------------------------------------- -->
-            <button type="submit" class="btn btn-primary btn-lg custom-width-100 custom-mt-25 custom-mb-100">Update</button>
+            <button type="submit" class="btn btn-primary btn-lg css-width-100 css-mt-25 css-mb-100">Update</button>
             <!-- ------------------------------------- buttons end ------------------------------------- -->
           <!-- ------------------------------------- view end ------------------------------------- -->
           <!-- ------------------------------------- view start ------------------------------------- -->
@@ -768,11 +768,11 @@
               });
             </script>
             <!-- ------------------------------------- google ads conversion tracking end ------------------------------------- -->
-            <div class="custom-ptb-50 text-center">
-              <h2 class="custom-m-0 custom-header-30 custom-mb-10">Verify email</h2>
-              <p class="cusotm-m-0 custom-header-20 custom-opacity-50">{{ page_dict_html['current_user_email'] }}</p>
-              <div class="custom-mt-25">
-                <a href="/account/verify/email/send" class="btn btn-primary btn-lg custom-width-100">Resend email</a>
+            <div class="css-ptb-50 text-center">
+              <h2 class="css-m-0 css-header-30 css-mb-10">Verify email</h2>
+              <p class="cusotm-m-0 css-header-20 css-opacity-50">{{ page_dict_html['current_user_email'] }}</p>
+              <div class="css-mt-25">
+                <a href="/account/verify/email/send" class="btn btn-primary btn-lg css-width-100">Resend email</a>
               </div>
             </div>
           <!-- ------------------------------------- view end ------------------------------------- -->

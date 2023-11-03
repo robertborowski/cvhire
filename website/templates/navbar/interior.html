@@ -6,37 +6,37 @@
 {% endblock %}
 
 {% block contentBody %}
-<body class="custom-google-font-1">
+<body class="css-google-font-1">
   <!-- ----------------------------------- alert start ----------------------------------- -->
   {% if page_dict_html['alert_message_dict']['message'] != '' %}
-  <div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid custom-m-0" role="alert">
+  <div class="alert alert-{{ page_dict_html['alert_message_dict']['type'] }} mx-auto text-center container-fluid css-m-0" role="alert">
     {{ page_dict_html['alert_message_dict']['message'] }}
   </div>
   {% endif %}
   <!-- ----------------------------------- alert end ----------------------------------- -->
   {% if page_dict_html['nav_header'] == true %}
     <!-- ------------------------------------- navbar start ------------------------------------- -->
-    <nav class="custom-width-interior-1100 mx-auto">
+    <nav class="css-width-interior-1100 mx-auto">
       <!-- ------------------------------------- section 1 start ------------------------------------- -->
-      <div class="custom-display-flex custom-jc-between custom-ptb-10 custom-plr-50 custom-header-18 custom-bg-grey-1">
-        <a href="/ai/one-role-many-cvs" class="custom-a-black-none">CVhire</a>
-        <a href="/account" class="custom-a-black-none" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Edit"><img src="{{ page_dict_html['profile_img'] }}" alt="" class="custom-img-size-20-square custom-mt-negative-5 custom-mr-5">{{ page_dict_html['company_name'] }}</a>
-        <ul class="custom-m-0 custom-display-flex custom-no-decoration">
+      <div class="css-display-flex css-jc-between css-ptb-10 css-plr-50 css-header-18 css-bg-grey-1">
+        <a href="/ai/one-role-many-cvs" class="css-a-black-none">CVhire</a>
+        <a href="/account" class="css-a-black-none" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Edit"><img src="{{ page_dict_html['profile_img'] }}" alt="" class="css-img-size-20-square css-mt-negative-5 css-mr-5">{{ page_dict_html['company_name'] }}</a>
+        <ul class="css-m-0 css-display-flex css-no-decoration">
           {% for k,v in page_dict_html['navbar_link_dict_v2'].items() %}
             <!-- ------------------------------------- selected start ------------------------------------- -->
             {% if v['url'] in page_dict_html['navbar_link_current'] %}
               {% if (v['url'] == '/notifications' and page_dict_html['notifications_unread'] == true) or (v['url'] == '/account' and page_dict_html['verified_email'] == false) %}
-                <li class="custom-position-relative"><a href="{{ v['url'] }}" class="custom-a-black-none custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i><div class="custom-badge-1"></div></a></li>
+                <li class="css-position-relative"><a href="{{ v['url'] }}" class="css-a-black-none css-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i><div class="css-badge-1"></div></a></li>
               {% else %}
-                <li><a href="{{ v['url'] }}" class="custom-a-black-none custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
+                <li><a href="{{ v['url'] }}" class="css-a-black-none css-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
               {% endif %}
             <!-- ------------------------------------- selected end ------------------------------------- -->
             <!-- ------------------------------------- not selected start ------------------------------------- -->
             {% else %}
               {% if (v['url'] == '/notifications' and page_dict_html['notifications_unread'] == true) or (v['url'] == '/account' and page_dict_html['verified_email'] == false) %}
-                <li class="custom-position-relative"><a href="{{ v['url'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i><div class="custom-badge-1"></div></a></li>
+                <li class="css-position-relative"><a href="{{ v['url'] }}" class="css-a-black-none css-opacity-50 css-hover-pointer-opacity-1 css-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i><div class="css-badge-1"></div></a></li>
               {% else %}
-                <li><a href="{{ v['url'] }}" class="custom-a-black-none custom-opacity-50 custom-hover-pointer-opacity-1 custom-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
+                <li><a href="{{ v['url'] }}" class="css-a-black-none css-opacity-50 css-hover-pointer-opacity-1 css-plr-15" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="{{ k }}"><i class="{{ v['icon'] }}"></i></a></li>
               {% endif %}
             {% endif %}
             <!-- ------------------------------------- not selected end ------------------------------------- -->
@@ -45,13 +45,13 @@
       </div>
       <!-- ------------------------------------- section 1 end ------------------------------------- -->
       <!-- ------------------------------------- section 2 start ------------------------------------- -->
-      <div class="custom-ptb-10 custom-header-15 border custom-bg-white">
-        <ul class="custom-m-0 custom-display-flex custom-no-decoration">
+      <div class="css-ptb-10 css-header-15 border css-bg-white">
+        <ul class="css-m-0 css-display-flex css-no-decoration">
           {% for k,v in page_dict_html['navbar_link_dict'].items() %}
             {% if v in page_dict_html['navbar_link_current'] %}
-              <li><a href="{{ v }}" class="custom-mlr-15 custom-plr-15 custom-br-50 custom-ptb-5 custom-bg-primary custom-a-black-none">{{ k }}</a></li>
+              <li><a href="{{ v }}" class="css-mlr-15 css-plr-15 css-br-50 css-ptb-5 css-bg-primary css-a-black-none">{{ k }}</a></li>
             {% else %}
-              <li><a href="{{ v }}" class="custom-mlr-15 custom-plr-15 custom-br-50 custom-ptb-5 custom-a-black-none custom-bg-hover-1">{{ k }}</a></li>
+              <li><a href="{{ v }}" class="css-mlr-15 css-plr-15 css-br-50 css-ptb-5 css-a-black-none css-bg-hover-1">{{ k }}</a></li>
             {% endif %}
           {% endfor %}
         </ul>

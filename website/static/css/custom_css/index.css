@@ -1,291 +1,291 @@
 /* ------------------- a start ------------------- */
-.custom-a-1, .custom-a-1:visited {
-  color: var(--custom-color-1);
+.css-a-1, .css-a-1:visited {
+  color: var(--css-color-1);
   text-decoration: none;
 }
-.custom-a-1:hover {
+.css-a-1:hover {
   color: white;
   text-decoration: underline;
 }
-.custom-a-2, .custom-a-2:visited {
+.css-a-2, .css-a-2:visited {
   color: black;
   text-decoration: none;
 }
-.custom-a-2:hover {
-  color: black;
-  text-decoration: underline;
-}
-.custom-a-2-none, .custom-a-2-none:visited, .custom-a-2-none:hover {
-  color: black;
-  text-decoration: none;
-}
-.custom-a-3, .custom-a-3:visited {
-  color: var(--custom-color-1);
-  text-decoration: none;
-}
-.custom-a-3:hover {
+.css-a-2:hover {
   color: black;
   text-decoration: underline;
 }
-.custom-a-4, .custom-a-4:visited {
-  color: var(--custom-color-1);
+.css-a-2-none, .css-a-2-none:visited, .css-a-2-none:hover {
+  color: black;
   text-decoration: none;
 }
-.custom-a-4:hover {
+.css-a-3, .css-a-3:visited {
+  color: var(--css-color-1);
+  text-decoration: none;
+}
+.css-a-3:hover {
+  color: black;
+  text-decoration: underline;
+}
+.css-a-4, .css-a-4:visited {
+  color: var(--css-color-1);
+  text-decoration: none;
+}
+.css-a-4:hover {
   color: var(--bs-primary);
   text-decoration: underline;
 }
-.custom-a-5, .custom-a-5:visited {
+.css-a-5, .css-a-5:visited {
   color: white;
   text-decoration: none;
 }
-.custom-a-5:hover {
+.css-a-5:hover {
   color: white;
   text-decoration: underline;
 }
-.custom-a-6, .custom-a-6:visited, .custom-a-6:hover {
+.css-a-6, .css-a-6:visited, .css-a-6:hover {
   color: white;
   text-decoration: underline;
 }
-.custom-a-none, .custom-a-none:hover,.custom-a-none:visited {
+.css-a-none, .css-a-none:hover,.css-a-none:visited {
   text-decoration: none;
 }
-.custom-a-white, .custom-a-white:visited, .custom-a-white:hover {
-  color: white;
-  text-decoration: none;
-}
-.custom-a-white-underline {
+.css-a-white, .css-a-white:visited, .css-a-white:hover {
   color: white;
   text-decoration: none;
 }
-.custom-a-white-underline:hover {
+.css-a-white-underline {
   color: white;
-  text-decoration: underline;
-}
-.custom-a-white-underline-on, .custom-a-white-underline-on:hover, .custom-a-white-underline-on:visited {
-  color: white;
-  text-decoration: underline;
-}
-.custom-a-info-underline {
-  color: var(--custom-color-info);
   text-decoration: none;
 }
-.custom-a-info-underline:hover, .custom-a-info-underline:visited {
-  color: var(--custom-color-info);
+.css-a-white-underline:hover {
+  color: white;
   text-decoration: underline;
 }
-.custom-a-white-none, .custom-a-white-none:visited, .custom-a-white-none-none:hover {
+.css-a-white-underline-on, .css-a-white-underline-on:hover, .css-a-white-underline-on:visited {
+  color: white;
+  text-decoration: underline;
+}
+.css-a-info-underline {
+  color: var(--css-color-info);
+  text-decoration: none;
+}
+.css-a-info-underline:hover, .css-a-info-underline:visited {
+  color: var(--css-color-info);
+  text-decoration: underline;
+}
+.css-a-white-none, .css-a-white-none:visited, .css-a-white-none-none:hover {
   color: white !important;
   text-decoration: none !important;
 }
-.custom-a-black-none, .custom-a-black-none:visited, .custom-a-black-none:hover {
+.css-a-black-none, .css-a-black-none:visited, .css-a-black-none:hover {
   color: black;
   text-decoration: none;
 }
-.custom-a-black-underline, .custom-a-black-underline:visited {
+.css-a-black-underline, .css-a-black-underline:visited {
   color: black;
   text-decoration: none;
 }
-.custom-a-black-underline:hover {
+.css-a-black-underline:hover {
   color: black;
   text-decoration: underline;
 }
-.custom-a-danger-underline, .custom-a-danger-underline:visited {
-  color: var(--custom-color-danger);
+.css-a-danger-underline, .css-a-danger-underline:visited {
+  color: var(--css-color-danger);
   text-decoration: none;
 }
-.custom-a-danger-underline:hover {
-  color: var(--custom-color-danger);
+.css-a-danger-underline:hover {
+  color: var(--css-color-danger);
   text-decoration: underline;
 }
 /* ------------------- a end ------------------- */
 /* ------------------- background start ------------------- */
-.custom-bg-hover-1 {
+.css-bg-hover-1 {
   position: relative
 }
-.custom-bg-hover-1:hover {
+.css-bg-hover-1:hover {
   transition: 0.5s;
   background-color: rgba(0, 0, 0, 0.10);
 }
-.custom-bg-see-through {
+.css-bg-see-through {
   background-color: rgba(255, 255, 255, 0) !important;
 }
-.custom-bg-white {
+.css-bg-white {
   background-color: white;
 }
-.custom-bg-white-always, .custom-bg-white-always:hover, .custom-bg-white-always:active {
+.css-bg-white-always, .css-bg-white-always:hover, .css-bg-white-always:active {
   background-color: white !important;
 }
-.custom-bg-black {
+.css-bg-black {
   background-color: black;
 }
-.custom-bg-black-2 {
+.css-bg-black-2 {
   background-color: rgb(50, 50, 50);
 }
-.custom-bg-tan-1 {
+.css-bg-tan-1 {
   background-color: rgb(255, 237, 217);
 }
-.custom-bg-tan-2 {
+.css-bg-tan-2 {
   background-color: rgb(255 248 240 / 73%);
 }
-.custom-bg-colorful-1 {
+.css-bg-colorful-1 {
   background: linear-gradient(145deg, rgb(255 224 224)0%, rgb(255 254 221)25%, rgb(240 255 238)50%, rgb(233 209 255)100%);
 }
-.custom-bg-green-1 {
+.css-bg-green-1 {
   background-color: rgb(222 242 231);
 }
-.custom-bg-green-2 {
+.css-bg-green-2 {
   background-color: rgb(153, 179, 154);
 }
-.custom-bg-warning {
-  background-color: var(--custom-color-warning);
+.css-bg-warning {
+  background-color: var(--css-color-warning);
 }
-.custom-bg-info {
-  background-color: var(--custom-color-info);
+.css-bg-info {
+  background-color: var(--css-color-info);
 }
-.custom-bg-secondary {
-  background-color: var(--custom-color-secondary);
+.css-bg-secondary {
+  background-color: var(--css-color-secondary);
 }
-.custom-bg-success {
-  background-color: var(--custom-color-success);
+.css-bg-success {
+  background-color: var(--css-color-success);
 }
-.custom-bg-danger {
-  background-color: var(--custom-color-danger);
+.css-bg-danger {
+  background-color: var(--css-color-danger);
 }
-.custom-bg-orange {
-  background-color: var(--custom-color-orange);
+.css-bg-orange {
+  background-color: var(--css-color-orange);
 }
-.custom-bg-purple {
-  background-color: var(--custom-color-purple);
+.css-bg-purple {
+  background-color: var(--css-color-purple);
 }
-.custom-bg-dark-1 {
+.css-bg-dark-1 {
   background-color: rgb(7 19 61);
 }
-.custom-bg-blue-1 {
+.css-bg-blue-1 {
   background-color: rgb(231 241 255);
 }
-.custom-bg-grey-1 {
+.css-bg-grey-1 {
   background-color: rgb(246, 248, 250);
 }
-.custom-bg-grey-2 {
+.css-bg-grey-2 {
   background-color: rgb(248, 248, 248);
 }
-.custom-bg-grey-3 {
+.css-bg-grey-3 {
   background-color: rgb(240, 240, 240);
 }
-.custom-bg-1-dark {
-  background-color: var(--custom-color-2-dark);
+.css-bg-1-dark {
+  background-color: var(--css-color-2-dark);
 }
-.custom-bg-1-light {
-  background-color: var(--custom-color-2-light);
+.css-bg-1-light {
+  background-color: var(--css-color-2-light);
 }
-.custom-bg-primary {
-  background-color: var(--custom-color-primary);
+.css-bg-primary {
+  background-color: var(--css-color-primary);
 }
-.custom-bg-primary-lighter {
-  background-color: var(--custom-color-primary-lighter);
+.css-bg-primary-lighter {
+  background-color: var(--css-color-primary-lighter);
 }
-.custom-bg-primary-darker {
-  background-color: var(--custom-color-primary-darker);
+.css-bg-primary-darker {
+  background-color: var(--css-color-primary-darker);
 }
-.custom-bg-for-gradient-2 {
-  background-color: var(--custom-color-9);
+.css-bg-for-gradient-2 {
+  background-color: var(--css-color-9);
 }
-.custom-bg-primary-gradient-1 {
-  background: linear-gradient(to bottom, var(--custom-color-primary), var(--custom-color-primary-darker));
+.css-bg-primary-gradient-1 {
+  background: linear-gradient(to bottom, var(--css-color-primary), var(--css-color-primary-darker));
 }
-.custom-bg-gradient-1 {
+.css-bg-gradient-1 {
   background: linear-gradient(to top, rgb(255 255 255), rgb(194 230 201 / 23%));
 }
-.custom-bg-gradient-2 {
-  background: linear-gradient(to bottom, var(--custom-color-primary-lighter), var(--custom-color-10), var(--custom-color-9));
+.css-bg-gradient-2 {
+  background: linear-gradient(to bottom, var(--css-color-primary-lighter), var(--css-color-10), var(--css-color-9));
 }
-.custom-bg-gradient-13 {
-  background: linear-gradient(to bottom, var(--custom-color-13), var(--custom-color-13-darker));
+.css-bg-gradient-13 {
+  background: linear-gradient(to bottom, var(--css-color-13), var(--css-color-13-darker));
 }
-.custom-bg-see-through {
+.css-bg-see-through {
   background-color: rgba(255, 255, 255, 0);
 }
-.custom-bg-color-primary {
-  background-color: var(--custom-color-primary);
+.css-bg-color-primary {
+  background-color: var(--css-color-primary);
 }
-.custom-bg-color-success {
-  background-color: var(--custom-color-success);
+.css-bg-color-success {
+  background-color: var(--css-color-success);
 }
-.custom-bg-color-danger {
-  background-color: var(--custom-color-danger);
+.css-bg-color-danger {
+  background-color: var(--css-color-danger);
 }
-.custom-bg-color-1 {
+.css-bg-color-1 {
   background-color: rgb(111 66 193 / 10%);
 }
-.custom-bg-color-2 {
+.css-bg-color-2 {
   background-color: rgb(246 247 255);
 }
-.custom-bg-color-3 {
+.css-bg-color-3 {
   background-color: rgb(220 220 220);
 }
-.custom-bg-color-4 {
+.css-bg-color-4 {
   background-color: rgb(207 255 222);
 }
-.custom-bg-color-5 {
+.css-bg-color-5 {
   background-color: rgb(255 236 198);
 }
-.custom-bg-color-6 {
+.css-bg-color-6 {
   background-color: rgb(255 250 245);
 }
-.custom-bg-color-8 {
+.css-bg-color-8 {
   background-color: rgb(241 255 241);
 }
-.custom-bg-color-13 {
-  background-color: var(--custom-color-13);
+.css-bg-color-13 {
+  background-color: var(--css-color-13);
 }
-.custom-bg-color-14 {
-  background-color: var(--custom-color-14);
+.css-bg-color-14 {
+  background-color: var(--css-color-14);
 }
-.custom-bg-color-15 {
-  background-color: var(--custom-color-15);
+.css-bg-color-15 {
+  background-color: var(--css-color-15);
 }
-.custom-bg-color-16 {
-  background-color: var(--custom-color-16);
+.css-bg-color-16 {
+  background-color: var(--css-color-16);
 }
-.custom-bg-color-reddit {
-  background-color: var(--custom-color-reddit);
+.css-bg-color-reddit {
+  background-color: var(--css-color-reddit);
 }
-.custom-bg-color-reddit:hover {
-  background-color: var(--custom-color-reddit-hover);
+.css-bg-color-reddit:hover {
+  background-color: var(--css-color-reddit-hover);
 }
-.custom-back-img-1 {
+.css-back-img-1 {
   background-image: url(https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/custom_shape_2.png);
   background-repeat: no-repeat;
   background-size: cover;
   height: 700px;
   width: 100%;
 }
-.custom-bg-obj-1 {
+.css-bg-obj-1 {
   height: 40px;
   top: 668px;
   left: calc(50% - 700px);
   right: calc(50% + 540px);
   position: absolute;
-  background: var(--custom-color-black-faded);
+  background: var(--css-color-black-faded);
 }
-.custom-bg-obj-2 {
+.css-bg-obj-2 {
   height: 40px;
   top: 698px;
   left: -10px;
   right: calc(50% + 405px);
   position: absolute;
-  background: var(--custom-color-primary);
+  background: var(--css-color-primary);
 }
-.custom-bg-obj-3 {
+.css-bg-obj-3 {
   height: 40px;
   top: 658px;
   left: calc(50% + 430px);
   right: -10px;
   position: absolute;
-  background: var(--custom-color-primary);
+  background: var(--css-color-primary);
 }
-.custom-bg-tilted-1 {
+.css-bg-tilted-1 {
   z-index: 0;
   position: fixed;
   top: -250px;
@@ -294,7 +294,7 @@
   right: 0;
   transform: skewY(-12deg);
 }
-.custom-bg-solid-1 {
+.css-bg-solid-1 {
   transform-origin: 0%;
   height: 1698px;
   background-color: rgba(0, 0, 0, 0.025);
@@ -303,7 +303,7 @@
   left: 0;
   right: 0;
 }
-.custom-bg-tilted-2 {
+.css-bg-tilted-2 {
   z-index: -1;
   position: absolute;
   top: -250px;
@@ -312,7 +312,7 @@
   right: 0;
   transform: skewY(-15deg);
 }
-.custom-bg-solid-2 {
+.css-bg-solid-2 {
   transform-origin: 0%;
   height: 1698px;
   background-color: rgba(249, 248, 244);
@@ -321,7 +321,7 @@
   left: 50%;
   right: 0;
 }
-.custom-bg-tilted-3 {
+.css-bg-tilted-3 {
   z-index: -1;
   position: absolute;
   top: -250px;
@@ -330,7 +330,7 @@
   right: 0;
   transform: skewY(15deg);
 }
-.custom-bg-solid-3 {
+.css-bg-solid-3 {
   transform-origin: 0%;
   height: 1698px;
   background-color: rgba(249, 248, 244);
@@ -341,7 +341,7 @@
 }
 /* ------------------- background end ------------------- */
 /* ------------------- badge start ------------------- */
-.custom-badge-1 {
+.css-badge-1 {
   position: absolute; /* make the badge's position absolute */
   top: 0; /* position the badge at the top-right corner of the parent */
   right: 5px;
@@ -356,759 +356,759 @@
 }
 /* ------------------- badge end ------------------- */
 /* ------------------- blur start ------------------- */
-.custom-blur-1 {
+.css-blur-1 {
   filter: blur(5px);
 }
 /* ------------------- blur end ------------------- */
 /* ------------------- bottom start ------------------- */
-.custom-bottom-1 {
+.css-bottom-1 {
   position: absolute;
   bottom: 0;
 }
-.custom-top-1 {
+.css-top-1 {
   position: absolute;
   top: 0;
 }
-.custom-right-1 {
+.css-right-1 {
   position: absolute;
   right: 0;
 }
 /* ------------------- bottom end ------------------- */
 /* ------------------- color start ------------------- */
 :root {
-  --custom-color-1: rgb(120 120 120);
-  --custom-color-2-dark: rgb(90, 90, 90);
-  --custom-color-2-light: rgb(180, 180, 180);
-  --custom-color-black: rgba(0, 0, 0);
-  --custom-color-black-faded: rgba(0, 0, 0, 0.25);
-  --custom-color-primary: rgb(255, 193, 7);
-  --custom-color-primary-lighter: rgba(210, 244, 234, 0.50);
-  --custom-color-primary-darker: rgb(44 26 77);
-  --custom-color-secondary: rgb(108 117 125);
-  --custom-color-success: rgb(25, 135, 84);
-  --custom-color-info: rgb(13, 202, 240);
-  --custom-color-danger: #dc3545;
-  --custom-color-warning: rgb(255, 193, 7);
-  --custom-color-orange: #fd7e14;
-  --custom-color-purple: #6610f2;
-  --custom-color-8: rgb(237, 237, 237);
-  --custom-color-9: rgb(232 255 235);
-  --custom-color-10: rgb(255 213 213);
-  --custom-color-12: rgb(181 196 217);
-  --custom-color-13: rgb(242, 244, 248);
-  --custom-color-13-darker: rgb(195, 220, 236);
-  --custom-color-14: rgb(240, 249, 255);
-  --custom-color-15: rgb(245 251 255);
-  --custom-color-16: rgb(212, 238, 255);
-  --custom-color-17: rgb(97, 127, 145);
-  --custom-color-reddit: rgb(255, 69, 0);
-  --custom-color-reddit-hover: rgb(210, 57, 0);
+  --css-color-1: rgb(120 120 120);
+  --css-color-2-dark: rgb(90, 90, 90);
+  --css-color-2-light: rgb(180, 180, 180);
+  --css-color-black: rgba(0, 0, 0);
+  --css-color-black-faded: rgba(0, 0, 0, 0.25);
+  --css-color-primary: rgb(255, 193, 7);
+  --css-color-primary-lighter: rgba(210, 244, 234, 0.50);
+  --css-color-primary-darker: rgb(44 26 77);
+  --css-color-secondary: rgb(108 117 125);
+  --css-color-success: rgb(25, 135, 84);
+  --css-color-info: rgb(13, 202, 240);
+  --css-color-danger: #dc3545;
+  --css-color-warning: rgb(255, 193, 7);
+  --css-color-orange: #fd7e14;
+  --css-color-purple: #6610f2;
+  --css-color-8: rgb(237, 237, 237);
+  --css-color-9: rgb(232 255 235);
+  --css-color-10: rgb(255 213 213);
+  --css-color-12: rgb(181 196 217);
+  --css-color-13: rgb(242, 244, 248);
+  --css-color-13-darker: rgb(195, 220, 236);
+  --css-color-14: rgb(240, 249, 255);
+  --css-color-15: rgb(245 251 255);
+  --css-color-16: rgb(212, 238, 255);
+  --css-color-17: rgb(97, 127, 145);
+  --css-color-reddit: rgb(255, 69, 0);
+  --css-color-reddit-hover: rgb(210, 57, 0);
 }
-.custom-color-light-1 {
-  color: var(--custom-color-1);
+.css-color-light-1 {
+  color: var(--css-color-1);
 }
-.custom-color-primary {
-  color: var(--custom-color-primary);
+.css-color-primary {
+  color: var(--css-color-primary);
 }
-.custom-color-primary-darker {
-  color: var(--custom-color-primary-darker);
+.css-color-primary-darker {
+  color: var(--css-color-primary-darker);
 }
-.custom-color-secondary {
-  color: var(--custom-color-secondary);
+.css-color-secondary {
+  color: var(--css-color-secondary);
 }
-.custom-color-success {
-  color: var(--custom-color-success);
+.css-color-success {
+  color: var(--css-color-success);
 }
-.custom-color-success-important {
-  color: var(--custom-color-success) !important;
+.css-color-success-important {
+  color: var(--css-color-success) !important;
 }
-.custom-color-info {
-  color: var(--custom-color-info);
+.css-color-info {
+  color: var(--css-color-info);
 }
-.custom-color-warning {
-  color: var(--custom-color-warning);
+.css-color-warning {
+  color: var(--css-color-warning);
 }
-.custom-color-danger {
-  color: var(--custom-color-danger);
+.css-color-danger {
+  color: var(--css-color-danger);
 }
-.custom-color-danger-important {
-  color: var(--custom-color-danger) !important;
+.css-color-danger-important {
+  color: var(--css-color-danger) !important;
 }
-.custom-color-black {
+.css-color-black {
   color: black;
 }
-.custom-color-white {
+.css-color-white {
   color: white;
 }
-.custom-color-white-important {
+.css-color-white-important {
   color: white !important;
 }
-.custom-color-white-opacity-75 {
+.css-color-white-opacity-75 {
   color: white;
   opacity: 0.75;
 }
-.custom-color-black-opacity-50 {
+.css-color-black-opacity-50 {
   color: black;
   opacity: 0.50;
 }
-.custom-color-black-opacity-75 {
+.css-color-black-opacity-75 {
   color: black;
   opacity: 0.75;
 }
-.custom-color-black {
+.css-color-black {
   color: rgb(0, 0, 0);
 }
-.custom-color-grey-1 {
+.css-color-grey-1 {
   color: rgb(126 121 130);
 }
-.custom-color-grey-2 {
+.css-color-grey-2 {
   color: rgb(69 69 69);
 }
-.custom-color-3 {
+.css-color-3 {
   color: rgb(89 92 135);
 }
-.custom-color-4 {
+.css-color-4 {
   color: rgb(54 21 117 / 75%);
 }
-.custom-color-5 {
+.css-color-5 {
   color: rgb(0 82 5 / 75%);
 }
-.custom-color-6 {
+.css-color-6 {
   color: rgb(114 70 0 / 75%);
 }
-.custom-color-7 {
+.css-color-7 {
   color: rgb(23, 32, 91);
 }
-.custom-color-8 {
-  color: var(--custom-color-8);
+.css-color-8 {
+  color: var(--css-color-8);
 }
-.custom-color-9 {
-  color: var(--custom-color-9);
+.css-color-9 {
+  color: var(--css-color-9);
 }
-.custom-color-12 {
-  color: var(--custom-color-12);
+.css-color-12 {
+  color: var(--css-color-12);
 }
-.custom-color-17 {
-  color: var(--custom-color-17);
+.css-color-17 {
+  color: var(--css-color-17);
 }
 /* ------------------- color end ------------------- */
 /* ------------------- border start ------------------- */
-.custom-border-primary {border: 1px solid var(--custom-color-primary);}
-.custom-border-1 {border: 1px solid black;}
-.custom-border-2 {border: 1px solid red;}
-.custom-border-3 {border: 1px solid blue;}
-.custom-border-4 {border: 1px solid green;}
-.custom-border-5-dark {border: 3px solid var(--custom-color-2-dark);}
-.custom-border-5-light {border: 3px solid var(--custom-color-2-light);}
-.custom-border-6-light {border: 1px solid var(--custom-color-2-light);}
-.custom-border-7 {border: 2px solid rgb(220 223 233);}
-.custom-border-8 {border: 1px solid rgb(220 223 233);}
-.custom-border-9 {border: 1px solid rgb(0 0 0 / 10%);}
-.custom-border-see-through {border: 1px solid rgba(255, 255, 255, 0);}
-.custom-border-white {border: 1px solid rgb(255, 255, 255);}
-.custom-border-white-important {border: 1px solid rgb(255, 255, 255) !important;}
-.custom-border-white-opacity-10 {border: 1px solid rgba(255, 255, 255, 0.100);}
-.custom-border-white-opacity-15 {border: 1px solid rgba(255, 255, 255, 0.150);}
-.custom-border-white-opacity-20 {border: 1px solid rgba(255, 255, 255, 0.200);}
-.custom-border-white-opacity-25 {border: 1px solid rgba(255, 255, 255, 0.250);}
-.custom-border-white-opacity-50 {border: 1px solid rgba(255, 255, 255, 0.500);}
-.custom-border-white-opacity-75 {border: 1px solid rgba(255, 255, 255, 0.750);}
-.custom-border-black-opacity-25 {border: 1px solid rgba(0, 0, 0, 0.25);}
-.custom-border-black-opacity-50 {border: 1px solid rgba(0, 0, 0, 0.50);}
-.custom-border-black-opacity-75 {border: 1px solid rgba(0, 0, 0, 0.75);}
-.custom-border-glow-1 {
+.css-border-primary {border: 1px solid var(--css-color-primary);}
+.css-border-1 {border: 1px solid black;}
+.css-border-2 {border: 1px solid red;}
+.css-border-3 {border: 1px solid blue;}
+.css-border-4 {border: 1px solid green;}
+.css-border-5-dark {border: 3px solid var(--css-color-2-dark);}
+.css-border-5-light {border: 3px solid var(--css-color-2-light);}
+.css-border-6-light {border: 1px solid var(--css-color-2-light);}
+.css-border-7 {border: 2px solid rgb(220 223 233);}
+.css-border-8 {border: 1px solid rgb(220 223 233);}
+.css-border-9 {border: 1px solid rgb(0 0 0 / 10%);}
+.css-border-see-through {border: 1px solid rgba(255, 255, 255, 0);}
+.css-border-white {border: 1px solid rgb(255, 255, 255);}
+.css-border-white-important {border: 1px solid rgb(255, 255, 255) !important;}
+.css-border-white-opacity-10 {border: 1px solid rgba(255, 255, 255, 0.100);}
+.css-border-white-opacity-15 {border: 1px solid rgba(255, 255, 255, 0.150);}
+.css-border-white-opacity-20 {border: 1px solid rgba(255, 255, 255, 0.200);}
+.css-border-white-opacity-25 {border: 1px solid rgba(255, 255, 255, 0.250);}
+.css-border-white-opacity-50 {border: 1px solid rgba(255, 255, 255, 0.500);}
+.css-border-white-opacity-75 {border: 1px solid rgba(255, 255, 255, 0.750);}
+.css-border-black-opacity-25 {border: 1px solid rgba(0, 0, 0, 0.25);}
+.css-border-black-opacity-50 {border: 1px solid rgba(0, 0, 0, 0.50);}
+.css-border-black-opacity-75 {border: 1px solid rgba(0, 0, 0, 0.75);}
+.css-border-glow-1 {
   box-shadow: 0px 0px 100px white;
 }
-.custom-br-1 {
+.css-br-1 {
   border-radius: 15px;
 }
-.custom-br-2-mobile {
+.css-br-2-mobile {
   border-radius: 35px;
 }
-.custom-br-3 {
+.css-br-3 {
   border-radius: 25px;
 }
-.custom-br-4 {
+.css-br-4 {
   border-radius: 6px;
 }
-.custom-br-5 {
+.css-br-5 {
   border-radius: 5px;
 }
-.custom-brl-1 {
+.css-brl-1 {
   border-radius: 15px 0px 0px 15px !important;
 }
-.custom-brr-1 {
+.css-brr-1 {
   border-radius: 0px 15px 15px 0px !important;
 }
-.custom-br-10 {
+.css-br-10 {
   border-radius: 10px;
 }
-.custom-br-15 {
+.css-br-15 {
   border-radius: 15px;
 }
-.custom-br-20 {
+.css-br-20 {
   border-radius: 20px;
 }
-.custom-br-25 {
+.css-br-25 {
   border-radius: 25px;
 }
-.custom-br-50 {
+.css-br-50 {
   border-radius: 50px;
 }
-.custom-br-500 {
+.css-br-500 {
   border-radius: 500px;
 }
 /* ------------------- border end ------------------- */
 /* ------------------- director start ------------------- */
-.custom-no-decoration {
+.css-no-decoration {
   list-style-type: none;
 }
 /* ------------------- director end ------------------- */
 /* ------------------- display start ------------------- */
-.custom-display-flex {
+.css-display-flex {
   display: flex;
 }
-.custom-display-flex-row-to-column-reverse-mobile, .custom-display-flex-row-to-column-reverse-mobile {
+.css-display-flex-row-to-column-reverse-mobile, .css-display-flex-row-to-column-reverse-mobile {
   display: flex;
   flex-direction: row;
 }
-.custom-display-block {
+.css-display-block {
   display: block;
 }
-.custom-display-inline-block {
+.css-display-inline-block {
   display: inline-block;
 }
-.custom-mobile-display-2 {
+.css-mobile-display-2 {
   display: none;
 }
-.custom-display-grid {
+.css-display-grid {
   display: grid;
 }
 /* ------------------- display end ------------------- */
 /* ------------------- divider start ------------------- */
-.custom-divider-1 {
+.css-divider-1 {
   border: 1px solid black;
   width: 100%;
   opacity: 0.10;
   margin: 100px 0 100px 0;
 }
-.custom-divider-exterior-nav {
+.css-divider-exterior-nav {
   padding-top: 80px;
 }
 /* ------------------- divider end ------------------- */
 /* ------------------- filler start ------------------- */
-.custom-filler-1 {
+.css-filler-1 {
   height: 86px;
 }
-.custom-filler-2 {
+.css-filler-2 {
   height: 50px;
 }
-.custom-filler-3 {
+.css-filler-3 {
   height: 250px;
 }
-.custom-filler-4 {
+.css-filler-4 {
   height: 63.5px;
 }
-.custom-filler-5 {
+.css-filler-5 {
   height: 75px;
 }
-.custom-filler-1-px {
+.css-filler-1-px {
   height: 1px;
 }
-.custom-filler-17 {
+.css-filler-17 {
   height: 17px;
 }
-.custom-filler-65 {
+.css-filler-65 {
   height: 65px;
 }
-.custom-filler-82 {
+.css-filler-82 {
   height: 82px;
 }
-.custom-filler-84 {
+.css-filler-84 {
   height: 84px;
 }
-.custom-filler-93 {
+.css-filler-93 {
   height: 93px;
 }
 /* ------------------- filler end ------------------- */
 /* ------------------- flex start ------------------- */
-.custom-fw-1 {
+.css-fw-1 {
   flex-wrap: wrap;
 }
-.custom-fw-2 {
+.css-fw-2 {
   flex-wrap: nowrap;
 }
-.custom-fw-2-mobile {
+.css-fw-2-mobile {
   flex-wrap: nowrap;
 }
-.custom-f-wrap {
+.css-f-wrap {
   flex-wrap: wrap;
 }
-.custom-f-nowrap {
+.css-f-nowrap {
   flex-wrap: nowrap;
 }
-.custom-f-nowrap-important {
+.css-f-nowrap-important {
   flex-wrap: nowrap !important;
 }
-.custom-f-align-1 {
+.css-f-align-1 {
   align-items: center;
 }
-.custom-f-direction-col {
+.css-f-direction-col {
   flex-direction: column;
 }
-.custom-f-direction-row {
+.css-f-direction-row {
   flex-direction: row;
 }
-.custom-flex-gap-25 {
+.css-flex-gap-25 {
   content: '';
   flex: none;
   width: 25px;
 }
-.custom-flex-gap-50 {
+.css-flex-gap-50 {
   content: '';
   flex: none;
   width: 50px;
 }
 /* ------------------- flex end ------------------- */
 /* ------------------- gap start ------------------- */
-.custom-gap-25 {
+.css-gap-25 {
   gap: 25px;
 }
-.custom-gap-50 {
+.css-gap-50 {
   gap: 50px;
 }
 /* ------------------- gap end ------------------- */
 /* ------------------- google start ------------------- */
-.custom-google-font-1 {
+.css-google-font-1 {
   font-family: 'Montserrat', sans-serif;
 }
 /* ------------------- google end ------------------- */
 /* ------------------- grid start ------------------- */
-.custom-grid-container-3x2-mobile {
+.css-grid-container-3x2-mobile {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Creates 2 columns */
   grid-template-rows: repeat(3, 1fr); /* Creates 3 rows */
   grid-gap: 15px; /* Adds a 10px gap between grid items */
 }
-.custom-grid-container-5x1 {
+.css-grid-container-5x1 {
   display: grid;
   grid-template-columns: 1fr; /* Creates 2 columns */
   grid-template-rows: repeat(5, 1fr); /* Creates 3 rows */
   grid-gap: 15px; /* Adds a 10px gap between grid items */
 }
-.custom-grid-1row-3col {
+.css-grid-1row-3col {
   grid-template-columns: repeat(3, 1fr);
 }
-.custom-grid-gap-10 {
+.css-grid-gap-10 {
   gap: 10px;
 }
-.custom-grid-gap-25 {
+.css-grid-gap-25 {
   gap: 25px;
 }
 /* ------------------- grid end ------------------- */
 /* ------------------- header start ------------------- */
-.custom-header-1 {
+.css-header-1 {
   font-size: 40px;
 }
-.custom-header-mobile-1 {
+.css-header-mobile-1 {
   font-size: 30px;
 }
-.custom-header-30-mobile {
+.css-header-30-mobile {
   font-size: 30px;
 }
-.custom-size-3 {
+.css-size-3 {
   font-size: 12px;
 }
-.custom-size-4 {
+.css-size-4 {
   font-size: 10px;
 }
-.custom-header-4 {
+.css-header-4 {
   font-size: 20px;
 }
-.custom-header-4-mobile {
+.css-header-4-mobile {
   font-size: 20px;
 }
-.custom-header-5 {
+.css-header-5 {
   font-size: 15px;
 }
-.custom-header-5-mobile {
+.css-header-5-mobile {
   font-size: 15px;
 }
-.custom-header-6 {
+.css-header-6 {
   font-size: 25px;
 }
-.custom-header-7 {
+.css-header-7 {
   font-size: 50px;
 }
-.custom-header-8 {
+.css-header-8 {
   font-size: 8px;
 }
-.custom-header-10 {
+.css-header-10 {
   font-size: 10px;
 }
-.custom-header-12 {
+.css-header-12 {
   font-size: 12px;
 }
-.custom-header-15 {
+.css-header-15 {
   font-size: 15px;
 }
-.custom-header-18 {
+.css-header-18 {
   font-size: 18px;
 }
-.custom-header-20 {
+.css-header-20 {
   font-size: 20px;
 }
-.custom-header-20-mobile {
+.css-header-20-mobile {
   font-size: 20px;
 }
-.custom-header-25 {
+.css-header-25 {
   font-size: 25px;
 }
-.custom-header-25-mobile {
+.css-header-25-mobile {
   font-size: 25px;
 }
-.custom-header-30 {
+.css-header-30 {
   font-size: 30px;
 }
-.custom-header-35 {
+.css-header-35 {
   font-size: 35px;
 }
-.custom-header-40 {
+.css-header-40 {
   font-size: 40px;
 }
-.custom-header-40-mobile {
+.css-header-40-mobile {
   font-size: 40px;
 }
-.custom-header-45 {
+.css-header-45 {
   font-size: 45px;
 }
-.custom-header-50 {
+.css-header-50 {
   font-size: 50px;
 }
-.custom-header-60 {
+.css-header-60 {
   font-size: 60px;
 }
-.custom-header-80 {
+.css-header-80 {
   font-size: 80px;
 }
-.custom-header-80-mobile {
+.css-header-80-mobile {
   font-size: 80px;
 }
-.custom-size-18 {
+.css-size-18 {
   font-size: 20px;
 }
-.custom-header-white {
+.css-header-white {
   color: white;
 }
-.custom-color-2-dark {
-  color: var(--custom-color-2-dark);
+.css-color-2-dark {
+  color: var(--css-color-2-dark);
 }
-.custom-color-2-light {
-  color: var(--custom-color-2-light);
+.css-color-2-light {
+  color: var(--css-color-2-light);
 }
 /* ------------------- header end ------------------- */
 /* ------------------- height start ------------------- */
-.custom-height-1-mobile {
+.css-height-1-mobile {
   height: 700px;
 }
-.custom-height-2-mobile {
+.css-height-2-mobile {
   height: 450px;
 }
-.custom-height-3-mobile {
+.css-height-3-mobile {
   height: 450px;
 }
-.custom-height-4 {
+.css-height-4 {
   height: 300px;
 }
-.custom-height-4-mobile {
+.css-height-4-mobile {
   height: 600px;
 }
-.custom-height-5-mobile {
+.css-height-5-mobile {
   height: 450px;
 }
-.custom-height-6 {
+.css-height-6 {
   height: 350px;
 }
-.custom-height-6-mobile {
+.css-height-6-mobile {
   height: 600px;
 }
-.custom-height-25 {
+.css-height-25 {
   height: 25px;
 }
-.custom-height-8 {
+.css-height-8 {
   height: 300px;
 }
-.custom-height-8-mobile {
+.css-height-8-mobile {
   height: 500px;
 }
-.custom-height-9 {
+.css-height-9 {
   height: 825px;
 }
-.custom-height-90 {
+.css-height-90 {
   height: 90%;
 }
-.custom-min-height-1 {
+.css-min-height-1 {
   min-height: 350px;
 }
-.custom-height-77-px {
+.css-height-77-px {
   height: 77px;
 }
-.custom-height-100-px {
+.css-height-100-px {
   height: 100px;
 }
-.custom-height-100-per {
+.css-height-100-per {
   height: 100%;
 }
-.custom-height-150-px {
+.css-height-150-px {
   height: 150px;
 }
-.custom-height-200-px {
+.css-height-200-px {
   height: 200px;
 }
-.custom-height-300-px {
+.css-height-300-px {
   height: 300px;
 }
-.custom-height-400-px {
+.css-height-400-px {
   height: 400px;
 }
-.custom-height-500-px {
+.css-height-500-px {
   height: 500px;
 }
-.custom-height-600-px {
+.css-height-600-px {
   height: 600px;
 }
-.custom-max-height-400 {
+.css-max-height-400 {
   max-height: 400px;
 }
-.custom-vh-5 {
+.css-vh-5 {
   height: 5vh;
 }
-.custom-vh-90 {
+.css-vh-90 {
   height: 90vh;
 }
-.custom-vh-95 {
+.css-vh-95 {
   height: 95vh;
 }
-.custom-vh-100 {
+.css-vh-100 {
   height: 100vh;
 }
 /* ------------------- height end ------------------- */
 /* ------------------- highlight start ------------------- */
-.custom-highlight-1 {
-  color: var(--custom-color-primary);
+.css-highlight-1 {
+  color: var(--css-color-primary);
   background-color: white;
 }
 /* ------------------- highlight end ------------------- */
 /* ------------------- hover start ------------------- */
-.custom-hover-1 {
+.css-hover-1 {
   cursor: pointer;
 }
-.custom-hover-pointer-opacity-1 {
+.css-hover-pointer-opacity-1 {
   cursor: pointer;
   transition: 0.5s;
 }
-.custom-hover-pointer-opacity-1:hover {
+.css-hover-pointer-opacity-1:hover {
   cursor: pointer;
   opacity: 1.0 !important;
   transition: 0.5s;
 }
 /* ------------------- hover end ------------------- */
 /* ------------------- img start ------------------- */
-.custom-img-height-15 {
+.css-img-height-15 {
   max-height: 15px;
 }
-.custom-img-height-18 {
+.css-img-height-18 {
   max-height: 18px;
 }
-.custom-img-height-20 {
+.css-img-height-20 {
   max-height: 20px;
 }
-.custom-img-height-25 {
+.css-img-height-25 {
   max-height: 25px;
 }
-.custom-img-height-30 {
+.css-img-height-30 {
   max-height: 30px;
 }
-.custom-img-height-35 {
+.css-img-height-35 {
   max-height: 35px;
 }
-.custom-img-height-40 {
+.css-img-height-40 {
   max-height: 40px;
 }
-.custom-img-height-40-mobile {
+.css-img-height-40-mobile {
   max-height: 40px;
 }
-.custom-img-height-50 {
+.css-img-height-50 {
   max-height: 50px;
 }
-.custom-img-height-60 {
+.css-img-height-60 {
   max-height: 60px;
 }
-.custom-img-height-75 {
+.css-img-height-75 {
   max-height: 75px;
 }
-.custom-img-height-80 {
+.css-img-height-80 {
   max-height: 80px;
 }
-.custom-img-height-100 {
+.css-img-height-100 {
   max-height: 100px;
 }
-.custom-img-height-125 {
+.css-img-height-125 {
   max-height: 125px;
 }
-.custom-img-height-125-mobile {
+.css-img-height-125-mobile {
   max-height: 125px;
 }
-.custom-img-height-150 {
+.css-img-height-150 {
   max-height: 150px;
 }
-.custom-img-height-200 {
+.css-img-height-200 {
   max-height: 200px;
 }
-.custom-img-height-500 {
+.css-img-height-500 {
   max-height: 500px;
 }
-.custom-img-size-1 {
+.css-img-size-1 {
   height: 40px;
 }
-.custom-img-size-2 {
+.css-img-size-2 {
   max-width: 25px;
 }
-.custom-img-size-3 {
+.css-img-size-3 {
   max-width: 90%;
 }
-.custom-img-size-4 {
+.css-img-size-4 {
   max-height: 20px;
 }
-.custom-img-size-5 {
+.css-img-size-5 {
   width: 600px;
   max-width: 90%;
 }
-.custom-img-size-6 {
+.css-img-size-6 {
   max-height: 100px;
 }
-.custom-img-size-7 {
+.css-img-size-7 {
   max-height: 300px;
 }
-.custom-img-size-7-mobile {
+.css-img-size-7-mobile {
   max-height: 300px;
 }
-.custom-img-size-8 {
+.css-img-size-8 {
   width: 125px;
 }
-.custom-img-size-9 {
+.css-img-size-9 {
   width: 15px;
 }
-.custom-img-size-10 {
+.css-img-size-10 {
   max-height: 60px;
 }
-.custom-img-size-15 {
+.css-img-size-15 {
   max-height: 15px;
 }
-.custom-img-size-20 {
+.css-img-size-20 {
   max-height: 20px;
 }
-.custom-img-size-20-square {
+.css-img-size-20-square {
   max-height: 20px;
   max-width: 20px;
 }
-.custom-img-size-25 {
+.css-img-size-25 {
   max-height: 25px;
 }
-.custom-img-size-30 {
+.css-img-size-30 {
   max-width: 30px;
 }
-.custom-img-size-35 {
+.css-img-size-35 {
   max-width: 35px;
 }
-.custom-img-size-40 {
+.css-img-size-40 {
   max-height: 40px;
 }
-.custom-img-size-50 {
+.css-img-size-50 {
   max-height: 50px;
 }
-.custom-img-size-60 {
+.css-img-size-60 {
   max-height: 60px;
 }
-.custom-img-size-75 {
+.css-img-size-75 {
   max-height: 75px;
 }
-.custom-img-size-100 {
+.css-img-size-100 {
   max-height: 100px;
 }
-.custom-img-size-150 {
+.css-img-size-150 {
   max-height: 150px;
 }
-.custom-img-opacity-1 {
+.css-img-opacity-1 {
   opacity: 0.20;
 }
-.custom-img-opacity-2 {
+.css-img-opacity-2 {
   opacity: 0.75;
 }
-.custom-img-opacity-3 {
+.css-img-opacity-3 {
   opacity: 0.40;
 }
-.custom-img-size-11 {
+.css-img-size-11 {
   max-width: 100%;
   max-height: 500px;
 }
-.custom-img-size-12 {
+.css-img-size-12 {
   max-height: 100px;
 }
-.custom-img-size-13 {
+.css-img-size-13 {
   max-height: 200px;
 }
-.custom-img-resize-1:hover {
+.css-img-resize-1:hover {
   transform: scale(1.05);
   transition: 0.25s ease-in-out;
 }
-.custom-opacity-1 {
+.css-opacity-1 {
   opacity: 0.50;
 }
-.custom-opacity-1-hover {
+.css-opacity-1-hover {
   opacity: 0.50;
 }
-.custom-opacity-50-hover {
+.css-opacity-50-hover {
   opacity: 0.50;
 }
-.custom-opacity-75-hover {
+.css-opacity-75-hover {
   opacity: 0.75;
   transition: 0.5s;
 }
-.custom-opacity-1-hover:hover, .custom-opacity-75-hover:hover, .custom-opacity-50-hover:hover {
+.css-opacity-1-hover:hover, .css-opacity-75-hover:hover, .css-opacity-50-hover:hover {
   opacity: 1;
   transition: 0.5s;
   cursor: pointer;
 }
-.custom-opacity-2 {
+.css-opacity-2 {
   opacity: 0.75;
 }
-.custom-opacity-10 {
+.css-opacity-10 {
   opacity: 0.10;
 }
-.custom-opacity-25 {
+.css-opacity-25 {
   opacity: 0.25;
 }
-.custom-opacity-35 {
+.css-opacity-35 {
   opacity: 0.35;
 }
-.custom-opacity-50 {
+.css-opacity-50 {
   opacity: 0.50;
 }
-.custom-opacity-60 {
+.css-opacity-60 {
   opacity: 0.60;
 }
-.custom-opacity-75 {
+.css-opacity-75 {
   opacity: 0.75;
 }
-.custom-opacity-80-hover {
+.css-opacity-80-hover {
   opacity: 0.80;
 }
-.custom-opacity-80-hover:hover {
+.css-opacity-80-hover:hover {
   opacity: 1.0;
   transition: 0.33s;
 }
-.custom-opacity-100-important {
+.css-opacity-100-important {
   opacity: 1.0 !important;
 }
 .image-black-and-white {
@@ -1140,50 +1140,50 @@
 }
 /* ------------------- infinite scroll end ------------------- */
 /* ------------------- index start ------------------- */
-.custom-index-1 {
+.css-index-1 {
   z-index: 1;
 }
-.custom-index-2 {
+.css-index-2 {
   z-index: 2;
 }
 /* ------------------- index end ------------------- */
 /* ------------------- input start ------------------- */
-.custom-input-1 {
+.css-input-1 {
   visibility:hidden;
 }
 /* ------------------- input end ------------------- */
 /* ------------------- justify start ------------------- */
-.custom-jc-1 {
+.css-jc-1 {
   justify-content: space-evenly;
 }
-.custom-jc-2 {
+.css-jc-2 {
   justify-content: space-between;
 }
-.custom-jc-3 {
+.css-jc-3 {
   justify-content: center;
 }
-.custom-jc-4 {
+.css-jc-4 {
   justify-content: space-around;
 }
-.custom-jc-around {
+.css-jc-around {
   justify-content: space-around;
 }
-.custom-jc-between {
+.css-jc-between {
   justify-content: space-between;
 }
-.custom-jc-between-mobile-center {
+.css-jc-between-mobile-center {
   justify-content: space-between;
 }
-.custom-jc-evenly {
+.css-jc-evenly {
   justify-content: space-evenly;
 }
-.custom-jc-center {
+.css-jc-center {
   justify-content: center;
 }
-.custom-jc-start {
+.css-jc-start {
   justify-content: flex-start;
 }
-.custom-jc-end {
+.css-jc-end {
   justify-content: flex-end;
 }
 /* ------------------- justify end ------------------- */
@@ -1203,51 +1203,51 @@
 .uiSelectAllBlockInvisible {
   display: none;
 }
-.custom-visible-non-mobile-only {
+.css-visible-non-mobile-only {
   display:inline-block;
 }
-.custom-visible-1 {
+.css-visible-1 {
   display:inline-block;
 }
-.custom-invisible-1 {
+.css-invisible-1 {
   display:none;
 }
 /* ------------------- jQuery end ------------------- */
 /* ------------------- list style start ------------------- */
-.custom-ls-1 {
+.css-ls-1 {
   list-style: none;
 }
 /* ------------------- list style end ------------------- */
 /* ------------------- list style start ------------------- */
-.custom-line-height-12 {
+.css-line-height-12 {
   line-height: 12px;
 }
-.custom-line-1 {
+.css-line-1 {
   line-height: 40px;
 }
-.custom-line-2 {
+.css-line-2 {
   line-height: 30px;
 }
-.custom-line-25 {
+.css-line-25 {
   line-height: 25px;
 }
-.custom-line-30 {
+.css-line-30 {
   line-height: 30px;
 }
-.custom-line-35 {
+.css-line-35 {
   line-height: 35px;
 }
-.custom-line-height-40 {
+.css-line-height-40 {
   line-height: 40px;
 }
 /* ------------------- list style end ------------------- */
 /* ------------------- line break start ------------------- */
-.custom-inline-block {
+.css-inline-block {
   display: inline-block;
 }
 /* ------------------- line break end ------------------- */
 /* ------------------- loading screen start ------------------- */
-.custom-loading-screen {
+.css-loading-screen {
   display: block;
   position: fixed;
   z-index: 999;
@@ -1259,298 +1259,298 @@
 }
 /* ------------------- loading screen end ------------------- */
 /* ------------------- margin start ------------------- */
-.custom-m-0 {
+.css-m-0 {
   margin: 0 0 0 0;
 }
-.custom-m-1-mobile {
+.css-m-1-mobile {
   margin: 15px;
 }
-.custom-m-1 {
+.css-m-1 {
   margin: 10px;
 }
-.custom-m-2 {
+.css-m-2 {
   margin: 20px;
 }
-.custom-m-3 {
+.css-m-3 {
   margin: 5px;
 }
-.custom-m-5 {
+.css-m-5 {
   margin: 5px;
 }
-.custom-m-10 {
+.css-m-10 {
   margin: 10px;
 }
-.custom-m-15 {
+.css-m-15 {
   margin: 15px;
 }
-.custom-m-25 {
+.css-m-25 {
   margin: 25px;
 }
-.custom-m-50 {
+.css-m-50 {
   margin: 50px;
 }
-.custom-mb-1 {
+.css-mb-1 {
   margin-bottom: 50px;
 }
-.custom-mb-2 {
+.css-mb-2 {
   margin-bottom: 150px;
 }
-.custom-mb-3 {
+.css-mb-3 {
   margin-bottom: 100px;
 }
-.custom-mb-4 {
+.css-mb-4 {
   margin-bottom: 10px;
 }
-.custom-mb-5 {
+.css-mb-5 {
   margin-bottom: 5px;
 }
-.custom-mb-6 {
+.css-mb-6 {
   margin-bottom: 25px;
 }
-.custom-mb-7 {
+.css-mb-7 {
   margin-bottom: 3px;
 }
-.custom-mb-10 {
+.css-mb-10 {
   margin-bottom: 10px;
 }
-.custom-mb-15 {
+.css-mb-15 {
   margin-bottom: 15px;
 }
-.custom-mb-20 {
+.css-mb-20 {
   margin-bottom: 20px;
 }
-.custom-mb-25 {
+.css-mb-25 {
   margin-bottom: 25px;
 }
-.custom-mb-50 {
+.css-mb-50 {
   margin-bottom: 50px;
 }
-.custom-mb-75 {
+.css-mb-75 {
   margin-bottom: 75px;
 }
-.custom-mb-100 {
+.css-mb-100 {
   margin-bottom: 100px;
 }
-.custom-mb-150 {
+.css-mb-150 {
   margin-bottom: 150px;
 }
-.custom-mb-200 {
+.css-mb-200 {
   margin-bottom: 200px;
 }
-.custom-mb-negative-15 {
+.css-mb-negative-15 {
   margin-bottom: -15px;
 }
-.custom-mb-negative-15-mobile {
+.css-mb-negative-15-mobile {
   margin-bottom: -15px;
 }
-.custom-mt-2 {
+.css-mt-2 {
   margin-top: 10px;
 }
-.custom-mt-3 {
+.css-mt-3 {
   margin-top: 50px;
 }
-.custom-mt-4 {
+.css-mt-4 {
   margin-top: 5px;
 }
-.custom-mt-5 {
+.css-mt-5 {
   margin-top: 5px;
 }
-.custom-mt-6 {
+.css-mt-6 {
   margin-top: 15px;
 }
-.custom-mt-7 {
+.css-mt-7 {
   margin-top: 7px;
 }
-.custom-mt-10 {
+.css-mt-10 {
   margin-top: 10px;
 }
-.custom-mt-15 {
+.css-mt-15 {
   margin-top: 15px;
 }
-.custom-mt-20 {
+.css-mt-20 {
   margin-top: 20px;
 }
-.custom-mt-25 {
+.css-mt-25 {
   margin-top: 25px;
 }
-.custom-mt-30 {
+.css-mt-30 {
   margin-top: 30px;
 }
-.custom-mt-50 {
+.css-mt-50 {
   margin-top: 50px;
 }
-.custom-mt-75 {
+.css-mt-75 {
   margin-top: 75px;
 }
-.custom-mt-100 {
+.css-mt-100 {
   margin-top: 100px;
 }
-.custom-mt-150 {
+.css-mt-150 {
   margin-top: 150px;
 }
-.custom-mt-negative-1 {
+.css-mt-negative-1 {
   margin-top: -20px;
 }
-.custom-mt-negative-5 {
+.css-mt-negative-5 {
   margin-top: -5px;
 }
-.custom-mt-negative-10 {
+.css-mt-negative-10 {
   margin-top: -10px;
 }
-.custom-mt-negative-15 {
+.css-mt-negative-15 {
   margin-top: -15px;
 }
-.custom-mt-negative-20 {
+.css-mt-negative-20 {
   margin-top: -20px;
 }
-.custom-mt-negative-25 {
+.css-mt-negative-25 {
   margin-top: -25px;
 }
-.custom-mt-negative-2 {
+.css-mt-negative-2 {
   margin-top: -7px;
 }
-.custom-mt-negative-3 {
+.css-mt-negative-3 {
   margin-top: -5px;
 }
-.custom-mt-negative-4-mobile {
+.css-mt-negative-4-mobile {
   margin-top: -100px;
 }
-.custom-mt-negative-100 {
+.css-mt-negative-100 {
   margin-top: -100px;
 }
-.custom-mt-negative-150 {
+.css-mt-negative-150 {
   margin-top: -150px;
 }
-.custom-mr-1 {
+.css-mr-1 {
   margin-right: 5px;
 }
-.custom-mr-2 {
+.css-mr-2 {
   margin-right: 10px;
 }
-.custom-mr-3 {
+.css-mr-3 {
   margin-right: 25px;
 }
-.custom-mr-5 {
+.css-mr-5 {
   margin-right: 5px;
 }
-.custom-mr-10 {
+.css-mr-10 {
   margin-right: 10px;
 }
-.custom-mr-15 {
+.css-mr-15 {
   margin-right: 15px;
 }
-.custom-mr-25 {
+.css-mr-25 {
   margin-right: 25px;
 }
-.custom-mr-25-mobile {
+.css-mr-25-mobile {
   margin-right: 25px;
 }
-.custom-mr-30 {
+.css-mr-30 {
   margin-right: 30px;
 }
-.custom-ml-1 {
+.css-ml-1 {
   margin-left: 5px;
 }
-.custom-ml-1-negative {
+.css-ml-1-negative {
   margin-left: -35px;
 }
-.custom-ml-2-negative {
+.css-ml-2-negative {
   margin-left: -40px;
 }
-.custom-ml-3-negative {
+.css-ml-3-negative {
   margin-left: -15px;
 }
-.custom-ml-2 {
+.css-ml-2 {
   margin-left: 25px;
 }
-.custom-ml-3 {
+.css-ml-3 {
   margin-left: 10px;
 }
-.custom-ml-4 {
+.css-ml-4 {
   margin-left: 15px;
 }
-.custom-ml-5 {
+.css-ml-5 {
   margin-left: 5px;
 }
-.custom-ml-10 {
+.css-ml-10 {
   margin-left: 10px;
 }
-.custom-ml-15 {
+.css-ml-15 {
   margin-left: 15px;
 }
-.custom-ml-25 {
+.css-ml-25 {
   margin-left: 25px;
 }
-.custom-ml-25-mobile {
+.css-ml-25-mobile {
   margin-left: 25px;
 }
-.custom-ml-30 {
+.css-ml-30 {
   margin-left: 30px;
 }
-.custom-ml-50 {
+.css-ml-50 {
   margin-left: 50px;
 }
-.custom-ml-100 {
+.css-ml-100 {
   margin-left: 100px;
 }
-.custom-mlr-10 {
+.css-mlr-10 {
   margin-left: 10px;
   margin-right: 10px;
 }
-.custom-mlr-15 {
+.css-mlr-15 {
   margin-left: 15px;
   margin-right: 15px;
 }
-.custom-mlr-20 {
+.css-mlr-20 {
   margin-left: 20px;
   margin-right: 20px;
 }
-.custom-mlt-1 {
+.css-mlt-1 {
   margin-left: 7px;
   margin-top: 7px;
 }
-.custom-mtb-1 {
+.css-mtb-1 {
   margin-top: 25px;
   margin-bottom: 25px;
 }
-.custom-mtb-2 {
+.css-mtb-2 {
   margin-top: 50px;
   margin-bottom: 50px;
 }
-.custom-mtb-25 {
+.css-mtb-25 {
   margin-top: 25px;
   margin-bottom: 25px;
 }
-.custom-mtb-50 {
+.css-mtb-50 {
   margin-top: 50px;
   margin-bottom: 50px;
 }
-.custom-mtb-75 {
+.css-mtb-75 {
   margin-top: 75px;
   margin-bottom: 75px;
 }
-.custom-mtb-100 {
+.css-mtb-100 {
   margin-top: 100px;
   margin-bottom: 100px;
 }
 /* ------------------- margin end ------------------- */
 /* ------------------- navbar start ------------------- */
-.custom-nav-list {
+.css-nav-list {
   list-style: none;
   padding: 0;
   display: flex;
   margin: 0;
 }
-.custom-nav-list a {
+.css-nav-list a {
   text-decoration: none;
   color: rgb(0, 0, 0);
 }
-.custom-menu-toggle {
+.css-menu-toggle {
   display: none;
   flex-direction: column;
   cursor: pointer;
 }
-.custom-menu-toggle .custom-bar {
+.css-menu-toggle .css-bar {
   background-color: rgb(0, 0, 0);
   height: 2px;
   width: 25px;
@@ -1559,295 +1559,295 @@
 }
 /* ------------------- navbar end ------------------- */
 /* ------------------- overflow start ------------------- */
-.custom-overflow-1 {
+.css-overflow-1 {
   overflow: scroll;
 }
-.custom-overflow-y {
+.css-overflow-y {
   overflow-y: scroll;
 }
-.custom-overflow-x {
+.css-overflow-x {
   overflow-y: scroll;
 }
 /* ------------------- overflow end ------------------- */
 /* ------------------- padding start ------------------- */
-.custom-p-0 {
+.css-p-0 {
   padding: 0 0 0 0;
 }
-.custom-plr-0 {
+.css-plr-0 {
   padding-left: 0;
   padding-right: 0;
 }
-.custom-p-1 {
+.css-p-1 {
   padding: 10px;
 }
-.custom-p-2 {
+.css-p-2 {
   padding: 25px;
 }
-.custom-p-3 {
+.css-p-3 {
   padding: 12px;
 }
-.custom-p-4 {
+.css-p-4 {
   padding: 50px;
 }
-.custom-p-5 {
+.css-p-5 {
   padding: 5px;
 }
-.custom-p-50-15 {
+.css-p-50-15 {
   padding: 50px 15px;
 }
-.custom-p-6 {
+.css-p-6 {
   padding: 60px 15px 50px 15px;
 }
-.custom-p-7 {
+.css-p-7 {
   padding: 15px;
 }
-.custom-p-8 {
+.css-p-8 {
   padding: 5px;
 }
-.custom-p-9 {
+.css-p-9 {
   padding: 5px 10px;
 }
-.custom-p-10 {
+.css-p-10 {
   padding: 10px;
 }
-.custom-p-15 {
+.css-p-15 {
   padding: 15px;
 }
-.custom-p-20 {
+.css-p-20 {
   padding: 20px;
 }
-.custom-p-25 {
+.css-p-25 {
   padding: 25px;
 }
-.custom-p-30 {
+.css-p-30 {
   padding: 30px;
 }
-.custom-p-35 {
+.css-p-35 {
   padding: 35px;
 }
-.custom-p-50 {
+.css-p-50 {
   padding: 50px;
 }
-.custom-p-50-mobile {
+.css-p-50-mobile {
   padding: 50px;
 }
-.custom-p-75 {
+.css-p-75 {
   padding: 75px;
 }
-.custom-p-100 {
+.css-p-100 {
   padding: 100px;
 }
-.custom-pb-1 {
+.css-pb-1 {
   padding-bottom: 150px;
 }
-.custom-pb-2 {
+.css-pb-2 {
   padding-bottom: 50px;
 }
-.custom-pb-3 {
+.css-pb-3 {
   padding-bottom: 100px;
 }
-.custom-pb-4 {
+.css-pb-4 {
   padding-bottom: 10px;
 }
-.custom-pb-5 {
+.css-pb-5 {
   padding-bottom: 5px;
 }
-.custom-pb-6 {
+.css-pb-6 {
   padding-bottom: 25px;
 }
-.custom-pb-10 {
+.css-pb-10 {
   padding-bottom: 10px;
 }
-.custom-pb-15 {
+.css-pb-15 {
   padding-bottom: 15px;
 }
-.custom-pb-25 {
+.css-pb-25 {
   padding-bottom: 25px;
 }
-.custom-pb-50 {
+.css-pb-50 {
   padding-bottom: 50px;
 }
-.custom-pb-100 {
+.css-pb-100 {
   padding-bottom: 100px;
 }
-.custom-pb-150 {
+.css-pb-150 {
   padding-bottom: 150px;
 }
-.custom-pb-200 {
+.css-pb-200 {
   padding-bottom: 200px;
 }
-.custom-ptb-1 {
+.css-ptb-1 {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.custom-ptb-2 {
+.css-ptb-2 {
   padding-top: 2px;
   padding-bottom: 2px;
 }
-.custom-ptb-3 {
+.css-ptb-3 {
   padding-top: 50px;
   padding-bottom: 75px;
 }
-.custom-ptb-4 {
+.css-ptb-4 {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-.custom-ptb-6 {
+.css-ptb-6 {
   padding-top: 50px;
   padding-bottom: 50px;
 }
-.custom-ptb-7 {
+.css-ptb-7 {
   padding-top: 200px;
   padding-bottom: 200px;
 }
-.custom-ptb-8 {
+.css-ptb-8 {
   padding-top: 25px;
   padding-bottom: 25px;
 }
-.custom-ptb-5 {
+.css-ptb-5 {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-.custom-ptb-10 {
+.css-ptb-10 {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.custom-ptb-15 {
+.css-ptb-15 {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-.custom-ptb-20 {
+.css-ptb-20 {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-.custom-ptb-25 {
+.css-ptb-25 {
   padding-top: 25px;
   padding-bottom: 25px;
 }
-.custom-ptb-50 {
+.css-ptb-50 {
   padding-top: 50px;
   padding-bottom: 50px;
 }
-.custom-ptb-100 {
+.css-ptb-100 {
   padding-top: 100px;
   padding-bottom: 100px;
 }
-.custom-ptb-150 {
+.css-ptb-150 {
   padding-top: 150px;
   padding-bottom: 150px;
 }
-.custom-plr-10 {
+.css-plr-10 {
   padding-left: 10px;
   padding-right: 10px;
 }
-.custom-plr-15 {
+.css-plr-15 {
   padding-left: 15px;
   padding-right: 15px;
 }
-.custom-plr-20 {
+.css-plr-20 {
   padding-left: 20px;
   padding-right: 20px;
 }
-.custom-plr-25 {
+.css-plr-25 {
   padding-left: 25px;
   padding-right: 25px;
 }
-.custom-plr-35 {
+.css-plr-35 {
   padding-left: 35px;
   padding-right: 35px;
 }
-.custom-plr-40 {
+.css-plr-40 {
   padding-left: 40px;
   padding-right: 40px;
 }
-.custom-plr-50 {
+.css-plr-50 {
   padding-left: 50px;
   padding-right: 50px;
 }
-.custom-pr-5 {
+.css-pr-5 {
   padding-right: 5px;
 }
-.custom-pr-10 {
+.css-pr-10 {
   padding-right: 10px;
 }
-.custom-pr-15 {
+.css-pr-15 {
   padding-right: 15px;
 }
-.custom-pr-20 {
+.css-pr-20 {
   padding-right: 20px;
 }
-.custom-pr-25 {
+.css-pr-25 {
   padding-right: 25px;
 }
-.custom-pr-50 {
+.css-pr-50 {
   padding-right: 50px;
 }
-.custom-pt-1 {
+.css-pt-1 {
   padding-top: 50px;
 }
-.custom-pt-2 {
+.css-pt-2 {
   padding-top: 150px;
 }
-.custom-pt-3 {
+.css-pt-3 {
   padding-top: 100px;
 }
-.custom-pt-4 {
+.css-pt-4 {
   padding-top: 25px;
 }
-.custom-pt-5 {
+.css-pt-5 {
   padding-top: 5px;
 }
-.custom-pt-6 {
+.css-pt-6 {
   padding-top: 75px;
 }
-.custom-pt-7 {
+.css-pt-7 {
   padding-top: 15px;
 }
-.custom-pt-10 {
+.css-pt-10 {
   padding-top: 10px;
 }
-.custom-pt-25 {
+.css-pt-25 {
   padding-top: 25px;
 }
-.custom-pt-30 {
+.css-pt-30 {
   padding-top: 30px;
 }
-.custom-pt-40 {
+.css-pt-40 {
   padding-top: 40px;
 }
-.custom-pt-50 {
+.css-pt-50 {
   padding-top: 50px;
 }
-.custom-pt-55 {
+.css-pt-55 {
   padding-top: 55px;
 }
-.custom-pt-75 {
+.css-pt-75 {
   padding-top: 75px;
 }
-.custom-pt-100 {
+.css-pt-100 {
   padding-top: 100px;
 }
-.custom-pt-200 {
+.css-pt-200 {
   padding-top: 200px;
 }
-.custom-pt-150 {
+.css-pt-150 {
   padding-top: 150px;
 }
 /* ------------------- padding end ------------------- */
 /* ------------------- position start ------------------- */
-.custom-position-absolute {
+.css-position-absolute {
   position: absolute;
 }
-.custom-position-relative {
+.css-position-relative {
   position: relative;
 }
-.custom-bottom-0 {
+.css-bottom-0 {
   bottom: 0;
 }
-.custom-left-0 {
+.css-left-0 {
   left: 0;
 }
-.custom-bottom-left {
+.css-bottom-left {
   margin-top: auto;
   position: absolute;
   left: 0;
@@ -1855,7 +1855,7 @@
 }
 /* ------------------- position end ------------------- */
 /* ------------------- shape divider start ------------------- */
-.custom-shape-divider-top-1672341955 {
+.css-shape-divider-top-1672341955 {
   position: relative;
   top: 0;
   left: 0;
@@ -1864,17 +1864,17 @@
   line-height: 0;
   transform: rotate(180deg);
 }
-.custom-shape-divider-top-1672341955 svg {
+.css-shape-divider-top-1672341955 svg {
   position: relative;
   display: block;
   width: calc(300% + 1.3px);
   height: 199px;
 }
-.custom-shape-divider-top-1672341955 .shape-fill {
+.css-shape-divider-top-1672341955 .shape-fill {
   fill: #FFFFFF;
 }
 
-.custom-shape-divider-top-1672276628 {
+.css-shape-divider-top-1672276628 {
   position: relative;
   top: 0;
   left: 0;
@@ -1882,17 +1882,17 @@
   overflow: hidden;
   line-height: 0;
 }
-.custom-shape-divider-top-1672276628 svg {
+.css-shape-divider-top-1672276628 svg {
   position: relative;
   display: block;
   width: calc(300% + 1.3px);
   height: 299px;
 }
-.custom-shape-divider-top-1672276628 .shape-fill {
+.css-shape-divider-top-1672276628 .shape-fill {
   fill: #FFFFFF;
 }
 
-.custom-shape-divider-bottom-1672276706 {
+.css-shape-divider-bottom-1672276706 {
   position: relative;
   bottom: 0;
   left: 0;
@@ -1901,17 +1901,17 @@
   line-height: 0;
   transform: rotate(180deg);
 }
-.custom-shape-divider-bottom-1672276706 svg {
+.css-shape-divider-bottom-1672276706 svg {
   position: relative;
   display: block;
   width: calc(300% + 1.3px);
   height: 300px;
 }
-.custom-shape-divider-bottom-1672276706 .shape-fill {
+.css-shape-divider-bottom-1672276706 .shape-fill {
   fill: #FFFFFF;
 }
 
-.custom-shape-divider-top-1672337904 {
+.css-shape-divider-top-1672337904 {
   position: relative;
   top: 0;
   left: 0;
@@ -1920,24 +1920,24 @@
   line-height: 0;
   transform: rotate(180deg);
 }
-.custom-shape-divider-top-1672337904 svg {
+.css-shape-divider-top-1672337904 svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 105px;
 }
-.custom-shape-divider-top-1672337904 .shape-fill {
+.css-shape-divider-top-1672337904 .shape-fill {
   fill: #FFFFFF;
 }
 /** For mobile devices **/
 @media (max-width: 767px) {
-  .custom-shape-divider-top-1672337904 svg {
+  .css-shape-divider-top-1672337904 svg {
       width: calc(100% + 1.3px);
       height: 100px;
   }
 }
 
-.custom-shape-divider-bottom-1672337954 {
+.css-shape-divider-bottom-1672337954 {
   position: relative;
   bottom: 0;
   left: 0;
@@ -1945,24 +1945,24 @@
   overflow: hidden;
   line-height: 0;
 }
-.custom-shape-divider-bottom-1672337954 svg {
+.css-shape-divider-bottom-1672337954 svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 105px;
 }
-.custom-shape-divider-bottom-1672337954 .shape-fill {
+.css-shape-divider-bottom-1672337954 .shape-fill {
   fill: #FFFFFF;
 }
 /** For mobile devices **/
 @media (max-width: 767px) {
-  .custom-shape-divider-bottom-1672337954 svg {
+  .css-shape-divider-bottom-1672337954 svg {
       width: calc(100% + 1.3px);
       height: 100px;
   }
 }
 
-.custom-shape-divider-top-1672426066 {
+.css-shape-divider-top-1672426066 {
   position: relative;
   top: 0;
   left: 0;
@@ -1970,25 +1970,25 @@
   overflow: hidden;
   line-height: 0;
 }
-.custom-shape-divider-top-1672426066 svg {
+.css-shape-divider-top-1672426066 svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 150px;
 }
-.custom-shape-divider-top-1672426066 .shape-fill {
+.css-shape-divider-top-1672426066 .shape-fill {
   fill: #FFFFFF;
   fill: rgb(255, 237, 217);
 }
 /** For mobile devices **/
 @media (max-width: 767px) {
-  .custom-shape-divider-top-1672426066 svg {
+  .css-shape-divider-top-1672426066 svg {
       width: calc(135% + 1.3px);
       height: 100px;
   }
 }
 
-.custom-shape-divider-top-1672426066-2 {
+.css-shape-divider-top-1672426066-2 {
   position: relative;
   top: 0;
   left: 0;
@@ -1996,24 +1996,24 @@
   overflow: hidden;
   line-height: 0;
 }
-.custom-shape-divider-top-1672426066-2 svg {
+.css-shape-divider-top-1672426066-2 svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 150px;
 }
-.custom-shape-divider-top-1672426066-2 .shape-fill {
+.css-shape-divider-top-1672426066-2 .shape-fill {
   fill: rgb(231 241 255);
 }
 /** For mobile devices **/
 @media (max-width: 767px) {
-  .custom-shape-divider-top-1672426066-2 svg {
+  .css-shape-divider-top-1672426066-2 svg {
       width: calc(135% + 1.3px);
       height: 100px;
   }
 }
 
-.custom-shape-divider-top-1682593749 {
+.css-shape-divider-top-1682593749 {
   position: relative;
   top: 0;
   left: 0;
@@ -2022,17 +2022,17 @@
   line-height: 0;
   transform: rotate(180deg);
 }
-.custom-shape-divider-top-1682593749 svg {
+.css-shape-divider-top-1682593749 svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 100px;
 }
-.custom-shape-divider-top-1682593749 .shape-fill {
+.css-shape-divider-top-1682593749 .shape-fill {
   fill: #FFFFFF;
 }
 
-.custom-shape-divider-bottom-1682593815 {
+.css-shape-divider-bottom-1682593815 {
   position: relative;
   bottom: 0;
   left: 0;
@@ -2040,17 +2040,17 @@
   overflow: hidden;
   line-height: 0;
 }
-.custom-shape-divider-bottom-1682593815 svg {
+.css-shape-divider-bottom-1682593815 svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 100px;
 }
-.custom-shape-divider-bottom-1682593815 .shape-fill {
+.css-shape-divider-bottom-1682593815 .shape-fill {
   fill: #FFFFFF;
 }
 
-.custom-shape-divider-bottom-1682633731 {
+.css-shape-divider-bottom-1682633731 {
   position: relative;
   bottom: 0;
   left: 0;
@@ -2059,17 +2059,17 @@
   line-height: 0;
   transform: rotate(180deg);
 }
-.custom-shape-divider-bottom-1682633731 svg {
+.css-shape-divider-bottom-1682633731 svg {
   position: relative;
   display: block;
   width: calc(300% + 1.3px);
   height: 174px;
 }
-.custom-shape-divider-bottom-1682633731 .shape-fill {
+.css-shape-divider-bottom-1682633731 .shape-fill {
   fill: #FFFFFF;
 }
 
-.custom-shape-divider-top-1682682943 {
+.css-shape-divider-top-1682682943 {
   position: relative;
   top: 0;
   left: 0;
@@ -2078,17 +2078,17 @@
   line-height: 0;
   transform: rotate(180deg);
 }
-.custom-shape-divider-top-1682682943 svg {
+.css-shape-divider-top-1682682943 svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 100px;
 }
-.custom-shape-divider-top-1682682943 .shape-fill {
+.css-shape-divider-top-1682682943 .shape-fill {
   fill: #FFFFFF;
 }
 
-.custom-shape-divider-bottom-1682683019 {
+.css-shape-divider-bottom-1682683019 {
   position: relative;
   bottom: 0;
   left: 0;
@@ -2096,17 +2096,17 @@
   overflow: hidden;
   line-height: 0;
 }
-.custom-shape-divider-bottom-1682683019 svg {
+.css-shape-divider-bottom-1682683019 svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 100px;
 }
-.custom-shape-divider-bottom-1682683019 .shape-fill {
+.css-shape-divider-bottom-1682683019 .shape-fill {
   fill: #FFFFFF;
 }
 
-.custom-shape-divider-bottom-1686320767 {
+.css-shape-divider-bottom-1686320767 {
   position: relative;
   bottom: 0;
   left: 0;
@@ -2114,17 +2114,17 @@
   overflow: hidden;
   line-height: 0;
 }
-.custom-shape-divider-bottom-1686320767 svg {
+.css-shape-divider-bottom-1686320767 svg {
   position: relative;
   display: block;
   width: calc(300% + 1.3px);
   height: 150px;
 }
-.custom-shape-divider-bottom-1686320767 .shape-fill {
+.css-shape-divider-bottom-1686320767 .shape-fill {
   fill: #FFFFFF;
 }
 
-.custom-shape-divider-bottom-1686320767-black {
+.css-shape-divider-bottom-1686320767-black {
   position: relative;
   bottom: 0;
   left: 0;
@@ -2132,355 +2132,355 @@
   overflow: hidden;
   line-height: 0;
 }
-.custom-shape-divider-bottom-1686320767-black svg {
+.css-shape-divider-bottom-1686320767-black svg {
   position: relative;
   display: block;
   width: calc(300% + 1.3px);
   height: 150px;
 }
-.custom-shape-divider-bottom-1686320767-black .shape-fill {
+.css-shape-divider-bottom-1686320767-black .shape-fill {
   fill: #000000;
 }
 /* ------------------- shape divider end ------------------- */
 /* ------------------- stroke start ------------------- */
-.custom-stroke-1 {
+.css-stroke-1 {
   -webkit-text-stroke: 0.75px black;
 }
 /* ------------------- stroke end ------------------- */
 /* ------------------- tag start ------------------- */
-.custom-tag-1 {
-  background-color: var(--custom-color-primary);
+.css-tag-1 {
+  background-color: var(--css-color-primary);
   padding: 2px 5px;
   color: white;
 }
-.custom-tag-category-ai {background: #5e866b;}
-.custom-tag-category-accounting {background: #5e866b;}
-.custom-tag-category-android {background: #286e3e;}
-.custom-tag-category-animals {background: #b8a429;}
-.custom-tag-category-art {background: #57a09f;}
-.custom-tag-category-animation {background: #b27233;}
-.custom-tag-category-avengers {background: #2e7eb7;}
-.custom-tag-category-aws {background: #b76a2f;}
-.custom-tag-category-angular {background: #b52f31;}
-.custom-tag-category-azure {background: #008ad7;}
-.custom-tag-category-business {background: #598357;}
-.custom-tag-category-books {background: #b46b8d;}
-.custom-tag-category-basketball {background: #c77222;}
-.custom-tag-category-baseball {background: #1c91c2;}
-.custom-tag-category-boxing {background: #c54242;}
-.custom-tag-category-chess {background: #9f4cba;}
-.custom-tag-category-csharp {background: #822c98;}
-.custom-tag-category-cpp {background: #436c89;}
-.custom-tag-category-css {background: #337a8d;}
-.custom-tag-category-countries {background: #5a869c;}
-.custom-tag-category-cloudflare {background: #9d7539;}
-.custom-tag-category-currency {background: #57986b;}
-.custom-tag-category-databricks {background: #9d3939;}
-.custom-tag-category-dbt {background: #b2772a;}
-.custom-tag-category-django {background: #39855b;}
-.custom-tag-category-docker {background: #2d8eae;}
-.custom-tag-category-drama {background: #ac1414;}
-.custom-tag-category-drupal {background: #2a6ea6;}
-.custom-tag-category-disney {background: #4f99d3;}
-.custom-tag-category-excel {background: #438b41;}
-.custom-tag-category-engineering {background: #4772a9;}
-.custom-tag-category-food {background: #a3672f;}
-.custom-tag-category-finance {background: #4a9f4c;}
-.custom-tag-category-football {background: #90600f;}
-.custom-tag-category-fashion {background: #ae4770;}
-.custom-tag-category-golf {background: #51b06e;}
-.custom-tag-category-geography {background: #d26526;}
-.custom-tag-category-history {background: #ac5656;}
-.custom-tag-category-holiday {background: #f3c813; color: black}
-.custom-tag-category-human_resources {background: #b95da5;}
-.custom-tag-category-human_centered_design {background: #438db7;}
-.custom-tag-category-harry_potter {background: #6a9e9e;}
-.custom-tag-category-javascript {background: #d49d00;}
-.custom-tag-category-marketing {background: #b1669a;}
-.custom-tag-category-marvel {background: #c02929;}
-.custom-tag-category-movies {background: #7152ae;}
-.custom-tag-category-music {background: #4c7dbe;}
-.custom-tag-category-nature {background: #288d2f;}
-.custom-tag-category-olympics {background: #7376cf;}
-.custom-tag-category-pop_culture {background: #3fa459;}
-.custom-tag-category-politics {background: #6db693;}
-.custom-tag-category-power_bi {background: #f3c813; color: black}
-.custom-tag-category-question_removed {background: #404040;}
-.custom-tag-category-sql {background: #597caa;}
-.custom-tag-category-sports {background: #42a962;}
-.custom-tag-category-sales {background: #3aa5c5;}
-.custom-tag-category-space {background: #3e3b4c;}
-.custom-tag-category-science {background: #ce7c7c;}
-.custom-tag-category-soccer {background: #2dbd9d;}
-.custom-tag-category-star_wars {background: #f3c813; color: black}
-.custom-tag-category-tv {background: #4277af;}
-.custom-tag-category-talent_acquisition {background: #9a7db9;}
-.custom-tag-category-technology {background: #b98733;}
-.custom-tag-category-tableau {background: #4d96a3;}
-.custom-tag-category-travel {background: #4f99d3;}
-.custom-tag-category-twitter {background: #4f99d3;}
-.custom-tag-category-uk {background: #d25454;}
-.custom-tag-category-wildfires {background: #ab2d2d;}
+.css-tag-category-ai {background: #5e866b;}
+.css-tag-category-accounting {background: #5e866b;}
+.css-tag-category-android {background: #286e3e;}
+.css-tag-category-animals {background: #b8a429;}
+.css-tag-category-art {background: #57a09f;}
+.css-tag-category-animation {background: #b27233;}
+.css-tag-category-avengers {background: #2e7eb7;}
+.css-tag-category-aws {background: #b76a2f;}
+.css-tag-category-angular {background: #b52f31;}
+.css-tag-category-azure {background: #008ad7;}
+.css-tag-category-business {background: #598357;}
+.css-tag-category-books {background: #b46b8d;}
+.css-tag-category-basketball {background: #c77222;}
+.css-tag-category-baseball {background: #1c91c2;}
+.css-tag-category-boxing {background: #c54242;}
+.css-tag-category-chess {background: #9f4cba;}
+.css-tag-category-csharp {background: #822c98;}
+.css-tag-category-cpp {background: #436c89;}
+.css-tag-category-css {background: #337a8d;}
+.css-tag-category-countries {background: #5a869c;}
+.css-tag-category-cloudflare {background: #9d7539;}
+.css-tag-category-currency {background: #57986b;}
+.css-tag-category-databricks {background: #9d3939;}
+.css-tag-category-dbt {background: #b2772a;}
+.css-tag-category-django {background: #39855b;}
+.css-tag-category-docker {background: #2d8eae;}
+.css-tag-category-drama {background: #ac1414;}
+.css-tag-category-drupal {background: #2a6ea6;}
+.css-tag-category-disney {background: #4f99d3;}
+.css-tag-category-excel {background: #438b41;}
+.css-tag-category-engineering {background: #4772a9;}
+.css-tag-category-food {background: #a3672f;}
+.css-tag-category-finance {background: #4a9f4c;}
+.css-tag-category-football {background: #90600f;}
+.css-tag-category-fashion {background: #ae4770;}
+.css-tag-category-golf {background: #51b06e;}
+.css-tag-category-geography {background: #d26526;}
+.css-tag-category-history {background: #ac5656;}
+.css-tag-category-holiday {background: #f3c813; color: black}
+.css-tag-category-human_resources {background: #b95da5;}
+.css-tag-category-human_centered_design {background: #438db7;}
+.css-tag-category-harry_potter {background: #6a9e9e;}
+.css-tag-category-javascript {background: #d49d00;}
+.css-tag-category-marketing {background: #b1669a;}
+.css-tag-category-marvel {background: #c02929;}
+.css-tag-category-movies {background: #7152ae;}
+.css-tag-category-music {background: #4c7dbe;}
+.css-tag-category-nature {background: #288d2f;}
+.css-tag-category-olympics {background: #7376cf;}
+.css-tag-category-pop_culture {background: #3fa459;}
+.css-tag-category-politics {background: #6db693;}
+.css-tag-category-power_bi {background: #f3c813; color: black}
+.css-tag-category-question_removed {background: #404040;}
+.css-tag-category-sql {background: #597caa;}
+.css-tag-category-sports {background: #42a962;}
+.css-tag-category-sales {background: #3aa5c5;}
+.css-tag-category-space {background: #3e3b4c;}
+.css-tag-category-science {background: #ce7c7c;}
+.css-tag-category-soccer {background: #2dbd9d;}
+.css-tag-category-star_wars {background: #f3c813; color: black}
+.css-tag-category-tv {background: #4277af;}
+.css-tag-category-talent_acquisition {background: #9a7db9;}
+.css-tag-category-technology {background: #b98733;}
+.css-tag-category-tableau {background: #4d96a3;}
+.css-tag-category-travel {background: #4f99d3;}
+.css-tag-category-twitter {background: #4f99d3;}
+.css-tag-category-uk {background: #d25454;}
+.css-tag-category-wildfires {background: #ab2d2d;}
 /* ------------------- tag end ------------------- */
 /* ------------------- text start ------------------- */
-.custom-tal {
+.css-tal {
   text-align: left;
 }
-.custom-tar {
+.css-tar {
   text-align: right;
 }
-.custom-tac {
+.css-tac {
   text-align: center;
 }
 /* ------------------- text end ------------------- */
 /* ------------------- transition start ------------------- */
-.custom-transition-03 {
+.css-transition-03 {
   transition: 0.3s;
 }
-.custom-transition-05 {
+.css-transition-05 {
   transition: 0.3s;
 }
 /* ------------------- transition end ------------------- */
 /* ------------------- underline start ------------------- */
-.custom-underline-1 {
+.css-underline-1 {
   text-decoration: underline;
 }
-.custom-underline-2 {
+.css-underline-2 {
   text-decoration: underline;
   text-underline-offset: 0.25em;
   text-decoration-thickness: 1px;
 }
-.custom-underline-none {
+.css-underline-none {
   text-decoration: none;
 }
 /* ------------------- underline end ------------------- */
 /* ------------------- view start ------------------- */
-.custom-mobile-view-1 {
+.css-mobile-view-1 {
   display: block;
 }
-.custom-mobile-view-2 {
+.css-mobile-view-2 {
   display: none;
 }
 /* ------------------- view end ------------------- */
 /* ------------------- weight start ------------------- */
-.custom-weight-1 {
+.css-weight-1 {
   font-weight: 700;
 }
-.custom-weight-500 {
+.css-weight-500 {
   font-weight: 500;
 }
-.custom-weight-700 {
+.css-weight-700 {
   font-weight: 700;
 }
-.custom-weight-900 {
+.css-weight-900 {
   font-weight: 900;
 }
-.custom-weight-bolder {
+.css-weight-bolder {
   font-weight: bolder;
 }
 /* ------------------- weight end ------------------- */
 /* ------------------- width start ------------------- */
-.custom-width-1 {
+.css-width-1 {
   max-width: 600px;
 }
-.custom-width-2-mobile {
+.css-width-2-mobile {
   width: 600px;
 }
-.custom-width-3 {
+.css-width-3 {
   max-width: 900px;
 }
-.custom-width-4 {
+.css-width-4 {
   max-width: 500px;
 }
-.custom-width-5 {
+.css-width-5 {
   width: 30%;
   min-width: 250px;
 }
-.custom-width-6 {
+.css-width-6 {
   width: 100%;
 }
-.custom-width-7 {
+.css-width-7 {
   max-width: 1200px;
 }
-.custom-width-8 {
+.css-width-8 {
   width: 350px;
   max-width: 90%;
 }
-.custom-width-9 {
+.css-width-9 {
   width: 100px;
 }
-.custom-width-10 {
+.css-width-10 {
   width: 400px;
   max-width: 90%;
 }
-.custom-width-11-mobile {
+.css-width-11-mobile {
   width: 50%;
   max-width: 50%;
 }
-.custom-width-12-mobile {
+.css-width-12-mobile {
   width: 30%;
   max-width: 30%;
 }
-.custom-width-12 {
+.css-width-12 {
   width: 80%;
 }
-.custom-width-13 {
+.css-width-13 {
   width: 90%;
 }
-.custom-width-14 {
+.css-width-14 {
   width: 600px;
   max-width: 90%;
 }
-.custom-width-15 {
+.css-width-15 {
   width: 200px;
 }
-.custom-width-16 {
+.css-width-16 {
   width: 50%;
 }
-.custom-width-16-mobile {
+.css-width-16-mobile {
   width: 50%;
 }
-.custom-width-17 {
+.css-width-17 {
   width: 250px;
 }
-.custom-width-18-mobile {
+.css-width-18-mobile {
   width: 600px;
   max-width: 50%;
 }
-.custom-width-19 {
+.css-width-19 {
   width: 150px;
 }
-.custom-width-20 {
+.css-width-20 {
   max-width: 700px;
 }
-.custom-width-21 {
+.css-width-21 {
   width: 300px;
   max-width: 90%;
 }
-.custom-width-75 {
+.css-width-75 {
   width: 75%;
 }
-.custom-width-80 {
+.css-width-80 {
   width: 80%;
 }
-.custom-width-90 {
+.css-width-90 {
   width: 90%;
 }
-.custom-width-95 {
+.css-width-95 {
   width: 95%;
 }
-.custom-width-100 {
+.css-width-100 {
   width: 100%;
 }
-.custom-width-100-mobile {
+.css-width-100-mobile {
   width: 100%;
 }
-.custom-width-30-px {
+.css-width-30-px {
   max-width: 30px;
 }
-.custom-width-height-40-px {
+.css-width-height-40-px {
   max-width: 40px;
   max-height: 40px;
 }
-.custom-width-50-px {
+.css-width-50-px {
   max-width: 50px;
 }
-.custom-width-66-px {
+.css-width-66-px {
   max-width: 66px;
 }
-.custom-width-100-px {
+.css-width-100-px {
   width: 100px;
 }
-.custom-width-150-px {
+.css-width-150-px {
   width: 150px;
 }
-.custom-width-175-px {
+.css-width-175-px {
   width: 175px;
 }
-.custom-width-180-px {
+.css-width-180-px {
   width: 180px;
 }
-.custom-width-200 {
+.css-width-200 {
   width: 200px;
   max-width: 90%;
 }
-.custom-width-250 {
+.css-width-250 {
   width: 250px;
 }
-.custom-width-275 {
+.css-width-275 {
   width: 275px;
 }
-.custom-width-250-mobile {
+.css-width-250-mobile {
   width: 250px;
 }
-.custom-width-300 {
+.css-width-300 {
   width: 300px;
 }
-.custom-width-400 {
+.css-width-400 {
   width: 400px;
   max-width: 90%;
 }
-.custom-width-500 {
+.css-width-500 {
   width: 500px;
   max-width: 90%;
 }
-.custom-width-600 {
+.css-width-600 {
   width: 600px;
   max-width: 90%;
 }
-.custom-width-700 {
+.css-width-700 {
   width: 700px;
   max-width: 90%;
 }
-.custom-width-800 {
+.css-width-800 {
   width: 800px;
   max-width: 90%;
 }
-.custom-width-900 {
+.css-width-900 {
   width: 900px;
   max-width: 90%;
 }
-.custom-width-1000 {
+.css-width-1000 {
   width: 1000px;
   max-width: 90%;
 }
-.custom-width-1100 {
+.css-width-1100 {
   width: 1100px;
   max-width: 90%;
 }
-.custom-width-1100-only {
+.css-width-1100-only {
   width: 1100px;
   max-width: 1100px;
   min-width: 1100px;
 }
-.custom-width-1200 {
+.css-width-1200 {
   width: 1200px;
   max-width: 90%;
 }
-.custom-wh-1 {
+.css-wh-1 {
   width: 50px;
   height: 50px;
 }
-.custom-wh-2 {
+.css-wh-2 {
   width: 30px;
   height: 30px;
 }
-.custom-wh-3 {
+.css-wh-3 {
   width: 30%;
   height: 0px;
 }
-.custom-width-interior-1100 {
+.css-width-interior-1100 {
   min-width: 1100px;
 }
-.custom-max-width-90 {
+.css-max-width-90 {
   max-width: 90%;
 }
 /* ------------------- width end ------------------- */
 /* ------------------- wrap start ------------------- */
-.custom-wrap-1 {
+.css-wrap-1 {
   white-space: nowrap;
 }
-.custom-nowrap {
+.css-nowrap {
   white-space: nowrap;
 }
 /* ------------------- wrap end ------------------- */
