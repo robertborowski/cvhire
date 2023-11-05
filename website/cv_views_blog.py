@@ -123,7 +123,6 @@ def blog_post_function(url_blog_code=None, url_redirect_code=None):
   # ------------------------ not found redirect end ------------------------
   # ------------------------ convert objs to dict start ------------------------
   page_dict['blog_dict'] = convert_obj_row_to_dict_function(db_obj)
-  page_dict['blog_dict']['title_read'] = present_title_function(page_dict['blog_dict']['title'])
   page_dict['blog_dict']['keywords_read_dict'] = keywords_present_function(page_dict['blog_dict']['keywords'])
   page_dict['blog_dict']['created_timestamp_read'] = timestamp_to_date_function(page_dict['blog_dict']['created_timestamp'])
   # ------------------------ convert objs to dict end ------------------------

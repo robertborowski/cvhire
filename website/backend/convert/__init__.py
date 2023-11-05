@@ -59,7 +59,6 @@ def objs_to_arr_of_dicts_function(db_obj, identifier=None):
     # ------------------------ additional details end ------------------------
     # ------------------------ additional details start ------------------------
     if identifier == 'blog':
-      i_dict['title_read'] = present_title_function(i_dict['title'])
       i_dict['keywords_read_dict'] = keywords_present_function(i_dict['keywords'])
       i_dict['created_timestamp_read'] = timestamp_to_date_function(i_dict['created_timestamp'])
     # ------------------------ additional details end ------------------------
