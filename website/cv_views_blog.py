@@ -127,22 +127,10 @@ def blog_post_function(url_blog_code=None, url_redirect_code=None):
   page_dict['blog_dict']['keywords_read_dict'] = keywords_present_function(page_dict['blog_dict']['keywords'])
   page_dict['blog_dict']['created_timestamp_read'] = timestamp_to_date_function(page_dict['blog_dict']['created_timestamp'])
   # ------------------------ convert objs to dict end ------------------------
-  # ------------------------ get html start ------------------------
-  html_template = ''
-  if db_obj.id == 'blog_post_1':
-    html_template = 'exterior/blog/i_blog/post1.html'
-  if db_obj.id == 'blog_post_2':
-    html_template = 'exterior/blog/i_blog/post2.html'
-  if db_obj.id == 'blog_post_3':
-    html_template = 'exterior/blog/i_blog/post3.html'
-  if db_obj.id == 'blog_post_4':
-    html_template = 'exterior/blog/i_blog/post4.html'
-  if db_obj.id == 'blog_post_5':
-    html_template = 'exterior/blog/i_blog/post5.html'
-  if db_obj.id == 'blog_post_6':
-    html_template = 'exterior/blog/i_blog/post6.html'
-  if db_obj.id == 'blog_post_7':
-    html_template = 'exterior/blog/i_blog/post7.html'
-  # ------------------------ get html end ------------------------
+  # ------------------------ get blog post number start ------------------------
+  blog_post_arr = db_obj.id.split('_')
+  blog_post_num = int(blog_post_arr[-1])
+  html_template = f'exterior/blog/i_blog/post{ blog_post_num }.html'
+  # ------------------------ get blog post number end ------------------------
   return render_template(html_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
