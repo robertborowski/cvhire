@@ -136,14 +136,14 @@
         <div class="css-width-300 border shadow css-bg-white">
           <!-- ----------------------------------- img start ----------------------------------- -->
           <div>
-            <a href="/blog/{{ i_post['title'] }}"><img src="{{ i_post['image_url'] }}" alt="blog photo" class="css-img-height-200 css-width-100"></a>
+            <a href="/blog/{{ i_post['slug'] }}"><img src="{{ i_post['image_url'] }}" alt="blog photo" class="css-img-height-200 css-width-100"></a>
           </div>
           <!-- ----------------------------------- img end ----------------------------------- -->
           <!-- ----------------------------------- words start ----------------------------------- -->
           <div class="css-p-10">
             <!-- ----------------------------------- title and details start ----------------------------------- -->
             <div class="css-mb-15">
-              <h2 class="css-m-0 css-header-20 css-mt-15"><a href="/blog/{{ i_post['title'] }}" class="css-a-black-underline">{{ i_post['title_read'] }}</a></h2>
+              <h2 class="css-m-0 css-header-20 css-mt-15"><a href="/blog/{{ i_post['slug'] }}" class="css-a-black-underline">{{ i_post['title_read'] }}</a></h2>
               <p class="css-m-0 css-header-12 css-opacity-50 css-mt-15">{{ i_post['details'] }}</p>
             </div>
             <!-- ----------------------------------- title and details end ----------------------------------- -->
@@ -153,7 +153,7 @@
                 <a href="{{ i_post['author_social_url'] }}" target="_blank"><img src="{{ i_post['author_img_url'] }}" alt="author profile img" class="css-img-height-20 css-mr-5 css-mt-negative-5"></a>
               </div>
               <a href="{{ i_post['author_social_url'] }}" target="_blank" class="css-a-black-underline css-m-0 css-header-15 css-opacity-50 css-mr-15">{{ i_post['author'] }}</a>
-              <a href="/blog/{{ i_post['title'] }}" class="css-a-black-underline css-m-0 css-header-15 css-opacity-50"><i class="fa-regular fa-calendar css-mr-5"></i> {{ i_post['created_timestamp_read'] }}</a>
+              <a href="/blog/{{ i_post['slug'] }}" class="css-a-black-underline css-m-0 css-header-15 css-opacity-50"><i class="fa-regular fa-calendar css-mr-5"></i> {{ i_post['created_timestamp_read'] }}</a>
             </div>
             <!-- ----------------------------------- authored end ----------------------------------- -->
             <!-- ----------------------------------- keywords start ----------------------------------- -->

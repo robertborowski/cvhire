@@ -115,7 +115,7 @@ def blog_post_function(url_blog_code=None, url_redirect_code=None):
   page_dict['nav_header'] = True
   # ------------------------ set variables end ------------------------
   # ------------------------ get all blog posts from db start ------------------------
-  db_obj = BlogObj.query.filter_by(title=url_blog_code).order_by(BlogObj.created_timestamp.desc()).first()
+  db_obj = BlogObj.query.filter_by(slug=url_blog_code).order_by(BlogObj.created_timestamp.desc()).first()
   # ------------------------ get all blog posts from db end ------------------------
   # ------------------------ not found redirect start ------------------------
   if db_obj == None or db_obj == []:
