@@ -194,6 +194,7 @@ class ConversionTrackingObj(db.Model):
 class BlogObj(db.Model):
   id = db.Column(db.String(150), primary_key=True)
   created_timestamp = db.Column(db.DateTime(timezone=True))
+  slug = db.Column(db.String(150))
   title = db.Column(db.String(150))
   details = db.Column(db.String(150))
   keywords = db.Column(db.String(150))
