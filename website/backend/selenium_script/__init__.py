@@ -151,24 +151,27 @@ def collect_function(driver, data_captured_dict):
   # ------------------------ all employee rows on page start ------------------------
   elements = driver.find_elements(By.CSS_SELECTOR, '.reusable-search__result-container')
   for i_element in elements:
-    # ------------------------ employee name start ------------------------
-    name_element = i_element.find_element(By.XPATH, ".//span[@dir='ltr']/span[1]")
-    employee_display_name = name_element.text
-    # ------------------------ employee name end ------------------------
-    # ------------------------ employee company start ------------------------
-    subtitle_element = i_element.find_element(By.CSS_SELECTOR, ".entity-result__primary-subtitle")
-    employee_display_subtitle = subtitle_element.text
-    # ------------------------ employee company end ------------------------
-    # ------------------------ employee url start ------------------------
-    url_element = i_element.find_elements(By.CSS_SELECTOR, ".app-aware-link")
-    employee_url = url_element[0].get_attribute('href')
-    # ------------------------ employee url end ------------------------
-    # ------------------------ add to dict start ------------------------
-    if employee_display_name not in data_captured_dict:
-      data_captured_dict[employee_display_name] = {}
-      data_captured_dict[employee_display_name]['subtitle'] = employee_display_subtitle
-      data_captured_dict[employee_display_name]['url'] = employee_url
-    # ------------------------ add to dict end ------------------------
+    try:
+      # ------------------------ employee name start ------------------------
+      name_element = i_element.find_element(By.XPATH, ".//span[@dir='ltr']/span[1]")
+      employee_display_name = name_element.text
+      # ------------------------ employee name end ------------------------
+      # ------------------------ employee company start ------------------------
+      subtitle_element = i_element.find_element(By.CSS_SELECTOR, ".entity-result__primary-subtitle")
+      employee_display_subtitle = subtitle_element.text
+      # ------------------------ employee company end ------------------------
+      # ------------------------ employee url start ------------------------
+      url_element = i_element.find_elements(By.CSS_SELECTOR, ".app-aware-link")
+      employee_url = url_element[0].get_attribute('href')
+      # ------------------------ employee url end ------------------------
+      # ------------------------ add to dict start ------------------------
+      if employee_display_name not in data_captured_dict:
+        data_captured_dict[employee_display_name] = {}
+        data_captured_dict[employee_display_name]['subtitle'] = employee_display_subtitle
+        data_captured_dict[employee_display_name]['url'] = employee_url
+      # ------------------------ add to dict end ------------------------
+    except Exception as e:
+      print(f'Exception collect_function: {e}')
   # ------------------------ all employee rows on page end ------------------------
   return data_captured_dict
 # ------------------------ individual function end ------------------------
@@ -194,8 +197,9 @@ def multiple_pages_function(driver, data_captured_dict):
       # ------------------------ increase page counter start ------------------------
       current_page += 1
       # ------------------------ increase page counter end ------------------------
-    except:
+    except Exception as e:
       # ------------------------ increase page counter start ------------------------
+      print(f'Exception multiple_pages_function: {e}')
       current_page += 1
       # ------------------------ increase page counter end ------------------------
   return data_captured_dict
