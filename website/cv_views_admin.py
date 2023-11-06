@@ -235,7 +235,7 @@ def admin_email_function(url_redirect_code=None):
       for i_email_obj in db_email_objs:
         # ------------------------ set variables start ------------------------
         output_body = f"""<p>Hi there,</p>\
-                          <p>Transform your talent acquisition process with the power of AI - discover invaluable insights and tips by reading our latest blog posts below:</p>\
+                          <p>AI resume parsing and CV scanning on CVhire - discover invaluable insights and tips by reading our latest blog posts below:</p>\
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[0].slug}">{db_blog_objs[0].title}</a></p>\
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[1].slug}">{db_blog_objs[1].title}</a></p>\
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[2].slug}">{db_blog_objs[2].title}</a></p>\
