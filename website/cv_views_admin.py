@@ -226,7 +226,7 @@ def admin_email_function(url_redirect_code=None):
       # ------------------------ set variables start ------------------------
       today = datetime.today()
       today_format = today.strftime('%m/%d/%Y')
-      output_subject = f'Hiring Smarter with AI - {today_format}'
+      output_subject = f'Evaluate Applicants with AI - {today_format}'
       # ------------------------ set variables end ------------------------
       # ------------------------ get all emails start ------------------------
       db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None,EmailScrapedObj.verified == True).all()
@@ -236,9 +236,9 @@ def admin_email_function(url_redirect_code=None):
         # ------------------------ set variables start ------------------------
         output_body = f"""<p>Hi there,</p>\
                           <p>Transform your talent acquisition process with the power of AI - discover invaluable insights and tips by reading our latest blog posts below:</p>\
-                          <p><a href="https://cvhire.com/blog/{db_blog_objs[0].title}">{present_title_function(db_blog_objs[0].title)}</a></p>\
-                          <p><a href="https://cvhire.com/blog/{db_blog_objs[1].title}">{present_title_function(db_blog_objs[1].title)}</a></p>\
-                          <p><a href="https://cvhire.com/blog/{db_blog_objs[2].title}">{present_title_function(db_blog_objs[2].title)}</a></p>\
+                          <p><a href="https://cvhire.com/blog/{db_blog_objs[0].slug}">{db_blog_objs[0].title}</a></p>\
+                          <p><a href="https://cvhire.com/blog/{db_blog_objs[1].slug}">{db_blog_objs[1].title}</a></p>\
+                          <p><a href="https://cvhire.com/blog/{db_blog_objs[2].slug}">{db_blog_objs[2].title}</a></p>\
                           <p>Read about the benefits of AI-powered hiring, how to use AI to find the best candidates, and how to implement AI into your hiring process.</p>\
                           <p style='margin:0;'>Best,</p>\
                           <p style='margin:0;'>CVhire Support Team</p>\
