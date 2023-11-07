@@ -149,6 +149,10 @@ def admin_scrape_function(url_redirect_code=None):
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
+  # ------------------------ get latest company name start ------------------------
+  db_obj = CompanyInfoObj.query.order_by(CompanyInfoObj.created_timestamp.desc()).first()
+  page_dict['latest_company_url'] = db_obj.url
+  # ------------------------ get latest company name end ------------------------
   if request.method == 'POST':
     # ------------------------ post #5 start ------------------------
     ui_run_script_call = request.form.get('uiRunScriptLinkedIn')
