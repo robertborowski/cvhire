@@ -97,4 +97,15 @@ def update_query_v1_function(postgres_connection, postgres_cursor, var1=None, va
     return False
   return True
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def update_query_v2_function(postgres_connection, postgres_cursor, var1=None, var2=None):
+  try:
+    sql_query = f"UPDATE email_scraped_obj SET correct_format='{var1}' WHERE website_address='{var2}';"
+    postgres_cursor.execute(sql_query)
+    postgres_connection.commit()
+  except:
+    return False
+  return True
+# ------------------------ individual function end ------------------------
 # ================================================ update end ================================================

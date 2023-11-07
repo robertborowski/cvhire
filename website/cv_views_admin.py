@@ -13,7 +13,8 @@ from website.backend.selenium_script import linkedin_scraper_function
 from website.backend.db_manipulation import form_scraped_emails_function, delete_from_scraped_emails_function
 from datetime import datetime
 from website.backend.sendgrid import send_email_template_function
-from website.backend.convert import present_title_function
+from website.backend.sql_queries import update_query_v2_function
+from website.backend.connection import postgres_connect_open_function, postgres_connect_close_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -193,6 +194,33 @@ def admin_scrape_function(url_redirect_code=None):
       delete_from_scraped_emails_function()
       return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s12'))
     # ------------------------ post #8 end ------------------------
+    # ------------------------ post #9 start ------------------------
+    ui_company_url_to_update = request.form.get('uiCompanyUrlToUpdate')
+    ui_int_to_update = request.form.get('uiIntToUpdate')
+    if ui_company_url_to_update != None and ui_int_to_update != None:
+      # ------------------------ sanitize/check inputs start ------------------------
+      db_obj = CompanyInfoObj.query.filter_by(url=ui_company_url_to_update).first()
+      if db_obj == None or db_obj == []:
+        return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='e10'))
+      try:
+        ui_int_to_update = int(ui_int_to_update)
+      except:
+        return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='e10'))
+      # ------------------------ sanitize/check inputs end ------------------------
+      # ------------------------ open db connection start ------------------------
+      postgres_connection, postgres_cursor = postgres_connect_open_function()
+      # ------------------------ open db connection end ------------------------
+      # ------------------------ update db start ------------------------
+      try:
+        update_query_v2_function(postgres_connection, postgres_cursor, ui_int_to_update, ui_company_url_to_update)
+      except Exception as e:
+        print(f'Exception admin_scrape_function: {e}')
+        pass
+      # ------------------------ update db end ------------------------
+      # ------------------------ close db connection start ------------------------
+      postgres_connect_close_function(postgres_connection, postgres_cursor)
+      # ------------------------ close db connection end ------------------------
+    # ------------------------ post #9 end ------------------------
   return render_template('interior/admin_templates/scrape/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 

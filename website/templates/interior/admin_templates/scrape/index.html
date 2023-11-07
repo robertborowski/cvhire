@@ -24,6 +24,21 @@
   <div>
     <a href="/admin" class="btn btn-secondary css-m-25">Back</a>
   </div>
+  <!-- ----------------------------------- add company name start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="css-border-1 css-p-50 css-br-15 css-m-50">
+    <div class="form-group">
+      <div>
+        <label for="uiCompanyName">Company name</label>
+        <input type="text" class="form-control" id="uiCompanyName" name="uiCompanyName" required>
+      </div>
+      <div class="css-mt-25">
+        <label for="uiCompanyUrl">@website.com</label>
+        <input type="text" class="form-control" id="uiCompanyUrl" name="uiCompanyUrl" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add company</button>
+  </form>
+  <!-- ----------------------------------- add company name end ----------------------------------- -->
   <!-- ----------------------------------- form run script start ----------------------------------- -->
   <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="css-border-1 css-p-50 css-br-15 css-m-50">
     <div class="form-group">
@@ -46,12 +61,12 @@
   <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="css-border-1 css-p-50 css-br-15 css-m-50">
     <div class="form-group">
       <div>
-        <label for="uiCompanyName">Company name</label>
-        <input type="text" class="form-control" id="uiCompanyName" name="uiCompanyName" required>
+        <label for="uiCompanyUrlToUpdate">Assign format to @website.com</label>
+        <input type="text" class="form-control" id="uiCompanyUrlToUpdate" name="uiCompanyUrlToUpdate" required>
       </div>
       <div class="css-mt-25">
-        <label for="uiCompanyUrl">@website.com</label>
-        <input type="text" class="form-control" id="uiCompanyUrl" name="uiCompanyUrl" required>
+        <label for="uiIntToUpdate">Assign int format</label>
+        <input type="text" class="form-control" id="uiIntToUpdate" name="uiIntToUpdate" required>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Add company</button>
