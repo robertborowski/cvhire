@@ -225,6 +225,21 @@ def admin_scrape_function(url_redirect_code=None):
       postgres_connect_close_function(postgres_connection, postgres_cursor)
       # ------------------------ close db connection end ------------------------
     # ------------------------ post #9 end ------------------------
+    # ------------------------ post #10 start ------------------------
+    ui_print_emails = request.form.get('uiPrintEmails')
+    if ui_print_emails != None:
+      # ------------------------ get all emails start ------------------------
+      db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None,EmailScrapedObj.verified == False).all()
+      # ------------------------ get all emails end ------------------------
+      # ------------------------ loop emails start ------------------------
+      for i_email_obj in db_email_objs:
+        # ------------------------ get to email start ------------------------
+        email_formats_arr = i_email_obj.all_formats.split('~')
+        output_to_email = email_formats_arr[i_email_obj.correct_format] + '@' + i_email_obj.website_address
+        # ------------------------ get to email end ------------------------
+        print(output_to_email)
+      # ------------------------ loop emails end ------------------------
+    # ------------------------ post #10 end ------------------------
   return render_template('interior/admin_templates/scrape/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 

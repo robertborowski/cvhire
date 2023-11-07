@@ -72,6 +72,15 @@
     <button type="submit" class="btn btn-primary">Add company</button>
   </form>
   <!-- ----------------------------------- add company name end ----------------------------------- -->
+  <!-- ----------------------------------- form run script start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="css-border-1 css-p-50 css-br-15 css-m-50">
+    <div class="form-group">
+      <label for="uiPrintEmails">Print emails</label>
+      <input type="text" class="form-control" id="uiPrintEmails" name="uiPrintEmails" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Check emails</button>
+  </form>
+  <!-- ----------------------------------- form run script end ----------------------------------- -->
   <!-- ----------------------------------- delete wrong scraped emails start ----------------------------------- -->
   <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="css-border-1 css-p-50 css-br-15 css-m-50">
     <div class="form-group">
