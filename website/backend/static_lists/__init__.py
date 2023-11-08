@@ -573,7 +573,9 @@ def get_linkedin_identifiers_function():
     'ccp',
     'shrm',
     'scp',
-    'ms'
+    'ms',
+    'mhr',
+    'he/'
   ]
   return arr
 # ------------------------ individual function end ------------------------

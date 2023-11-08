@@ -108,4 +108,15 @@ def update_query_v2_function(postgres_connection, postgres_cursor, var1=None, va
     return False
   return True
 # ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def update_query_v3_function(postgres_connection, postgres_cursor):
+  try:
+    sql_query = f"UPDATE company_info_obj SET active=False WHERE active=True;"
+    postgres_cursor.execute(sql_query)
+    postgres_connection.commit()
+  except:
+    return False
+  return True
+# ------------------------ individual function end ------------------------
 # ================================================ update end ================================================

@@ -13,7 +13,7 @@ from website.backend.selenium_script import linkedin_scraper_function
 from website.backend.db_manipulation import form_scraped_emails_function, delete_from_scraped_emails_function
 from datetime import datetime
 from website.backend.sendgrid import send_email_template_function
-from website.backend.sql_queries import update_query_v2_function
+from website.backend.sql_queries import update_query_v2_function, update_query_v3_function
 from website.backend.connection import postgres_connect_open_function, postgres_connect_close_function
 # ------------------------ imports end ------------------------
 
@@ -166,6 +166,21 @@ def admin_scrape_function(url_redirect_code=None):
     ui_company_name = request.form.get('uiCompanyName')
     ui_company_url = request.form.get('uiCompanyUrl')
     if ui_company_name != None and ui_company_url != None:
+      # ------------------------ update all previous companies to false start ------------------------
+      # ------------------------ open db connection start ------------------------
+      postgres_connection, postgres_cursor = postgres_connect_open_function()
+      # ------------------------ open db connection end ------------------------
+      # ------------------------ update db start ------------------------
+      try:
+        update_query_v3_function(postgres_connection, postgres_cursor)
+      except Exception as e:
+        print(f'Exception admin_scrape_function: {e}')
+        pass
+      # ------------------------ update db end ------------------------
+      # ------------------------ close db connection start ------------------------
+      postgres_connect_close_function(postgres_connection, postgres_cursor)
+      # ------------------------ close db connection end ------------------------
+      # ------------------------ update all previous companies to false end ------------------------
       db_obj = CompanyInfoObj.query.filter_by(name=ui_company_name.lower()).first()
       if db_obj == None or db_obj == []:
         # ------------------------ add to db start ------------------------
