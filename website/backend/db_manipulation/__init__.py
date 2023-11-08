@@ -197,13 +197,14 @@ def form_potential_emails_function(first_name, potential_last_names_arr, i_linke
     for i_last_name in potential_last_names_arr:
       emails_arr = []
       # ------------------------ email formats start ------------------------
-      emails_arr.append(first_name + '.' + i_last_name) # First.Last
-      emails_arr.append(first_name + i_last_name) # FirstLast
-      emails_arr.append(first_name[0] + i_last_name) # FLast
-      emails_arr.append(first_name[0] + '.' + i_last_name) # F.Last
-      emails_arr.append(first_name) # First
-      emails_arr.append(first_name + i_last_name[0]) # FirstL
-      emails_arr.append(first_name + '_' + i_last_name) # First_Last
+      emails_arr.append(first_name + '.' + i_last_name) # 0: First.Last
+      emails_arr.append(first_name + i_last_name) # 1: FirstLast
+      emails_arr.append(first_name[0] + i_last_name) # 2: FLast
+      emails_arr.append(first_name[0] + '.' + i_last_name) # 3: F.Last
+      emails_arr.append(first_name) # 4: First
+      emails_arr.append(first_name + i_last_name[0]) # 5: FirstL
+      emails_arr.append(first_name + '_' + i_last_name) # 6: First_Last
+      emails_arr.append(i_last_name + '_' + first_name) # 7: Last_First
       # ------------------------ email formats end ------------------------
       # ------------------------ arr to str start ------------------------
       emails_str = '~'.join(emails_arr)
