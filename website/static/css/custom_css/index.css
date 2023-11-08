@@ -90,6 +90,10 @@
   color: black;
   text-decoration: underline;
 }
+.css-a-black-underline-on, .css-a-black-underline-on:visited, .css-a-black-underline-on:hover {
+  color: black;
+  text-decoration: underline;
+}
 .css-a-danger-underline, .css-a-danger-underline:visited {
   color: var(--css-color-danger);
   text-decoration: none;

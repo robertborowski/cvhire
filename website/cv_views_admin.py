@@ -268,7 +268,7 @@ def admin_email_function(url_redirect_code=None):
     ui_send_marketing_email = request.form.get('uiSendMarketingEmail')
     if ui_send_marketing_email != None:
       # ------------------------ get latest blog post info start ------------------------
-      db_blog_objs = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).limit(3).all()
+      db_blog_objs = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).limit(5).all()
       # ------------------------ get latest blog post info end ------------------------
       # ------------------------ set variables start ------------------------
       today = datetime.today()
@@ -286,6 +286,8 @@ def admin_email_function(url_redirect_code=None):
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[0].slug}">{db_blog_objs[0].title}</a></p>\
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[1].slug}">{db_blog_objs[1].title}</a></p>\
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[2].slug}">{db_blog_objs[2].title}</a></p>\
+                          <p><a href="https://cvhire.com/blog/{db_blog_objs[3].slug}">{db_blog_objs[3].title}</a></p>\
+                          <p><a href="https://cvhire.com/blog/{db_blog_objs[4].slug}">{db_blog_objs[4].title}</a></p>\
                           <p>Read about the benefits of AI-powered hiring, how to use AI to find the best candidates, and how to implement AI into your hiring process.</p>\
                           <p style='margin:0;'>Best,</p>\
                           <p style='margin:0;'>CVhire Support Team</p>\
