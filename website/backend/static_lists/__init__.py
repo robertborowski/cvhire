@@ -480,7 +480,7 @@ def get_keyword_colors_function(i_keyword):
   keywords_info_arr = ['ai','ai recruiting','resume parser']
   keywords_danger_arr = ['applicant tracking system','ats','time to hire','applicant tracking software','ats tracking']
   keywords_orange_arr = ['recruiting services','recruiting','resume parsing software']
-  keywords_purple_arr = ['tech recruiters','recruitment system','talent acquisition specialist']
+  keywords_purple_arr = ['tech recruiters','recruitment system','talent acquisition specialist','crm','candidate relationship management']
   # ------------------------ defaults / primary (warning) start ------------------------
   html_bg_color = 'css-bg-primary'
   html_text_color = 'css-color-black'
