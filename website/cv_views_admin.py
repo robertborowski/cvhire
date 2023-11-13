@@ -288,7 +288,7 @@ def admin_email_function(url_redirect_code=None):
       # ------------------------ set variables start ------------------------
       today = datetime.today()
       today_format = today.strftime('%m/%d/%Y')
-      output_subject = f'Evaluate Applicants with AI - {today_format}'
+      output_subject = f'Resume Parsing with AI | Hire Smarter | {today_format}'
       # ------------------------ set variables end ------------------------
       # ------------------------ get all emails start ------------------------
       db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None,EmailScrapedObj.verified == True).all()
@@ -297,13 +297,13 @@ def admin_email_function(url_redirect_code=None):
       for i_email_obj in db_email_objs:
         # ------------------------ set variables start ------------------------
         output_body = f"""<p>Hi there,</p>\
-                          <p>AI resume parsing and CV scanning on CVhire - discover invaluable insights and tips by reading our latest blog posts below:</p>\
+                          <p>Resume scoring with AI on CVhire - learn more about insights and tips by reading our latest blog posts below:</p>\
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[0].slug}">{db_blog_objs[0].title}</a></p>\
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[1].slug}">{db_blog_objs[1].title}</a></p>\
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[2].slug}">{db_blog_objs[2].title}</a></p>\
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[3].slug}">{db_blog_objs[3].title}</a></p>\
                           <p><a href="https://cvhire.com/blog/{db_blog_objs[4].slug}">{db_blog_objs[4].title}</a></p>\
-                          <p>Read about the benefits of AI-powered hiring, how to use AI to find the best candidates, and how to implement AI into your hiring process.</p>\
+                          <p>Read about the benefits of AI-powered hiring, how to use AI to find the best candidates, and how to best implement AI into your hiring process.</p>\
                           <p style='margin:0;'>Best,</p>\
                           <p style='margin:0;'>CVhire Support Team</p>\
                           <p style='margin:0;font-size:10px;margin-top:5px;'><a href="https://cvhire.com/email/unsubscribe/{i_email_obj.id}">unsubscribe</a></p>"""
