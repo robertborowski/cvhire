@@ -43,6 +43,7 @@ def cv_landing_details_function(url_reference_id=None, url_redirect_code=None):
   # ------------------------ ref id hit end ------------------------
   # ------------------------ set variables start ------------------------
   page_dict['nav_header'] = True
+  page_dict['is_blog_page'] = False
   # ------------------------ set variables end ------------------------
   # ------------------------ get latest blog post start ------------------------
   db_blog_objs = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).limit(6).all()

@@ -33,6 +33,7 @@ def blog_function(url_redirect_code=None):
   # ------------------------ set variables start ------------------------
   page_dict['nav_header'] = True
   page_dict['category_specific'] = False
+  page_dict['is_blog_page'] = True
   # ------------------------ set variables end ------------------------
   # ------------------------ get all blog posts from db start ------------------------
   db_objs = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).all()
