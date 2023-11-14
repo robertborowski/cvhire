@@ -57,6 +57,21 @@
     <button type="submit" class="btn btn-primary">Run function</button>
   </form>
   <!-- ----------------------------------- form scraped emails end ----------------------------------- -->
+  <!-- ----------------------------------- print all formats for one employee start ----------------------------------- -->
+  <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="css-border-1 css-p-50 css-br-15 css-m-50">
+    <div class="form-group">
+      <div class="css-mt-25">
+        <label for="uiCompanyUrlGuess">See all potential emails for @website.com</label>
+        <input type="text" class="form-control" id="uiCompanyUrlGuess" name="uiCompanyUrlGuess" value="{{ page_dict_html['latest_company_url'] }}" required>
+      </div>
+      <div>
+        <label for="uiEmployeeName">Employee name like</label>
+        <input type="text" class="form-control" id="uiEmployeeName" name="uiEmployeeName" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Print all versions</button>
+  </form>
+  <!-- ----------------------------------- print all formats for one employee end ----------------------------------- -->
   <!-- ----------------------------------- add company name start ----------------------------------- -->
   <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()" class="css-border-1 css-p-50 css-br-15 css-m-50">
     <div class="form-group">

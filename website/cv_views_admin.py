@@ -239,6 +239,7 @@ def admin_scrape_function(url_redirect_code=None):
       # ------------------------ close db connection start ------------------------
       postgres_connect_close_function(postgres_connection, postgres_cursor)
       # ------------------------ close db connection end ------------------------
+      return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s12'))
     # ------------------------ post #9 end ------------------------
     # ------------------------ post #10 start ------------------------
     ui_print_emails = request.form.get('uiPrintEmails')
@@ -254,7 +255,23 @@ def admin_scrape_function(url_redirect_code=None):
         # ------------------------ get to email end ------------------------
         print(output_to_email)
       # ------------------------ loop emails end ------------------------
+      return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s12'))
     # ------------------------ post #10 end ------------------------
+    # ------------------------ post #11 start ------------------------
+    ui_company_url_guess = request.form.get('uiCompanyUrlGuess')
+    ui_employee_name_like = request.form.get('uiEmployeeName')
+    if ui_company_url_guess != None and ui_employee_name_like != None:
+      db_obj = EmailScrapedObj.query.filter_by(website_address=ui_company_url_guess).filter(EmailScrapedObj.all_formats.like(f'%{ui_employee_name_like}%')).first()
+      # ------------------------ if not found start ------------------------
+      if db_obj == None or db_obj == []:
+        return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='e10'))
+      # ------------------------ if not found end ------------------------
+      arr = db_obj.all_formats.split('~')
+      for i in arr:
+        email = i + '@' + db_obj.website_address
+        print(email)
+      return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s12'))
+    # ------------------------ post #11 end ------------------------
   return render_template('interior/admin_templates/scrape/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
