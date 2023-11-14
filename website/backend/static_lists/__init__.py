@@ -1,5 +1,5 @@
 # ------------------------ imports start ------------------------
-from website.models import EmailBlockObj, CompanyInfoObj
+from website.models import EmailBlockObj, CompanyInfoObj, BlogObj
 from website import db
 from website.backend.connection import redis_connect_open_function
 # ------------------------ imports end ------------------------
@@ -527,6 +527,11 @@ def get_all_companies_function():
   for i_obj in db_objs:
     arr.append(i_obj.name)
   return arr
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
+def get_blog_posts_function():
+  return BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).limit(6).all()
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------

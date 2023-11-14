@@ -11,6 +11,7 @@ from website.backend.sendgrid import send_email_template_function
 import os
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.convert import objs_to_arr_of_dicts_function
+from website.backend.static_lists import get_blog_posts_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -46,7 +47,7 @@ def cv_landing_details_function(url_reference_id=None, url_redirect_code=None):
   page_dict['is_blog_page'] = False
   # ------------------------ set variables end ------------------------
   # ------------------------ get latest blog post start ------------------------
-  db_blog_objs = BlogObj.query.filter_by(status=True).order_by(BlogObj.created_timestamp.desc()).limit(6).all()
+  db_blog_objs = get_blog_posts_function()
   # ------------------------ get latest blog post end ------------------------
   # ------------------------ convert objs to dict start ------------------------
   page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_blog_objs, 'blog')
@@ -208,4 +209,20 @@ def email_unsubscribe_function(url_id_code=None):
     db.session.commit()
   # ------------------------ update db end ------------------------
   return render_template('exterior/unsubscribed/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_exterior.route('/feature/one-role-many-cvs')
+@cv_views_exterior.route('/feature/one-role-many-cvs/')
+def feature_one_role_many_cvs_function():
+  page_dict = {}
+  page_dict['nav_header'] = True
+  page_dict['is_blog_page'] = False
+  # ------------------------ get latest blog post start ------------------------
+  db_blog_objs = get_blog_posts_function()
+  # ------------------------ get latest blog post end ------------------------
+  # ------------------------ convert objs to dict start ------------------------
+  page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_blog_objs, 'blog')
+  # ------------------------ convert objs to dict end ------------------------
+  return render_template('exterior/features/one_role_many_cvs.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
