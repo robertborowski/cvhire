@@ -884,6 +884,9 @@
 .css-max-height-400 {
   max-height: 400px;
 }
+.css-max-height-800 {
+  max-height: 800px;
+}
 .css-vh-5 {
   height: 5vh;
 }
