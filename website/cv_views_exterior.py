@@ -212,17 +212,22 @@ def email_unsubscribe_function(url_id_code=None):
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_exterior.route('/feature/one-role-many-cvs')
-@cv_views_exterior.route('/feature/one-role-many-cvs/')
-def feature_one_role_many_cvs_function():
+@cv_views_exterior.route('/feature/<url_feature_code>')
+@cv_views_exterior.route('/feature/<url_feature_code>/')
+def feature_one_vs_many_function(url_feature_code=None):
+  # ------------------------ get feature code start ------------------------
+  if url_feature_code == None:
+    url_feature_code = 'one-role-many-cvs'
+  # ------------------------ get feature code end ------------------------
   page_dict = {}
   page_dict['nav_header'] = True
   page_dict['is_blog_page'] = False
+  page_dict['url_feature_code'] = url_feature_code
   # ------------------------ get latest blog post start ------------------------
   db_blog_objs = get_blog_posts_function()
   # ------------------------ get latest blog post end ------------------------
   # ------------------------ convert objs to dict start ------------------------
   page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_blog_objs, 'blog')
   # ------------------------ convert objs to dict end ------------------------
-  return render_template('exterior/features/one_role_many_cvs.html', page_dict_html=page_dict)
+  return render_template('exterior/features/one_vs_many.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

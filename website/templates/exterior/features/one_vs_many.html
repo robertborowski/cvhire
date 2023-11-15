@@ -11,7 +11,11 @@
 <div class="css-width-1200 mx-auto">
   <!-- ------------------------------------- title start ------------------------------------- -->
   <div class="text-center css-mt-100 css-mb-50">
-    <h1 class="css-header-40-mobile">Screening one role for many CV's</h1>
+    {% if page_dict_html['url_feature_code'] == 'one-role-many-cvs' %}
+      <h1 class="css-header-40-mobile">Screening one role for many CV's</h1>
+    {% elif page_dict_html['url_feature_code'] == 'one-cv-many-roles' %}
+      <h1 class="css-header-40-mobile">Screening one CV for many roles</h1>
+    {% endif %}
   </div>
   <!-- ------------------------------------- title end ------------------------------------- -->
   <!-- ------------------------------------- img start ------------------------------------- -->
@@ -22,7 +26,11 @@
   <!-- ------------------------------------- explanation start ------------------------------------- -->
   <div class="css-mb-100">
     <h2 class="css-header-25-mobile css-mb-25">Explained</h2>
-    <p class="css-header-20-mobile">Our intuitive system allows you to upload a single job description as well as multiple candidate CVs simultaneously, leveraging advanced AI technology to parse and analyze each resume in depth. By comparing key qualifications, experience, and skills against the requirements of the role, CVhire efficiently identifies the most suitable candidates for the role, saving you countless hours of manual review. Our AI approach ensures a faster, more accurate matching process, enabling you to focus on engaging the best talent for your open positions.</p>
+    {% if page_dict_html['url_feature_code'] == 'one-role-many-cvs' %}
+      <p class="css-header-20-mobile">Our intuitive system allows you to upload a single job description as well as multiple candidate CVs simultaneously, leveraging advanced AI technology to parse and analyze each resume in depth. By comparing key qualifications, experience, and skills against the requirements of the role, CVhire efficiently identifies the most suitable candidates for the role, saving you countless hours of manual review. Our AI approach ensures a faster, more accurate matching process, enabling you to focus on engaging the best talent for your open positions.</p>
+    {% elif page_dict_html['url_feature_code'] == 'one-cv-many-roles' %}
+      <p class="css-header-20-mobile">Our intuitive system allows you to upload a single job description as well as multiple candidate CVs simultaneously, leveraging advanced AI technology to parse and analyze each resume in depth. By comparing key qualifications, experience, and skills against the requirements of the role, CVhire efficiently identifies the most suitable candidates for the role, saving you countless hours of manual review. Our AI approach ensures a faster, more accurate matching process, enabling you to focus on engaging the best talent for your open positions.</p>
+    {% endif %}
   </div>
   <!-- ------------------------------------- explanation end ------------------------------------- -->
   <!-- ------------------------------------- step start ------------------------------------- -->
@@ -47,12 +55,20 @@
   <!-- ------------------------------------- img end ------------------------------------- -->
   <!-- ------------------------------------- step start ------------------------------------- -->
   <div class="css-mb-50 text-center">
-    <h2 class="css-header-25-mobile css-mb-25">Step 3: Select one role and many candidate CV's for analysis</h2>
+    {% if page_dict_html['url_feature_code'] == 'one-role-many-cvs' %}
+      <h2 class="css-header-25-mobile css-mb-25">Step 3: Select one role and many candidate CV's for analysis</h2>
+    {% elif page_dict_html['url_feature_code'] == 'one-cv-many-roles' %}
+      <h2 class="css-header-25-mobile css-mb-25">Step 3: Select one role and many candidate CV's for analysis</h2>
+    {% endif %}
   </div>
   <!-- ------------------------------------- step end ------------------------------------- -->
   <!-- ------------------------------------- img start ------------------------------------- -->
   <div class="text-center css-mb-150">
-    <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/selectOneRoleManyCV.png" alt="img" class="border shadow css-br-15 css-max-width-95">
+    {% if page_dict_html['url_feature_code'] == 'one-role-many-cvs' %}
+      <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/selectOneRoleManyCV.png" alt="img" class="border shadow css-br-15 css-max-width-95">
+    {% elif page_dict_html['url_feature_code'] == 'one-cv-many-roles' %}
+      <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/selectOneRoleManyCV.png" alt="img" class="border shadow css-br-15 css-max-width-95">
+    {% endif %}
   </div>
   <!-- ------------------------------------- img end ------------------------------------- -->
   <!-- ------------------------------------- step start ------------------------------------- -->
