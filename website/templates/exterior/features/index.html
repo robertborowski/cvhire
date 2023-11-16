@@ -17,6 +17,8 @@
       <h1 class="css-header-40-mobile">Screening one CV for many roles</h1>
     {% elif page_dict_html['url_feature_code'] == 'ask-ai' %}
       <h1 class="css-header-40-mobile">Ask AI anything about a CV</h1>
+    {% elif page_dict_html['url_feature_code'] == 'export' %}
+      <h1 class="css-header-40-mobile">Export results</h1>
     {% endif %}
   </div>
   <!-- ------------------------------------- title end ------------------------------------- -->
@@ -28,6 +30,8 @@
       <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/graphic_v3.png" alt="img" class="css-max-width-95">
     {% elif page_dict_html['url_feature_code'] == 'ask-ai' %}
       <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/graphic_v4.png" alt="img" class="css-max-width-95">
+    {% elif page_dict_html['url_feature_code'] == 'export' %}
+      <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/graphic_v5.png" alt="img" class="css-max-width-95">
     {% endif %}
   </div>
   <!-- ------------------------------------- img end ------------------------------------- -->
@@ -40,6 +44,8 @@
       <p class="css-header-20-mobile">Our intuitive system allows you to upload a single candidate CV as well as multiple job descriptions simultaneously, leveraging advanced AI technology to parse and analyze each resume + job description match in depth. By comparing key qualifications, experience, and skills against the requirements of the role, CVhire efficiently identifies the most suitable role for the candidate, saving you countless hours of manual review. Our AI approach ensures a faster, more accurate matching process, enabling you to focus on engaging the best talent for your open positions.</p>
     {% elif page_dict_html['url_feature_code'] == 'ask-ai' %}
       <p class="css-header-20-mobile">Designed to be your personal assistant when evaluating candidates, our innovative tool empowers recruiters to query our advanced AI about any aspect of a candidate's CV. Whether you're looking for insights into a candidate's work experience, education, skills, or even how they align with the specific requirements of your open role, our AI delivers precise, instant answers. Helping to significantly reduce the time spent on reviewing each CV, and ensuring that you have all the necessary information to identify the best-fit candidates effortlessly.</p>
+    {% elif page_dict_html['url_feature_code'] == 'export' %}
+      <p class="css-header-20-mobile">Exporting your candidate screening results is as easy as clicking one button on our platform. All exported data is automatically sent to your email.</p>
     {% endif %}
   </div>
   <!-- ------------------------------------- explanation end ------------------------------------- -->
@@ -141,6 +147,17 @@
     <!-- ------------------------------------- img start ------------------------------------- -->
     <div class="text-center css-mb-150">
       <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/askAi2.png" alt="img" class="border shadow css-br-15 css-width-700">
+    </div>
+    <!-- ------------------------------------- img end ------------------------------------- -->
+  {% elif page_dict_html['url_feature_code'] == 'export' %}
+    <!-- ------------------------------------- step start ------------------------------------- -->
+    <div class="css-mb-50 text-center">
+      <h2 class="css-header-25-mobile css-mb-25">Step 1: Click 'Export' in the export dashboard, then check your email.</h2>
+    </div>
+    <!-- ------------------------------------- step end ------------------------------------- -->
+    <!-- ------------------------------------- img start ------------------------------------- -->
+    <div class="text-center css-mb-150">
+      <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/exportButton.png" alt="img" class="border shadow css-br-15 css-max-width-95">
     </div>
     <!-- ------------------------------------- img end ------------------------------------- -->
   {% endif %}
