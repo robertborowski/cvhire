@@ -703,6 +703,10 @@
 .css-grid-1row-3col {
   grid-template-columns: repeat(3, 1fr);
 }
+.css-grid-1row-3col-mobile {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+}
 .css-grid-gap-10 {
   gap: 10px;
 }

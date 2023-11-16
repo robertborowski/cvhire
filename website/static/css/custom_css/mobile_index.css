@@ -73,6 +73,10 @@
       grid-template-rows: repeat(5, 1fr); /* Creates 3 rows */
       grid-gap: 15px; /* Adds a 10px gap between grid items */
     }
+    .css-grid-1row-3col-mobile {
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
     /* ------------------- grid end ------------------- */
     /* ------------------- height start ------------------- */
     .css-height-1-mobile {
