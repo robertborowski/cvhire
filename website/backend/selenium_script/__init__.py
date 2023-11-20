@@ -113,6 +113,7 @@ def search_function(driver, input_company_name, input_role_name):
   # click "People" category of search
   current_url = driver.current_url
   if 'people' not in current_url:
+    time.sleep(random_int_function())
     element = driver.find_element(By.CSS_SELECTOR, '.search-reusables__filter-pill-button')
     element.click()
     time.sleep(random_int_function())
