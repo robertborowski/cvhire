@@ -316,11 +316,11 @@ def admin_email_function(url_redirect_code=None):
         output_body = f"""<p>Hi there,</p>\
                           <p>Are you still hiring without AI? Boost your hiring productivity with AI candidate screening on <a href="https://cvhire.com/">CVhire</a> - learn more about AI insights and tips by reading our latest blog posts below:</p>\
                           <ul>\
-                            <li>Blog post 1: <a href="https://cvhire.com/blog/{db_blog_objs[0].slug}">{db_blog_objs[0].title}</a></li>\
-                            <li>Blog post 2: <a href="https://cvhire.com/blog/{db_blog_objs[1].slug}">{db_blog_objs[1].title}</a></li>\
-                            <li>Blog post 3: <a href="https://cvhire.com/blog/{db_blog_objs[2].slug}">{db_blog_objs[2].title}</a></li>\
-                            <li>Blog post 4: <a href="https://cvhire.com/blog/{db_blog_objs[3].slug}">{db_blog_objs[3].title}</a></li>\
-                            <li>Blog post 5: <a href="https://cvhire.com/blog/{db_blog_objs[4].slug}">{db_blog_objs[4].title}</a></li>\
+                            <li>Blog post: <a href="https://cvhire.com/blog/{db_blog_objs[0].slug}">{db_blog_objs[0].title}</a></li>\
+                            <li>Blog post: <a href="https://cvhire.com/blog/{db_blog_objs[1].slug}">{db_blog_objs[1].title}</a></li>\
+                            <li>Blog post: <a href="https://cvhire.com/blog/{db_blog_objs[2].slug}">{db_blog_objs[2].title}</a></li>\
+                            <li>Blog post: <a href="https://cvhire.com/blog/{db_blog_objs[3].slug}">{db_blog_objs[3].title}</a></li>\
+                            <li>Blog post: <a href="https://cvhire.com/blog/{db_blog_objs[4].slug}">{db_blog_objs[4].title}</a></li>\
                           </ul>\
                           <p>Read about the benefits of AI-powered hiring, how to use AI to find the best candidates, and how to best implement AI into your hiring process on <a href="https://cvhire.com/">CVhire</a>.</p>\
                           <p style='margin:0;'>Best,</p>\
