@@ -103,6 +103,50 @@
   text-decoration: underline;
 }
 /* ------------------- a end ------------------- */
+/* ------------------- accordian override start ------------------- */
+.accordion-item-override {
+  color: var(--bs-accordion-color);
+  background-color: var(--bs-accordion-bg);
+  border: none !important;
+}
+.accordion-item-override:first-of-type {
+  border-top-left-radius: var(--bs-accordion-border-radius);
+  border-top-right-radius: var(--bs-accordion-border-radius);
+}
+.accordion-item-override:first-of-type .accordion-button {
+  border-top-left-radius: var(--bs-accordion-inner-border-radius);
+  border-top-right-radius: var(--bs-accordion-inner-border-radius);
+}
+.accordion-item-override:not(:first-of-type) {
+  border-top: 0;
+}
+.accordion-item-override:last-of-type {
+  border-bottom-right-radius: var(--bs-accordion-border-radius);
+  border-bottom-left-radius: var(--bs-accordion-border-radius);
+}
+.accordion-item-override:last-of-type .accordion-button.collapsed {
+  border-bottom-right-radius: var(--bs-accordion-inner-border-radius);
+  border-bottom-left-radius: var(--bs-accordion-inner-border-radius);
+}
+.accordion-item-override:last-of-type .accordion-collapse {
+  border-bottom-right-radius: var(--bs-accordion-border-radius);
+  border-bottom-left-radius: var(--bs-accordion-border-radius);
+}
+.accordion-flush .accordion-item-override {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+}
+.accordion-flush .accordion-item-override:first-child {
+  border-top: 0;
+}
+.accordion-flush .accordion-item-override:last-child {
+  border-bottom: 0;
+}
+.accordion-flush .accordion-item-override .accordion-button, .accordion-flush .accordion-item-override .accordion-button.collapsed {
+  border-radius: 0;
+}
+/* ------------------- accordian override end ------------------- */
 /* ------------------- background start ------------------- */
 .css-bg-hover-1 {
   position: relative

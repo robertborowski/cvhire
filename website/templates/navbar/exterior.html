@@ -55,7 +55,7 @@
         <div class="css-nav-list accordion css-pt-25" id="accordionExample">
           {% for k,v in page_dict_html['navbar_dict'].items() %}
             <!-- ------------------------------------- accordian item start ------------------------------------- -->
-            <div class="accordion-item">
+            <div class="accordion-item-override">
               <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ v['id'] }}" aria-expanded="false" aria-controls="{{ v['id'] }}">{{ v['header'] }}</button></h2>
               <div id="{{ v['id'] }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body css-p-0-important css-m-0-important">
@@ -63,7 +63,7 @@
                   <ul class="css-no-decoration css-p-0-important css-m-0-important">
                     {% for k2,v2 in v['sections'].items() %}
                       <li>
-                        <a href="{{ v2['url'] }}" class="css-color-success-hover css-display-flex">
+                        <a href="{{ v2['url'] }}" class="css-color-success-hover css-display-flex css-ml-5">
                           <div class="text-center">
                             <i class="{{ v2['icon'] }} css-mr-10 css-header-30 css-mt-5 css-width-50-px-min-max"></i>
                           </div>
@@ -81,6 +81,10 @@
             </div>
             <!-- ------------------------------------- accordian item end ------------------------------------- -->
           {% endfor %}
+          <div class="text-center css-mt-25 css-pb-25">
+            <a href="/login" class="btn btn-outline-success css-plr-25 css-mr-10">Login</a>
+            <a href="/signup" class="btn btn-primary css-ml-10">Get started</a>
+          </div>
         </div>
         <!-- ------------------------------------- accordian end ------------------------------------- -->
       </div>
