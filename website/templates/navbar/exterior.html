@@ -19,14 +19,14 @@
           {% for k,v in page_dict_html['navbar_dict'].items() %}
             <li id="primary-menu" class="my-auto css-mlr-15 css-header-15">{{ v['header'] }} <i class="fa-solid fa-chevron-down"></i>
               <!-- ------------------------------------- sub menu start ------------------------------------- -->
-              <ul id="sub-menu" class="css-no-decoration css-p-20 css-m-0 css-position-absolute shadow css-bg-white css-br-15 css-ml-negative-25">
+              <ul id="sub-menu" class="css-no-decoration css-p-20 css-m-0 css-position-absolute shadow css-bg-white css-br-15 css-ml-negative-50">
                 {% for k2,v2 in v['sections'].items() %}
                   <li class="css-ptb-10 css-display-flex">
                     <a href="{{ v2['url'] }}" class="css-color-success-hover css-display-flex">
                       <div class="text-center">
                         <i class="{{ v2['icon'] }} css-mr-10 css-header-30 css-mt-5 css-width-50-px-min-max"></i>
                       </div>
-                      <div>
+                      <div class="css-pr-25">
                         <span class="css-m-0 css-p-0 css-header-15 css-display-block">{{ v2['title'] }}</span>
                         <span class="css-m-0 css-p-0 css-header-12 css-display-block">{{ v2['description'] }}</span>
                       </div>

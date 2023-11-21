@@ -92,10 +92,10 @@ def navbar_link_dict_exterior_function():
           'icon': 'fa-solid fa-i-cursor'
         },
         '2': {
-          'title': 'Ask AI',
+          'title': 'Privacy & terms',
           'description': 'description description description keywords',
-          'url': '/feature/ask-ai',
-          'icon': 'fa-solid fa-robot'
+          'url': '/privacy',
+          'icon': 'fa-solid fa-lock'
         }
       }
     }
