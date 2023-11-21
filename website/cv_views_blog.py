@@ -7,6 +7,7 @@ from website import db
 from website.backend.alerts import get_alert_message_function
 from website.backend.convert import objs_to_arr_of_dicts_function, convert_obj_row_to_dict_function
 from website.backend.convert import present_title_function, keywords_present_function, timestamp_to_date_function
+from website.backend.static_lists import navbar_link_dict_exterior_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -41,6 +42,9 @@ def blog_function(url_redirect_code=None):
   # ------------------------ convert objs to dict start ------------------------
   page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_objs, 'blog')
   # ------------------------ convert objs to dict end ------------------------
+  # ------------------------ get navbar variables start ------------------------
+  page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
+  # ------------------------ get navbar variables end ------------------------
   return render_template('exterior/blog/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -86,6 +90,9 @@ def blog_category_function(url_category_code=None, url_redirect_code=None):
   # ------------------------ convert objs to dict start ------------------------
   page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_objs, 'blog')
   # ------------------------ convert objs to dict end ------------------------
+  # ------------------------ get navbar variables start ------------------------
+  page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
+  # ------------------------ get navbar variables end ------------------------
   return render_template('exterior/blog/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -132,5 +139,8 @@ def blog_post_function(url_blog_code=None, url_redirect_code=None):
   blog_post_num = int(blog_post_arr[-1])
   html_template = f'exterior/blog/i_blog/post{ blog_post_num }.html'
   # ------------------------ get blog post number end ------------------------
+  # ------------------------ get navbar variables start ------------------------
+  page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
+  # ------------------------ get navbar variables end ------------------------
   return render_template(html_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

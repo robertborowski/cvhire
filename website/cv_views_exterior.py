@@ -184,8 +184,11 @@ def cv_reset_forgot_password_function(token, url_redirect_code=None):
 def cv_privacy_function():
   page_dict = {}
   # ------------------------ set variables start ------------------------
-  page_dict['nav_header'] = False
+  page_dict['nav_header'] = True
   # ------------------------ set variables end ------------------------
+  # ------------------------ get navbar variables start ------------------------
+  page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
+  # ------------------------ get navbar variables end ------------------------
   return render_template('exterior/privacy_terms/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -229,6 +232,9 @@ def feature_pages_function(url_feature_code=None):
   # ------------------------ get latest blog post start ------------------------
   db_blog_objs = get_blog_posts_function()
   # ------------------------ get latest blog post end ------------------------
+  # ------------------------ get navbar variables start ------------------------
+  page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
+  # ------------------------ get navbar variables end ------------------------
   # ------------------------ convert objs to dict start ------------------------
   page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_blog_objs, 'blog')
   # ------------------------ convert objs to dict end ------------------------
