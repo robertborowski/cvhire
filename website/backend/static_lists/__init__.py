@@ -67,6 +67,7 @@ def navbar_link_dict_exterior_function():
   navbar_dict = {
     'products': {
       'header': 'Products',
+      'id': 'id-products',
       'sections': {
         '1': {
           'title': 'Resume parsing',
@@ -84,6 +85,7 @@ def navbar_link_dict_exterior_function():
     },
     'resources': {
       'header': 'Resources',
+      'id': 'id-resources',
       'sections': {
         '1': {
           'title': 'Blog',
