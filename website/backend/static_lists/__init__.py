@@ -71,13 +71,13 @@ def navbar_link_dict_exterior_function():
       'sections': {
         '1': {
           'title': 'Resume parsing',
-          'description': 'description description description keywords',
+          'description': 'Resume parsing with AI',
           'url': '/feature/one-role-many-cvs',
           'icon': 'fa-regular fa-file'
         },
         '2': {
           'title': 'Ask AI',
-          'description': 'description description description keywords',
+          'description': 'Ask AI anything about a resume',
           'url': '/feature/ask-ai',
           'icon': 'fa-solid fa-robot'
         }
@@ -89,13 +89,13 @@ def navbar_link_dict_exterior_function():
       'sections': {
         '1': {
           'title': 'Blog',
-          'description': 'description description description keywords',
+          'description': 'See our latest blog posts',
           'url': '/blog',
           'icon': 'fa-solid fa-i-cursor'
         },
         '2': {
           'title': 'Privacy & terms',
-          'description': 'description description description keywords',
+          'description': 'Read out privacy & terms',
           'url': '/privacy',
           'icon': 'fa-solid fa-lock'
         }
