@@ -1596,12 +1596,12 @@
   margin: 3px 0;
   transition: 0.3s;
 }
-#sub-menu-products {
+#sub-menu {
   opacity: 0; /* Initially transparent */
   visibility: hidden; /* Initially hidden */
   transition: opacity 0.25s ease, visibility 0.25s ease; /* Transition effect */
 }
-#primary-menu-products:hover #sub-menu-products {
+#primary-menu:hover #sub-menu {
   opacity: 1; /* Fully visible on hover */
   visibility: visible; /* Make it visible */
   z-index: auto; /* Bring it back to a normal stacking context */
@@ -2434,6 +2434,9 @@ li:hover i.fa-solid.fa-chevron-down {
 .css-width-100-mobile {
   width: 100%;
 }
+.css-width-10-px {
+  width: 10px;
+}
 .css-width-30-px {
   max-width: 30px;
 }
@@ -2442,6 +2445,18 @@ li:hover i.fa-solid.fa-chevron-down {
   max-height: 40px;
 }
 .css-width-50-px {
+  max-width: 50px;
+}
+.css-width-30-px-min-max {
+  min-width: 30px;
+  max-width: 30px;
+}
+.css-width-40-px-min-max {
+  min-width: 40px;
+  max-width: 40px;
+}
+.css-width-50-px-min-max {
+  min-width: 50px;
   max-width: 50px;
 }
 .css-width-66-px {

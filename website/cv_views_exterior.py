@@ -11,7 +11,7 @@ from website.backend.sendgrid import send_email_template_function
 import os
 from website.backend.uuid_timestamp import create_uuid_function, create_timestamp_function
 from website.backend.convert import objs_to_arr_of_dicts_function
-from website.backend.static_lists import get_blog_posts_function
+from website.backend.static_lists import get_blog_posts_function, navbar_link_dict_exterior_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -38,6 +38,9 @@ def cv_landing_details_function(url_reference_id=None, url_redirect_code=None):
   page_dict = {}
   page_dict['alert_message_dict'] = alert_message_dict
   # ------------------------ page dict end ------------------------
+  # ------------------------ get navbar variables start ------------------------
+  page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
+  # ------------------------ get navbar variables end ------------------------
   # ------------------------ ref id hit start ------------------------
   if url_reference_id != None:
     return redirect(url_for('cv_auth.cv_signup_function'))

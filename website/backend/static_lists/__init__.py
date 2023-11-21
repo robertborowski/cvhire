@@ -63,6 +63,47 @@ def navbar_link_dict_function_v2():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def navbar_link_dict_exterior_function():
+  navbar_dict = {
+    'products': {
+      'header': 'Products',
+      'sections': {
+        '1': {
+          'title': 'Resume parsing',
+          'description': 'description description description keywords',
+          'url': '/feature/one-role-many-cvs',
+          'icon': 'fa-regular fa-file'
+        },
+        '2': {
+          'title': 'Ask AI',
+          'description': 'description description description keywords',
+          'url': '/feature/ask-ai',
+          'icon': 'fa-solid fa-robot'
+        }
+      }
+    },
+    'resources': {
+      'header': 'Resources',
+      'sections': {
+        '1': {
+          'title': 'Blog',
+          'description': 'description description description keywords',
+          'url': '/blog',
+          'icon': 'fa-solid fa-i-cursor'
+        },
+        '2': {
+          'title': 'Ask AI',
+          'description': 'description description description keywords',
+          'url': '/feature/ask-ai',
+          'icon': 'fa-solid fa-robot'
+        }
+      }
+    }
+  }
+  return navbar_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def dashboard_section_links_dict_roles_function():
   output_dict = {
     'Open': '/roles/open',
