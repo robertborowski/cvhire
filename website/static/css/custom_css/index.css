@@ -1288,6 +1288,9 @@
 .css-m-0 {
   margin: 0 0 0 0;
 }
+.css-m-0-important {
+  margin: 0 0 0 0 !important;
+}
 .css-m-1-mobile {
   margin: 15px;
 }
@@ -1638,6 +1641,9 @@
 /* ------------------- padding start ------------------- */
 .css-p-0 {
   padding: 0 0 0 0;
+}
+.css-p-0-important {
+  padding: 0 0 0 0 !important;
 }
 .css-plr-0 {
   padding-left: 0;
