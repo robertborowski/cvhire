@@ -578,6 +578,9 @@
 .css-display-flex {
   display: flex;
 }
+.css-display-flex-mobile {
+  display: flex;
+}
 .css-display-flex-row-to-column-reverse-mobile, .css-display-flex-row-to-column-reverse-mobile {
   display: flex;
   flex-direction: row;
@@ -1229,6 +1232,12 @@
 .css-invisible-1 {
   display:none;
 }
+.css-visible-desktop {
+  display: block;
+}
+.css-visible-mobile {
+  display: none !important;
+}
 /* ------------------- jQuery end ------------------- */
 /* ------------------- list style start ------------------- */
 .css-ls-1 {
@@ -1574,6 +1583,15 @@
 }
 /* ------------------- margin end ------------------- */
 /* ------------------- navbar start ------------------- */
+.css-nav-list-desktop {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  margin: 0;
+}
+.css-nav-list-desktop a {
+  text-decoration: none;
+}
 .css-nav-list {
   list-style: none;
   padding: 0;

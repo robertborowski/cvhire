@@ -32,6 +32,9 @@
     }
     /* ------------------- border end ------------------- */
     /* ------------------- display start ------------------- */
+    .css-display-flex-mobile {
+      display: block;
+    }
     .css-mobile-display-1 {
       display: none;
     }
@@ -184,6 +187,9 @@
     .css-ml-25-mobile, .css-ml-50-mobile, .css-ml-100-mobile {
       margin-left: 10px;
     }
+    .css-ml-25-mobile-only {
+      margin-left: 25px
+    }
     .css-mr-100-mobile {
       margin-right: 0px;
     }
@@ -224,6 +230,12 @@
     /* ------------------- visibility start ------------------- */
     .css-visible-non-mobile-only {
       display:none;
+    }
+    .css-visible-desktop {
+      display: none;
+    }
+    .css-visible-mobile {
+      display: block !important;
     }
     /* ------------------- visibility end ------------------- */
     /* ------------------- view start ------------------- */
