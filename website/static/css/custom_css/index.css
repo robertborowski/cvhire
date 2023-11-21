@@ -1456,6 +1456,9 @@
 .css-mr-25-mobile {
   margin-right: 25px;
 }
+.css-mr-100-mobile {
+  margin-right: 100px;
+}
 .css-mr-30 {
   margin-right: 30px;
 }
@@ -1494,6 +1497,12 @@
 }
 .css-ml-25-mobile {
   margin-left: 25px;
+}
+.css-ml-50-mobile {
+  margin-left: 50px;
+}
+.css-ml-100-mobile {
+  margin-left: 100px;
 }
 .css-ml-30 {
   margin-left: 30px;
