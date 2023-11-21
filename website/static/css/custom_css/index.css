@@ -423,6 +423,12 @@
 .css-color-success {
   color: var(--css-color-success);
 }
+.css-color-success-hover {
+  color: black;
+}
+.css-color-success-hover:hover {
+  color: var(--css-color-success) !important;
+}
 .css-color-success-important {
   color: var(--css-color-success) !important;
 }
@@ -1462,6 +1468,9 @@
 .css-mr-30 {
   margin-right: 30px;
 }
+.css-mr-negative-25 {
+  margin-right: -105px;
+}
 .css-ml-1 {
   margin-left: 5px;
 }
@@ -1473,6 +1482,12 @@
 }
 .css-ml-3-negative {
   margin-left: -15px;
+}
+.css-ml-negative-25 {
+  margin-left: -25px;
+}
+.css-ml-negative-50 {
+  margin-left: -50px;
 }
 .css-ml-2 {
   margin-left: 25px;
@@ -1537,6 +1552,10 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
+.css-mtb-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .css-mtb-25 {
   margin-top: 25px;
   margin-bottom: 25px;
@@ -1576,6 +1595,16 @@
   width: 25px;
   margin: 3px 0;
   transition: 0.3s;
+}
+#sub-menu-products {
+  opacity: 0; /* Initially transparent */
+  visibility: hidden; /* Initially hidden */
+  transition: opacity 0.25s ease, visibility 0.25s ease; /* Transition effect */
+}
+#primary-menu-products:hover #sub-menu-products {
+  opacity: 1; /* Fully visible on hover */
+  visibility: visible; /* Make it visible */
+  z-index: auto; /* Bring it back to a normal stacking context */
 }
 /* ------------------- navbar end ------------------- */
 /* ------------------- overflow start ------------------- */
@@ -2265,6 +2294,12 @@
   transition: 0.3s;
 }
 /* ------------------- transition end ------------------- */
+/* ------------------- transform start ------------------- */
+li:hover i.fa-solid.fa-chevron-down {
+  transform: rotateX(180deg);
+  transition: transform 0.25s ease;
+}
+/* ------------------- transform end ------------------- */
 /* ------------------- underline start ------------------- */
 .css-underline-1 {
   text-decoration: underline;
