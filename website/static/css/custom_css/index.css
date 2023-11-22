@@ -391,10 +391,10 @@
   --css-color-2-light: rgb(180, 180, 180);
   --css-color-black: rgba(0, 0, 0);
   --css-color-black-faded: rgba(0, 0, 0, 0.25);
-  --css-color-primary: rgb(255, 193, 7);
-  --css-color-primary-lighter: rgba(210, 244, 234, 0.50);
+  --css-color-primary: #198754;
+  --css-color-primary-lighter: #a3cfbb;
   --css-color-primary-darker: rgb(44 26 77);
-  --css-color-secondary: rgb(108 117 125);
+  --css-color-secondary: #ffc107;
   --css-color-success: rgb(25, 135, 84);
   --css-color-green-700: #0f5132;
   --css-color-green-800: #0a3622;

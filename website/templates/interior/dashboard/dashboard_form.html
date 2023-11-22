@@ -25,7 +25,7 @@
           <ul class="css-m-0 css-p-0 css-display-flex css-no-decoration css-jc-start">
             {% for k,v in page_dict_html['dashboard_section_links_dict'].items() %}
               {% if v in page_dict_html['navbar_link_current'] %}
-                <li><a href="{{ v }}" class="css-mr-30 css-plr-15 css-br-50 css-a-black-none css-ptb-5 css-bg-primary">{{ k }}</a></li>
+                <li><a href="{{ v }}" class="css-mr-30 css-plr-15 css-br-50 css-a-black-none css-ptb-5 css-bg-secondary">{{ k }}</a></li>
               {% else %}
                 <li><a href="{{ v }}" class="css-mr-30 css-plr-15 css-br-50 css-a-black-none css-ptb-5 css-bg-hover-1">{{ k }}</a></li>
               {% endif %}

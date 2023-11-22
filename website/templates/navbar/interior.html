@@ -49,7 +49,7 @@
         <ul class="css-m-0 css-display-flex css-no-decoration">
           {% for k,v in page_dict_html['navbar_link_dict'].items() %}
             {% if v in page_dict_html['navbar_link_current'] %}
-              <li><a href="{{ v }}" class="css-mlr-15 css-plr-15 css-br-50 css-ptb-5 css-bg-primary css-a-black-none">{{ k }}</a></li>
+              <li><a href="{{ v }}" class="css-mlr-15 css-plr-15 css-br-50 css-ptb-5 css-bg-secondary css-a-black-none">{{ k }}</a></li>
             {% else %}
               <li><a href="{{ v }}" class="css-mlr-15 css-plr-15 css-br-50 css-ptb-5 css-a-black-none css-bg-hover-1">{{ k }}</a></li>
             {% endif %}

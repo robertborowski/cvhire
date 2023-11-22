@@ -3,6 +3,8 @@
 // When making a change to the bootstrap defaults, run below compiler in the terminal
 // sass scss/custom.scss:website/static/css/custom_bootstrap.css
 
-$primary: #ffc107;
+// $primary: #ffc107;
+$primary: #198754;
+$secondary: #ffc107;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
