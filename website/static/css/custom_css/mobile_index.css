@@ -184,14 +184,14 @@
     .css-mb-10-mobile {
       margin-bottom: 10px;
     }
-    .css-ml-25-mobile, .css-ml-50-mobile, .css-ml-100-mobile {
+    .css-ml-25-mobile, .css-ml-50-mobile, .css-ml-100-mobile, .css-ml-200-mobile {
       margin-left: 10px;
     }
     .css-ml-25-mobile-only {
       margin-left: 25px
     }
-    .css-mr-100-mobile {
-      margin-right: 0px;
+    .css-mr-100-mobile, .css-mr-200-mobile {
+      margin-right: 10px;
     }
     .css-mr-25-mobile {
       margin-right: 5px;

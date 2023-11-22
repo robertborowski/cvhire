@@ -9,9 +9,9 @@
 <body class="css-google-font-1">
   {% if page_dict_html['nav_header'] == true %}
     <!-- ------------------------------------- navbar start ------------------------------------- -->
-    <nav class="fixed-top container-fluid shadow-sm css-display-flex-mobile css-jc-between css-p-10 css-bg-white">
-      <div class="css-ml-100-mobile css-display-flex css-jc-between">
-        <a href="/" class="css-a-black-none" id="css-home-button"><p class="css-m-0 css-header-25"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_green.png" alt="CVhire logo" class="css-img-height-30 css-mt-negative-5"> CVhire</p></a>
+    <nav class="fixed-top container-fluid shadow-sm css-display-flex-mobile css-jc-between css-p-10 css-bg-success">
+      <div class="css-ml-200-mobile css-display-flex css-jc-between">
+        <a href="/" class="css-a-white-none" id="css-home-button"><p class="css-m-0 css-header-40-mobile"><img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/logo_v2_white.png" alt="CVhire logo" class="css-img-height-40-mobile css-mt-negative-5"> CVhire</p></a>
         <!-- ------------------------------------- toggle start ------------------------------------- -->
         <div class="css-menu-toggle css-mt-5 css-mr-25" id="css-mobile-menu">
           <span class="css-bar"></span>
@@ -21,12 +21,12 @@
         <!-- ------------------------------------- toggle end ------------------------------------- -->
       </div>
       <!-- ------------------------------------- primary menu desktop start ------------------------------------- -->
-      <div class="css-display-block my-auto css-mr-100-mobile css-visible-desktop">
-        <ul class="css-nav-list-desktop my-auto css-color-black css-ml-25-mobile-only">
+      <div class="css-display-block my-auto css-mr-200-mobile css-visible-desktop">
+        <ul class="css-nav-list-desktop my-auto css-color-white css-ml-25-mobile-only">
           {% for k,v in page_dict_html['navbar_dict'].items() %}
-            <li id="primary-menu" class="my-auto css-mlr-15 css-header-15">{{ v['header'] }} <i class="fa-solid fa-chevron-down"></i>
+            <li id="primary-menu" class="my-auto css-header-15 css-hover-bg-white css-p-10 css-br-10-specific-1">{{ v['header'] }} <i class="fa-solid fa-chevron-down"></i>
               <!-- ------------------------------------- sub menu start ------------------------------------- -->
-              <ul id="sub-menu" class="css-no-decoration css-p-20 css-m-0 css-position-absolute shadow css-bg-white css-br-15 css-ml-negative-50">
+              <ul id="sub-menu" class="css-no-decoration css-p-20 css-mt-5 css-position-absolute shadow css-bg-white css-br-10-specific-2 css-ml-negative-10">
                 {% for k2,v2 in v['sections'].items() %}
                   <li class="css-ptb-10 css-display-flex">
                     <a href="{{ v2['url'] }}" class="css-color-success-hover css-display-flex">
@@ -44,8 +44,8 @@
               <!-- ------------------------------------- sub menu end ------------------------------------- -->
             </li>
           {% endfor %}
-          <li class="my-auto css-mlr-15 css-header-15"><a href="/login" class="css-color-success-hover">Login</a></li>
-          <li class="my-auto css-mlr-15 css-header-15"><a href="/signup" class="btn btn-primary">Get started</a></li>
+          <li class="my-auto css-mlr-15 css-header-15"><a href="/login" class="css-p-10 css-br-10 css-color-white css-hover-bg-white">Login</a></li>
+          <li class="my-auto css-mlr-15 css-header-15"><a href="/signup" class="btn btn-light">Dashboard</a></li>
         </ul>
       </div>
       <!-- ------------------------------------- primary menu desktop end ------------------------------------- -->
@@ -55,7 +55,7 @@
         <div class="css-nav-list accordion css-pt-25" id="accordionExample">
           {% for k,v in page_dict_html['navbar_dict'].items() %}
             <!-- ------------------------------------- accordian item start ------------------------------------- -->
-            <div class="accordion-item-override">
+            <div class="accordion-item">
               <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ v['id'] }}" aria-expanded="false" aria-controls="{{ v['id'] }}">{{ v['header'] }}</button></h2>
               <div id="{{ v['id'] }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body css-p-0-important css-m-0-important">
@@ -82,8 +82,8 @@
             <!-- ------------------------------------- accordian item end ------------------------------------- -->
           {% endfor %}
           <div class="text-center css-mt-25 css-pb-25">
-            <a href="/login" class="btn btn-outline-success css-plr-25 css-mr-10">Login</a>
-            <a href="/signup" class="btn btn-primary css-ml-10">Get started</a>
+            <a href="/login" class="btn btn-outline-light css-plr-25 css-mr-10">Login</a>
+            <a href="/signup" class="btn btn-light css-ml-10">Dashboard</a>
           </div>
         </div>
         <!-- ------------------------------------- accordian end ------------------------------------- -->

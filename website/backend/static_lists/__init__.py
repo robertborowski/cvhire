@@ -91,7 +91,7 @@ def navbar_link_dict_exterior_function():
           'title': 'Blog',
           'description': 'See our latest blog posts',
           'url': '/blog',
-          'icon': 'fa-solid fa-i-cursor'
+          'icon': 'fa-solid fa-pen'
         },
         '2': {
           'title': 'Privacy & terms',

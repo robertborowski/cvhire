@@ -103,50 +103,6 @@
   text-decoration: underline;
 }
 /* ------------------- a end ------------------- */
-/* ------------------- accordian override start ------------------- */
-.accordion-item-override {
-  color: var(--bs-accordion-color);
-  background-color: var(--bs-accordion-bg);
-  border: none !important;
-}
-.accordion-item-override:first-of-type {
-  border-top-left-radius: var(--bs-accordion-border-radius);
-  border-top-right-radius: var(--bs-accordion-border-radius);
-}
-.accordion-item-override:first-of-type .accordion-button {
-  border-top-left-radius: var(--bs-accordion-inner-border-radius);
-  border-top-right-radius: var(--bs-accordion-inner-border-radius);
-}
-.accordion-item-override:not(:first-of-type) {
-  border-top: 0;
-}
-.accordion-item-override:last-of-type {
-  border-bottom-right-radius: var(--bs-accordion-border-radius);
-  border-bottom-left-radius: var(--bs-accordion-border-radius);
-}
-.accordion-item-override:last-of-type .accordion-button.collapsed {
-  border-bottom-right-radius: var(--bs-accordion-inner-border-radius);
-  border-bottom-left-radius: var(--bs-accordion-inner-border-radius);
-}
-.accordion-item-override:last-of-type .accordion-collapse {
-  border-bottom-right-radius: var(--bs-accordion-border-radius);
-  border-bottom-left-radius: var(--bs-accordion-border-radius);
-}
-.accordion-flush .accordion-item-override {
-  border-right: 0;
-  border-left: 0;
-  border-radius: 0;
-}
-.accordion-flush .accordion-item-override:first-child {
-  border-top: 0;
-}
-.accordion-flush .accordion-item-override:last-child {
-  border-bottom: 0;
-}
-.accordion-flush .accordion-item-override .accordion-button, .accordion-flush .accordion-item-override .accordion-button.collapsed {
-  border-radius: 0;
-}
-/* ------------------- accordian override end ------------------- */
 /* ------------------- background start ------------------- */
 .css-bg-hover-1 {
   position: relative
@@ -597,6 +553,12 @@
 .css-br-10 {
   border-radius: 10px;
 }
+.css-br-10-specific-1 {
+  border-radius: 10px 10px 10px 0px;
+}
+.css-br-10-specific-2 {
+  border-radius: 0px 10px 10px 10px;
+}
 .css-br-15 {
   border-radius: 15px;
 }
@@ -975,6 +937,14 @@
   cursor: pointer;
   opacity: 1.0 !important;
   transition: 0.5s;
+}
+.css-hover-bg-white {
+  background-color: none;
+}
+.css-hover-bg-white:hover {
+  background-color: white;
+  color: black;
+  transition: 0.25s;
 }
 /* ------------------- hover end ------------------- */
 /* ------------------- img start ------------------- */
@@ -1521,6 +1491,9 @@
 .css-mr-100-mobile {
   margin-right: 100px;
 }
+.css-mr-200-mobile {
+  margin-right: 200px;
+}
 .css-mr-30 {
   margin-right: 30px;
 }
@@ -1538,6 +1511,9 @@
 }
 .css-ml-3-negative {
   margin-left: -15px;
+}
+.css-ml-negative-10 {
+  margin-left: -10px;
 }
 .css-ml-negative-25 {
   margin-left: -25px;
@@ -1574,6 +1550,9 @@
 }
 .css-ml-100-mobile {
   margin-left: 100px;
+}
+.css-ml-200-mobile {
+  margin-left: 200px;
 }
 .css-ml-30 {
   margin-left: 30px;
@@ -1654,7 +1633,7 @@
   cursor: pointer;
 }
 .css-menu-toggle .css-bar {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   height: 2px;
   width: 25px;
   margin: 3px 0;
