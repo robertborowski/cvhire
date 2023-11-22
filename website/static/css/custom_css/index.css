@@ -153,6 +153,12 @@
 .css-bg-success {
   background-color: var(--css-color-success);
 }
+.css-bg-green-700 {
+  background-color: var(--css-color-green-700);
+}
+.css-bg-green-800 {
+  background-color: var(--css-color-green-800);
+}
 .css-bg-danger {
   background-color: var(--css-color-danger);
 }
@@ -390,6 +396,8 @@
   --css-color-primary-darker: rgb(44 26 77);
   --css-color-secondary: rgb(108 117 125);
   --css-color-success: rgb(25, 135, 84);
+  --css-color-green-700: #0f5132;
+  --css-color-green-800: #0a3622;
   --css-color-info: rgb(13, 202, 240);
   --css-color-danger: #dc3545;
   --css-color-warning: rgb(255, 193, 7);
@@ -449,6 +457,9 @@
 }
 .css-color-white {
   color: white;
+}
+.css-color-off-white {
+  color: rgb(230, 230, 230);
 }
 .css-color-white-important {
   color: white !important;
@@ -558,6 +569,12 @@
 }
 .css-br-10-specific-2 {
   border-radius: 0px 10px 10px 10px;
+}
+.css-br-10-specific-3 {
+  border-radius: 0px 10px 10px 0px;
+}
+.css-br-10-specific-4 {
+  border-radius: 10px 0px 0px 10px;
 }
 .css-br-15 {
   border-radius: 15px;
@@ -1762,6 +1779,9 @@
 .css-pb-50 {
   padding-bottom: 50px;
 }
+.css-pb-75 {
+  padding-bottom: 75px;
+}
 .css-pb-100 {
   padding-bottom: 100px;
 }
@@ -1954,26 +1974,7 @@
 }
 /* ------------------- position end ------------------- */
 /* ------------------- shape divider start ------------------- */
-.css-shape-divider-top-1672341955 {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-.css-shape-divider-top-1672341955 svg {
-  position: relative;
-  display: block;
-  width: calc(300% + 1.3px);
-  height: 199px;
-}
-.css-shape-divider-top-1672341955 .shape-fill {
-  fill: #FFFFFF;
-}
-
-.css-shape-divider-top-1672276628 {
+.custom-shape-divider-top-1700653874 {
   position: relative;
   top: 0;
   left: 0;
@@ -1981,264 +1982,14 @@
   overflow: hidden;
   line-height: 0;
 }
-.css-shape-divider-top-1672276628 svg {
-  position: relative;
-  display: block;
-  width: calc(300% + 1.3px);
-  height: 299px;
-}
-.css-shape-divider-top-1672276628 .shape-fill {
-  fill: #FFFFFF;
-}
-
-.css-shape-divider-bottom-1672276706 {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-.css-shape-divider-bottom-1672276706 svg {
-  position: relative;
-  display: block;
-  width: calc(300% + 1.3px);
-  height: 300px;
-}
-.css-shape-divider-bottom-1672276706 .shape-fill {
-  fill: #FFFFFF;
-}
-
-.css-shape-divider-top-1672337904 {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-.css-shape-divider-top-1672337904 svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 105px;
-}
-.css-shape-divider-top-1672337904 .shape-fill {
-  fill: #FFFFFF;
-}
-/** For mobile devices **/
-@media (max-width: 767px) {
-  .css-shape-divider-top-1672337904 svg {
-      width: calc(100% + 1.3px);
-      height: 100px;
-  }
-}
-
-.css-shape-divider-bottom-1672337954 {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-.css-shape-divider-bottom-1672337954 svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 105px;
-}
-.css-shape-divider-bottom-1672337954 .shape-fill {
-  fill: #FFFFFF;
-}
-/** For mobile devices **/
-@media (max-width: 767px) {
-  .css-shape-divider-bottom-1672337954 svg {
-      width: calc(100% + 1.3px);
-      height: 100px;
-  }
-}
-
-.css-shape-divider-top-1672426066 {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-.css-shape-divider-top-1672426066 svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 150px;
-}
-.css-shape-divider-top-1672426066 .shape-fill {
-  fill: #FFFFFF;
-  fill: rgb(255, 237, 217);
-}
-/** For mobile devices **/
-@media (max-width: 767px) {
-  .css-shape-divider-top-1672426066 svg {
-      width: calc(135% + 1.3px);
-      height: 100px;
-  }
-}
-
-.css-shape-divider-top-1672426066-2 {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-.css-shape-divider-top-1672426066-2 svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 150px;
-}
-.css-shape-divider-top-1672426066-2 .shape-fill {
-  fill: rgb(231 241 255);
-}
-/** For mobile devices **/
-@media (max-width: 767px) {
-  .css-shape-divider-top-1672426066-2 svg {
-      width: calc(135% + 1.3px);
-      height: 100px;
-  }
-}
-
-.css-shape-divider-top-1682593749 {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-.css-shape-divider-top-1682593749 svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 100px;
-}
-.css-shape-divider-top-1682593749 .shape-fill {
-  fill: #FFFFFF;
-}
-
-.css-shape-divider-bottom-1682593815 {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-.css-shape-divider-bottom-1682593815 svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 100px;
-}
-.css-shape-divider-bottom-1682593815 .shape-fill {
-  fill: #FFFFFF;
-}
-
-.css-shape-divider-bottom-1682633731 {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-.css-shape-divider-bottom-1682633731 svg {
-  position: relative;
-  display: block;
-  width: calc(300% + 1.3px);
-  height: 174px;
-}
-.css-shape-divider-bottom-1682633731 .shape-fill {
-  fill: #FFFFFF;
-}
-
-.css-shape-divider-top-1682682943 {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-.css-shape-divider-top-1682682943 svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 100px;
-}
-.css-shape-divider-top-1682682943 .shape-fill {
-  fill: #FFFFFF;
-}
-
-.css-shape-divider-bottom-1682683019 {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-.css-shape-divider-bottom-1682683019 svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 100px;
-}
-.css-shape-divider-bottom-1682683019 .shape-fill {
-  fill: #FFFFFF;
-}
-
-.css-shape-divider-bottom-1686320767 {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-.css-shape-divider-bottom-1686320767 svg {
+.custom-shape-divider-top-1700653874 svg {
   position: relative;
   display: block;
   width: calc(300% + 1.3px);
   height: 150px;
 }
-.css-shape-divider-bottom-1686320767 .shape-fill {
-  fill: #FFFFFF;
-}
-
-.css-shape-divider-bottom-1686320767-black {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-.css-shape-divider-bottom-1686320767-black svg {
-  position: relative;
-  display: block;
-  width: calc(300% + 1.3px);
-  height: 150px;
-}
-.css-shape-divider-bottom-1686320767-black .shape-fill {
-  fill: #000000;
+.custom-shape-divider-top-1700653874 .shape-fill {
+  fill: var(--css-color-green-800);
 }
 /* ------------------- shape divider end ------------------- */
 /* ------------------- stroke start ------------------- */
@@ -2381,7 +2132,7 @@ li:hover i.fa-solid.fa-chevron-down {
   font-weight: 900;
 }
 .css-weight-bolder {
-  font-weight: bolder;
+  font-weight: bolder !important;
 }
 /* ------------------- weight end ------------------- */
 /* ------------------- width start ------------------- */

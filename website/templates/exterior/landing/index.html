@@ -8,35 +8,40 @@
 
 {% block contentBodyExceptNavbarAndFooter %}
 <!-- ------------------------------------- content start ------------------------------------- -->
+<div class="container-fluid css-bg-green-800">
+  <div class="css-width-1200 mx-auto css-color-white">
+    <!-- ------------------------------------- title start ------------------------------------- -->
+    <div class="css-pt-75 text-center css-width-600 mx-auto">
+      <h1 class="css-header-40-mobile css-weight-bolder">Hire Smarter with AI Powered Applicant Tracking System</h1>
+      <h2 class="css-header-20-mobile css-mt-30 css-color-off-white">The #1 platform for applicant resume parsing & CV screening with AI</h2>
+    </div>
+    <!-- ------------------------------------- title end ------------------------------------- -->
+    <!-- ------------------------------------- email collect start ------------------------------------- -->
+    <div class="css-pb-75 css-width-500 mx-auto">
+      <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+        <div class="form-group css-display-flex css-mt-25">
+          <label for="uiEmail"></label>
+          <input type="email" class="form-control css-br-10-specific-4 css-p-15" id="uiEmail" name="uiEmail" aria-describedby="emailHelp" placeholder="Work email address" required>
+          <button type="submit" class="btn btn-primary css-nowrap css-br-10-specific-3">Start free trial</button>
+        </div>
+      </form>
+    </div>
+    <!-- ------------------------------------- email collect end ------------------------------------- -->
+    <!-- ------------------------------------- img start ------------------------------------- -->
+    <div class="text-center css-pb-50">
+      <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/intro_graphic_v3.png" alt="img" class="css-br-15 css-width-100">
+    </div>
+    <!-- ------------------------------------- img end ------------------------------------- -->
+  </div>
+</div>
+<!-- ------------------------------------- shape divider start ------------------------------------- -->
+<div class="custom-shape-divider-top-1700653874">
+  <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M1200 0L0 0 598.97 114.72 1200 0z" class="shape-fill"></path>
+  </svg>
+</div>
+<!-- ------------------------------------- shape divider end ------------------------------------- -->
 <div class="css-width-1200 mx-auto">
-  <!-- ------------------------------------- background image start ------------------------------------- -->
-  <div class="css-bg-tilted-2">
-    <div class="css-bg-solid-2"></div>
-  </div>
-  <div class="css-bg-tilted-3">
-    <div class="css-bg-solid-3"></div>
-  </div>
-  <!-- ------------------------------------- background image end ------------------------------------- -->
-  <!-- ------------------------------------- title start ------------------------------------- -->
-  <div class="css-pt-75 text-center">
-    <h1 class="css-header-40-mobile css-weight-bolder">Resume parsing & CV screening with AI. Fast and free.</h1>
-    <h2 class="css-header-25-mobile css-mt-20">Save hours sifting through resumes.</h2>
-  </div>
-  <!-- ------------------------------------- title end ------------------------------------- -->
-  <!-- ------------------------------------- buttons start ------------------------------------- -->
-  <div class="text-center css-mt-30">
-    <a href="/login" class="btn btn-outline-success btn-lg css-mr-10 css-plr-40">Login</a>
-    <a href="/signup" class="btn btn-primary btn-lg css-ml-10">Get started</a>
-  </div>
-  <!-- ------------------------------------- buttons end ------------------------------------- -->
-  <!-- ------------------------------------- graphic start ------------------------------------- -->
-  <div class="css-mt-50 css-mobile-view-1">
-    <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/intro_graphic_v1.png" alt="graphic" class="css-width-100">
-  </div>
-  <div class="css-mt-50 css-mobile-view-2 text-center">
-    <img src="https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/intro_graphic_v2.png" alt="graphic" class="css-img-height-500">
-  </div>
-  <!-- ------------------------------------- graphic end ------------------------------------- -->
   <!-- ------------------------------------- words start ------------------------------------- -->
   <div class="css-ptb-100 text-center">
     <p class="css-header-40-mobile css-weight-bolder css-m-0">Whatever your use case, we’ve got you covered.</p>
