@@ -102,6 +102,13 @@
   color: var(--css-color-danger);
   text-decoration: underline;
 }
+.css-a-primary-underline-on-hover {
+  color: var(--css-color-primary);
+  text-decoration: none;
+}
+.css-a-primary-underline-on-hover:hover {
+  text-decoration: underline;
+}
 /* ------------------- a end ------------------- */
 /* ------------------- background start ------------------- */
 .css-bg-hover-1 {
