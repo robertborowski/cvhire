@@ -89,7 +89,7 @@ def navbar_link_dict_exterior_function():
       'sections': {
         '1': {
           'title': 'Blog',
-          'description': 'See our latest blog posts',
+          'description': 'See our latest blog posts about HR trends',
           'url': '/blog',
           'icon': 'fa-solid fa-pen'
         },
