@@ -175,7 +175,7 @@
   background-color: rgb(231 241 255);
 }
 .css-bg-grey-1 {
-  background-color: rgb(246, 248, 250);
+  background-color: var(--css-color-grey-1);
 }
 .css-bg-grey-2 {
   background-color: rgb(248, 248, 248);
@@ -398,6 +398,7 @@
   --css-color-success: rgb(25, 135, 84);
   --css-color-green-700: #0f5132;
   --css-color-green-800: #0a3622;
+  --css-color-grey-1: rgb(246, 248, 250);
   --css-color-info: rgb(13, 202, 240);
   --css-color-danger: #dc3545;
   --css-color-warning: rgb(255, 193, 7);
