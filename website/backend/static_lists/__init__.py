@@ -76,8 +76,8 @@ def navbar_link_dict_exterior_function():
           'icon': 'fa-solid fa-magnifying-glass'
         },
         '2': {
-          'title': 'Position matching',
-          'description': 'Position matching candidates with machine learning',
+          'title': 'Job matching',
+          'description': 'Job matching candidates with machine learning',
           'url': '/feature/one-cv-many-roles',
           'icon': 'fa-solid fa-link'
         },
