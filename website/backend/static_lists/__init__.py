@@ -71,11 +71,17 @@ def navbar_link_dict_exterior_function():
       'sections': {
         '1': {
           'title': 'Resume parsing',
-          'description': 'Resume parsing with AI',
+          'description': 'Resume parsing at scale with AI',
           'url': '/feature/one-role-many-cvs',
-          'icon': 'fa-regular fa-file'
+          'icon': 'fa-solid fa-magnifying-glass'
         },
         '2': {
+          'title': 'Position matching',
+          'description': 'Position matching candidates with machine learning',
+          'url': '/feature/one-cv-many-roles',
+          'icon': 'fa-solid fa-link'
+        },
+        '3': {
           'title': 'Ask AI',
           'description': 'Ask AI anything about a resume',
           'url': '/feature/ask-ai',
