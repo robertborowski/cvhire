@@ -146,6 +146,9 @@
     .css-img-height-40-mobile {
       max-height: 30px;
     }
+    .css-img-height-50-mobile {
+      max-height: 40px;
+    }
     /* ------------------- image end ------------------- */
     /* ------------------- justify content start ------------------- */
     .css-jc-between-mobile-center {
@@ -227,6 +230,11 @@
       padding: 0px;
     }
     /* ------------------- padding end ------------------- */
+    /* ------------------- text start ------------------- */
+    .css-text-center-mobile {
+      text-align: center;
+    }
+    /* ------------------- text end ------------------- */
     /* ------------------- visibility start ------------------- */
     .css-visible-non-mobile-only {
       display:none;
@@ -268,6 +276,9 @@
       max-height: 500px;
       width: auto;
       max-width: 300px;
+    }
+    .css-width-100-percent-mobile {
+      width: 100% !important;
     }
     .css-width-250-mobile {
       width: 90%;
