@@ -57,6 +57,14 @@ def cv_landing_details_function(url_reference_id=None, url_redirect_code=None):
   # ------------------------ convert objs to dict end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
+    # ------------------------ post #1 start ------------------------
+    # ------------------------ get ui start ------------------------
+    ui_email_footer = request.form.get('uiEmailFooter')
+    # ------------------------ get ui end ------------------------
+    if ui_email_footer != None and ui_email_footer != '':
+      return redirect(url_for('cv_views_exterior.email_signup_checker_function', url_redirect_code=ui_email_footer))
+    # ------------------------ post #1 end ------------------------
+    # ------------------------ post #2 start ------------------------
     # ------------------------ get ui start ------------------------
     ui_email = request.form.get('uiEmail')
     # ------------------------ get ui end ------------------------
@@ -73,6 +81,7 @@ def cv_landing_details_function(url_reference_id=None, url_redirect_code=None):
     # ------------------------ redirect to signup start ------------------------
     return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code=ui_email))
     # ------------------------ redirect to signup end ------------------------
+    # ------------------------ post #2 end ------------------------
   # ------------------------ post end ------------------------
   return render_template('exterior/landing/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
@@ -280,4 +289,32 @@ def pricing_function(url_feature_code=None):
   page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_blog_objs, 'blog')
   # ------------------------ convert objs to dict end ------------------------
   return render_template('exterior/pricing/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_exterior.route('/email/check')
+@cv_views_exterior.route('/email/check/')
+@cv_views_exterior.route('/email/check/<url_redirect_code>')
+@cv_views_exterior.route('/email/check/<url_redirect_code>/')
+def email_signup_checker_function(url_redirect_code=None):
+  # ------------------------ if none provided start ------------------------
+  if url_redirect_code == None or url_redirect_code == '':
+    return redirect(url_for('cv_views_exterior.cv_landing_details_function'))
+  # ------------------------ if none provided end ------------------------
+  # ------------------------ set variable start ------------------------
+  ui_email = url_redirect_code
+  # ------------------------ set variable end ------------------------
+  # ------------------------ sanitize/check user input email start ------------------------
+  ui_email_cleaned = sanitize_email_function(ui_email, 'true')
+  if ui_email_cleaned == False:
+    return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code='e1'))
+  # ------------------------ sanitize/check user input email end ------------------------
+  # ------------------------ redirect to login start ------------------------
+  user_exists = UserObj.query.filter_by(email=ui_email).first()
+  if user_exists != None and user_exists != []:
+    return redirect(url_for('cv_auth.cv_login_function', url_redirect_code=ui_email))
+  # ------------------------ redirect to login end ------------------------
+  # ------------------------ redirect to signup start ------------------------
+  return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code=ui_email))
+  # ------------------------ redirect to signup end ------------------------
 # ------------------------ individual route end ------------------------

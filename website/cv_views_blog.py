@@ -18,8 +18,8 @@ redis_connection = redis_connect_open_function()
 # ------------------------ connect to redis end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_blog.route('/blog')
-@cv_views_blog.route('/blog/')
+@cv_views_blog.route('/blog', methods=['GET', 'POST'])
+@cv_views_blog.route('/blog/', methods=['GET', 'POST'])
 def blog_function(url_redirect_code=None):
   # ------------------------ page dict start ------------------------
   if url_redirect_code == None:
@@ -45,16 +45,26 @@ def blog_function(url_redirect_code=None):
   # ------------------------ get navbar variables start ------------------------
   page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
   # ------------------------ get navbar variables end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ post #1 start ------------------------
+    # ------------------------ get ui start ------------------------
+    ui_email_footer = request.form.get('uiEmailFooter')
+    # ------------------------ get ui end ------------------------
+    if ui_email_footer != None and ui_email_footer != '':
+      return redirect(url_for('cv_views_exterior.email_signup_checker_function', url_redirect_code=ui_email_footer))
+    # ------------------------ post #1 end ------------------------
+  # ------------------------ post end ------------------------
   return render_template('exterior/blog/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_blog.route('/blog/category')
-@cv_views_blog.route('/blog/category/')
-@cv_views_blog.route('/blog/category/<url_category_code>')
-@cv_views_blog.route('/blog/category/<url_category_code>/')
-@cv_views_blog.route('/blog/category/<url_category_code>/<url_redirect_code>')
-@cv_views_blog.route('/blog/category/<url_category_code>/<url_redirect_code>/')
+@cv_views_blog.route('/blog/category', methods=['GET', 'POST'])
+@cv_views_blog.route('/blog/category/', methods=['GET', 'POST'])
+@cv_views_blog.route('/blog/category/<url_category_code>', methods=['GET', 'POST'])
+@cv_views_blog.route('/blog/category/<url_category_code>/', methods=['GET', 'POST'])
+@cv_views_blog.route('/blog/category/<url_category_code>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_blog.route('/blog/category/<url_category_code>/<url_redirect_code>/', methods=['GET', 'POST'])
 def blog_category_function(url_category_code=None, url_redirect_code=None):
   # ------------------------ page dict start ------------------------
   if url_redirect_code == None:
@@ -93,14 +103,24 @@ def blog_category_function(url_category_code=None, url_redirect_code=None):
   # ------------------------ get navbar variables start ------------------------
   page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
   # ------------------------ get navbar variables end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ post #1 start ------------------------
+    # ------------------------ get ui start ------------------------
+    ui_email_footer = request.form.get('uiEmailFooter')
+    # ------------------------ get ui end ------------------------
+    if ui_email_footer != None and ui_email_footer != '':
+      return redirect(url_for('cv_views_exterior.email_signup_checker_function', url_redirect_code=ui_email_footer))
+    # ------------------------ post #1 end ------------------------
+  # ------------------------ post end ------------------------
   return render_template('exterior/blog/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_blog.route('/blog/<url_blog_code>')
-@cv_views_blog.route('/blog/<url_blog_code>/')
-@cv_views_blog.route('/blog/<url_blog_code>/<url_redirect_code>')
-@cv_views_blog.route('/blog/<url_blog_code>/<url_redirect_code>/')
+@cv_views_blog.route('/blog/<url_blog_code>', methods=['GET', 'POST'])
+@cv_views_blog.route('/blog/<url_blog_code>/', methods=['GET', 'POST'])
+@cv_views_blog.route('/blog/<url_blog_code>/<url_redirect_code>', methods=['GET', 'POST'])
+@cv_views_blog.route('/blog/<url_blog_code>/<url_redirect_code>/', methods=['GET', 'POST'])
 def blog_post_function(url_blog_code=None, url_redirect_code=None):
   # ------------------------ page dict start ------------------------
   if url_redirect_code == None:
@@ -142,5 +162,15 @@ def blog_post_function(url_blog_code=None, url_redirect_code=None):
   # ------------------------ get navbar variables start ------------------------
   page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
   # ------------------------ get navbar variables end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ post #1 start ------------------------
+    # ------------------------ get ui start ------------------------
+    ui_email_footer = request.form.get('uiEmailFooter')
+    # ------------------------ get ui end ------------------------
+    if ui_email_footer != None and ui_email_footer != '':
+      return redirect(url_for('cv_views_exterior.email_signup_checker_function', url_redirect_code=ui_email_footer))
+    # ------------------------ post #1 end ------------------------
+  # ------------------------ post end ------------------------
   return render_template(html_template, page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------

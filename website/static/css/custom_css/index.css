@@ -2315,6 +2315,14 @@ li:hover i.fa-solid.fa-chevron-down {
   width: 500px;
   max-width: 90%;
 }
+.css-width-400-max {
+  width: 100%;
+  max-width: 400px;
+}
+.css-width-500-max {
+  width: 100%;
+  max-width: 500px;
+}
 .css-width-600 {
   width: 600px;
   max-width: 90%;
