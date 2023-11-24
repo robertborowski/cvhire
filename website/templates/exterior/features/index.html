@@ -1,7 +1,15 @@
 {% extends "navbar/exterior.html" %}
 
 {% block title %}
-  <title>One Role Many CVs | CVhire</title>
+  {% if page_dict_html['url_feature_code'] == 'one-role-many-cvs' %}
+    <title>Resume Parsing | CVhire</title>
+  {% elif page_dict_html['url_feature_code'] == 'one-cv-many-roles' %}
+    <title>Job Matching | CVhire</title>
+  {% elif page_dict_html['url_feature_code'] == 'ask-ai' %}
+    <title>Ask AI | CVhire</title>
+  {% elif page_dict_html['url_feature_code'] == 'export' %}
+    <title>Export | CVhire</title>
+  {% endif %}
   <meta name="description" content="CVhire is an automated CV screening and resume parser for recruiters and HR teams. AI recruiting made simple.">
   <meta name="og:description" content="CVhire is an automated CV screening and resume parser for recruiters and HR teams. AI recruiting made simple.">
 {% endblock %}

@@ -259,3 +259,25 @@ def feature_pages_function(url_feature_code=None):
   # ------------------------ convert objs to dict end ------------------------
   return render_template('exterior/features/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
+
+# ------------------------ individual route start ------------------------
+@cv_views_exterior.route('/pricing')
+@cv_views_exterior.route('/pricing/')
+def pricing_function(url_feature_code=None):
+  # ------------------------ set variables start ------------------------
+  page_dict = {}
+  page_dict['nav_header'] = True
+  page_dict['is_blog_page'] = False
+  page_dict['url_feature_code'] = url_feature_code
+  # ------------------------ set variables end ------------------------
+  # ------------------------ get latest blog post start ------------------------
+  db_blog_objs = get_blog_posts_function()
+  # ------------------------ get latest blog post end ------------------------
+  # ------------------------ get navbar variables start ------------------------
+  page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
+  # ------------------------ get navbar variables end ------------------------
+  # ------------------------ convert objs to dict start ------------------------
+  page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_blog_objs, 'blog')
+  # ------------------------ convert objs to dict end ------------------------
+  return render_template('exterior/pricing/index.html', page_dict_html=page_dict)
+# ------------------------ individual route end ------------------------
