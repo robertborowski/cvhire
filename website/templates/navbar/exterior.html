@@ -29,7 +29,11 @@
               <ul id="sub-menu" class="css-no-decoration css-p-20 css-mt-5 css-position-absolute shadow css-bg-white css-br-10-specific-2 css-ml-negative-10">
                 {% for k2,v2 in v['sections'].items() %}
                   <li class="css-ptb-10 css-display-flex border css-br-10 css-mb-15 shadow-sm">
-                    <a href="{{ v2['url'] }}" class="css-color-success-hover css-display-flex">
+                    {% if v2['title'] == 'Book a demo' %}
+                      <a href="{{ v2['url'] }}" target="_blank" class="css-color-success-hover css-display-flex">
+                    {% else %}
+                      <a href="{{ v2['url'] }}" class="css-color-success-hover css-display-flex">
+                    {% endif %}
                       <div class="text-center">
                         <i class="{{ v2['icon'] }} css-mr-5 css-header-25 css-mt-5 css-width-50-px-min-max"></i>
                       </div>
@@ -63,7 +67,11 @@
                   <ul class="css-no-decoration css-p-0-important css-m-0-important">
                     {% for k2,v2 in v['sections'].items() %}
                       <li>
-                        <a href="{{ v2['url'] }}" class="css-color-success-hover css-display-flex css-ml-5">
+                        {% if v2['title'] == 'Book a demo' %}
+                          <a href="{{ v2['url'] }}" target="_blank" class="css-color-success-hover css-display-flex css-ml-5">
+                        {% else %}
+                          <a href="{{ v2['url'] }}" class="css-color-success-hover css-display-flex css-ml-5">
+                        {% endif %}
                           <div class="text-center">
                             <i class="{{ v2['icon'] }} css-mr-10 css-header-30 css-mt-5 css-width-50-px-min-max"></i>
                           </div>
@@ -193,6 +201,7 @@
             <ul class="css-no-decoration">
               <li class="css-mb-10 css-header-25 css-weight-bolder">Resources</li>
               <li class="css-mb-10"><a href="/blog" class="css-a-white-underline">Blog</a></li>
+              <li class="css-mb-10"><a href="https://calendly.com/cvhire/30min" target="_blank" class="css-a-white-underline">Book a demo</a></li>
               <li class="css-mb-10"><a href="mailto:support@cvhire.com" class="css-a-white-underline">Contact</a></li>
               <li class="css-mb-10"><a href="/privacy" class="css-a-white-underline">Privacy</a></li>
               <li class="css-mb-10"><a href="/privacy" class="css-a-white-underline">Terms of service</a></li>

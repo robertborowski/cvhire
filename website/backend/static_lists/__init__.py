@@ -100,6 +100,12 @@ def navbar_link_dict_exterior_function():
           'icon': 'fa-solid fa-pen'
         },
         '2': {
+          'title': 'Book a demo',
+          'description': 'Streamline your workflow and boost productivity',
+          'url': 'https://calendly.com/cvhire/30min',
+          'icon': 'fa-solid fa-calendar'
+        },
+        '3': {
           'title': 'Privacy & terms',
           'description': 'Read out privacy & terms',
           'url': '/privacy',
