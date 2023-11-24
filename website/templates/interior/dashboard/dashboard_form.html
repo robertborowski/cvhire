@@ -699,15 +699,15 @@
             {% else %}
               {% for i in page_dict_html['db_ask_ai_arr_of_dict'] %}
                 <div class="border css-br-15 shadow css-p-25 css-mb-50">
-                  <div class="css-mb-25 css-opacity-60">
+                  <div class="css-mb-25">
                     <div class="css-display-flex css-jc-between">
-                      <p class="css-m-0 css-header-12">Question</p>
+                      <p class="css-m-0 css-header-12 css-weight-bolder css-color-primary">Question</p>
                       <a href="/cv/ask_ai/status_change/{{ i['id'] }}/delete" class="css-a-black-none" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete question"><i class="fa-solid fa-x"></i></a>
                     </div>
-                    <p class="css-m-0 css-header-18 fst-italic">{{ i['question'] }}</p>
+                    <p class="css-m-0 css-header-18 css-weight-bolder">{{ i['question'] }}</p>
                   </div>
                   <div>
-                    <p class="css-m-0 css-header-12">AI</p>
+                    <p class="css-m-0 css-header-12 css-weight-bolder css-color-primary">AI</p>
                     <p class="css-m-0 css-header-15">{{ i['answer'] }}</p>
                   </div>
                 </div>
