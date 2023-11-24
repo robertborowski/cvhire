@@ -520,10 +520,12 @@
 /* ------------------- color end ------------------- */
 /* ------------------- border start ------------------- */
 .css-border-primary {border: 1px solid var(--css-color-primary);}
-.css-border-1 {border: 1px solid black;}
-.css-border-2 {border: 1px solid red;}
-.css-border-3 {border: 1px solid blue;}
-.css-border-4 {border: 1px solid green;}
+.css-border-black {border: 1px solid black;}
+.css-border-red {border: 1px solid red;}
+.css-border-blue {border: 1px solid blue;}
+.css-border-green {border: 1px solid green;}
+.css-border-white {border: 1px solid white;}
+.css-border-orange {border: 1px solid orange;}
 .css-border-5-dark {border: 3px solid var(--css-color-2-dark);}
 .css-border-5-light {border: 3px solid var(--css-color-2-light);}
 .css-border-6-light {border: 1px solid var(--css-color-2-light);}
@@ -615,7 +617,7 @@
 .css-display-flex-mobile {
   display: flex;
 }
-.css-display-flex-row-to-column-reverse-mobile, .css-display-flex-row-to-column-reverse-mobile {
+.css-display-flex-row-to-column-reverse-mobile {
   display: flex;
   flex-direction: row;
 }

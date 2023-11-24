@@ -176,8 +176,9 @@
     {% endif %}
     <!-- ------------------------------------- above footer every page end ------------------------------------- -->
     <!-- ------------------------------------- footer start ------------------------------------- -->
-    <footer class="container-fluid css-bg-black css-color-white css-pt-100 css-pb-150">
-      <div class="css-width-1200 mx-auto css-position-relative">
+    <footer class="container-fluid css-bg-black css-color-white css-pt-100">
+      <!-- ------------------------------------- top footer start ------------------------------------- -->
+      <div class="css-width-1200 mx-auto">
         <!-- ------------------------------------- grid start ------------------------------------- -->
         <div class="css-color-white css-display-grid css-grid-1row-4col-mobile css-gap-25">
           <!-- ------------------------------------- grid column start ------------------------------------- -->
@@ -204,8 +205,7 @@
               <li class="css-mb-10"><a href="/blog" class="css-a-white-underline">Blog</a></li>
               <li class="css-mb-10"><a href="https://calendly.com/cvhire/30min" target="_blank" class="css-a-white-underline">Book a demo</a></li>
               <li class="css-mb-10"><a href="mailto:support@cvhire.com" class="css-a-white-underline">Contact</a></li>
-              <li class="css-mb-10"><a href="/privacy" class="css-a-white-underline">Privacy</a></li>
-              <li class="css-mb-10"><a href="/privacy" class="css-a-white-underline">Terms of service</a></li>
+              <li class="css-mb-10"><a href="/pricing" class="css-a-white-underline">Pricing</a></li>
             </ul>
           </div>
           <!-- ------------------------------------- grid column end ------------------------------------- -->
@@ -220,12 +220,29 @@
           <!-- ------------------------------------- grid column end ------------------------------------- -->
         </div>
         <!-- ------------------------------------- grid end ------------------------------------- -->
-        <!-- ------------------------------------- social start ------------------------------------- -->
-        <!-- <div class="css-position-absolute css-bottom-0 css-border-3">
-          <a href="https://twitter.com/CVHire_"><i class="fa-brands fa-square-x-twitter css-a-white-none"></i></a>
-        </div> -->
-        <!-- ------------------------------------- social end ------------------------------------- -->
       </div>
+      <!-- ------------------------------------- top footer end ------------------------------------- -->
+      <!-- ------------------------------------- bottom footer start ------------------------------------- -->
+      <div class="css-width-1200 mx-auto css-pb-25 css-mt-100">
+        <div class="css-display-flex css-jc-between-mobile-center css-display-flex-row-to-column-mobile">
+          <!-- ------------------------------------- social links start ------------------------------------- -->
+          <div class="css-text-center-mobile css-header-30">
+            <a href="https://twitter.com/CVHire_" target="_blank"><i class="fa-brands fa-square-x-twitter css-a-white-none css-opacity-75-hover"></i></a>
+            <a href="https://www.linkedin.com/company/cvhire/" target="_blank"><i class="fa-brands fa-linkedin css-a-white-none css-opacity-75-hover"></i></a>
+          </div>
+          <!-- ------------------------------------- social links end ------------------------------------- -->
+          <!-- ------------------------------------- additional wording start ------------------------------------- -->
+          <ul class="css-no-decoration css-display-flex css-header-12 css-jc-between-mobile-center css-mt-25-mobile">
+            <li><a href="/privacy" class="css-a-white-underline css-opacity-75-hover">Privacy</a></li>
+            <li class="css-mr-10 css-ml-10">|</li>
+            <li><a href="/privacy" class="css-a-white-underline css-opacity-75-hover">Terms of service</a></li>
+            <li class="css-mr-10 css-ml-10">|</li>
+            <li class="css-opacity-75">© 2023 CVhire</li>
+          </ul>
+          <!-- ------------------------------------- additional wording end ------------------------------------- -->
+        </div>
+      </div>
+      <!-- ------------------------------------- bottom footer end ------------------------------------- -->
     </footer>
     <!-- ------------------------------------- footer end ------------------------------------- -->
   {% endif %}
