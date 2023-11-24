@@ -525,8 +525,8 @@ def get_default_profile_imgs_function():
 # ------------------------ individual function start ------------------------
 def get_keyword_colors_function(i_keyword):
   keywords_secondary_arr = ['resume parsing','automated resume screening','resume parser online','resume screening software']
-  keywords_success_arr = ['hiring success','hiring with ai','candidate matching','recruitment service','sourcing','online resume parser']
-  keywords_info_arr = ['ai','ai recruiting','resume parser','resume']
+  keywords_success_arr = ['hiring success','hiring with ai','candidate matching','recruitment service','sourcing','online resume parser','resume parsing']
+  keywords_info_arr = ['ai','ai recruiting','resume parser','resume','artificial intelligence']
   keywords_danger_arr = ['applicant tracking system','ats','time to hire','applicant tracking software','ats tracking']
   keywords_orange_arr = ['recruiting services','recruiting','resume parsing software','job description']
   keywords_purple_arr = ['tech recruiters','recruitment system','talent acquisition specialist','crm','candidate relationship management']
