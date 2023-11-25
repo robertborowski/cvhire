@@ -128,7 +128,7 @@
       <h2 class="css-header-40-mobile css-mt-100 css-mb-50 css-weight-bolder">Frequently Asked Questions</h2>
       <!-- ------------------------------------- title end ------------------------------------- -->
       <!-- ------------------------------------- accordian start ------------------------------------- -->
-      <div class="accordion css-mb-100" id="accordionExample_faq">
+      <div class="accordion" id="accordionExample_faq">
         {% for k,v in page_dict_html['faq_dict'].items() %}
           <div class="accordion-item">
             <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ v['id'] }}" aria-expanded="false" aria-controls="{{ v['id'] }}">{{ v['question'] }}</button></h2>
@@ -141,6 +141,11 @@
         {% endfor %}
       </div>
       <!-- ------------------------------------- accordian end ------------------------------------- -->
+      <!-- ------------------------------------- text start ------------------------------------- -->
+      <div class="text-center css-mt-50 css-mb-100">
+        <a href="mailto:support@cvhire.com" class="css-weight-bolder css-a-primary-underline-on-hover css-header-20">Contact us</a>
+      </div>
+      <!-- ------------------------------------- text end ------------------------------------- -->
     </div>
     <!-- ------------------------------------- shape start ------------------------------------- -->
     <div class="custom-shape-divider-top-1700879108 css-bg-grey-1">
@@ -266,8 +271,8 @@
       <div class="css-width-1200 mx-auto css-pb-25 css-mt-100">
         <div class="css-display-flex css-jc-between-mobile-center css-display-flex-row-to-column-mobile">
           <!-- ------------------------------------- social links start ------------------------------------- -->
-          <div class="css-text-center-mobile css-header-30">
-            <a href="https://twitter.com/CVHire_" target="_blank"><i class="fa-brands fa-square-x-twitter css-a-white-none css-opacity-75-hover"></i></a>
+          <div class="css-text-center-mobile css-header-25">
+            <a href="https://twitter.com/CVHire_" target="_blank"><i class="fa-brands fa-square-x-twitter css-a-white-none css-opacity-75-hover css-mr-5"></i></a>
             <a href="https://www.linkedin.com/company/cvhire/" target="_blank"><i class="fa-brands fa-linkedin css-a-white-none css-opacity-75-hover"></i></a>
           </div>
           <!-- ------------------------------------- social links end ------------------------------------- -->

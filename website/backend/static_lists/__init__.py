@@ -157,18 +157,8 @@ def faq_dict_exterior_function():
     },
     '8': {
       'id': 'faq_id_8',
-      'question': 'abc',
-      'answer': 'abc'
-    },
-    '9': {
-      'id': 'faq_id_9',
-      'question': 'abc',
-      'answer': 'abc'
-    },
-    '10': {
-      'id': 'faq_id_10',
-      'question': 'abc',
-      'answer': 'abc'
+      'question': 'How does CVhire simplify the recruitment workflow?',
+      'answer': 'CVhire centralizes management of candidates, jobs, and tasks, improving team productivity and making the recruitment process more efficient.'
     }
   }
   return faq_dict
