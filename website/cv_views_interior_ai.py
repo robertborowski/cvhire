@@ -62,15 +62,18 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
   page_dict['dashboard_name'] = 'Artificial Intelligence'
   # ------------------------ dashboard variables end ------------------------
   # ------------------------ get content start ------------------------
-  page_dict = get_content_split_function(current_user, page_dict, 'roles')
-  page_dict = get_content_split_function(current_user, page_dict, 'cv')
+  if page_dict['url_status_code'] in ('one-role-many-cvs','one-cv-many-roles'):
+    page_dict = get_content_split_function(current_user, page_dict, 'roles')
+    page_dict = get_content_split_function(current_user, page_dict, 'cv')
   # ------------------------ get content end ------------------------
   # ------------------------ for setting cookie start ------------------------
   correct_template = ''
   if url_status_code == 'one-role-many-cvs':
     correct_template = 'interior/ai/one-role-many-cvs/index.html'
-  if url_status_code == 'one-cv-many-roles':
+  elif url_status_code == 'one-cv-many-roles':
     correct_template = 'interior/ai/one-cv-many-roles/index.html'
+  elif url_status_code == 'job-description-generator':
+    correct_template = 'interior/ai/job-description-generator/index.html'
   # ------------------------ for setting cookie end ------------------------
   # ------------------------ set variables start ------------------------
   page_dict['nav_header'] = True

@@ -374,6 +374,27 @@
     </div>
   <!-- ------------------------------------- width change end ------------------------------------- -->
   <!-- ------------------------------------- width change start ------------------------------------- -->
+  {% elif page_dict_html['view_reason'] == 'job-description-generator' %}
+    <div class="css-width-interior-1100 mx-auto css-plr-50">
+      <!-- ------------------------------------- form start ------------------------------------- -->
+      <form method="POST" enctype="multipart/form-data" onsubmit="return clickSubmitButtonOnce()">
+        <div class="css-mt-50 border css-p-50 css-br-15 shadow">
+          <div class="css-display-flex css-jc-around">
+            <!-- ------------------------------------- user input start ------------------------------------- -->
+            <div class="form-floating css-mlr-25">
+              <input type="text" class="form-control" id="uiJobTitle" placeholder="Job Title">
+              <label for="uiJobTitle">Job Title</label>
+            </div>
+            <!-- ------------------------------------- user input end ------------------------------------- -->
+            <!-- ------------------------------------- submit start ------------------------------------- -->
+            <button type="submit" class="btn btn-primary btn-lg">Generate</button>
+            <!-- ------------------------------------- submit end ------------------------------------- -->
+          </div>
+        </div>
+      </form>
+      <!-- ------------------------------------- form end ------------------------------------- -->
+    </div>
+  <!-- ------------------------------------- width change start ------------------------------------- -->
   {% else %}
     <div class="css-width-600 mx-auto">
       <div class="css-header-15 css-mt-25">

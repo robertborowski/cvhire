@@ -205,9 +205,10 @@ def dashboard_section_links_dict_results_function():
 # ------------------------ individual function start ------------------------
 def dashboard_section_links_dict_ai_function():
   output_dict = {
-    'One role + many CVs': '/ai/one-role-many-cvs',
-    'One CV + many roles': '/ai/one-cv-many-roles',
-    'CV ask AI': '/cv/active'
+    'Resume parsing': '/ai/one-role-many-cvs',
+    'Job matching': '/ai/one-cv-many-roles',
+    'CV ask AI': '/cv/active',
+    'Job description generator': '/ai/job-description-generator'
   }
   return output_dict
 # ------------------------ individual function end ------------------------
@@ -260,7 +261,7 @@ def cv_status_codes_function():
 
 # ------------------------ individual function start ------------------------
 def ai_status_codes_function():
-  arr = ['one-role-many-cvs','one-cv-many-roles']
+  arr = ['one-role-many-cvs','one-cv-many-roles','job-description-generator']
   return arr
 # ------------------------ individual function end ------------------------
 
