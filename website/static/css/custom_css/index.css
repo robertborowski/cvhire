@@ -547,6 +547,9 @@
 .css-border-glow-1 {
   box-shadow: 0px 0px 100px white;
 }
+.css-br-0 {
+  border-radius: 0px m !important;
+}
 .css-br-1 {
   border-radius: 15px;
 }
@@ -582,6 +585,12 @@
 }
 .css-br-10-specific-4 {
   border-radius: 10px 0px 0px 10px;
+}
+.css-br-10-top-left-and-right {
+  border-radius: 10px 10px 0px 0px;
+}
+.css-br-10-bottom-left-and-right {
+  border-radius: 0px 0px 10px 10px;
 }
 .css-br-25-specific-top-left {
   border-radius: 25px 0px 0px 0px;
@@ -1744,6 +1753,9 @@
 }
 .css-p-15 {
   padding: 15px;
+}
+.css-p-18 {
+  padding: 18px;
 }
 .css-p-20 {
   padding: 20px;
