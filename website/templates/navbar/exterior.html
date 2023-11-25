@@ -29,11 +29,19 @@
               <ul id="sub-menu" class="css-no-decoration css-p-20 css-mt-5 css-position-absolute shadow css-bg-white css-br-10-specific-2 css-ml-negative-10">
                 {% for k2,v2 in v['sections'].items() %}
                   <li class="css-ptb-10 css-display-flex border css-br-10 css-mb-15 shadow-sm">
+                    <!-- ------------------------------------- exceptions start ------------------------------------- -->
+                    <!-- ------------------------------------- demo exception start ------------------------------------- -->
                     {% if v2['title'] == 'Book a demo' %}
                       <a href="{{ v2['url'] }}" target="_blank" class="css-color-success-hover css-display-flex">
+                    <!-- ------------------------------------- demo exception end ------------------------------------- -->
+                    <!-- ------------------------------------- faq exception start ------------------------------------- -->
+                    {% elif v2['title'] == 'FAQ\'s' %}
+                    <a href="#" class="css-color-success-hover css-display-flex" id="{{ v2['id'] }}">
+                    <!-- ------------------------------------- faq exception end ------------------------------------- -->
                     {% else %}
                       <a href="{{ v2['url'] }}" class="css-color-success-hover css-display-flex">
                     {% endif %}
+                    <!-- ------------------------------------- exceptions end ------------------------------------- -->
                       <div class="text-center">
                         <i class="{{ v2['icon'] }} css-mr-5 css-header-25 css-mt-5 css-width-50-px-min-max"></i>
                       </div>
@@ -48,7 +56,6 @@
               <!-- ------------------------------------- sub menu end ------------------------------------- -->
             </li>
           {% endfor %}
-          <li class="my-auto css-mlr-5 css-header-15"><a href="#" class="css-p-10 css-br-10 css-color-white css-hover-bg-white" id="id-general_autoscroll_click_1">FAQ</a></li>
           <li class="my-auto css-mlr-5 css-header-15"><a href="/pricing" class="css-p-10 css-br-10 css-color-white css-hover-bg-white">Pricing</a></li>
           <li class="my-auto css-mlr-5 css-header-15"><a href="/login" class="css-p-10 css-br-10 css-color-white css-hover-bg-white">Login</a></li>
           <li class="my-auto css-ml-10 css-header-15"><a href="/signup" class="btn btn-light css-weight-bolder">Dashboard</a></li>
@@ -69,11 +76,19 @@
                   <ul class="css-no-decoration css-p-0-important css-m-0-important">
                     {% for k2,v2 in v['sections'].items() %}
                       <li>
+                        <!-- ------------------------------------- exceptions start ------------------------------------- -->
+                        <!-- ------------------------------------- demo exception start ------------------------------------- -->
                         {% if v2['title'] == 'Book a demo' %}
                           <a href="{{ v2['url'] }}" target="_blank" class="css-color-success-hover css-display-flex css-ml-5">
+                        <!-- ------------------------------------- demo exception end ------------------------------------- -->
+                        <!-- ------------------------------------- faq exception start ------------------------------------- -->
+                        {% elif v2['title'] == 'FAQ\'s' %}
+                          <a href="#" class="css-color-success-hover css-display-flex css-ml-5" id="{{ v2['id-mobile'] }}">
+                        <!-- ------------------------------------- faq exception end ------------------------------------- -->
                         {% else %}
                           <a href="{{ v2['url'] }}" class="css-color-success-hover css-display-flex css-ml-5">
                         {% endif %}
+                        <!-- ------------------------------------- exceptions end ------------------------------------- -->
                           <div class="text-center">
                             <i class="{{ v2['icon'] }} css-mr-10 css-header-30 css-mt-5 css-width-50-px-min-max"></i>
                           </div>
@@ -121,8 +136,13 @@
     </div>
     <!-- ------------------------------------- content end ------------------------------------- -->
     <!-- ------------------------------------- content start ------------------------------------- -->
-    <div class="container-fluid css-bg-color-success css-height-25" id="id-general_autoscroll_location_1"></div>
+    <div class="container-fluid css-bg-color-success css-height-25"></div>
     <!-- ------------------------------------- content end ------------------------------------- -->
+    <!-- ------------------------------------- autoscroll on click start ------------------------------------- -->
+    <span id="id-general_autoscroll_location_1"></span>
+    <span id="id-general_autoscroll_location_2"></span>
+    <span id="id-general_autoscroll_location_3"></span>
+    <!-- ------------------------------------- autoscroll on click end ------------------------------------- -->
     <!-- ------------------------------------- content start ------------------------------------- -->
     <div class="css-width-1200 mx-auto">
       <!-- ------------------------------------- title start ------------------------------------- -->
@@ -251,6 +271,7 @@
               <li class="css-mb-10"><a href="/blog" class="css-a-white-underline">Blog</a></li>
               <li class="css-mb-10"><a href="https://calendly.com/cvhire/30min" target="_blank" class="css-a-white-underline">Book a demo</a></li>
               <li class="css-mb-10"><a href="mailto:support@cvhire.com" class="css-a-white-underline">Contact</a></li>
+              <li class="css-mb-10"><a href="#" class="css-a-white-underline" id="id-general_autoscroll_click_3">FAQ's</a></li>
               <li class="css-mb-10"><a href="/pricing" class="css-a-white-underline">Pricing</a></li>
             </ul>
           </div>

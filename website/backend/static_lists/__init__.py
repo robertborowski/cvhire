@@ -106,6 +106,14 @@ def navbar_link_dict_exterior_function():
           'icon': 'fa-solid fa-calendar'
         },
         '3': {
+          'title': 'FAQ\'s',
+          'description': 'Read our most frequently asked questions',
+          'url': '#',
+          'icon': 'fa-solid fa-circle-question',
+          'id': 'id-general_autoscroll_click_1',
+          'id-mobile': 'id-general_autoscroll_click_2'
+        },
+        '4': {
           'title': 'Privacy & terms',
           'description': 'Read out privacy & terms',
           'url': '/privacy',
