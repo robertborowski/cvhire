@@ -2023,6 +2023,24 @@
 .custom-shape-divider-top-1700653874 .shape-fill {
   fill: var(--css-color-green-800);
 }
+
+.custom-shape-divider-top-1700879108 {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.custom-shape-divider-top-1700879108 svg {
+  position: relative;
+  display: block;
+  width: calc(160% + 1.3px);
+  height: 100px;
+}
+.custom-shape-divider-top-1700879108 .shape-fill {
+  fill: #FFFFFF;
+}
 /* ------------------- shape divider end ------------------- */
 /* ------------------- stroke start ------------------- */
 .css-stroke-1 {

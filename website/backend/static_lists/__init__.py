@@ -118,6 +118,63 @@ def navbar_link_dict_exterior_function():
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def faq_dict_exterior_function():
+  faq_dict = {
+    '1': {
+      'id': 'faq_id_1',
+      'question': 'What is CVhire and how does it help in recruitment?',
+      'answer': 'CVhire is an AI-powered ATS that streamlines the recruitment process by efficiently parsing resumes and screening candidates. It helps recruiters identify the best candidates for specific roles, reducing the time spent reviewing CVs.'
+    },
+    '2': {
+      'id': 'faq_id_2',
+      'question': 'How does CVhire differ from traditional ATS and recruitment CRMs?',
+      'answer': 'CVhire combines advanced AI algorithms with an intuitive interface to deliver precise candidate screening, efficient resume parsing, and effective management of candidate relationships, ensuring a more targeted and efficient recruitment process.'
+    },
+    '3': {
+      'id': 'faq_id_3',
+      'question': 'Why is automated resume parsing and AI screening essential in modern recruitment?',
+      'answer': 'Automated resume parsing and AI screening in CVhire enable faster sourcing, reduce manual effort in sifting through applications, and improve the quality of candidate selection. These features are crucial for handling the volume and complexity of modern recruitment.'
+    },
+    '4': {
+      'id': 'faq_id_4',
+      'question': 'Can I test CVhire before committing to a subscription?',
+      'answer': 'Yes, CVhire offers a trial period allowing recruiters to experience its features and capabilities before deciding on a subscription.'
+    },
+    '5': {
+      'id': 'faq_id_5',
+      'question': 'What types of resumes can CVhire process?',
+      'answer': 'CVhire can process a wide range of resume formats, including those from popular job boards and professional networks, ensuring comprehensive candidate coverage.'
+    },
+    '6': {
+      'id': 'faq_id_6',
+      'question': 'How does CVhire enhance the candidate data it parses?',
+      'answer': 'CVhire enriches parsed data with insights such as candidate summaries, skill assessments, and employment history, providing a more comprehensive view of each candidate.'
+    },
+    '7': {
+      'id': 'faq_id_7',
+      'question': 'How is CVhire priced, and what payment options are available?',
+      'answer': 'See our <a href="/pricing">pricing</a> page.'
+    },
+    '8': {
+      'id': 'faq_id_8',
+      'question': 'abc',
+      'answer': 'abc'
+    },
+    '9': {
+      'id': 'faq_id_9',
+      'question': 'abc',
+      'answer': 'abc'
+    },
+    '10': {
+      'id': 'faq_id_10',
+      'question': 'abc',
+      'answer': 'abc'
+    }
+  }
+  return faq_dict
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def dashboard_section_links_dict_roles_function():
   output_dict = {
     'Open': '/roles/open',

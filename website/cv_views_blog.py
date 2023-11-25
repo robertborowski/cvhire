@@ -7,7 +7,7 @@ from website import db
 from website.backend.alerts import get_alert_message_function
 from website.backend.convert import objs_to_arr_of_dicts_function, convert_obj_row_to_dict_function
 from website.backend.convert import present_title_function, keywords_present_function, timestamp_to_date_function
-from website.backend.static_lists import navbar_link_dict_exterior_function
+from website.backend.static_lists import navbar_link_dict_exterior_function, faq_dict_exterior_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -45,6 +45,9 @@ def blog_function(url_redirect_code=None):
   # ------------------------ get navbar variables start ------------------------
   page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
   # ------------------------ get navbar variables end ------------------------
+  # ------------------------ get faq variables start ------------------------
+  page_dict['faq_dict'] = faq_dict_exterior_function()
+  # ------------------------ get faq variables end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ post #1 start ------------------------
@@ -103,6 +106,9 @@ def blog_category_function(url_category_code=None, url_redirect_code=None):
   # ------------------------ get navbar variables start ------------------------
   page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
   # ------------------------ get navbar variables end ------------------------
+  # ------------------------ get faq variables start ------------------------
+  page_dict['faq_dict'] = faq_dict_exterior_function()
+  # ------------------------ get faq variables end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ post #1 start ------------------------
@@ -162,6 +168,9 @@ def blog_post_function(url_blog_code=None, url_redirect_code=None):
   # ------------------------ get navbar variables start ------------------------
   page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
   # ------------------------ get navbar variables end ------------------------
+  # ------------------------ get faq variables start ------------------------
+  page_dict['faq_dict'] = faq_dict_exterior_function()
+  # ------------------------ get faq variables end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ post #1 start ------------------------
