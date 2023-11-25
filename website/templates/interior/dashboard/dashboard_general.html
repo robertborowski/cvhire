@@ -157,7 +157,7 @@
                     <li>{{ i['status'] }}</li>
                   {% endif %}
                 {% elif page_dict_html['starting_route'] == 'results' %}
-                  <li><a href="/results/view/{{ i['id'] }}" class="css-header-15 css-a-black-underline">{{ i['fk_cv_name_display'] }} <img src="{{ i['score_all_stars'] }}" alt="" class="css-img-size-20 css-mlr-15"> {{ i['score'] }}</a></li>
+                  <li><a href="/results/view/{{ i['id'] }}" class="css-header-15 css-a-black-underline">{{ i['fk_cv_name_display'] }} <img src="{{ i['score_all_stars'] }}" alt="candidate score" class="css-img-size-20 css-mlr-15"> {{ i['score'] }}</a></li>
                   <li><a href="/results/view/{{ i['id'] }}" class="css-ml-10 btn btn-outline-success btn-sm css-br-10 css-plr-20">View results</a></li>
                   {% endif %}
                 {% for k,v in page_dict_html['sub_table_links_dict'].items() %}
