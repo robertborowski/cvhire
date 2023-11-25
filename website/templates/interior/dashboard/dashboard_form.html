@@ -382,12 +382,28 @@
           <div class="css-display-flex css-jc-around">
             <!-- ------------------------------------- user input start ------------------------------------- -->
             <div class="form-floating css-mlr-25">
-              <input type="text" class="form-control" id="uiJobTitle" placeholder="Job Title">
+              <input type="text" class="form-control" id="uiJobTitle" name="uiJobTitle" placeholder="Job Title">
               <label for="uiJobTitle">Job Title</label>
             </div>
             <!-- ------------------------------------- user input end ------------------------------------- -->
+            <!-- ------------------------------------- user input start ------------------------------------- -->
+            <div class="form-floating css-mlr-25">
+              <input type="text" class="form-control" id="uiIndustry" name="uiIndustry" placeholder="Job Title">
+              <label for="uiIndustry">Industry (Optional)</label>
+            </div>
+            <!-- ------------------------------------- user input end ------------------------------------- -->
+            <!-- ------------------------------------- user input start ------------------------------------- -->
+            <div class="form-floating">
+              <select class="form-select" id="uiTone" name="uiTone" aria-label="Floating label select example">
+                <option value="generic">Generic</option>
+                <option value="formal">Formal</option>
+                <option value="friendly">Friendly</option>
+              </select>
+              <label for="uiTone">Tone (Optional)</label>
+            </div>
+            <!-- ------------------------------------- user input end ------------------------------------- -->
             <!-- ------------------------------------- submit start ------------------------------------- -->
-            <button type="submit" class="btn btn-primary btn-lg">Generate</button>
+            <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate</button>
             <!-- ------------------------------------- submit end ------------------------------------- -->
           </div>
         </div>

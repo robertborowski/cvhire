@@ -82,10 +82,22 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ get user inputs start ------------------------
+    # ------------------------ for resume parsing and job matching start ------------------------
     ui_one_role_selected = request.form.get('radio-one-role')
     ui_many_cv_selected = request.form.getlist('checkbox-many-cvs')
     ui_many_roles_selected = request.form.getlist('checkbox-many-roles')
     ui_one_cv_selected = request.form.get('radio-one-cv')
+    # ------------------------ for resume parsing and job matching end ------------------------
+    # ------------------------ for job description generator start ------------------------
+    ui_job_title = request.form.get('uiJobTitle')
+    ui_industry = request.form.get('uiIndustry')
+    ui_tone = request.form.get('uiTone')
+    print(' ------------- 0 ------------- ')
+    print(f"ui_job_title | type: {type(ui_job_title)} | {ui_job_title}")
+    print(f"ui_industry | type: {type(ui_industry)} | {ui_industry}")
+    print(f"ui_tone | type: {type(ui_tone)} | {ui_tone}")
+    print(' ------------- 0 ------------- ')
+    # ------------------------ for job description generator end ------------------------   
     # ------------------------ get user inputs end ------------------------
     # ------------------------ only two allowed inputs start ------------------------
     bad_inputs = False
