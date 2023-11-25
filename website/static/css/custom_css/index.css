@@ -1148,6 +1148,9 @@
 .css-opacity-1-hover {
   opacity: 0.50;
 }
+.css-opacity-25-hover {
+  opacity: 0.25;
+}
 .css-opacity-50-hover {
   opacity: 0.50;
 }
@@ -1155,7 +1158,7 @@
   opacity: 0.75;
   transition: 0.5s;
 }
-.css-opacity-1-hover:hover, .css-opacity-75-hover:hover, .css-opacity-50-hover:hover {
+.css-opacity-1-hover:hover, .css-opacity-75-hover:hover, .css-opacity-50-hover:hover, .css-opacity-25-hover:hover {
   opacity: 1;
   transition: 0.5s;
   cursor: pointer;

@@ -216,6 +216,7 @@ def cv_privacy_function():
   page_dict = {}
   # ------------------------ set variables start ------------------------
   page_dict['nav_header'] = True
+  page_dict['is_blog_page'] = False
   # ------------------------ set variables end ------------------------
   # ------------------------ get navbar variables start ------------------------
   page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
@@ -223,6 +224,12 @@ def cv_privacy_function():
   # ------------------------ get faq variables start ------------------------
   page_dict['faq_dict'] = faq_dict_exterior_function()
   # ------------------------ get faq variables end ------------------------
+  # ------------------------ get latest blog post start ------------------------
+  db_blog_objs = get_blog_posts_function()
+  # ------------------------ get latest blog post end ------------------------
+  # ------------------------ convert objs to dict start ------------------------
+  page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_blog_objs, 'blog')
+  # ------------------------ convert objs to dict end ------------------------
   # ------------------------ post start ------------------------
   if request.method == 'POST':
     # ------------------------ post #1 start ------------------------
