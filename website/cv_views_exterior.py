@@ -207,8 +207,8 @@ def cv_reset_forgot_password_function(token, url_redirect_code=None):
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_exterior.route('/privacy')
-@cv_views_exterior.route('/privacy/')
+@cv_views_exterior.route('/privacy', methods=['GET', 'POST'])
+@cv_views_exterior.route('/privacy/', methods=['GET', 'POST'])
 def cv_privacy_function():
   page_dict = {}
   # ------------------------ set variables start ------------------------
@@ -217,6 +217,16 @@ def cv_privacy_function():
   # ------------------------ get navbar variables start ------------------------
   page_dict['navbar_dict'] = navbar_link_dict_exterior_function()
   # ------------------------ get navbar variables end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ post #1 start ------------------------
+    # ------------------------ get ui start ------------------------
+    ui_email_footer = request.form.get('uiEmailFooter')
+    # ------------------------ get ui end ------------------------
+    if ui_email_footer != None and ui_email_footer != '':
+      return redirect(url_for('cv_views_exterior.email_signup_checker_function', url_redirect_code=ui_email_footer))
+    # ------------------------ post #1 end ------------------------
+  # ------------------------ post end ------------------------
   return render_template('exterior/privacy_terms/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
@@ -246,8 +256,8 @@ def email_unsubscribe_function(url_id_code=None):
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_exterior.route('/feature/<url_feature_code>')
-@cv_views_exterior.route('/feature/<url_feature_code>/')
+@cv_views_exterior.route('/feature/<url_feature_code>', methods=['GET', 'POST'])
+@cv_views_exterior.route('/feature/<url_feature_code>/', methods=['GET', 'POST'])
 def feature_pages_function(url_feature_code=None):
   # ------------------------ get feature code start ------------------------
   if url_feature_code == None:
@@ -266,12 +276,22 @@ def feature_pages_function(url_feature_code=None):
   # ------------------------ convert objs to dict start ------------------------
   page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_blog_objs, 'blog')
   # ------------------------ convert objs to dict end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ post #1 start ------------------------
+    # ------------------------ get ui start ------------------------
+    ui_email_footer = request.form.get('uiEmailFooter')
+    # ------------------------ get ui end ------------------------
+    if ui_email_footer != None and ui_email_footer != '':
+      return redirect(url_for('cv_views_exterior.email_signup_checker_function', url_redirect_code=ui_email_footer))
+    # ------------------------ post #1 end ------------------------
+  # ------------------------ post end ------------------------
   return render_template('exterior/features/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
 # ------------------------ individual route start ------------------------
-@cv_views_exterior.route('/pricing')
-@cv_views_exterior.route('/pricing/')
+@cv_views_exterior.route('/pricing', methods=['GET', 'POST'])
+@cv_views_exterior.route('/pricing/', methods=['GET', 'POST'])
 def pricing_function(url_feature_code=None):
   # ------------------------ set variables start ------------------------
   page_dict = {}
@@ -288,6 +308,16 @@ def pricing_function(url_feature_code=None):
   # ------------------------ convert objs to dict start ------------------------
   page_dict['db_arr_dicts'] = objs_to_arr_of_dicts_function(db_blog_objs, 'blog')
   # ------------------------ convert objs to dict end ------------------------
+  # ------------------------ post start ------------------------
+  if request.method == 'POST':
+    # ------------------------ post #1 start ------------------------
+    # ------------------------ get ui start ------------------------
+    ui_email_footer = request.form.get('uiEmailFooter')
+    # ------------------------ get ui end ------------------------
+    if ui_email_footer != None and ui_email_footer != '':
+      return redirect(url_for('cv_views_exterior.email_signup_checker_function', url_redirect_code=ui_email_footer))
+    # ------------------------ post #1 end ------------------------
+  # ------------------------ post end ------------------------
   return render_template('exterior/pricing/index.html', page_dict_html=page_dict)
 # ------------------------ individual route end ------------------------
 
