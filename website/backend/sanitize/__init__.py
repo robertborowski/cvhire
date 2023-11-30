@@ -18,7 +18,7 @@ def sanitize_email_function(user_input_email, is_signup='false'):
       for i_email in blocked_email_arr:
         if i_email in user_input_email.lower():
           # ------------------------ special cases start ------------------------
-          special_arr = ['borowski','coderbyte','joon','sessionrewind','gartner']
+          special_arr = ['borowski','coderbyte','joon','sessionrewind']
           for i_special in special_arr:
             if i_special in user_input_email.lower():
               # ------------------------ email self start ------------------------
