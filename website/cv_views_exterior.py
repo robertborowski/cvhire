@@ -71,19 +71,8 @@ def cv_landing_details_function(url_reference_id=None, url_redirect_code=None):
     # ------------------------ get ui start ------------------------
     ui_email = request.form.get('uiEmail')
     # ------------------------ get ui end ------------------------
-    # ------------------------ sanitize/check user input email start ------------------------
-    ui_email_cleaned = sanitize_email_function(ui_email, 'true')
-    if ui_email_cleaned == False:
-      return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code='e1'))
-    # ------------------------ sanitize/check user input email end ------------------------
-    # ------------------------ redirect to login start ------------------------
-    user_exists = UserObj.query.filter_by(email=ui_email).first()
-    if user_exists != None and user_exists != []:
-      return redirect(url_for('cv_auth.cv_login_function', url_redirect_code=ui_email))
-    # ------------------------ redirect to login end ------------------------
-    # ------------------------ redirect to signup start ------------------------
-    return redirect(url_for('cv_auth.cv_signup_function', url_redirect_code=ui_email))
-    # ------------------------ redirect to signup end ------------------------
+    if ui_email != None and ui_email != '':
+      return redirect(url_for('cv_views_exterior.email_signup_checker_function', url_redirect_code=ui_email))
     # ------------------------ post #2 end ------------------------
   # ------------------------ post end ------------------------
   return render_template('exterior/landing/index.html', page_dict_html=page_dict)
