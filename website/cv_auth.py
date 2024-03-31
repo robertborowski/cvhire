@@ -142,7 +142,7 @@ def cv_signup_function(url_redirect_code=None):
       # ------------------------ email self start ------------------------
       if ui_email != os.environ.get('RUN_TEST_EMAIL'):
         try:
-          output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+          output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
           output_subject = f'New signup: {ui_email}'
           output_body = f'New signup: {ui_email}'
           send_email_template_function(output_to_email, output_subject, output_body)

@@ -159,7 +159,7 @@ def cv_roles_add_function(url_redirect_code=None):
     # ------------------------ new row end ------------------------
     # ------------------------ email self notifications start ------------------------
     try:
-      output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
       output_subject = f'New role added'
       output_body = f'email: {current_user.email}'
       send_email_template_function(output_to_email, output_subject, output_body)

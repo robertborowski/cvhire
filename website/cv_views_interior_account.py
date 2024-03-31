@@ -141,7 +141,7 @@ def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None
         ui_profile_img = 'https://cvhirepublicobjects.s3.us-east-2.amazonaws.com/' + new_name
         # ------------------------ email self start ------------------------
         try:
-          output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+          output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
           output_subject = f'{current_user.email} | uploaded company logo to AWS'
           output_body = f'{current_user.email} | uploaded company logo to AWS'
           send_email_template_function(output_to_email, output_subject, output_body)
@@ -402,7 +402,7 @@ def account_verify_receive_function(url_verify_code=None):
     # ------------------------ set variables end ------------------------
     # ------------------------ email self notifications start ------------------------
     try:
-      output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
       output_subject = f'New user: Email verified successfully'
       output_body = f'email: {current_user.email}'
       send_email_template_function(output_to_email, output_subject, output_body)
@@ -451,7 +451,7 @@ def subscription_success_function():
   # ------------------------ update db end ------------------------
   # ------------------------ send email to user start ------------------------
   try:
-    output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+    output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
     output_subject = f'NEW SUBSCRIPTION: {current_user.email} | CVhire'
     output_body = f'NEW SUBSCRIPTION: {current_user.email} | CVhire'
     send_email_template_function(output_to_email, output_subject, output_body)

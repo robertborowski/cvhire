@@ -192,7 +192,7 @@ def cv_add_function(url_redirect_code=None):
     # ------------------------ loop through each file end ------------------------
     # ------------------------ email self notifications start ------------------------
     try:
-      output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
       output_subject = f'New CV(s) added'
       output_body = f'email: {current_user.email}'
       send_email_template_function(output_to_email, output_subject, output_body)
@@ -323,7 +323,7 @@ def results_ask_function(url_item_id=None, url_redirect_code=None):
     # ------------------------ add to queue end ------------------------
     # ------------------------ email self notifications start ------------------------
     try:
-      output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
       output_subject = f'New CV ask AI request added'
       output_body = f'email: {current_user.email}'
       send_email_template_function(output_to_email, output_subject, output_body)

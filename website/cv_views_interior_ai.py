@@ -179,7 +179,7 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
     # ------------------------ add to queue end ------------------------
     # ------------------------ email self notifications start ------------------------
     try:
-      output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+      output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
       output_subject = f'New open ai grading request added'
       output_body = f'email: {current_user.email}'
       send_email_template_function(output_to_email, output_subject, output_body)

@@ -132,7 +132,7 @@ def cv_forgot_password_function(url_redirect_code=None):
       # ------------------------ add to email sent table end ------------------------
       # ------------------------ email self notifications start ------------------------
       try:
-        output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+        output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
         output_subject = f'{ui_email} | {output_subject_line}'
         output_body = f'{ui_email} | {output_subject_line}'
         send_email_template_function(output_to_email, output_subject, output_body)

@@ -23,7 +23,7 @@ def sanitize_email_function(user_input_email, is_signup='false'):
             if i_special in user_input_email.lower():
               # ------------------------ email self start ------------------------
               try:
-                output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+                output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
                 output_subject = f'Special signup blocked: {user_input_email.lower()}'
                 output_body = f'Special signup blocked: {user_input_email.lower()}'
                 send_email_template_function(output_to_email, output_subject, output_body)

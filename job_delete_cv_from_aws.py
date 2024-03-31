@@ -47,7 +47,7 @@ def run_function():
   # ------------------------ get bucket objs end ------------------------
   # ------------------------ email self notifications start ------------------------
   try:
-    output_to_email = os.environ.get('CVHIRE_NOTIFICATIONS_EMAIL')
+    output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
     output_subject_self = f'job_daily: AWS cleanup CV bucket successful'
     output_body = f'job_daily_{todays_date}: AWS cleanup CV bucket successful'
     send_email_template_function(output_to_email, output_subject_self, output_body)
