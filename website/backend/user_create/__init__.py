@@ -11,13 +11,34 @@ from website.backend.sendgrid import send_email_template_function
 
 # ------------------------ individual function start ------------------------
 def create_user_function(ui_email, ui_password, ui_full_name):
-  new_user_id = create_uuid_function('user_')
+  # ------------------------ set variables start ------------------------
+  new_user_id = None
+  user_email = None
+  user_password = None
+  is_anonymous_user = False
+  user_company_name = None
+  user_verified = 'not_verified'
+  # ------------------------ set variables end ------------------------
+  # ------------------------ anonymous user start ------------------------
+  if ui_email == None and ui_password == None and ui_full_name == None:
+    is_anonymous_user = True
+    new_user_id = create_uuid_function('anonymous_user_')
+    user_verified = 'yes_verified'
+  # ------------------------ anonymous user end ------------------------
+  # ------------------------ standard user start ------------------------
+  else:
+    is_anonymous_user = False
+    new_user_id = create_uuid_function('user_')
+    user_email = ui_email.lower()
+    user_password = generate_password_hash(ui_password, method="sha256")
+    user_company_name = get_company_name_function(ui_email.lower())
+  # ------------------------ standard user end ------------------------
   # ------------------------ create new user in db start ------------------------
   new_row = UserObj(
     id=new_user_id,
     created_timestamp=create_timestamp_function(),
-    email=ui_email.lower(),
-    password=generate_password_hash(ui_password, method="sha256")
+    email=user_email,
+    password=user_password
   )
   db.session.add(new_row)
   db.session.commit()
@@ -42,7 +63,7 @@ def create_user_function(ui_email, ui_password, ui_full_name):
     created_timestamp=create_timestamp_function(),
     fk_user_id=new_user_id,
     attribute_key='company_name',
-    attribute_value=get_company_name_function(ui_email.lower())
+    attribute_value=user_company_name
   )
   db.session.add(new_row)
   db.session.commit()
@@ -64,20 +85,21 @@ def create_user_function(ui_email, ui_password, ui_full_name):
     created_timestamp=create_timestamp_function(),
     fk_user_id=new_user_id,
     attribute_key='verified_email',
-    attribute_value='not_verified'
+    attribute_value=user_verified
   )
   db.session.add(new_row)
   db.session.commit()
   # ------------------------ new attribute 4 end ------------------------
   # ------------------------ email self start ------------------------
-  if ui_email != os.environ.get('RUN_TEST_EMAIL'):
-    try:
-      output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
-      output_subject = f'New signup: {ui_email}'
-      output_body = f'New signup: {ui_email}'
-      send_email_template_function(output_to_email, output_subject, output_body)
-    except:
-      pass
+  if is_anonymous_user == False:
+    if ui_email != os.environ.get('RUN_TEST_EMAIL'):
+      try:
+        output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
+        output_subject = f'New signup: {ui_email}'
+        output_body = f'New signup: {ui_email}'
+        send_email_template_function(output_to_email, output_subject, output_body)
+      except:
+        pass
   # ------------------------ email self end ------------------------
   return True
 # ------------------------ individual function end ------------------------

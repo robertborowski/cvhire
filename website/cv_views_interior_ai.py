@@ -13,6 +13,7 @@ from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import ai_status_codes_function, dashboard_section_links_dict_ai_function
 from website.backend.db_obj_checks import get_content_split_function
 from website.backend.sendgrid import send_email_template_function
+from website.backend.user_create import create_user_function
 # ------------------------ imports end ------------------------
 
 # ------------------------ function start ------------------------
@@ -25,7 +26,7 @@ redis_connection = redis_connect_open_function()
 # ------------------------ individual route start ------------------------
 @cv_views_interior_ai.route('/ai', methods=['GET', 'POST'])
 @cv_views_interior_ai.route('/ai/', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def cv_none_ai_function():
   return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs'))
 # ------------------------ individual route end ------------------------
@@ -35,8 +36,15 @@ def cv_none_ai_function():
 @cv_views_interior_ai.route('/ai/<url_status_code>', methods=['GET', 'POST'])
 @cv_views_interior_ai.route('/ai/<url_status_code>/<url_redirect_code>', methods=['GET', 'POST'])
 @cv_views_interior_ai.route('/ai/<url_status_code>/<url_redirect_code>/', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code=None):
+  # ------------------------ if user anonymous start ------------------------
+  try:
+    if current_user.email:
+      pass
+  except Exception as e:
+    create_user_function(None, None, None)
+  # ------------------------ if user anonymous end ------------------------
   # ------------------------ pre load page checks start ------------------------
   page_dict = pre_page_load_checks_function(current_user, url_redirect_code, url_replace_value=url_status_code)
   if page_dict['current_user_locked'] == True:
