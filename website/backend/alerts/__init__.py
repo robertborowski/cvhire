@@ -125,6 +125,11 @@ def get_alert_message_function(redirect_var=None):
       'message':'Email is already scraped',
       'type':'danger'
     }
+  elif redirect_var == 'e24':
+    alert_message_dict = {
+      'message':"Please create an account in order to access 'Account' and 'Settings'",
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':

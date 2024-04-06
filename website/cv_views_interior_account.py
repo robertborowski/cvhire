@@ -49,6 +49,10 @@ def cv_settings_function():
 @cv_views_interior_account.route('/account/<url_status_code>/<url_redirect_code>/', methods=['GET', 'POST'])
 @login_required
 def cv_account_dashboard_function(url_status_code='user', url_redirect_code=None):
+  # ------------------------ if user anonymous start ------------------------
+  if 'anonymous_user' in current_user.id:
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e24'))
+  # ------------------------ if user anonymous end ------------------------
   # ------------------------ pre load page checks start ------------------------
   page_dict = pre_page_load_checks_function(current_user, url_redirect_code, url_replace_value=url_status_code)
   if page_dict['current_user_locked'] == True:

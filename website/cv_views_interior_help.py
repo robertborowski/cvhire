@@ -103,13 +103,6 @@ def help_dashboard_function(url_status_code='request', url_redirect_code=None):
       except:
         pass
       # ------------------------ email self support end ------------------------
-      # ------------------------ email self notifications start ------------------------
-      try:
-        output_to_email = os.environ.get('CVHIRE_SUPPORT_EMAIL')
-        send_email_template_function(output_to_email, output_subject, output_body)
-      except:
-        pass
-      # ------------------------ email self notifications end ------------------------
     except Exception as e:
       print(f'Error help_dashboard_function: {e}')
       return redirect(url_for('cv_views_interior_help.help_dashboard_function', url_status_code='request', url_redirect_code='s10'))
