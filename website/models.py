@@ -67,6 +67,7 @@ class EmailScrapedObj(db.Model):
 # ------------------------ individual model end ------------------------
 
 # ------------------------ individual model start ------------------------
+"""
 class RolesObj(db.Model):
   id = db.Column(db.String(150), primary_key=True)
   created_timestamp = db.Column(db.DateTime(timezone=True))
@@ -76,6 +77,14 @@ class RolesObj(db.Model):
   about = db.Column(db.String(3000))
   requirements = db.Column(db.String(3000))
   nice_to_haves = db.Column(db.String(3000))
+"""
+class RolesObj(db.Model):
+  id = db.Column(db.String(150), primary_key=True)
+  created_timestamp = db.Column(db.DateTime(timezone=True))
+  fk_user_id = db.Column(db.String(150))
+  status = db.Column(db.String(20))
+  name = db.Column(db.String(150))
+  job_description = db.Column(db.String(5000))
 # ------------------------ individual model end ------------------------
 
 # ------------------------ individual model start ------------------------
