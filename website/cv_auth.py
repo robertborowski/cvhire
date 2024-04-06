@@ -186,5 +186,5 @@ def cv_logout_function():
     except Exception as e:
       pass
   # ------------------------ auto sign in with cookie end ------------------------
-  return redirect(url_for('cv_auth.cv_login_function'))
+  return redirect(url_for('cv_auth.cv_signup_function'))
 # ------------------------ individual route end ------------------------
