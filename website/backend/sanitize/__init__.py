@@ -98,6 +98,13 @@ def sanitize_chars_function_v6(user_input):
 # ------------------------ individual function end ------------------------
 
 # ------------------------ individual function start ------------------------
+def sanitize_chars_function_v7(user_input):
+  if len(user_input) > 5000 or len(user_input) < 1:
+    return False
+  return user_input
+# ------------------------ individual function end ------------------------
+
+# ------------------------ individual function start ------------------------
 def sanitize_image_option_function(user_submission, allowed_dict):
   img_found = False
   for k,v in allowed_dict.items():

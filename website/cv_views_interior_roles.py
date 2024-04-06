@@ -7,7 +7,7 @@ from website.backend.uuid_timestamp import create_uuid_function, create_timestam
 from website.backend.connection import redis_connect_open_function
 from website.backend.pre_page_load_checks import pre_page_load_checks_function
 from website.backend.static_lists import dashboard_section_links_dict_roles_function, roles_table_links_function, role_status_codes_function
-from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2
+from website.backend.sanitize import sanitize_chars_function_v1, sanitize_chars_function_v2, sanitize_chars_function_v7
 from website.backend.db_obj_checks import get_content_function
 from website.backend.convert import convert_obj_row_to_dict_function
 from website.backend.non_subscriber_limit_checks import non_subscriber_limit_add_role_function
@@ -123,16 +123,12 @@ def cv_roles_add_function(url_redirect_code=None):
     # ------------------------ non subscriber limit check end ------------------------
     # ------------------------ user inputs start ------------------------
     ui_role_name = request.form.get('uiRoleName')
-    ui_about = request.form.get('uiAbout')
-    ui_requirements = request.form.get('uiRequirements')
-    ui_nice_to_haves = request.form.get('uiNiceToHaves')
+    ui_job_descsription = request.form.get('uiJobDescription')
     # ------------------------ user inputs end ------------------------
     # ------------------------ sanitize user inputs error start ------------------------
     ui_role_name_check = sanitize_chars_function_v2(ui_role_name)
-    ui_about_check = sanitize_chars_function_v1(ui_about)
-    ui_requirements_check = sanitize_chars_function_v1(ui_requirements)
-    ui_nice_to_haves_check = sanitize_chars_function_v1(ui_nice_to_haves)
-    if ui_role_name_check == False or ui_about_check == False or ui_requirements_check == False or ui_nice_to_haves_check == False:
+    ui_job_descsription_check = sanitize_chars_function_v7(ui_job_descsription)
+    if ui_role_name_check == False or ui_job_descsription_check == False:
       return redirect(url_for('cv_views_interior_roles.cv_roles_add_function', url_redirect_code='e8'))
     # ------------------------ sanitize user inputs error end ------------------------
     # ------------------------ check if role exists start ------------------------
@@ -148,9 +144,7 @@ def cv_roles_add_function(url_redirect_code=None):
         fk_user_id=current_user.id,
         status='open',
         name=ui_role_name,
-        about=ui_about,
-        requirements=ui_requirements,
-        nice_to_haves=ui_nice_to_haves
+        job_description=ui_job_descsription
       )
       db.session.add(new_row)
       db.session.commit()
@@ -215,16 +209,12 @@ def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
     # ------------------------ check if role already graded with postman end ------------------------
     # ------------------------ user inputs start ------------------------
     ui_role_name = request.form.get('uiRoleName')
-    ui_about = request.form.get('uiAbout')
-    ui_requirements = request.form.get('uiRequirements')
-    ui_nice_to_haves = request.form.get('uiNiceToHaves')
+    ui_job_description = request.form.get('uiJobDescription')
     # ------------------------ user inputs end ------------------------
     # ------------------------ sanitize user inputs error start ------------------------
     ui_role_name_check = sanitize_chars_function_v2(ui_role_name)
-    ui_about_check = sanitize_chars_function_v1(ui_about)
-    ui_requirements_check = sanitize_chars_function_v1(ui_requirements)
-    ui_nice_to_haves_check = sanitize_chars_function_v1(ui_nice_to_haves)
-    if ui_role_name_check == False or ui_about_check == False or ui_requirements_check == False or ui_nice_to_haves_check == False:
+    ui_job_description_check = sanitize_chars_function_v7(ui_job_description)
+    if ui_role_name_check == False or ui_job_description_check == False:
       return redirect(url_for('cv_views_interior_roles.cv_roles_edit_function', url_role_id=url_role_id, url_redirect_code='e8'))
     # ------------------------ sanitize user inputs error end ------------------------
     change_occured = False
@@ -238,14 +228,8 @@ def cv_roles_edit_function(url_role_id=None, url_redirect_code=None):
         db_role_obj.name = ui_role_name
         change_occured = True
       # ------------------------ check if role exists end ------------------------
-    if db_role_obj.about != ui_about:
-      db_role_obj.about = ui_about
-      change_occured = True
-    if db_role_obj.requirements != ui_requirements:
-      db_role_obj.requirements = ui_requirements
-      change_occured = True
-    if db_role_obj.nice_to_haves != ui_nice_to_haves:
-      db_role_obj.nice_to_haves = ui_nice_to_haves
+    if db_role_obj.job_description != ui_job_description:
+      db_role_obj.job_description = ui_job_description
       change_occured = True
     if change_occured == True:
       db.session.commit()
