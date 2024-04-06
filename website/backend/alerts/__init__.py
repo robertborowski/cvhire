@@ -130,6 +130,16 @@ def get_alert_message_function(redirect_var=None):
       'message':"Please create an account in order to access 'Account' and 'Settings'",
       'type':'danger'
     }
+  elif redirect_var == 'e25':
+    alert_message_dict = {
+      'message':"Please create an account in order to access 'Export'",
+      'type':'danger'
+    }
+  elif redirect_var == 'e26':
+    alert_message_dict = {
+      'message':"Job description generator coming soon.",
+      'type':'danger'
+    }
   # ------------------------ errors end ------------------------
   # ------------------------ success start ------------------------
   elif redirect_var == 's1':

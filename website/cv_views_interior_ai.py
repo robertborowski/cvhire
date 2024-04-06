@@ -82,6 +82,7 @@ def cv_dashboard_function(url_status_code='one-role-many-cvs', url_redirect_code
     correct_template = 'interior/ai/one-cv-many-roles/index.html'
   elif url_status_code == 'job-description-generator':
     correct_template = 'interior/ai/job-description-generator/index.html'
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e26'))
   # ------------------------ for setting cookie end ------------------------
   # ------------------------ set variables start ------------------------
   page_dict['nav_header'] = True
