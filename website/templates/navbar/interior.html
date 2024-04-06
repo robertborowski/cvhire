@@ -41,6 +41,11 @@
             {% endif %}
             <!-- ------------------------------------- not selected end ------------------------------------- -->
           {% endfor %}
+          <!-- ------------------------------------- anonymous user to create account start ------------------------------------- -->
+          {% if page_dict_html['is_anonymous_user'] == true %}
+            <li><a href="/signup" class="btn btn-primary fw-bold btn-sm">Create account</a></li>
+          {% endif %}
+          <!-- ------------------------------------- anonymous user to create account end ------------------------------------- -->
         </ul>
       </div>
       <!-- ------------------------------------- section 1 end ------------------------------------- -->

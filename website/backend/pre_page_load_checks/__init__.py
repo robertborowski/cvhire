@@ -64,6 +64,11 @@ def pre_page_load_checks_function(current_user, url_redirect_code=None, url_repl
   # ------------------------ subscription status start ------------------------
   page_dict['subscribe_status'] = check_stripe_subscription_status_function(current_user.id)
   # ------------------------ subscription status end ------------------------
+  # ------------------------ if user anonymous start ------------------------
+  page_dict['is_anonymous_user'] = False
+  if 'anonymous_user' in current_user.id:
+    page_dict['is_anonymous_user'] = True
+  # ------------------------ if user anonymous end ------------------------
   """
   # ------------------------ onboarding checks start ------------------------
   onbaording_status = onboarding_checks_function(current_user)
