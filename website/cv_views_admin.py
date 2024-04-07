@@ -32,7 +32,7 @@ redis_connection = redis_connect_open_function()
 def admin_function(url_redirect_code=None):
   # ------------------------ check admin status start ------------------------
   if current_user.email != os.environ.get('RUN_TEST_EMAIL'):
-    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_redirect_code='e5'))
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e5'))
   # ------------------------ check admin status end ------------------------
   # ------------------------ page dict start ------------------------
   if url_redirect_code == None:
@@ -56,7 +56,7 @@ def admin_function(url_redirect_code=None):
 def admin_control_function(url_redirect_code=None):
   # ------------------------ check admin status start ------------------------
   if current_user.email != os.environ.get('RUN_TEST_EMAIL'):
-    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_redirect_code='e5'))
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e5'))
   # ------------------------ check admin status end ------------------------
   # ------------------------ page dict start ------------------------
   if url_redirect_code == None:
@@ -137,7 +137,7 @@ def admin_control_function(url_redirect_code=None):
 def admin_scrape_function(url_redirect_code=None):
   # ------------------------ check admin status start ------------------------
   if current_user.email != os.environ.get('RUN_TEST_EMAIL'):
-    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_redirect_code='e5'))
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e5'))
   # ------------------------ check admin status end ------------------------
   # ------------------------ page dict start ------------------------
   if url_redirect_code == None:
@@ -284,7 +284,7 @@ def admin_scrape_function(url_redirect_code=None):
 def admin_email_function(url_redirect_code=None):
   # ------------------------ check admin status start ------------------------
   if current_user.email != os.environ.get('RUN_TEST_EMAIL'):
-    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_redirect_code='e5'))
+    return redirect(url_for('cv_views_interior_ai.cv_dashboard_function', url_status_code='one-role-many-cvs', url_redirect_code='e5'))
   # ------------------------ check admin status end ------------------------
   # ------------------------ page dict start ------------------------
   if url_redirect_code == None:
