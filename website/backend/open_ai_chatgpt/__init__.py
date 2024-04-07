@@ -9,8 +9,8 @@ import re
 def openai_chat_gpt_prompt_result_function(message):
   openai.api_key = os.environ.get('OPENAI_API_KEY')
   response = openai.ChatCompletion.create(
-    # model="gpt-3.5-turbo",
-    model="gpt-4",
+    model="gpt-3.5-turbo",
+    # model="gpt-4",
     messages=[
       {"role": "system", "content": "You are a helpful assistant."},
       {"role": "user", "content": message}
