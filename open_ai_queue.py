@@ -37,7 +37,7 @@ def run_function():
         # ------------------------ logs start ------------------------
         print('Queue empty, waiting...')
         # ------------------------ logs end ------------------------
-        time.sleep(10)
+        time.sleep(5)
       # ------------------------ if queue empty end ------------------------
       else:
         # ------------------------ loop queue start ------------------------
