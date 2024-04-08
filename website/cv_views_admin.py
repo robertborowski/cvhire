@@ -245,7 +245,7 @@ def admin_scrape_function(url_redirect_code=None):
     ui_print_emails = request.form.get('uiPrintEmails')
     if ui_print_emails != None:
       # ------------------------ get all emails start ------------------------
-      db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None,EmailScrapedObj.verified == False).all()
+      db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None,EmailScrapedObj.verified == False).order_by(EmailScrapedObj.website_address.asc(),EmailScrapedObj.all_formats.asc()).all()
       # ------------------------ get all emails end ------------------------
       # ------------------------ loop emails start ------------------------
       for i_email_obj in db_email_objs:
