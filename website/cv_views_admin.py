@@ -305,7 +305,7 @@ def admin_email_function(url_redirect_code=None):
       # ------------------------ set variables start ------------------------
       today = datetime.today()
       today_format = today.strftime('%m/%d/%Y')
-      output_subject = f'Hire Smarter with AI Resume Parsing | {today_format}'
+      output_subject = f'Resume Scanning with AI | {today_format}'
       # ------------------------ set variables end ------------------------
       # ------------------------ get all emails start ------------------------
       db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None,EmailScrapedObj.verified == True).all()
@@ -314,15 +314,11 @@ def admin_email_function(url_redirect_code=None):
       for i_email_obj in db_email_objs:
         # ------------------------ set variables start ------------------------
         output_body = f"""<p>Hi there,</p>\
-                          <p>Are you still hiring without AI? Boost your hiring productivity with AI candidate screening on <a href="https://cvhire.com/">CVhire</a> - learn more about AI insights and tips by reading our latest blog posts below:</p>\
+                          <p>Resume scanning with AI tool <a href="https://cvhire.com/">CVhire</a>. Work smarter with AI and get promoted. Checkout our latest blog posts:</p>\
                           <ul>\
                           <li>Blog post: <a href="https://cvhire.com/blog/{db_blog_objs[0].slug}">{db_blog_objs[0].title}</a></li>\
                           <li>Blog post: <a href="https://cvhire.com/blog/{db_blog_objs[1].slug}">{db_blog_objs[1].title}</a></li>\
-                          <li>Blog post: <a href="https://cvhire.com/blog/{db_blog_objs[2].slug}">{db_blog_objs[2].title}</a></li>\
-                          <li>Blog post: <a href="https://cvhire.com/blog/{db_blog_objs[3].slug}">{db_blog_objs[3].title}</a></li>\
-                          <li>Blog post: <a href="https://cvhire.com/blog/{db_blog_objs[4].slug}">{db_blog_objs[4].title}</a></li>\
                           </ul>\
-                          <p>Read about the benefits of AI-powered hiring, how to use AI to find the best candidates, and how to best implement AI into your hiring process on <a href="https://cvhire.com/">CVhire</a>.</p>\
                           <p style='margin:0;'>Best,</p>\
                           <p style='margin:0;'>CVhire Support Team</p>\
                           <p style='margin:0;font-size:10px;margin-top:5px;'><a href="https://cvhire.com/email/unsubscribe/{i_email_obj.id}">unsubscribe</a></p>"""
@@ -331,6 +327,10 @@ def admin_email_function(url_redirect_code=None):
         email_formats_arr = i_email_obj.all_formats.split('~')
         output_to_email = email_formats_arr[i_email_obj.correct_format] + '@' + i_email_obj.website_address
         # ------------------------ get to email end ------------------------
+        # ------------------------ testing self start ------------------------
+        # if output_to_email != os.environ.get('RUN_TEST_EMAIL'):
+        #   continue
+        # ------------------------ testing self end ------------------------
         # ------------------------ check if email already sent start ------------------------
         db_sent_email_obj = EmailSentObj.query.filter_by(subject=output_subject,to_email=output_to_email).first()
         if db_sent_email_obj != None and db_sent_email_obj != []:
