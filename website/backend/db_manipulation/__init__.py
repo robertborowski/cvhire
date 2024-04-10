@@ -242,12 +242,12 @@ def form_potential_emails_function(first_name, potential_last_names_arr, i_linke
 # ------------------------ individual function start ------------------------
 def delete_from_scraped_emails_function():
   # ------------------------ get set start ------------------------
-  email_set = get_emails_to_delete_function()
+  emails_to_delete_arr = get_emails_to_delete_function()
   # ------------------------ get set end ------------------------
   # ------------------------ set variables start ------------------------
   change_occurred = False
   # ------------------------ set variables end ------------------------
-  for i_email in email_set:
+  for i_email in emails_to_delete_arr:
     # # ------------------------ delete from emails sent table start ------------------------
     # EmailSentObj.query.filter_by(to_email=i_email).delete()
     # # ------------------------ delete from emails sent table end ------------------------

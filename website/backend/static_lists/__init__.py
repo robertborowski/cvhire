@@ -709,8 +709,8 @@ def get_linkedin_identifiers_function():
 
 # ------------------------ individual function start ------------------------
 def get_emails_to_delete_function():
-  custom_set = {
-    'brittany.sipp@adyen.com'
+  custom_arr = [
+    'a',
     # '',
     # '',
     # '',
@@ -788,26 +788,6 @@ def get_emails_to_delete_function():
     # '',
     # '',
     # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-  }
-  return custom_set
+  ]
+  return custom_arr
 # ------------------------ individual function end ------------------------
