@@ -261,15 +261,48 @@ def admin_scrape_function(url_redirect_code=None):
     ui_company_url_guess = request.form.get('uiCompanyUrlGuess')
     ui_employee_name_like = request.form.get('uiEmployeeName')
     if ui_company_url_guess != None and ui_employee_name_like != None:
-      db_obj = EmailScrapedObj.query.filter_by(website_address=ui_company_url_guess).filter(EmailScrapedObj.all_formats.like(f'%{ui_employee_name_like}%')).first()
+      db_obj_all = EmailScrapedObj.query.filter_by(website_address=ui_company_url_guess).filter(EmailScrapedObj.all_formats.like(f'%{ui_employee_name_like}%')).all()
+      # ------------------------ print person 1 start ------------------------
+      db_obj = db_obj_all[0]
       # ------------------------ if not found start ------------------------
       if db_obj == None or db_obj == []:
         return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='e10'))
       # ------------------------ if not found end ------------------------
       arr = db_obj.all_formats.split('~')
+      print(' ---------- person 1 ---------- ')
       for i in arr:
         email = i + '@' + db_obj.website_address
         print(email)
+      print(' ')
+      # ------------------------ print person 1 end ------------------------
+      """
+      # ------------------------ print person 2 start ------------------------
+      db_obj = db_obj_all[1]
+      # ------------------------ if not found start ------------------------
+      if db_obj == None or db_obj == []:
+        return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='e10'))
+      # ------------------------ if not found end ------------------------
+      arr = db_obj.all_formats.split('~')
+      print(' ---------- person 2 ---------- ')
+      for i in arr:
+        email = i + '@' + db_obj.website_address
+        print(email)
+      print(' ')
+      # ------------------------ print person 2 end ------------------------
+      # ------------------------ print person 3 start ------------------------
+      db_obj = db_obj_all[2]
+      # ------------------------ if not found start ------------------------
+      if db_obj == None or db_obj == []:
+        return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='e10'))
+      # ------------------------ if not found end ------------------------
+      arr = db_obj.all_formats.split('~')
+      print(' ---------- person 3 ---------- ')
+      for i in arr:
+        email = i + '@' + db_obj.website_address
+        print(email)
+      print(' ')
+      # ------------------------ print person 3 end ------------------------
+      """
       return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s12'))
     # ------------------------ post #11 end ------------------------
   return render_template('interior/admin_templates/scrape/index.html', page_dict_html=page_dict)
