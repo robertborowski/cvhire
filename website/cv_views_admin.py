@@ -275,7 +275,6 @@ def admin_scrape_function(url_redirect_code=None):
         print(email)
       print(' ')
       # ------------------------ print person 1 end ------------------------
-      """
       # ------------------------ print person 2 start ------------------------
       db_obj = db_obj_all[1]
       # ------------------------ if not found start ------------------------
@@ -302,7 +301,6 @@ def admin_scrape_function(url_redirect_code=None):
         print(email)
       print(' ')
       # ------------------------ print person 3 end ------------------------
-      """
       return redirect(url_for('cv_views_admin.admin_scrape_function', url_redirect_code='s12'))
     # ------------------------ post #11 end ------------------------
   return render_template('interior/admin_templates/scrape/index.html', page_dict_html=page_dict)

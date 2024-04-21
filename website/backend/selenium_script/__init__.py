@@ -114,8 +114,10 @@ def search_function(driver, input_company_name, input_role_name):
   current_url = driver.current_url
   if 'people' not in current_url:
     time.sleep(random_int_function())
-    element = driver.find_element(By.CSS_SELECTOR, '.search-reusables__filter-pill-button')
-    element.click()
+    elements = driver.find_elements(By.CSS_SELECTOR, '.search-reusables__filter-pill-button')
+    for i_element in elements:
+      if i_element.text.lower() == 'people':
+        i_element.click()
     time.sleep(random_int_function())
 
   # click and fill out "Current company" filter
