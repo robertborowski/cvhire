@@ -116,9 +116,15 @@ def search_function(driver, input_company_name, input_role_name):
     time.sleep(random_int_function())
     elements = driver.find_elements(By.CSS_SELECTOR, '.search-reusables__filter-pill-button')
     for i_element in elements:
-      if i_element.text.lower() == 'people':
-        i_element.click()
+      try:
+        if i_element.text.lower() == 'people':
+          i_element.click()
+      except:
+        pass
     time.sleep(random_int_function())
+
+  print(' ------------------- 0 ------------------- ')
+  print('here 0')
 
   # click and fill out "Current company" filter
   if 'currentCompany' not in current_url:
@@ -126,6 +132,8 @@ def search_function(driver, input_company_name, input_role_name):
     element = driver.find_element(By.ID, 'searchFilter_currentCompany') 
     element.click()
     time.sleep(random_int_function())
+    print(' ------------------- 1 ------------------- ')
+    print('here 1')
     # Click search bar
     element = driver.find_element(By.XPATH, "//input[@aria-label='Add a company']")
     element.click()
