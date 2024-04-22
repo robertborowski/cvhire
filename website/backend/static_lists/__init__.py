@@ -712,18 +712,7 @@ def get_linkedin_identifiers_function():
 # ------------------------ individual function start ------------------------
 def get_emails_to_delete_function():
   custom_arr = [
-    'amedina@zappos.com',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
-    # '',
+    'ajohnson@drift.com',
     # '',
     # '',
     # '',

@@ -336,7 +336,8 @@ def admin_email_function(url_redirect_code=None):
       # ------------------------ set variables start ------------------------
       today = datetime.today()
       today_format = today.strftime('%m/%d/%Y')
-      output_subject = f'Resume Scanning with AI | {today_format}'
+      # output_subject = f'Resume Scanning with AI | {today_format}'
+      output_subject = f'Resume Scanning with AI'
       # ------------------------ set variables end ------------------------
       # ------------------------ get all emails start ------------------------
       db_email_objs = EmailScrapedObj.query.filter(EmailScrapedObj.unsubscribed == False,EmailScrapedObj.correct_format != None,EmailScrapedObj.verified == True).order_by(EmailScrapedObj.website_address.asc(),EmailScrapedObj.all_formats.asc()).all()
