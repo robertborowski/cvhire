@@ -123,8 +123,28 @@ def search_function(driver, input_company_name, input_role_name):
         pass
     time.sleep(random_int_function())
 
-  print(' ------------------- 0 ------------------- ')
-  print('here 0')
+  # click "Locations" category of search
+  current_url = driver.current_url
+  if 'geoUrn' not in current_url:
+    time.sleep(random_int_function())
+    elements = driver.find_elements(By.CSS_SELECTOR, '.search-reusables__filter-pill-button')
+    for i_element in elements:
+      try:
+        if i_element.text.lower() == 'locations':
+          i_element.click()
+          time.sleep(random_int_function())
+          location_elements = driver.find_elements(By.CSS_SELECTOR, '.t-14')
+          location_elements[0].click()
+          time.sleep(random_int_function())
+          elements = driver.find_elements(By.CSS_SELECTOR, 'button[data-test-reusables-filter-apply-button="true"]')
+          for i_element in elements:
+            span = i_element.find_element(By.CLASS_NAME, "artdeco-button__text")
+            if span.text.lower() == 'show results':
+              span.click()
+              time.sleep(random_int_function())
+      except:
+        pass
+    time.sleep(random_int_function())
 
   # click and fill out "Current company" filter
   if 'currentCompany' not in current_url:
@@ -132,8 +152,6 @@ def search_function(driver, input_company_name, input_role_name):
     element = driver.find_element(By.ID, 'searchFilter_currentCompany') 
     element.click()
     time.sleep(random_int_function())
-    print(' ------------------- 1 ------------------- ')
-    print('here 1')
     # Click search bar
     element = driver.find_element(By.XPATH, "//input[@aria-label='Add a company']")
     element.click()
