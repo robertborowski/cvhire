@@ -29,6 +29,7 @@ def linkedin_scraper_function():
   # ------------------------ set variables start ------------------------
   company_names_arr = get_all_companies_function()
   role_names_arr = ['recruiter', 'talent acquisition', 'human resources']
+  # role_names_arr = ['']
   # ------------------------ set variables end ------------------------
   # ------------------------ recurring start ------------------------
   for i_company in company_names_arr:
