@@ -20,7 +20,7 @@ def send_email_template_function(output_email, output_subject_line, output_messa
   #response = sg.client.mail.send.post(request_body=mail_json)
   try:
     sg.client.mail.send.post(request_body=mail_json)
-    print('email sent successfully! ' + output_subject_line + " - To: " + output_email)
+    # print('email sent successfully! ' + output_subject_line + " - To: " + output_email)
   except:
     print('email did not send successfully...' + output_subject_line)
     return False
@@ -51,7 +51,7 @@ def send_email_with_attachment_template_function(output_email, output_subject_li
   #response = sg.client.mail.send.post(request_body=mail_json)
   try:
     sg.client.mail.send.post(request_body=mail_json)
-    print('email sent successfully! ' + output_subject_line + " - To: " + output_email)
+    # print('email sent successfully! ' + output_subject_line + " - To: " + output_email)
   except:
     print('email did not send successfully...' + output_subject_line)
     return False
